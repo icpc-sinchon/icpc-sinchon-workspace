@@ -1,0 +1,13 @@
+name: codename 240 for testing
+
+pre_window: export DATABASE_URL=mysql://root:icpc-sinchon.io@localhost:3306/attendance_db_test && export NODE_ENV=test
+windows:
+  - editor: 
+      layout: main-vertical
+      panes:
+        - vi .
+  - database:
+      layout: main-vertical
+      panes:
+        - docker-compose -f docker-compose.test.yml up -d
+        - npm run dev

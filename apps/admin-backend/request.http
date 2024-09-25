@@ -1,0 +1,16 @@
+GET http://localhost:3000/student/1
+
+###
+
+PATCH http://localhost:3000/attend/student-attendance/1
+Content-Type: application/json
+
+{
+    "year":2024,
+    "season":"Summer",
+    "lectureLevel": "Novice",
+    "lectureRound": 1,
+    "content": {
+        "lectureDone": true
+    }
+}

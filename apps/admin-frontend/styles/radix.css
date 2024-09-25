@@ -1,0 +1,34 @@
+:root,
+.light,
+.light-theme {
+  --green-1: #f0f4f1;
+  --green-2: #eaf1ea;
+  --green-3: #dbecdc;
+  --green-4: #cae6cd;
+  --green-5: #b6deba;
+  --green-6: #9cd4a3;
+  --green-7: #79c485;
+  --green-8: #3fb059;
+  --green-9: #009d3e;
+  --green-10: #009031;
+  --green-11: #00751f;
+  --green-12: #193e20;
+
+  --green-a1: #3fae1d07;
+  --green-a2: #2d9b0b0e;
+  --green-a3: #099b021c;
+  --green-a4: #029b0a2d;
+  --green-a5: #019a0c42;
+  --green-a6: #0199115d;
+  --green-a7: #02941882;
+  --green-a8: #019823be;
+  --green-a9: #009d3e;
+  --green-a10: #009031;
+  --green-a11: #00751f;
+  --green-a12: #002908e5;
+
+  --green-contrast: #fff;
+  --green-surface: #e7f0e7cc;
+  --green-indicator: #009d3e;
+  --green-track: #009d3e;
+}

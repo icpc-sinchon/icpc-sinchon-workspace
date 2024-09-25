@@ -1,0 +1,15 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"name": "sinchon-server",
+	"entryPoints": [
+		"./repositories/*.ts",
+		"./services/*.ts",
+		"./controllers/*.ts",
+		"./routes/*.ts",
+		"./types/*.ts"
+	],
+	"out": "docs",
+	"exclude": ["**/*.test.ts", "__tests__", "node_modules"],
+	"includeVersion": true,
+	"excludePrivate": true
+}
