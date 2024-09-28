@@ -1,0 +1,22 @@
+{
+  "name": "@icpc-sinchon/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.12.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.12.0",
+    "typescript": "^4.9.5"
+  },
+  "keywords": [],
+  "author": "Kim Sung Hyun",
+  "license": "ISC"
+}

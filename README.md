@@ -71,6 +71,12 @@ feat: 로그인 기능 추가
 - jsonwebtoken 라이브러리 사용
 ```
 
+템플릿이 `.github/.gitmessage.txt`에 있으니 이 커맨드로 설정하면 편하게 쓸 수 있다.
+
+```shell
+git config commit.template .github/.gitmessage.txt
+```
+
 ### 브랜치 전략
 
 - main: 배포 버전
