@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "frontend": "pnpm -F @icpc-sinchon/admin-frontend",
+    "backend": "pnpm -F @icpc-sinchon/admin-backend",
+    "homepage": "pnpm -F @icpc-sinchon/homepage",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
