@@ -19,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@icpc-sinchon/shared": "workspace:*",
     "@prisma/client": "^5.13.0",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
@@ -33,13 +34,13 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "puppeteer": "^22.10.0",
-    "@icpc-sinchon/shared": "workspace:*"
+    "puppeteer": "^22.10.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@testcontainers/mysql": "^10.9.0",
     "@types/bcryptjs": "^2.4.6",
+    "@types/body-parser": "^1.19.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",

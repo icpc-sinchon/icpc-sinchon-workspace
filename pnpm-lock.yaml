@@ -75,6 +75,9 @@ importers:
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
+      '@types/body-parser':
+        specifier: ^1.19.5
+        version: 1.19.5
       '@types/cookie-parser':
         specifier: ^1.4.7
         version: 1.4.7
