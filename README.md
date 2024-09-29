@@ -12,8 +12,13 @@ my-monorepo/
 │   └── homepage/
 ├── libs/
 │   └── shared/
+├── meeting-notes/
+└── 20240911.md
+└── ...
 ├── pnpm-workspace.yaml
 └── package.json
+└── tsconfig.json
+└── biome.json
 └── ...
 ```
 
@@ -21,7 +26,20 @@ my-monorepo/
 
 `libs/`: 공유 라이브러리
 
-## 설치
+`meeting-notes/`: 회의록
+
+tsconfig, biome 등의 공통 설정은 루트 디렉토리에 있습니다.
+
+## 개발 환경 설정
+
+### 프로젝트 클론
+
+```shell
+git clone https://github.com/icpc-sinchon/icpc-sinchon-workspace.git
+cd icpc-sinchon-workspace
+```
+
+## 의존성 설치
 
 이 프로젝트는 pnpm을 사용합니다. 다음 명령어로 의존성을 설치하세요:
 
