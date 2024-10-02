@@ -19,7 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // app.use(passport.initialize());
 
-app.use("/", router);
+// app.use("/", router);
 // app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
 
 export default app;

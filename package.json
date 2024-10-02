@@ -7,18 +7,17 @@
     "frontend": "pnpm -F @icpc-sinchon/admin-frontend",
     "backend": "pnpm -F @icpc-sinchon/admin-backend",
     "homepage": "pnpm -F @icpc-sinchon/homepage",
+    "build": "tsc --build --verbose",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "libs/*"
-    ]
-  },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "typescript": "^5.6.2"
