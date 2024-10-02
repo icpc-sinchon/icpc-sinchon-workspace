@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "hbenl.test-adapter-converter",
+    "hbenl.vscode-test-explorer",
+    "kavod-io.vscode-jest-test-adapter"
+  ],
+  "unwantedRecommendations": []
+}
