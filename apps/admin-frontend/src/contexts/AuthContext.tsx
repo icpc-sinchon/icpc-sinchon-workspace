@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useMemo } from "react";
+import type React from "react";
+import { createContext, useContext, useMemo } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { AuthResponse, loginAPI, logoutAPI } from "@/utils/auth";
+import { type AuthResponse, loginAPI, logoutAPI } from "@/utils/auth";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 
@@ -54,7 +55,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo(
     () => ({ isLoading, isAuthenticated, user, login, logout }),
-    [isAuthenticated, isLoading],
+    [isAuthenticated, isLoading, user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

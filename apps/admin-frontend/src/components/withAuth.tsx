@@ -1,4 +1,4 @@
-import { ComponentType, useEffect } from "react";
+import { type ComponentType, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/AuthContext";
 

@@ -11,11 +11,11 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useCallback, useState } from "react";
 import SearchBox from "../SearchBox";
-import { Level, Season } from "@/types/models";
+import type { Level, Season } from "@/types/models";
 import { useSemester } from "@/contexts/SemesterContext";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
-import { Lecture, Semester } from "@/types/setting";
+import type { Lecture, Semester } from "@/types/setting";
 import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";
 

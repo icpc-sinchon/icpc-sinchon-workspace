@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button, Switch } from "@radix-ui/themes";
 import { useState } from "react";
-import { StudentAttendance } from "@/types/models";
+import type { StudentAttendance } from "@/types/models";
 import Spinner from "@/components/Spinner";
 
 // TODO: 전체 회차에 따라 Attendance의 배열 길이가 달라지는 걸 타입으로 만들 수 있을지도?

@@ -10,12 +10,12 @@ import {
 } from "@radix-ui/themes";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { Column, TableSortState } from "@/ui/Table/types";
+import type { Column, TableSortState } from "@/ui/Table/types";
 import SearchBox from "../SearchBox";
 import AddStudentDialog from "./AddStudentDialog";
 import AddMultipleStudentDialog from "./AddMultipleStudentDialog";
 import { useSemester } from "@/contexts/SemesterContext";
-import { Student } from "@/types/models";
+import type { Student } from "@/types/models";
 
 // TODO: sort 관련한 것들, 검색도 커스텀 훅으로 뺄 수 있을 것 같음
 type StudentPageControlProps<T extends Record<string, any>> = {

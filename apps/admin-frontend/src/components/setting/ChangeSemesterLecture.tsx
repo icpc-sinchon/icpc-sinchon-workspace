@@ -11,7 +11,7 @@ import {
 } from "@radix-ui/themes";
 import useSWR from "swr";
 import { SettingTab } from "@/components/setting/SettingItem";
-import { BOJProblem, Lecture, Task } from "@/types/setting";
+import type { BOJProblem, Lecture, Task } from "@/types/setting";
 import { adminAPI } from "@/utils/api";
 import EditableInput from "../EditableInput";
 import { API_URL } from "@/types/apis";

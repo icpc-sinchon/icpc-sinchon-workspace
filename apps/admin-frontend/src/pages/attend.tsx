@@ -4,7 +4,7 @@ import useSWR from "swr";
 import Layout from "@/ui/Layout";
 import { TableWrap } from "@/ui/Table/TableStyles";
 
-import { Level, StudentAttendance } from "@/types/models";
+import type { Level, StudentAttendance } from "@/types/models";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 import AttendTable from "@/ui/Table/AttendTable";
@@ -103,7 +103,7 @@ function StudentAttendPage() {
         text: `${editedItem.name}(${editedItem.bojHandle}) 학생의 출석 정보가 수정되었습니다.`,
         color: COLORS.primarySurface,
       });
-    } catch (err) {
+    } catch (_) {
       console.error("Failed to edit attendance:", error);
       setToast({
         show: true,

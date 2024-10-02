@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import Papa from "papaparse";
 import FormDialog from "../FormDialog";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
-import { NewStudent } from "@/types/models";
+import type { NewStudent } from "@/types/models";
 import { useSemester } from "@/contexts/SemesterContext";
 
 const schoolConvert = {

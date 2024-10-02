@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { Dialog, Flex, Button } from "@radix-ui/themes";
 import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";

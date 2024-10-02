@@ -4,10 +4,10 @@ import useSWR from "swr";
 import Layout from "@/ui/Layout";
 import { TableWrap } from "@/ui/Table/TableStyles";
 import searchStringInObject from "@/utils/searchStringInObject";
-import { Column, TableSortState } from "@/ui/Table/types";
+import type { Column, TableSortState } from "@/ui/Table/types";
 
 import { adminAPI } from "@/utils/api";
-import { Student } from "@/types/models";
+import type { Student } from "@/types/models";
 import StudentTable from "@/ui/Table/StudentTable";
 import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { NewStudent, School, Payment, Level } from "@/types/models";
+import type React from "react";
+import { useState } from "react";
+import type { NewStudent, School, Payment, Level } from "@/types/models";
 import FormDialog from "../FormDialog";
 import FormInput from "@/components/Input";
 import FormSelect from "@/components/Select";

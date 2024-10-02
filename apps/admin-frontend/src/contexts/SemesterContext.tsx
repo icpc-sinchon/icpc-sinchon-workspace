@@ -1,9 +1,10 @@
 // contexts/SemesterContext.js
-import React, { createContext, useContext, useMemo } from "react";
+import type React from "react";
+import { createContext, useContext, useMemo } from "react";
 import useSWR from "swr";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
-import { Semester } from "@/types/setting";
+import type { Semester } from "@/types/setting";
 
 const initialState: Semester = {
   id: 0,

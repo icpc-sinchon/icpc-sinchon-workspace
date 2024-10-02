@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { getCenterPosition, getWidthHeight } from "@/utils/position";
 

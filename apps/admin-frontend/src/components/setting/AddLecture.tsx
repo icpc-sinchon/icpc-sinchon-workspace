@@ -68,7 +68,7 @@ function AddLecture() {
           onChange={(e) =>
             setNewLecture({
               ...newLecture,
-              lectureNumber: parseInt(e.target.value, 10),
+              lectureNumber: Number.parseInt(e.target.value, 10),
             })
           }
           type="number"
@@ -82,7 +82,7 @@ function AddLecture() {
           onChange={(e) =>
             setNewLecture({
               ...newLecture,
-              bojGroupId: parseInt(e.target.value, 10),
+              bojGroupId: Number.parseInt(e.target.value, 10),
             })
           }
           type="number"

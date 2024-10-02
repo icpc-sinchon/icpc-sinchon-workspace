@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Select } from "@radix-ui/themes";
 import { SettingTab } from "@/components/setting/SettingItem";
-import { Semester } from "@/types/setting";
+import type { Semester } from "@/types/setting";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";
@@ -31,7 +31,8 @@ function ChangeCurrentSemester() {
     const [year, season] = value.split("-");
     const newSemesterItem = semesters.find(
       (semester) =>
-        semester.year === parseInt(year, 10) && semester.season === season,
+        semester.year === Number.parseInt(year, 10) &&
+        semester.season === season,
     );
     if (!newSemesterItem) return;
     setNewSemester(newSemesterItem);

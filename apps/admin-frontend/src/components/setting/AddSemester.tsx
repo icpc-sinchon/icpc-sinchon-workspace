@@ -40,7 +40,7 @@ function AddSemester() {
           onChange={(e) =>
             setNewSemester({
               ...newSemester,
-              year: parseInt(e.target.value, 10),
+              year: Number.parseInt(e.target.value, 10),
             })
           }
         />
