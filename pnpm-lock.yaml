@@ -20,9 +20,6 @@ importers:
       '@icpc-sinchon/shared':
         specifier: workspace:*
         version: link:../../libs/shared
-      '@prisma/client':
-        specifier: ^5.13.0
-        version: 5.20.0(prisma@5.20.0)
       axios:
         specifier: ^1.7.3
         version: 1.7.7
@@ -102,12 +99,6 @@ importers:
       nodemon:
         specifier: ^3.1.0
         version: 3.1.7
-      prisma:
-        specifier: ^5.14.0
-        version: 5.20.0
-      prisma-markdown:
-        specifier: ^1.0.9
-        version: 1.0.9(@prisma/client@5.20.0(prisma@5.20.0))(prisma@5.20.0)
       superagent:
         specifier: ^9.0.2
         version: 9.0.2
@@ -138,6 +129,9 @@ importers:
 
   apps/admin-frontend:
     dependencies:
+      '@icpc-sinchon/shared':
+        specifier: workspace:*
+        version: link:../../libs/shared
       '@radix-ui/themes':
         specifier: ^3.0.5
         version: 3.1.4(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -200,9 +194,6 @@ importers:
       prisma-markdown:
         specifier: ^1.0.9
         version: 1.0.9(@prisma/client@5.20.0(prisma@5.20.0))(prisma@5.20.0)
-      typescript:
-        specifier: ^5.6.2
-        version: 5.6.2
 
 packages:
 

@@ -1,8 +1,7 @@
 {
   "name": "@icpc-sinchon/shared",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
     "generate": "prisma generate",
@@ -11,8 +10,7 @@
   },
   "devDependencies": {
     "prisma": "^5.14.0",
-    "prisma-markdown": "^1.0.9",
-    "typescript": "^5.6.2"
+    "prisma-markdown": "^1.0.9"
   },
   "keywords": [],
   "author": "Kim Sung Hyun",

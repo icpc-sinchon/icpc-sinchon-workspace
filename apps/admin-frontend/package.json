@@ -8,6 +8,7 @@
     "start": "next start -p 3100"
   },
   "dependencies": {
+    "@icpc-sinchon/shared": "workspace:*",
     "@radix-ui/themes": "^3.0.5",
     "axios": "^1.6.8",
     "next": "^14.2.13",
