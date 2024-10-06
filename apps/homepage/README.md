@@ -6,7 +6,7 @@
 
 ## 설치 및 개발환경 준비
 
-아래의 명령어를 통해 레파지토리를 클론합니다.
+아래의 명령어를 통해 레포지토리를 클론합니다.
 
 ```shell
 git clone https://github.com/icpc-sinchon/icpc-sinchon.github.io
