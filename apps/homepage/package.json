@@ -7,17 +7,13 @@
     "build": "next build",
     "export": "next export",
     "start": "next start -p 4789",
-    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m \"Deploy Next.js\" && git subtree push --prefix out origin gh-pages",
-    "pretty:check": "prettier -c .",
-    "pretty:fix": "prettier -w .",
-    "eslint:check": "eslint --max-warnings=0 './**/*.{js,jsx,ts,tsx}'",
-    "eslint:fix": "eslint --fix --max-warnings=0 './**/*.{js,jsx,ts,tsx}'"
+    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m \"Deploy Next.js\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
