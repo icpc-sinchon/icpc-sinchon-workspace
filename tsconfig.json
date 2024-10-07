@@ -7,19 +7,18 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
-    "allowJs": true,
     "noImplicitAny": true,
 
     /* Type Checking */
     "strict": true,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "resolveJsonModule": true,
-    "emitDeclarationOnly": true,
-
+    "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
       "@icpc-sinchon/shared": ["./libs/shared/src/*"]
     }
   },
+  "exclude": ["node_modules", "dist", "__tests__", "**/*.test.ts"],
   "references": [{ "path": "./libs/shared" }]
 }
