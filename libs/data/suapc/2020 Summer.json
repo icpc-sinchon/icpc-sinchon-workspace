@@ -1,5 +1,388 @@
 {
   "$schema": "./schema.json",
   "year": 2020,
-  "season": "Summer"
+  "season": "Summer",
+  "dateTime": "2020년 8월 15일 오후 2시 ~ 오후 5시",
+  "note": "처음으로 진행된 SUAPC이며, Div 1과 Div 2로 나누어 진행되었습니다.",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/799",
+    "solutionPdf": "SUAPC_2020s_Solution.pdf",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/519",
+      "https://www.acmicpc.net/contest/spotboard/518"
+    ],
+    "posterImage": "SUAPC_2020s_Poster.png"
+  },
+  "contest": [
+    {
+      "contestName": "Div 1",
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 8,
+          "teamName": "햇빛이 선명하게 문제를 핥고 있었다",
+          "school": "연세대학교",
+          "member": ["윤인섭", "황준호", "남현우"]
+        },
+        {
+          "rank": 2,
+          "solved": 6,
+          "teamName": "talsogang",
+          "school": "서강대학교",
+          "member": ["김주현", "이상원", "이태한"]
+        },
+        {
+          "rank": 3,
+          "solved": 5,
+          "teamName": "BlackWeasel",
+          "school": "서강대학교",
+          "member": ["임지환", "이기현", "이윤제"]
+        },
+        {
+          "rank": 4,
+          "solved": 4,
+          "teamName": "개강시켜조",
+          "school": "연세대학교",
+          "member": ["김형진", "함태완", "동용훈"]
+        },
+        {
+          "rank": 5,
+          "solved": 3,
+          "teamName": "처음보는사람들끼리신청마감1시간전에만든팀",
+          "school": "서강대학교",
+          "member": ["김성현", "전해성", "박재형"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "200년간 폐관수련했더니 PS 최강자가 된 건에 대하여",
+          "link": "https://www.acmicpc.net/problem/19582",
+          "setter": {
+            "name": "정연두",
+            "school": "홍익대학교",
+            "bojHandle": "Green55"
+          }
+        },
+        {
+          "problemTitle": "꿀벌",
+          "link": "https://www.acmicpc.net/problem/19573",
+          "setter": {
+            "name": "박수현",
+            "school": "서강대학교",
+            "bojHandle": "shiftpsh"
+          }
+        },
+        {
+          "problemTitle": "케이크 커팅",
+          "link": "https://www.acmicpc.net/problem/19574",
+          "setter": {
+            "name": "이준석",
+            "school": "서강대학교",
+            "bojHandle": "semteo04"
+          }
+        },
+        {
+          "problemTitle": "가뭄(Large)",
+          "link": "https://www.acmicpc.net/problem/19578",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "독특한 계산기",
+          "link": "https://www.acmicpc.net/problem/19591",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "울타리",
+          "link": "https://www.acmicpc.net/problem/19586",
+          "setter": {
+            "name": "이준석",
+            "school": "서강대학교",
+            "bojHandle": "semteo04"
+          }
+        },
+        {
+          "problemTitle": "마스크가 필요해",
+          "link": "https://www.acmicpc.net/problem/19580",
+          "setter": {
+            "name": "김규진",
+            "school": "서강대학교",
+            "bojHandle": "snrnsidy"
+          }
+        },
+        {
+          "problemTitle": "전설",
+          "link": "https://www.acmicpc.net/problem/19585",
+          "setter": {
+            "name": "박수현",
+            "school": "서강대학교",
+            "bojHandle": "shiftpsh"
+          }
+        },
+        {
+          "problemTitle": "수학은 재밌어",
+          "link": "https://www.acmicpc.net/problem/19577",
+          "setter": {
+            "name": "김규진",
+            "school": "서강대학교",
+            "bojHandle": "snrnsidy"
+          }
+        },
+        {
+          "problemTitle": "상품권 준비",
+          "link": "https://www.acmicpc.net/problem/19588",
+          "setter": {
+            "name": "정연두",
+            "school": "홍익대학교",
+            "bojHandle": "Green55"
+          }
+        },
+        {
+          "problemTitle": "물건 가져가기",
+          "link": "https://www.acmicpc.net/problem/19579",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "카드 셔플",
+          "link": "https://www.acmicpc.net/problem/19589",
+          "setter": {
+            "name": "이준석",
+            "school": "서강대학교",
+            "bojHandle": "semteo04"
+          }
+        }
+      ]
+    },
+    {
+      "contestName": "Div 2",
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 6,
+          "teamName": "Terra",
+          "school": "서강대학교",
+          "member": ["이민희", "이동주", "조원빈"]
+        },
+        {
+          "rank": 2,
+          "solved": 5,
+          "teamName": "한놈만노린다",
+          "school": "서강대학교",
+          "member": ["최재영", "이수빈", "황성민"]
+        },
+        {
+          "rank": 3,
+          "solved": 4,
+          "teamName": "corini",
+          "school": "연세대학교",
+          "member": ["박시원", "이동렬", "전현성"]
+        },
+        {
+          "rank": 4,
+          "solved": 4,
+          "teamName": "먹고살자고하는짓",
+          "school": "연세대학교",
+          "member": ["김태윤", "정은서", "송상윤"]
+        },
+        {
+          "rank": 5,
+          "solved": 4,
+          "teamName": "기시디한테 롤 진 팀",
+          "school": "홍익대학교",
+          "member": ["노정윤", "김도현", "김연욱"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "가뭄(Small)",
+          "link": "https://www.acmicpc.net/problem/19572",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "Polynomial",
+          "link": "https://www.acmicpc.net/problem/19575",
+          "setter": {
+            "name": "이재열",
+            "school": "홍익대학교",
+            "bojHandle": "malkoring"
+          }
+        },
+        {
+          "problemTitle": "비드맨",
+          "link": "https://www.acmicpc.net/problem/19590",
+          "setter": {
+            "name": "김규진",
+            "school": "서강대학교",
+            "bojHandle": "snrnsidy"
+          }
+        },
+        {
+          "problemTitle": "두 번째 트리의 지름",
+          "link": "https://www.acmicpc.net/problem/19581",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "싸이버개강총회",
+          "link": "https://www.acmicpc.net/problem/19583",
+          "setter": {
+            "name": "이재열",
+            "school": "홍익대학교",
+            "bojHandle": "malkoring"
+          }
+        },
+        {
+          "problemTitle": "약수",
+          "link": "https://www.acmicpc.net/problem/19576",
+          "setter": {
+            "name": "정연두",
+            "school": "홍익대학교",
+            "bojHandle": "Green55"
+          }
+        },
+        {
+          "problemTitle": "난개발",
+          "link": "https://www.acmicpc.net/problem/19584",
+          "setter": {
+            "name": "박수현",
+            "school": "서강대학교",
+            "bojHandle": "shiftpsh"
+          }
+        },
+        {
+          "problemTitle": "객실 배치",
+          "link": "https://www.acmicpc.net/problem/19587",
+          "setter": {
+            "name": "이재열",
+            "school": "홍익대학교",
+            "bojHandle": "malkoring"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "이재열",
+      "school": "홍익대학교",
+      "bojHandle": "malkoring"
+    },
+    {
+      "name": "정연두",
+      "school": "홍익대학교",
+      "bojHandle": "Green55"
+    },
+    {
+      "name": "김규진",
+      "school": "서강대학교",
+      "bojHandle": "snrnsidy"
+    },
+    {
+      "name": "박수현",
+      "school": "서강대학교",
+      "bojHandle": "shiftpsh"
+    },
+    {
+      "name": "이준석",
+      "school": "서강대학교",
+      "bojHandle": "semteo04"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "최재민",
+      "school": "KAIST",
+      "bojHandle": "jh05013"
+    },
+    {
+      "name": "이종서",
+      "school": "KAIST",
+      "bojHandle": "leejseo"
+    },
+    {
+      "name": "홍은기",
+      "school": "삼성전자",
+      "bojHandle": "pichulia"
+    },
+    {
+      "name": "강인구",
+      "school": "고려대학교",
+      "bojHandle": "Lawali"
+    },
+    {
+      "name": "최윤영",
+      "school": "서울대학교(대학원)",
+      "bojHandle": "ainch96"
+    },
+    {
+      "name": "나정휘",
+      "school": "선린인터넷고등학교",
+      "bojHandle": "jhnah917"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "naver-d2",
+      "name": "NAVER D2"
+    },
+    {
+      "id": "pubg",
+      "name": "PUBG"
+    },
+    {
+      "id": "vuno",
+      "name": "VUNO"
+    },
+    {
+      "id": "hanbit",
+      "name": "한빛미디어"
+    },
+    {
+      "id": "jpub",
+      "name": "제이펍"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "insight",
+      "name": "인사이트"
+    },
+    {
+      "id": "algospot",
+      "name": "알고스팟"
+    },
+    {
+      "id": "startlink",
+      "name": "스타트링크"
+    }
+  ]
 }
