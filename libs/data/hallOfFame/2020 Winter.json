@@ -1,0 +1,75 @@
+{
+  "$schema": "./schema.json",
+  "year": 2020,
+  "season": "Winter",
+  "duration": "2019년 2학기 ~ 2020년 2월",
+  "manager": [
+    {
+      "name": "임지환",
+      "school": "서강대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "이재열",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "박수현",
+      "school": "서강대학교",
+      "role": "임원진"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "이태한",
+          "school": "서강대",
+          "bojHandle": "sogangcse"
+        },
+        {
+          "name": "이재열",
+          "school": "홍익대",
+          "bojHandle": "malkoring"
+        },
+        {
+          "name": "김성민",
+          "school": "홍익대",
+          "bojHandle": "tolelom"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "임지환",
+          "school": "서강대",
+          "bojHandle": "raararaara"
+        },
+        {
+          "name": "이기현",
+          "school": "서강대",
+          "bojHandle": "sbrus_1213"
+        }
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "박수현",
+          "school": "서강대",
+          "bojHandle": "shiftpsh"
+        },
+        {
+          "name": "이상원",
+          "school": "서강대",
+          "bojHandle": "gumgood"
+        }
+      ]
+    }
+  ]
+}

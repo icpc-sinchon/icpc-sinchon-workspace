@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "명예의 전당",
+  "description": "신촌연합 알고리즘 캠프의 운영진, 기여자들을 기리는 명예의 전당 데이터 스키마",
+  "properties": {
+    "year": {
+      "type": "integer",
+      "description": "알고리즘 캠프가 진행된 연도",
+      "minimum": 2019
+    },
+    "season": {
+      "type": "string",
+      "description": "알고리즘 캠프가 진행된 계절(여름, 겨울 중 하나)",
+      "enum": ["Winter", "Summer"]
+    },
+    "duration": {
+      "type": "string",
+      "description": "알고리즘 캠프가 진행된 기간"
+    },
+    "president": {
+      "type": "array",
+      "description": "해당 시기의 회장(회장이 여러 명인 경우도 있음)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "캠프 회장의 이름"
+          },
+          "school": {
+            "type": "string",
+            "description": "회장이 소속된 학교"
+          },
+          "role": {
+            "type": "string",
+            "description": "회장의 역할 표기(일반적으로 회장)"
+          }
+        },
+        "required": ["name", "school", "role"]
+      }
+    },
+    "manager": {
+      "type": "array",
+      "description": "해당 시기의 운영진",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "운영진의 이름"
+          },
+          "school": {
+            "type": "string",
+            "description": "운영진이 소속된 학교"
+          },
+          "role": {
+            "type": "string",
+            "description": "운영진의 역할 표기"
+          }
+        },
+        "required": ["name", "school", "role"]
+      }
+    },
+    "contributor": {
+      "type": "array",
+      "description": "기타 부분에서 캠프에 기여한 사람들",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "기여자의 이름"
+          },
+          "school": {
+            "type": "string",
+            "description": "기여자의 소속(꼭 학교는 아닐 수도 있음)"
+          },
+          "role": {
+            "type": "string",
+            "description": "기여자의 역할 표기"
+          }
+        },
+        "required": ["name", "school", "role"]
+      }
+    },
+    "campContributor": {
+      "type": "array",
+      "description": "해당 시기의 알고리즘 캠프에 강사, 멘토 등으로 기여한 사람들",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "description": "캠프 난이도",
+            "enum": ["초급", "중급", "고급"]
+          },
+          "lecturer": {
+            "type": "array",
+            "description": "알고리즘 캠프 강사 명단",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "강사의 이름"
+                },
+                "school": {
+                  "type": "string",
+                  "description": "강사의 소속(꼭 학교는 아닐 수도 있음)"
+                },
+                "bojHandle": {
+                  "type": "string",
+                  "description": "강사의 BOJ 핸들"
+                }
+              },
+              "required": ["name", "school", "bojHandle"]
+            }
+          },
+          "mentor": {
+            "type": "array",
+            "description": "알고리즘 캠프 멘토 명단",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "멘토의 이름"
+                },
+                "school": {
+                  "type": "string",
+                  "description": "멘토의 소속(꼭 학교는 아닐 수도 있음)"
+                },
+                "bojHandle": {
+                  "type": "string",
+                  "description": "멘토의 BOJ 핸들"
+                }
+              },
+              "required": ["name", "school", "bojHandle"]
+            }
+          }
+        },
+        "required": ["level", "lecturer"]
+      }
+    }
+  },
+  "required": ["year", "season", "duration", "manager", "campContributor"]
+}

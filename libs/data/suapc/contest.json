@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SUAPC Contest",
+  "description": "신촌지역 대학교 프로그래밍 동아리 연합대회의 개별 기록 스키마",
+  "definitions": {
+    "contest": {
+      "type": "object",
+      "properties": {
+        "contestName": {
+          "oneOf": [{ "type": "string" }, { "type": "null" }],
+          "description": "Div1, Div2 등 캠프 콘테스트의 별칭. 없으면 null"
+        },
+        "awards": {
+          "type": "array",
+          "description": "SUAPC 수상 팀들",
+          "items": {
+            "type": "object",
+            "description": "수상 팀 정보",
+            "properties": {
+              "rank": {
+                "type": "integer",
+                "description": "수상 순위",
+                "minimum": 1
+              },
+              "solved": {
+                "type": "integer",
+                "description": "수상 팀이 푼 문제 수",
+                "minimum": 0
+              },
+              "teamName": {
+                "type": "string",
+                "description": "수상 팀의 이름"
+              },
+              "school": {
+                "type": "string",
+                "description": "수상자의 소속 학교"
+              },
+              "member": {
+                "type": "array",
+                "description": "수상자들의 이름 배열",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": ["rank", "solved", "teamName", "school", "member"]
+          }
+        },
+        "problemList": {
+          "type": "array",
+          "description": "SUAPC 문제 리스트",
+          "items": {
+            "type": "object",
+            "properties": {
+              "problemTitle": {
+                "type": "string",
+                "description": "문제 제목"
+              },
+              "link": {
+                "type": "string",
+                "description": "문제의 BOJ 링크"
+              },
+              "setter": {
+                "type": "object",
+                "description": "문제 출제자",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "문제 출제자의 이름"
+                  },
+                  "school": {
+                    "type": "string",
+                    "description": "문제 출제자의 소속 학교"
+                  },
+                  "bojHandle": {
+                    "type": "string",
+                    "description": "문제 출제자의 BOJ 핸들"
+                  }
+                },
+                "required": ["name", "school", "bojHandle"]
+              }
+            },
+            "required": ["problemTitle", "link", "setter"]
+          }
+        }
+      },
+      "required": ["contestName", "awards", "problemList"]
+    }
+  }
+}

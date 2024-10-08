@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "SUAPC",
+  "description": "신촌지역 대학교 프로그래밍 동아리 연합대회 기록을 담은 데이터 스키마",
+  "definitions": {
+    "person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "이름"
+        },
+        "school": {
+          "type": "string",
+          "description": "소속 학교"
+        },
+        "bojHandle": {
+          "type": "string",
+          "description": "BOJ 아이디"
+        }
+      },
+      "required": ["name", "school", "bojHandle"]
+    },
+    "sponsor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "후원사 ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "후원 이름"
+        },
+        "note": {
+          "type": "array",
+          "description": "후원 관련 기록",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "properties": {
+    "year": {
+      "type": "integer",
+      "description": "연합 대회가 진행된 연도",
+      "minimum": 2019
+    },
+    "season": {
+      "type": "string",
+      "description": "연합 대회가 진행된 계절(여름, 겨울 중 하나)",
+      "enum": ["Winter", "Summer"]
+    },
+    "dateTime": {
+      "type": "string",
+      "description": "연합 대회가 진행된 날짜와 시간"
+    },
+    "note": {
+      "type": "string",
+      "description": "대회에 관련된 사항. 이때 특별했던 시기적 이슈 등을 기록"
+    },
+    "links": {
+      "type": "object",
+      "description": "연합 대회 관련 링크",
+      "properties": {
+        "problemBojLink": {
+          "type": "string",
+          "description": "캠프 콘테스트의 문제 BOJ 링크"
+        },
+        "problemPdf": {
+          "type": "string",
+          "description": "캠프 콘테스트의 문제 PDF 링크"
+        },
+        "solutionPdf": {
+          "type": "string",
+          "description": "캠프 콘테스트의 솔루션 PDF 링크"
+        },
+        "scoreboard": {
+          "type": "array",
+          "description": "캠프 콘테스트의 스코어보드 링크들. div1, div2가 있던 시절을 대비해 배열로 처리",
+          "items": {
+            "type": "string",
+            "description": "캠프 콘테스트의 스코어보드 링크"
+          },
+          "minItems": 1,
+          "maxItems": 3
+        },
+        "posterImage": {
+          "type": "string",
+          "description": "연합 대회의 공식 포스터 이미지 링크"
+        }
+      }
+    },
+    "contest": {
+      "type": "array",
+      "description": "SUAPC 대회 목록",
+      "items": {
+        "$ref": "./contest.json#/definitions/contest"
+      }
+    },
+    "setter": {
+      "type": "array",
+      "description": "SUAPC 문제 출제자",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "reviewer": {
+      "type": "array",
+      "description": "SUAPC 문제 검수자",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    },
+    "sponsor": {
+      "type": "array",
+      "description": "SUAPC 후원사",
+      "items": {
+        "$ref": "#/definitions/sponsor"
+      }
+    },
+    "personalSponsor": {
+      "type": "array",
+      "description": "SUAPC의 개인 후원자",
+      "items": {
+        "$ref": "#/definitions/sponsor"
+      }
+    }
+  },
+  "required": [
+    "year",
+    "season",
+    "dateTime",
+    "links",
+    "contest",
+    "setter",
+    "reviewer",
+    "sponsor"
+  ]
+}

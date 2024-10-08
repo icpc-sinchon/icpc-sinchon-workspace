@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "캠프 콘테스트",
+  "description": "신촌연합 알고리즘 캠프의 캠프 콘테스트 기록을 담은 데이터 스키마",
+  "properties": {
+    "year": {
+      "type": "integer",
+      "description": "알고리즘 캠프가 진행된 연도",
+      "minimum": 2019
+    },
+    "season": {
+      "type": "string",
+      "description": "알고리즘 캠프가 진행된 계절(여름, 겨울 중 하나)",
+      "enum": ["Winter", "Summer"]
+    },
+    "dateTime": {
+      "type": "string",
+      "description": "캠프 콘테스트가 진행된 날짜와 시간"
+    },
+    "note": {
+      "type": "string",
+      "description": "캠프 콘테스트에 관련된 사항. 이때 특별했던 이슈 등을 기록(problemPicker 문제 선정자의 존재 등)"
+    },
+    "links": {
+      "type": "object",
+      "description": "캠프 콘테스트 관련 링크",
+      "properties": {
+        "problemBojLink": {
+          "type": "string",
+          "description": "캠프 콘테스트의 문제 BOJ 링크"
+        },
+        "solutionPdf": {
+          "type": "string",
+          "description": "캠프 콘테스트의 솔루션 PDF 링크"
+        },
+        "scoreboard": {
+          "type": "array",
+          "description": "캠프 콘테스트의 스코어보드 링크. 첫번째는 초급, 두번째는 중급...",
+          "items": {
+            "type": "string",
+            "description": "캠프 콘테스트의 스코어보드 링크"
+          },
+          "minItems": 1,
+          "maxItems": 3
+        }
+      }
+    },
+    "contest": {
+      "type": "array",
+      "description": "캠프 콘테스트의 정보",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "description": "캠프 콘테스트의 난이도",
+            "enum": ["초급", "중급", "고급"]
+          },
+          "contestName": {
+            "type": "string",
+            "description": "중간고사, 기말고사 등 캠프 콘테스트의 별칭"
+          },
+          "problemPicker": {
+            "type": "array",
+            "description": "문제 선정자. 신촌연합 초기에는 콘테스트가 백준에서 문제를 뽑아 진행되었는데 이때 문제를 선정한 사람들",
+            "items": {
+              "type": "object",
+              "description": "문제 선정자의 정보",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "문제 선정자의 이름"
+                },
+                "school": {
+                  "type": "string",
+                  "description": "문제 선정자의 소속 학교"
+                }
+              },
+              "required": ["name", "school"]
+            }
+          },
+          "awards": {
+            "type": "array",
+            "description": "캠프 콘테스트의 수상자들",
+            "items": {
+              "type": "object",
+              "description": "수상자의 정보",
+              "properties": {
+                "rank": {
+                  "type": "integer",
+                  "description": "수상 순위",
+                  "minimum": 1
+                },
+                "name": {
+                  "type": "string",
+                  "description": "수상자의 이름"
+                },
+                "school": {
+                  "type": "string",
+                  "description": "수상자의 소속 학교"
+                },
+                "bojHandle": {
+                  "type": "string",
+                  "description": "수상자의 BOJ 핸들"
+                }
+              },
+              "required": ["rank", "name", "school", "bojHandle"]
+            }
+          },
+          "problemList": {
+            "type": "array",
+            "description": "캠프 콘테스트의 문제 리스트",
+            "items": {
+              "type": "object",
+              "properties": {
+                "problemTitle": {
+                  "type": "string",
+                  "description": "문제 제목"
+                },
+                "link": {
+                  "type": "string",
+                  "description": "문제의 BOJ 링크"
+                },
+                "setter": {
+                  "type": "object",
+                  "description": "문제 출제자",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "문제 출제자의 이름"
+                    },
+                    "school": {
+                      "type": "string",
+                      "description": "문제 출제자의 소속 학교"
+                    },
+                    "bojHandle": {
+                      "type": "string",
+                      "description": "문제 출제자의 BOJ 핸들"
+                    }
+                  },
+                  "required": ["name", "school", "bojHandle"]
+                }
+              },
+              "required": ["problemTitle", "link", "setter"]
+            }
+          }
+        }
+      }
+    }
+  }
+}

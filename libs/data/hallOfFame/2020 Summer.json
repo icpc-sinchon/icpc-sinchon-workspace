@@ -1,0 +1,90 @@
+{
+  "$schema": "./schema.json",
+  "year": 2020,
+  "season": "Summer",
+  "duration": "2020년 1학기 ~ 2020년 8월",
+  "manager": [
+    {
+      "name": "임지환",
+      "school": "서강대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "이재열",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "고민재",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "반보영",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "김예은",
+      "school": "이화여자대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "남수연",
+      "school": "숙명여자대학교",
+      "role": "운영 보조"
+    },
+    {
+      "name": "김경근",
+      "school": "홍익대학교",
+      "role": "운영 보조"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "배철환",
+          "school": "서강대",
+          "bojHandle": "bcc0830"
+        },
+        {
+          "name": "백성익",
+          "school": "홍익대",
+          "bojHandle": "906bc"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "윤인섭",
+          "school": "연세대",
+          "bojHandle": "pinebananais"
+        },
+        {
+          "name": "이준석",
+          "school": "서강대",
+          "bojHandle": "semteo04"
+        }
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "전해성",
+          "school": "서강대",
+          "bojHandle": "seastar105"
+        }
+      ]
+    }
+  ]
+}
