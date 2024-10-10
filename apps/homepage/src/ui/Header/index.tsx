@@ -18,7 +18,12 @@ const categories: Category[] = [
 const LogoLink = styled(Link)`
   line-height: 4rem;
   text-decoration: none;
+  padding: 0 0.5rem;
   color: ${(props) => props.theme.colors.black};
+
+  &:hover {
+    background: ${(props) => props.theme.colors.primaryBackground};
+  }
 `;
 
 function Header() {

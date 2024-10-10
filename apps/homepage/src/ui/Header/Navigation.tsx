@@ -17,6 +17,10 @@ const NavLink = styled(Link)`
   line-height: 4rem;
   text-decoration: none;
   color: ${(props) => props.theme.colors.black};
+
+  &:hover {
+    background: ${(props) => props.theme.colors.primaryBackground};
+  }
 `;
 
 function Navigation({ categories }: { categories: Category[] }) {
