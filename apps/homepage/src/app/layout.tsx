@@ -1,4 +1,9 @@
+"use client";
+import Header from "@ui/Header";
 import StyledComponentsRegistry from "../lib/registry";
+import "../styles/reset.css";
+import { ThemeProvider } from "styled-components";
+import { COLORS } from "src/styles/color";
 
 export default function RootLayout({
   children,
@@ -8,7 +13,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <ThemeProvider theme={{ colors: COLORS }}>
+            <Header />
+            {children}
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
