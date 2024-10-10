@@ -8,12 +8,16 @@ export type Category = {
 
 const Nav = styled.nav`
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 const NavLink = styled(Link)`
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   line-height: 4rem;
   text-decoration: none;
   color: ${(props) => props.theme.colors.black};
@@ -23,6 +27,7 @@ const NavLink = styled(Link)`
   }
 `;
 
+// TODO: 페이지 전환, 너비 전환 시 메뉴가 접히도록 하기
 function Navigation({ categories }: { categories: Category[] }) {
   return (
     <Nav>

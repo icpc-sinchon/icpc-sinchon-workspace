@@ -14,8 +14,14 @@ const Wrapper = styled.div`
 `;
 
 const LogoTitle = styled.h1`
+  display: none;
+
   font-size: 1.5rem;
   color: ${(props) => props.theme.colors.primarySurface};
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 
 function Logo() {

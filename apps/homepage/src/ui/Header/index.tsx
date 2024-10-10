@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import type { Category } from "./Navigation";
 import Navigation from "./Navigation";
 import { forwardRef } from "react";
+import MobileNavigation from "./MobileNavigation";
 
 // 각 라우트에서는 가장 최근의 카테고리 정보(예를 들어 지금 2024년 여름이면 2024 여름 SUAPC)를 가져와서 렌더링한다.
 const categories: Category[] = [
@@ -33,6 +34,7 @@ function Header() {
         <Logo />
       </LogoLink>
       <Navigation categories={categories} />
+      <MobileNavigation categories={categories} />
     </HeaderContainer>
   );
 }
