@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   height: 100%;
   gap: 0.5rem;
 
-  cursor: pointer;
   z-index: 1001;
 `;
 
