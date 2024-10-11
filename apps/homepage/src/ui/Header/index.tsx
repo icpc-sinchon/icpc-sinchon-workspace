@@ -51,4 +51,5 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   border-bottom: 1px solid #eaeaea;
   padding: 0 1rem;
+  background: ${(props) => props.theme.colors.white};
 `;
