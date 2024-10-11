@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2016",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "rootDir": "./",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
     "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
     "baseUrl": "./",
-    "composite": true
-  },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "__tests__", "dist", "**/*.test.ts"],
-  "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
   }
 }
