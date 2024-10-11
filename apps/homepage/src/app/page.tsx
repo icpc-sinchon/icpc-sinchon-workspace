@@ -1,11 +1,16 @@
-import { Button } from "@components/button";
 import styled from "styled-components";
 
 function HomePage() {
   return (
-    <div>
-      <h1>Homepage</h1>
-      <Button>Click me</Button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <h1>Homepage 예시</h1>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import StyledComponentsRegistry from "../lib/registry";
 import "../styles/reset.css";
 import { ThemeProvider } from "styled-components";
 import { COLORS } from "src/styles/color";
+import Footer from "@ui/Footer";
+import PageLayout from "@ui/PageLayout";
 
 export default function RootLayout({
   children,
@@ -16,7 +18,8 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={{ colors: COLORS }}>
             <Header />
-            {children}
+            <PageLayout>{children}</PageLayout>
+            <Footer />
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

@@ -1,6 +1,5 @@
 "use client";
 // TODO: current semester 설정해서 가져오게 수정
-
 import Logo from "@ui/Header/Logo";
 import styled from "styled-components";
 import { mockData } from "./mock";
