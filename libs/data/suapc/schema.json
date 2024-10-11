@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "SUAPC",
-  "description": "신촌지역 대학교 프로그래밍 동아리 연합대회 기록을 담은 데이터 스키마",
+  "description": "신촌지역 대학교 프로그래밍 동아리 연합대회(Sinchon University Association Programming Contest) 기록을 담은 데이터 스키마",
   "definitions": {
     "person": {
       "type": "object",

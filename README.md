@@ -11,6 +11,7 @@ my-monorepo/
 │   ├── admin-backend/
 │   └── homepage/
 ├── libs/
+│   ├── data/
 │   └── shared/
 ├── meeting-notes/
 └── 20240911.md
@@ -25,6 +26,8 @@ my-monorepo/
 `apps/`: 관리자 페이지 프론트엔드, 백엔드, 랜딩 페이지 등의 애플리케이션
 
 `libs/`: 프로젝트 간에 공유하는 코드나 라이브러리를 담는 곳. prisma 등
+
+`libs/data/`: JSON으로 보관하는 캠프의 데이터를 넣는 곳
 
 `meeting-notes/`: 회의록
 
