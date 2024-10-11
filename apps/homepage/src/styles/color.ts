@@ -64,7 +64,7 @@ export const COLORS = {
   primaryBackground: palette.gray[1],
   primaryAccentBackground: palette.gray[3],
   primaryBorder: palette.gray[5],
-  primaryText: palette.black,
+  primaryText: palette.gray[8],
   secondaryText: palette.white,
   secondaryBackground: palette.cyan[1],
   secondarySurface: palette.cyan[4],
