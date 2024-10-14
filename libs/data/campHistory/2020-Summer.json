@@ -8,12 +8,12 @@
       "lecturer": [
         {
           "name": "배철환",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "bcc0830"
         },
         {
           "name": "백성익",
-          "school": "홍익대",
+          "school": "홍익대학교",
           "bojHandle": "906bc"
         }
       ],
@@ -37,12 +37,12 @@
       "lecturer": [
         {
           "name": "윤인섭",
-          "school": "연세대",
+          "school": "연세대학교",
           "bojHandle": "pinebananais"
         },
         {
           "name": "이준석",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "semteo04"
         }
       ],
@@ -66,7 +66,7 @@
       "lecturer": [
         {
           "name": "전해성",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "seastar105"
         }
       ],

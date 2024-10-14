@@ -155,7 +155,7 @@
       "problemPicker": [
         {
           "name": "이기현",
-          "school": "서강대"
+          "school": "서강대학교"
         },
         {
           "name": "최재민",
@@ -166,19 +166,19 @@
         {
           "rank": 1,
           "name": "박재형",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "pjh6792"
         },
         {
           "rank": 2,
           "name": "남유진",
-          "school": "연세대",
+          "school": "연세대학교",
           "bojHandle": "youx"
         },
         {
           "rank": 3,
           "name": "박준성",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "wnstjd13245"
         }
       ]
@@ -190,19 +190,19 @@
         {
           "rank": 1,
           "name": "김관우",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "rhksdn6227"
         },
         {
           "rank": 2,
           "name": "남유진",
-          "school": "연세대",
+          "school": "연세대학교",
           "bojHandle": "youx"
         },
         {
           "rank": 3,
           "name": "이승은",
-          "school": "서강대",
+          "school": "서강대학교",
           "bojHandle": "leese0425"
         }
       ],
@@ -239,7 +239,7 @@
           "link": "https://www.acmicpc.net/problem/19646",
           "setter": {
             "name": "이국렬",
-            "school": "연세대",
+            "school": "연세대학교",
             "bojHandle": "lky7674"
           }
         },
@@ -248,7 +248,7 @@
           "link": "https://www.acmicpc.net/problem/19647",
           "setter": {
             "name": "이국렬",
-            "school": "연세대",
+            "school": "연세대학교",
             "bojHandle": "lky7674"
           }
         },
@@ -257,7 +257,7 @@
           "link": "https://www.acmicpc.net/problem/19648",
           "setter": {
             "name": "이국렬",
-            "school": "연세대",
+            "school": "연세대학교",
             "bojHandle": "lky7674"
           }
         },
@@ -266,7 +266,7 @@
           "link": "https://www.acmicpc.net/problem/19649",
           "setter": {
             "name": "임지환",
-            "school": "서강대",
+            "school": "서강대학교",
             "bojHandle": "raararaara"
           }
         },
@@ -275,7 +275,7 @@
           "link": "https://www.acmicpc.net/problem/19650",
           "setter": {
             "name": "이준석",
-            "school": "서강대",
+            "school": "서강대학교",
             "bojHandle": "semteo04"
           }
         }
