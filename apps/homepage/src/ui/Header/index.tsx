@@ -12,6 +12,7 @@ import MobileNavigation from "./MobileNavigation";
 const categories: Category[] = [
   { title: "SUAPC", url: "/suapc" },
   { title: "Camp Contest", url: "/campcontest" },
+  { title: "역대 캠프", url: "/camphistory" },
   { title: "명예의 전당", url: "/halloffame" },
   { title: "후원 및 협업", url: "/sponsor" },
 ];
