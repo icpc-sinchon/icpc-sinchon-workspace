@@ -1,3 +1,5 @@
+import { createTheme } from "@vanilla-extract/css";
+
 const palette = {
   white: "#FFFFFF",
   black: "#000000",
@@ -55,19 +57,19 @@ const palette = {
   ],
 };
 
-export const COLORS = {
-  white: palette.white,
-  black: palette.black,
-  boxBackground: palette.white,
-  // 신촌의 상징색은 초록색이므로 초록색을 primary로 설정
-  primarySurface: palette.green[8],
-  primaryBackground: palette.gray[1],
-  primaryAccentBackground: palette.gray[3],
-  primaryBorder: palette.gray[5],
-  primaryText: palette.gray[8],
-  secondaryText: palette.white,
-  secondaryBackground: palette.cyan[1],
-  secondarySurface: palette.cyan[4],
-  secondaryAccentSurface: palette.cyan[7],
-  errorText: palette.red[6],
-};
+export const [themeClass, vars] = createTheme({
+  colors: {
+    white: palette.white,
+    black: palette.black,
+    // 신촌의 상징색은 초록색이므로 초록색을 primary로 설정
+    primarySurface: palette.green[8],
+    primaryBackground: palette.gray[1],
+    primaryAccentBackground: palette.gray[3],
+    primaryBorder: palette.gray[5],
+    primaryText: palette.gray[8],
+    secondaryBackground: palette.cyan[1],
+    secondarySurface: palette.cyan[4],
+    secondaryAccentSurface: palette.cyan[7],
+    errorText: palette.red[6],
+  },
+});
