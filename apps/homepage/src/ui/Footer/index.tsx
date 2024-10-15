@@ -1,7 +1,6 @@
-"use client";
-// TODO: current semester 설정해서 가져오게 수정
-import Logo from "@ui/Header/Logo";
-import styled from "styled-components";
+// TODO: current semester 설정해서 footer에 쓰일 정보를 가져오게 수정
+import Logo from "@components/Logo";
+import * as styles from "./styles.css";
 import { mockData } from "./mock";
 
 type Manager = {
@@ -12,11 +11,19 @@ type Manager = {
 
 const makeNameList = (list: Manager[]) => list.map((m) => m.name).join(" | ");
 
+function OrgTitle({ children }) {
+  return <h2 className={styles.orgTitle}>{children}</h2>;
+}
+
+function OrgDescription({ children }) {
+  return <p className={styles.orgDescription}>{children}</p>;
+}
+
 // DB에 저장된 정보를 쓰거나 아니면 current semester json 파일을 사용
 function Footer() {
   return (
-    <FooterWrapper>
-      <Container>
+    <footer className={styles.footerWrapper}>
+      <div className={styles.container}>
         <Logo />
         <OrgTitle>신촌지역 대학교 프로그래밍 동아리 연합</OrgTitle>
         <br />
@@ -30,35 +37,9 @@ function Footer() {
           | icpc.sinchon@gmail.com
         </OrgDescription>
         <OrgDescription>© ICPC Sinchon. All Rights Reserved.</OrgDescription>
-      </Container>
-    </FooterWrapper>
+      </div>
+    </footer>
   );
 }
 
 export default Footer;
-
-const FooterWrapper = styled.footer`
-  padding: 2rem 1rem;
-  background: ${(props) => props.theme.colors.primaryAccentBackground};
-`;
-
-const Container = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-`;
-
-const OrgTitle = styled.h2`
-  font-size: 1rem;
-  margin: 0.5rem 0;
-  font-weight: bold;
-  color: ${(props) => props.theme.colors.primaryText};
-`;
-
-const OrgDescription = styled.p`
-  font-size: 1rem;
-  color: ${(props) => props.theme.colors.primaryText};
-`;
