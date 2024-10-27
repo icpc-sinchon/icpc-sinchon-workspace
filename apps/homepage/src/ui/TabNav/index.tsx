@@ -27,7 +27,7 @@ function TabNav<T extends object>({
   makeTabTitle: (tabInfo: T) => string;
 }) {
   return (
-    <nav>
+    <nav className={styles.tabNavWrap}>
       <ul className={styles.tabNav}>
         {tabList.map((tabInfo, index) => {
           return (
