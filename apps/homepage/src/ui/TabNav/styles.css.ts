@@ -16,6 +16,7 @@ export const tabNavWrap = style({
 export const tabNav = style({
   display: "flex",
   flexWrap: "wrap",
+  justifyContent: "center",
   rowGap: "1rem",
   columnGap: "2rem",
   margin: "0 auto",
