@@ -3,7 +3,7 @@ import { vars } from "@styles/theme.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const tabNavWrap = style({
-  padding: "1rem 2rem 2rem",
+  padding: "2rem",
   display: "flex",
   msOverflowStyle: "none",
   "@media": {
@@ -20,6 +20,14 @@ export const tabNav = style({
   rowGap: "1rem",
   columnGap: "2rem",
   margin: "0 auto",
+
+  "@media": {
+    "(max-width: 640px)": {
+      justifyContent: "flex-start",
+      flexWrap: "nowrap",
+      overflowX: "auto",
+    },
+  },
 });
 
 const tabNavItemBase = style({
