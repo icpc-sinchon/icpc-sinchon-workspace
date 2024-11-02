@@ -20,3 +20,20 @@ export const historyLayout = style({
     },
   },
 });
+
+export const subTitle = style({
+  fontWeight: 700,
+
+  color: vars.colors.primarySurface,
+  fontSize: "1.2rem",
+  letterSpacing: "-0.08rem",
+  lineHeight: 1.2,
+
+  margin: "0.5rem 0 3rem 0;",
+
+  "@media": {
+    "(max-width: 640px)": {
+      fontSize: "1.1rem",
+    },
+  },
+});
