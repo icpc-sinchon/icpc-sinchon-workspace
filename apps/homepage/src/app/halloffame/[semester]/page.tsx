@@ -11,31 +11,7 @@ import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import Text from "@components/Text";
 import Title from "@components/Title";
 import DataTable from "@components/Table";
-import type { HallOfFame } from "src/types/hallOfFame";
-
-const formatHallOfFameData = (data: HallOfFame) => {
-  const formattedData = {
-    ...data,
-    campContributor: data.campContributor.map((camp) => ({
-      level: camp.level,
-      lecturer: camp.lecturer.map((lecturer) => ({
-        ...lecturer,
-        bojHandle: {
-          label: lecturer.bojHandle,
-          url: `https://www.acmicpc.net/user/${lecturer.bojHandle}`,
-        },
-      })),
-      mentor: (camp.mentor ?? []).map((mentor) => ({
-        ...mentor,
-        bojHandle: {
-          label: mentor.bojHandle,
-          url: `https://www.acmicpc.net/user/${mentor.bojHandle}`,
-        },
-      })),
-    })),
-  };
-  return formattedData;
-};
+import { formatHallOfFameData } from "src/utils/formatHallOfFameData";
 
 // TODO: [semester]에 없는 내용이면 getSemesterFromString 함수가 작동 안하게 하기
 async function HallOfFamePage({
@@ -50,7 +26,6 @@ async function HallOfFamePage({
     currentPageSemester.year,
     currentPageSemester.season,
   );
-  // TODO: JSON 스키마에서 타입 가져오기
   const hallOfFameData = formatHallOfFameData(rawData);
   const allDataRouters = getAllSemesterRouters("hallOfFame");
   const selectedTabIndex = allDataRouters.findIndex(
