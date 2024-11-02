@@ -5,6 +5,7 @@ import PageLayout from "@ui/PageLayout";
 
 import "@styles/reset.css";
 import "@styles/theme.css";
+import "@styles/font.css";
 import { themeClass } from "@styles/theme.css";
 
 export default function RootLayout({
