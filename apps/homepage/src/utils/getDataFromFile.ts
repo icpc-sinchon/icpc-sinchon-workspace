@@ -1,14 +1,13 @@
 import path from "node:path";
 import fs from "node:fs";
-
-type DataType = "campContest" | "campHistory" | "hallOfFame" | "suapc";
+import type { DataType } from "src/types";
 
 export function getDataFromFile(
   dataType: DataType,
   year: number,
   season: string,
 ) {
-  const filename = `${year} ${season}.json`;
+  const filename = `${year}-${season}.json`;
   const dataDirectory = path.join(
     process.cwd(),
     "..",
