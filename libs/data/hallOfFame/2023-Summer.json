@@ -1,6 +1,8 @@
 {
+  "$schema": "./schema.json",
   "year": 2023,
   "season": "Summer",
+  "duration": "2023년 1학기 ~ 2023년 8월",
   "president": [
     {
       "name": "이성진",
@@ -58,6 +60,72 @@
       "name": "조수아",
       "school": "이화여자대학교",
       "role": "운영진"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박찬솔",
+          "school": "숭실대학교",
+          "bojHandle": "chansol"
+        },
+        {
+          "name": "정회윤",
+          "school": "서강대학교",
+          "bojHandle": "yunny_world"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "김태윤",
+          "school": "연세대학교",
+          "bojHandle": "ystaeyoon113"
+        },
+        {
+          "name": "이성진",
+          "school": "서강대학교",
+          "bojHandle": "moralbook"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "길수민",
+          "school": "숙명여자대학교",
+          "bojHandle": "2093ab"
+        },
+        {
+          "name": "유호영",
+          "school": "서강대학교",
+          "bojHandle": "tkfkddl59323"
+        },
+        {
+          "name": "최우현",
+          "school": "연세대학교",
+          "bojHandle": "starwh03"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "윤인섭",
+          "school": "연세대학교",
+          "bojHandle": "pinebananais"
+        },
+        {
+          "name": "이협",
+          "school": "연세대학교",
+          "bojHandle": "dlguq0107"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대학교",
+          "bojHandle": "raararaara"
+        }
+      ]
     }
   ]
 }
