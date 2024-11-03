@@ -17,7 +17,7 @@ export interface CampHistory {
     /**
      * 스터디의 난이도
      */
-    level: string;
+    level: "초급" | "중급" | "고급";
     /**
      * 스터디의 강사
      */
@@ -32,7 +32,7 @@ export interface CampHistory {
     curriculum: string[];
   }[];
 }
-export interface Person {
+export type Person = {
   /**
    * 이름
    */
@@ -45,5 +45,4 @@ export interface Person {
    * BOJ 아이디
    */
   bojHandle: string;
-  [k: string]: unknown;
-}
+};
