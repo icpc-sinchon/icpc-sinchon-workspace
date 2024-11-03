@@ -11,7 +11,8 @@ import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import Text from "@components/Text";
 import Title from "@components/Title";
 import DataTable from "@components/Table";
-import { formatHallOfFameData } from "src/utils/formatHallOfFameData";
+import { renderHallOfFameData } from "src/utils/renderHallOfFameData";
+import { notFound } from "next/navigation";
 
 // TODO: [semester]에 없는 내용이면 getSemesterFromString 함수가 작동 안하게 하기
 async function HallOfFamePage({
@@ -21,18 +22,23 @@ async function HallOfFamePage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const rawData = getDataFromFile(
-    "hallOfFame",
-    currentPageSemester.year,
-    currentPageSemester.season,
-  );
-  const hallOfFameData = formatHallOfFameData(rawData);
   const allDataRouters = getAllSemesterRouters("hallOfFame");
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
       semester.year === currentPageSemester.year &&
       semester.season === currentPageSemester.season,
   );
+
+  if (selectedTabIndex === -1) {
+    notFound();
+  }
+
+  const rawData = getDataFromFile(
+    "hallOfFame",
+    currentPageSemester.year,
+    currentPageSemester.season,
+  );
+  const hallOfFameData = renderHallOfFameData(rawData);
 
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";

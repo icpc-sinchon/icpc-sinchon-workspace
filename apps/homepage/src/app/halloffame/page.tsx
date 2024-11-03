@@ -4,7 +4,7 @@ import Text from "@components/Text";
 import Title from "@components/Title";
 import TabNav from "@ui/TabNav";
 import type { Semester } from "src/types";
-import { formatHallOfFameData } from "src/utils/formatHallOfFameData";
+import { renderHallOfFameData } from "src/utils/renderHallOfFameData";
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
 import { getDataFromFile } from "src/utils/getDataFromFile";
@@ -16,7 +16,7 @@ async function HallOfFamePage() {
     currentSemester.year,
     currentSemester.season,
   );
-  const hallOfFameData = formatHallOfFameData(rawData);
+  const hallOfFameData = renderHallOfFameData(rawData);
   const allDataRouters = getAllSemesterRouters("hallOfFame");
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
