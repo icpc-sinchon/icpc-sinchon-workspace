@@ -1,0 +1,121 @@
+{
+  "$schema": "./schema.json",
+  "year": 2023,
+  "season": "Winter",
+  "duration": "2022년 2학기 ~ 2023년 2월",
+  "president": [
+    {
+      "name": "이가은",
+      "school": "숙명여자대학교",
+      "role": "회장"
+    },
+    {
+      "name": "함윤주",
+      "school": "홍익대학교",
+      "role": "회장"
+    }
+  ],
+  "manager": [
+    {
+      "name": "길수민",
+      "school": "숙명여자대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "노현근",
+      "school": "홍익대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "박주영",
+      "school": "서강대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "송상윤",
+      "school": "연세대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "이성진",
+      "school": "서강대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "이원주",
+      "school": "이화여자대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "이협",
+      "school": "연세대학교",
+      "role": "운영진"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "이지은",
+          "school": "홍익대학교",
+          "bojHandle": "leeju1013"
+        },
+        {
+          "name": "함윤주",
+          "school": "홍익대학교",
+          "bojHandle": "ohhamma"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "길수민",
+          "school": "숙명여자대학교",
+          "bojHandle": "2093ab"
+        },
+        {
+          "name": "권찬",
+          "school": "홍익대학교",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "신유승",
+          "school": "홍익대학교",
+          "bojHandle": "boysoeng"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "유호영",
+          "school": "서강대학교",
+          "bojHandle": "tkfkddl59323"
+        },
+        {
+          "name": "한상필",
+          "school": "서강대학교",
+          "bojHandle": "tksvlf123"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "이협",
+          "school": "연세대학교",
+          "bojHandle": "dlguq0107"
+        },
+        {
+          "name": "정회윤",
+          "school": "서강대학교",
+          "bojHandle": "yunny_world"
+        },
+        {
+          "name": "한승준",
+          "school": "홍익대학교",
+          "bojHandle": "dosawas"
+        }
+      ]
+    }
+  ]
+}

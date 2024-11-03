@@ -7,6 +7,7 @@ function PageLayout({
     <main
       style={{
         margin: "0 auto",
+        minHeight: "100vh",
       }}
     >
       {children}

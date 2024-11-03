@@ -1,0 +1,69 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "김재헌",
+          "school": "홍익대",
+          "bojHandle": "xhdtlsid2"
+        },
+        {
+          "name": "곽재혁",
+          "school": "연세대",
+          "bojHandle": "dreami63"
+        }
+      ],
+      "mentor": [
+        { "name": "김동건", "school": "서강대", "bojHandle": "dong_gas" },
+        { "name": "이선주", "school": "홍익대", "bojHandle": "sunjoo9912" },
+        { "name": "이지은", "school": "홍익대", "bojHandle": "leeju1013" },
+        { "name": "한상필", "school": "서강대", "bojHandle": "tksvlf123" }
+      ],
+      "curriculum": [
+        "시간복잡도, 정렬",
+        "스택, 큐, 덱",
+        "이분탐색, 분할정복",
+        "완전탐색, 백트래킹",
+        "그리디",
+        "문제풀이 1",
+        "DP",
+        "그래프, 트리",
+        "최단경로, 우선순위 큐",
+        "Union-Find, MST",
+        "문제풀이 2"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "구재원",
+          "school": "한양대",
+          "bojHandle": "jjaewon9"
+        },
+        {
+          "name": "나정휘",
+          "school": "숭실대",
+          "bojHandle": "jhnah917"
+        }
+      ],
+      "curriculum": [
+        "분할 정복",
+        "세그먼트 트리",
+        "모노톤 스택/큐",
+        "DP(위상정렬, 트리, 구간, 기댓값 등)",
+        "기초 정수론(확장 유클리드, 페르마 소정리, 중국인의 나머지 정리 등)",
+        "문제풀이 1",
+        "문자열(해싱, 트라이, KMP)",
+        "DP(그리디+DP, 게임, 자료구조 등)",
+        "DFS Tree, SCC, 2-SAT",
+        "오일러 투어 테크닉, 스파스 테이블, LCA",
+        "문제풀이 2"
+      ]
+    }
+  ]
+}

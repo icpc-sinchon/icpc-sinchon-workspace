@@ -1,0 +1,127 @@
+{
+  "$schema": "./schema.json",
+  "year": 2021,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박재형",
+          "school": "서강대",
+          "bojHandle": "pjh6792"
+        },
+        {
+          "name": "윤인섭",
+          "school": "연세대",
+          "bojHandle": "pinebananais"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "강효규",
+          "school": "서강대",
+          "bojHandle": "djs100201"
+        },
+        {
+          "name": "권찬",
+          "school": "홍익대",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "김예은",
+          "school": "이화여대",
+          "bojHandle": "ye1111k"
+        },
+        {
+          "name": "김태윤",
+          "school": "연세대",
+          "bojHandle": "ystaeyoon113"
+        },
+        {
+          "name": "남유진",
+          "school": "연세대",
+          "bojHandle": "youx"
+        },
+        {
+          "name": "송혜민",
+          "school": "숙명여대",
+          "bojHandle": "songfox00"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대",
+          "bojHandle": "raararaara"
+        }
+      ],
+      "curriculum": [
+        "C언어 리뷰, C++ 기본",
+        "시간복잡도, Sorting",
+        "Stack, Queue, Deque",
+        "BackTracking, BruteForce",
+        "동적 계획법(DP)",
+        "Greedy Algorithm",
+        "분할정복, 이분탐색",
+        "Graph, Tree",
+        "DFS, BFS",
+        "Union-Find, MST",
+        "우선순위 큐, 다익스트라 알고리즘"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "이국렬",
+          "school": "연세대",
+          "bojHandle": "lky7674"
+        },
+        {
+          "name": "전해성",
+          "school": "서강대",
+          "bojHandle": "seastar105"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "강효규",
+          "school": "서강대",
+          "bojHandle": "djs100201"
+        },
+        {
+          "name": "남유진",
+          "school": "연세대",
+          "bojHandle": "youx"
+        },
+        {
+          "name": "이상원",
+          "school": "서강대",
+          "bojHandle": "gumgood"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대",
+          "bojHandle": "raararaara"
+        },
+        {
+          "name": "조원빈",
+          "school": "서강대",
+          "bojHandle": "wbcho0504"
+        }
+      ],
+      "curriculum": [
+        "Dynamic Programming 1",
+        "Divide & Conquer",
+        "기초 정수론(역원, 확장 유클리드)",
+        "SCC & 위상 정렬",
+        "Segment Tree",
+        "2-SAT",
+        "Dynamic Programming 2",
+        "DFS Tree & BCC",
+        "기하",
+        "이국렬의 Flow 1",
+        "이국렬의 Flow 2"
+      ]
+    }
+  ]
+}

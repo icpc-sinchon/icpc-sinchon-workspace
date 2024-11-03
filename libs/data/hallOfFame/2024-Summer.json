@@ -1,0 +1,134 @@
+{
+  "$schema": "./schema.json",
+  "year": 2024,
+  "season": "Summer",
+  "duration": "2024년 1학기 ~ 2024년 8월",
+  "president": [
+    {
+      "name": "이지언",
+      "school": "연세대학교",
+      "role": "회장"
+    },
+    {
+      "name": "천민재",
+      "school": "홍익대학교",
+      "role": "회장"
+    }
+  ],
+  "manager": [
+    {
+      "name": "김예송",
+      "school": "홍익대학교",
+      "role": "총무"
+    },
+    {
+      "name": "신정화",
+      "school": "이화여자대학교",
+      "role": "홍보팀장"
+    },
+    {
+      "name": "최연재",
+      "school": "숙명여자대학교",
+      "role": "홍보팀 운영진"
+    },
+    {
+      "name": "홍서희",
+      "school": "숙명여자대학교",
+      "role": "홍보팀 운영진"
+    },
+    {
+      "name": "황채원",
+      "school": "이화여자대학교",
+      "role": "홍보팀 운영진"
+    },
+    {
+      "name": "장희주",
+      "school": "숙명여자대학교",
+      "role": "학생관리팀장"
+    },
+    {
+      "name": "김지호",
+      "school": "연세대학교",
+      "role": "학생관리팀 운영진"
+    },
+    {
+      "name": "박경욱",
+      "school": "연세대학교",
+      "role": "학생관리팀 운영진"
+    },
+    {
+      "name": "서채연",
+      "school": "홍익대학교",
+      "role": "학생관리팀 운영진"
+    },
+    {
+      "name": "이재찬",
+      "school": "서강대학교",
+      "role": "학생관리팀 운영진"
+    },
+    {
+      "name": "박준영",
+      "school": "서강대학교",
+      "role": "홍보팀 운영진"
+    },
+    {
+      "name": "한유리",
+      "school": "이화여자대학교",
+      "role": "학생관리팀 운영진"
+    }
+  ],
+  "contributor": [
+    {
+      "name": "김성현",
+      "school": "서강대학교",
+      "role": "프로그램관리팀장"
+    },
+    {
+      "name": "키위유 || 가지",
+      "school": "연세대학교",
+      "role": "프로그램관리팀 용병"
+    },
+    {
+      "name": "정은채",
+      "school": "이화여자대학교",
+      "role": "디자인팀 용병"
+    },
+    {
+      "name": "박준영",
+      "school": "서강대학교",
+      "role": "학회장"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박찬솔",
+          "school": "숭실대학교",
+          "bojHandle": "chansol"
+        },
+        {
+          "name": "김지호",
+          "school": "연세대학교",
+          "bojHandle": "wlgh7407"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "김영현",
+          "school": "서울대학교",
+          "bojHandle": "kipa00"
+        },
+        {
+          "name": "박진한",
+          "school": "고려대학교",
+          "bojHandle": "jinhan814"
+        }
+      ]
+    }
+  ]
+}

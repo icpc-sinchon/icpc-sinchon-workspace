@@ -1,0 +1,95 @@
+{
+  "$schema": "./schema.json",
+  "year": 2023,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박찬솔",
+          "school": "숭실대",
+          "bojHandle": "chansol"
+        },
+        {
+          "name": "정회윤",
+          "school": "서강대",
+          "bojHandle": "yunny_world"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "김태윤",
+          "school": "연세대",
+          "bojHandle": "ystaeyoon113"
+        },
+        {
+          "name": "이성진",
+          "school": "서강대",
+          "bojHandle": "moralbook"
+        }
+      ],
+      "curriculum": [
+        "Problem Solving, Time complexity, Basic C++",
+        "Sorting, Linear data structure",
+        "Basic Math",
+        "Bruteforcing, Recursive function",
+        "Dynamic Programming",
+        "Binary Search, Divide and Conquer",
+        "Prefix Sum, Two Pointer",
+        "Tree, Graph",
+        "DFS, BFS",
+        "Dijkstra"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "길수민",
+          "school": "숙명여대",
+          "bojHandle": "2093ab"
+        },
+        {
+          "name": "유호영",
+          "school": "서강대",
+          "bojHandle": "tkfkddl59323"
+        },
+        {
+          "name": "최우현",
+          "school": "연세대",
+          "bojHandle": "starwh03"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "윤인섭",
+          "school": "연세대",
+          "bojHandle": "pinebananais"
+        },
+        {
+          "name": "이협",
+          "school": "연세대",
+          "bojHandle": "dlguq0107"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대",
+          "bojHandle": "raararaara"
+        }
+      ],
+      "curriculum": [
+        "Problem Solving, Time Complexity",
+        "Number Theory",
+        "Shortest Path Algorithms",
+        "Union Find, Minimum Spanning Tree",
+        "Dynamic Programming",
+        "Greedy Algorithm",
+        "Segment Tree",
+        "Topological Sorting, Strongly Connected Component",
+        "Geometry",
+        "KMP, Rabin-Karp"
+      ]
+    }
+  ]
+}

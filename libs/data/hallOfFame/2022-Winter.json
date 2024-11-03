@@ -1,0 +1,141 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Winter",
+  "duration": "2021년 2학기 ~ 2022년 2월",
+  "president": [
+    {
+      "name": "권예빈",
+      "school": "홍익대학교",
+      "role": "회장"
+    },
+    {
+      "name": "한다현",
+      "school": "이화여자대학교",
+      "role": "회장"
+    }
+  ],
+  "manager": [
+    {
+      "name": "김가영",
+      "school": "홍익대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "김은서",
+      "school": "이화여자대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "박예나",
+      "school": "숙명여자대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "이재혁",
+      "school": "서강대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "전지수",
+      "school": "홍익대학교",
+      "role": "운영진"
+    },
+    {
+      "name": "채정아",
+      "school": "숙명여자대학교",
+      "role": "운영진"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "김성현",
+          "school": "서강대학교",
+          "bojHandle": "dart"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대학교",
+          "bojHandle": "raararaara"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "권찬",
+          "school": "홍익대학교",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "김동건",
+          "school": "서강대학교",
+          "bojHandle": "dong_gas"
+        },
+        {
+          "name": "김서인",
+          "school": "서강대학교",
+          "bojHandle": "seoin0110"
+        },
+        {
+          "name": "김성민",
+          "school": "홍익대학교",
+          "bojHandle": "tolelom"
+        },
+        {
+          "name": "박준서",
+          "school": "서강대학교",
+          "bojHandle": "p_jun"
+        },
+        {
+          "name": "한상필",
+          "school": "서강대학교",
+          "bojHandle": "tksvlf123"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "강효규",
+          "school": "서강대학교",
+          "bojHandle": "djs100201"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "김도현",
+          "school": "홍익대학교",
+          "bojHandle": "swoon"
+        },
+        {
+          "name": "남유진",
+          "school": "연세대학교",
+          "bojHandle": "youx"
+        },
+        {
+          "name": "조원빈",
+          "school": "서강대학교",
+          "bojHandle": "wbcho0504"
+        }
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "이국렬",
+          "school": "연세대학교",
+          "bojHandle": "lky7674"
+        },
+        {
+          "name": "전해성",
+          "school": "서강대학교",
+          "bojHandle": "seastar105"
+        }
+      ]
+    }
+  ]
+}
