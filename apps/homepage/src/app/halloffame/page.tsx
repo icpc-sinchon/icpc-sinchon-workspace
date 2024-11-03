@@ -134,7 +134,7 @@ async function HallOfFamePage() {
             />
           </>
         )}
-        {intermediateCampData.mentor && (
+        {intermediateCampData?.mentor && (
           <>
             <Title badge="중급">알고리즘 캠프 멘토</Title>
             <DataTable

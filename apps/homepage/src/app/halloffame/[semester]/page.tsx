@@ -119,7 +119,7 @@ async function HallOfFamePage({
             />
           </>
         )}
-        {noviceCampData.mentor && (
+        {noviceCampData?.mentor && (
           <>
             <Title badge="초급">알고리즘 캠프 멘토</Title>
             <DataTable
@@ -145,7 +145,7 @@ async function HallOfFamePage({
             />
           </>
         )}
-        {intermediateCampData.mentor && (
+        {intermediateCampData?.mentor && (
           <>
             <Title badge="중급">알고리즘 캠프 멘토</Title>
             <DataTable
