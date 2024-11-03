@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import type { Category } from "..";
 import * as styles from "./styles.css";

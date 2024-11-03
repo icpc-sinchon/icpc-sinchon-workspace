@@ -1,4 +1,3 @@
-"use client";
 import Header from "@ui/Header";
 import Footer from "@ui/Footer";
 import PageLayout from "@ui/PageLayout";
