@@ -9,7 +9,7 @@ import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
 import { getDataFromFile } from "src/utils/getDataFromFile";
 
-async function HallOfFamePage() {
+function HallOfFamePage() {
   const currentSemester = getCurrentSemester();
   const rawData = getDataFromFile(
     "hallOfFame",

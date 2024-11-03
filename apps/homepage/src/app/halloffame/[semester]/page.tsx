@@ -15,7 +15,7 @@ import { renderHallOfFameData } from "src/utils/renderHallOfFameData";
 import { notFound } from "next/navigation";
 
 // TODO: [semester]에 없는 내용이면 getSemesterFromString 함수가 작동 안하게 하기
-async function HallOfFamePage({
+function HallOfFamePage({
   params,
 }: {
   params: { semester: string };
