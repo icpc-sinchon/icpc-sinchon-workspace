@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 export const historyLayout = style({
   width: "92%",
-  maxWidth: "1200px",
+  maxWidth: "1024px",
   height: "auto",
   border: `3px solid ${vars.colors.primarySurface}`,
 
