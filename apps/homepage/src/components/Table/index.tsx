@@ -1,7 +1,7 @@
 import * as styles from "./styles.css";
 
 // 링크도 표시할 수 있다.
-type Value = number | string | { label: string; url: string };
+type Value = number | string | React.ReactNode;
 
 type Column<T> = {
   key: keyof T;
@@ -17,22 +17,6 @@ type TableProps<T extends Item> = {
   columns: Column<T>[];
   fixedLayout?: boolean;
 };
-
-function renderValue(value: Value) {
-  if (typeof value === "object") {
-    return (
-      <a
-        href={value.url}
-        target="_blank"
-        rel="noreferrer"
-        className={styles.link}
-      >
-        {value.label}
-      </a>
-    );
-  }
-  return value;
-}
 
 function DataTable<T extends Item>({
   columns,
@@ -57,7 +41,7 @@ function DataTable<T extends Item>({
           <tr key={rowIndex} className={styles.tableRow}>
             {columns.map((column) => (
               <td key={String(column.key)} className={styles.tableData}>
-                {renderValue(row[column.key])}
+                {row[column.key]}
               </td>
             ))}
           </tr>
