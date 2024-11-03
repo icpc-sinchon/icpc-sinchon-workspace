@@ -15,6 +15,7 @@ type Item = {
 type TableProps<T extends Item> = {
   data: T[];
   columns: Column<T>[];
+  fixedLayout?: boolean;
 };
 
 function renderValue(value: Value) {
@@ -33,9 +34,15 @@ function renderValue(value: Value) {
   return value;
 }
 
-function DataTable<T extends Item>({ columns, data }: TableProps<T>) {
+function DataTable<T extends Item>({
+  columns,
+  data,
+  fixedLayout,
+}: TableProps<T>) {
   return (
-    <table className={styles.table}>
+    <table
+      className={`${styles.table} ${fixedLayout ? styles.fixedLayout : ""}`}
+    >
       <thead>
         <tr>
           {columns.map((column) => (

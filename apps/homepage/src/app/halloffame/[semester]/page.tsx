@@ -81,6 +81,7 @@ async function HallOfFamePage({
                 { key: "name", header: "이름" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -92,6 +93,7 @@ async function HallOfFamePage({
             { key: "name", header: "이름" },
             { key: "school", header: "학교" },
           ]}
+          fixedLayout
         />
         {hallOfFameData.contributor && (
           <>
@@ -103,6 +105,7 @@ async function HallOfFamePage({
                 { key: "name", header: "이름" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -116,6 +119,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -129,6 +133,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -142,6 +147,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -155,6 +161,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -168,6 +175,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}
@@ -181,6 +189,7 @@ async function HallOfFamePage({
                 { key: "bojHandle", header: "BOJ" },
                 { key: "school", header: "학교" },
               ]}
+              fixedLayout
             />
           </>
         )}

@@ -3,7 +3,6 @@ import { style } from "@vanilla-extract/css";
 
 export const table = style({
   width: "100%",
-  tableLayout: "fixed",
 
   textAlign: "center",
   fontSize: "0.8rem",
@@ -14,6 +13,10 @@ export const table = style({
   whiteSpace: "nowrap",
 
   overflowY: "hidden",
+});
+
+export const fixedLayout = style({
+  tableLayout: "fixed",
 });
 
 export const tableRow = style({
