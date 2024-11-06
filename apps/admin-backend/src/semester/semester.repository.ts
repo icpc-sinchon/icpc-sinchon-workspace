@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable } from '@nestjs/common';
 import type { Prisma, Semester } from "@prisma/client";
 import type { PrismaService } from "src/prisma/prisma.service";
 
@@ -15,6 +15,13 @@ export class SemesterRepository {
 
   async getSemesters(): Promise<Semester[]> {
     return this.prisma.semester.findMany();
+  }
+
+  async getSemester(params: {
+    where: Prisma.SemesterWhereUniqueInput;
+  }): Promise<Semester> {
+    const { where } = params;
+    return this.prisma.semester.findUnique({ where });
   }
 
   async updateSemester(params: {
