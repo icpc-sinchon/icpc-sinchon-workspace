@@ -39,6 +39,9 @@
       "quoteStyle": "double",
       "attributePosition": "auto",
       "bracketSpacing": true
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "overrides": [
