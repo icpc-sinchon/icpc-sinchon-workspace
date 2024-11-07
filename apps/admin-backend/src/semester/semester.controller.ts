@@ -1,4 +1,4 @@
-import { Controller, Body, Param, Get, Post, Patch, Delete } from '@nestjs/common';
+import { Controller, Body, Param, Get, Post, Patch, Delete, ParseIntPipe  } from '@nestjs/common';
 import type { Semester } from '@prisma/client';
 import type { SemesterService } from './semester.service';
 import type { CreateSemesterDto } from './dto/create-semester.dto';
@@ -15,7 +15,7 @@ export class SemesterController {
 
   @Get('/:id')
   getSemesterById(
-    @Param('id') id: number
+    @Param('id', ParseIntPipe) id: number
   ): Promise<Semester | null> {
     return this.semesterService.getSemesterById(id);
   }
@@ -29,7 +29,7 @@ export class SemesterController {
 
   @Patch('/:id')
   updateSemester(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateSemesterDto: UpdateSemesterDto
   ): Promise<Semester> {
     return this.semesterService.updateSemester(id, updateSemesterDto)
@@ -37,7 +37,7 @@ export class SemesterController {
 
   @Delete('/:id')
   deleteSemester(
-    @Param('id') id: number
+    @Param('id', ParseIntPipe) id: number
   ): Promise<Semester> {
     return this.semesterService.deleteSemester(id)
   }
