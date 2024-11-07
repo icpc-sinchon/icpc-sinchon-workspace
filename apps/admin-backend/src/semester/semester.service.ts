@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { Prisma, Semester } from "@prisma/client";
+import type { Prisma, Semester } from '@prisma/client';
 import type { SemesterRepository } from "./semester.repository";
 
 @Injectable()
