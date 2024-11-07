@@ -17,7 +17,7 @@ function HallOfFamePage() {
     currentSemester.season,
   );
   const hallOfFameData = renderHallOfFameData(rawData);
-  const allDataRouters = getAllSemesterRouters("hallOfFame");
+  const allDataRouters = getAllSemesterRouters();
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
       semester.year === currentSemester.year &&

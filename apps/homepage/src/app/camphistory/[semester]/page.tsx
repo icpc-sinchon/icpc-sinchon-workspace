@@ -4,10 +4,8 @@ import Text from "@components/Text";
 import Title from "@components/Title";
 import TabNav from "@ui/TabNav";
 import { notFound } from "next/navigation";
-import fs from "node:fs";
-import path from "node:path";
 import type { Semester } from "src/types";
-import { formatFilenames } from "src/utils/formatFilenames";
+
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getDataFromFile } from "src/utils/getDataFromFile";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
@@ -21,7 +19,7 @@ function CampHistoryPage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const allDataRouters = getAllSemesterRouters("campHistory");
+  const allDataRouters = getAllSemesterRouters();
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
       semester.year === currentPageSemester.year &&
@@ -212,18 +210,8 @@ function CampHistoryPage({
 export default CampHistoryPage;
 
 export async function generateStaticParams() {
-  const campHistoryDataDirectory = path.join(
-    process.cwd(),
-    "..",
-    "..",
-    "libs",
-    "data",
-    "campHistory",
-  );
-  console.log(campHistoryDataDirectory);
-  const filenames = fs.readdirSync(campHistoryDataDirectory);
-  const formattedFilenames = formatFilenames(filenames);
-  return formattedFilenames.map((semester) => ({
-    params: { semester },
+  const allSemesters = getAllSemesterRouters();
+  return allSemesters.map((semester) => ({
+    params: { semester: `${semester.year}-${semester.season}` },
   }));
 }

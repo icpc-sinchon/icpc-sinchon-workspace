@@ -1,10 +1,7 @@
 import HistoryLayout from "@components/HistoryLayout";
 
 import TabNav from "@ui/TabNav";
-import fs from "node:fs";
-import path from "node:path";
 import type { Semester } from "src/types";
-import { formatFilenames } from "src/utils/formatFilenames";
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getDataFromFile } from "src/utils/getDataFromFile";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
@@ -22,7 +19,7 @@ function HallOfFamePage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const allDataRouters = getAllSemesterRouters("hallOfFame");
+  const allDataRouters = getAllSemesterRouters();
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
       semester.year === currentPageSemester.year &&
@@ -207,17 +204,8 @@ function HallOfFamePage({
 export default HallOfFamePage;
 
 export async function generateStaticParams() {
-  const hallOfFameDataDirectory = path.join(
-    process.cwd(),
-    "..",
-    "..",
-    "libs",
-    "data",
-    "hallOfFame",
-  );
-  const filenames = fs.readdirSync(hallOfFameDataDirectory);
-  const formattedFilenames = formatFilenames(filenames);
-  return formattedFilenames.map((semester) => ({
-    params: { semester },
+  const allSemesters = getAllSemesterRouters();
+  return allSemesters.map((semester) => ({
+    params: { semester: `${semester.year}-${semester.season}` },
   }));
 }

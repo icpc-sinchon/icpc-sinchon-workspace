@@ -11,7 +11,7 @@ import { renderCampHistoryData } from "src/utils/renderCampHistoryData";
 
 function CampHistoryPage() {
   const currentSemester = getCurrentSemester();
-  const allDataRouters = getAllSemesterRouters("campHistory");
+  const allDataRouters = getAllSemesterRouters();
   const selectedTabIndex = allDataRouters.findIndex(
     (semester) =>
       semester.year === currentSemester.year &&
