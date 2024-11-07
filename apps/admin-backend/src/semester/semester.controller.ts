@@ -1,6 +1,6 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Controller, Get, Post } from '@nestjs/common';
 import type { Semester } from "@prisma/client";
-import type { SemesterService } from "./semester.service";
+import type { SemesterService } from './semester.service';
 
 @Controller('semester')
 export class SemesterController {
