@@ -1,0 +1,221 @@
+{
+  "$schema": "./schema.json",
+  "year": 2021,
+  "season": "Winter",
+  "dateTime": "2021년 2월 20일 오후 1시 ~ 오후 5시",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/795",
+    "solutionPdf": "2021W-SinchonCamp-solutions.pdf",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/588",
+      "https://www.acmicpc.net/contest/spotboard/589"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "강민서",
+          "school": "연세대",
+          "bojHandle": "namoo"
+        },
+        {
+          "rank": 2,
+          "name": "정영우",
+          "school": "연세대",
+          "bojHandle": "existrei01"
+        },
+        {
+          "rank": 3,
+          "name": "오재석",
+          "school": "서강대",
+          "bojHandle": "whitehorse"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "영단어 암기는 괴로워",
+          "link": "https://www.acmicpc.net/problem/20920",
+          "setter": {
+            "name": "김도은",
+            "school": "숙명여대",
+            "bojHandle": "whaeun25"
+          }
+        },
+        {
+          "problemTitle": "그렇고 그런 사이",
+          "link": "https://www.acmicpc.net/problem/20921",
+          "setter": {
+            "name": "정기웅",
+            "school": "연세대",
+            "bojHandle": "QuqqU"
+          }
+        },
+        {
+          "problemTitle": "겹치는 건 싫어",
+          "link": "https://www.acmicpc.net/problem/20922",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "숫자 할리갈리 게임",
+          "link": "https://www.acmicpc.net/problem/20923",
+          "setter": {
+            "name": "김도은",
+            "school": "숙명여대",
+            "bojHandle": "whaeun25"
+          }
+        },
+        {
+          "problemTitle": "트리의 기둥과 가지",
+          "link": "https://www.acmicpc.net/problem/20924",
+          "setter": {
+            "name": "백성익",
+            "school": "홍익대",
+            "bojHandle": "906bc"
+          }
+        },
+        {
+          "problemTitle": "메이플스토리",
+          "link": "https://www.acmicpc.net/problem/20925",
+          "setter": {
+            "name": "이상원",
+            "school": "서강대",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "얼음 미로",
+          "link": "https://www.acmicpc.net/problem/20926",
+          "setter": {
+            "name": "백성익",
+            "school": "홍익대",
+            "bojHandle": "906bc"
+          }
+        },
+        {
+          "problemTitle": "Degree Bounded Minimum Spanning Tree",
+          "link": "https://www.acmicpc.net/problem/20927",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "조원빈",
+          "school": "서강대",
+          "bojHandle": "wbcho0504"
+        },
+        {
+          "rank": 2,
+          "name": "박재형",
+          "school": "서강대",
+          "bojHandle": "pjh6792"
+        },
+        {
+          "rank": 3,
+          "name": "남유진",
+          "school": "연세대",
+          "bojHandle": "youx"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "그렇고 그런 사이",
+          "link": "https://www.acmicpc.net/problem/20921",
+          "setter": {
+            "name": "정기웅",
+            "school": "연세대",
+            "bojHandle": "QuqqU"
+          }
+        },
+        {
+          "problemTitle": "걷는 건 귀찮아",
+          "link": "https://www.acmicpc.net/problem/20928",
+          "setter": {
+            "name": "김주현",
+            "school": "서강대",
+            "bojHandle": "woonikim"
+          }
+        },
+        {
+          "problemTitle": "중간",
+          "link": "https://www.acmicpc.net/problem/20929",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "우주 정거장",
+          "link": "https://www.acmicpc.net/problem/20930",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "혹 떼러 갔다 혹 붙여 온다",
+          "link": "https://www.acmicpc.net/problem/20931",
+          "setter": {
+            "name": "정연두",
+            "school": "홍익대",
+            "bojHandle": "Green55"
+          }
+        },
+        {
+          "problemTitle": "약수 의식",
+          "link": "https://www.acmicpc.net/problem/20932",
+          "setter": {
+            "name": "정연두",
+            "school": "홍익대",
+            "bojHandle": "Green55"
+          }
+        },
+        {
+          "problemTitle": "마스크펑크 2077",
+          "link": "https://www.acmicpc.net/problem/20933",
+          "setter": {
+            "name": "김주현",
+            "school": "서강대",
+            "bojHandle": "woonikim"
+          }
+        },
+        {
+          "problemTitle": "카드 모래성",
+          "link": "https://www.acmicpc.net/problem/20934",
+          "setter": {
+            "name": "김주현",
+            "school": "서강대",
+            "bojHandle": "woonikim"
+          }
+        },
+        {
+          "problemTitle": "Parity Constraint Perfect Matching",
+          "link": "https://www.acmicpc.net/problem/20935",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        }
+      ]
+    }
+  ]
+}

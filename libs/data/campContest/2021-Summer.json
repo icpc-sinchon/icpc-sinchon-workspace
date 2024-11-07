@@ -1,0 +1,194 @@
+{
+  "$schema": "./schema.json",
+  "year": 2021,
+  "season": "Summer",
+  "dateTime": "2021년 8월 21일 오후 2시 ~ 오후 5시",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/796",
+    "solutionPdf": "21s-Camp-Contest-Solutions.zip",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/676",
+      "https://www.acmicpc.net/contest/spotboard/677"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "김창민",
+          "school": "서강대",
+          "bojHandle": "jakads"
+        },
+        {
+          "rank": 2,
+          "name": "전재현",
+          "school": "연세대",
+          "bojHandle": "chrisj67"
+        },
+        {
+          "rank": 3,
+          "name": "김성현",
+          "school": "서강대",
+          "bojHandle": "dart"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "이진수 나눗셈",
+          "link": "https://www.acmicpc.net/problem/22950",
+          "setter": {
+            "name": "김도은",
+            "school": "숙명여대",
+            "bojHandle": "whaeun25"
+          }
+        },
+        {
+          "problemTitle": "송이의 카드 게임",
+          "link": "https://www.acmicpc.net/problem/22951",
+          "setter": {
+            "name": "송혜민",
+            "school": "숙명여대",
+            "bojHandle": "songfox00"
+          }
+        },
+        {
+          "problemTitle": "permutation making",
+          "link": "https://www.acmicpc.net/problem/22952",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "도도의 음식 준비",
+          "link": "https://www.acmicpc.net/problem/22953",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "그래프 트리 분할",
+          "link": "https://www.acmicpc.net/problem/22954",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "고양이 도도의 탈출기",
+          "link": "https://www.acmicpc.net/problem/22955",
+          "setter": {
+            "name": "김도은",
+            "school": "숙명여대",
+            "bojHandle": "whaeun25"
+          }
+        },
+        {
+          "problemTitle": "소나기",
+          "link": "https://www.acmicpc.net/problem/22956",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "조원빈",
+          "school": "서강대",
+          "bojHandle": "wbcho0504"
+        },
+        {
+          "rank": 2,
+          "name": "김종민",
+          "school": "연세대",
+          "bojHandle": "luciaholic"
+        },
+        {
+          "rank": 3,
+          "name": "김기현",
+          "school": "연세대",
+          "bojHandle": "surface_03"
+        }
+      ],
+      "problem_list": [
+        {
+          "problemTitle": "permutation making",
+          "link": "https://www.acmicpc.net/problem/22952",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "짝수싫어수",
+          "link": "https://www.acmicpc.net/problem/22957",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "안산 탐지기",
+          "link": "https://www.acmicpc.net/problem/22958",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "신촌의 수열과 쿼리",
+          "link": "https://www.acmicpc.net/problem/22959",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "미팅",
+          "link": "https://www.acmicpc.net/problem/22960",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "여행사 운영하기",
+          "link": "https://www.acmicpc.net/problem/22961",
+          "setter": {
+            "name": "전해성",
+            "school": "서강대",
+            "bojHandle": "seastar105"
+          }
+        },
+        {
+          "problemTitle": "신촌방위본부",
+          "link": "https://www.acmicpc.net/problem/22962",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        }
+      ]
+    }
+  ]
+}

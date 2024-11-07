@@ -1,0 +1,218 @@
+{
+  "$schema": "./schema.json",
+  "year": 2021,
+  "season": "Summer",
+  "dateTime": "2022년 8월 21일 오후 1시 ~ 오후 5시",
+  "links": {
+    "solutionPdf": "22s-Camp-Contest-Solution.pdf",
+    "problemBojLink": "https://www.acmicpc.net/category/798",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/841",
+      "https://www.acmicpc.net/contest/spotboard/842"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "박정빈",
+          "school": "서강대",
+          "bojHandle": "jeongbin"
+        },
+        {
+          "rank": 2,
+          "name": "김영빈",
+          "school": "홍익대",
+          "bojHandle": "bins9903"
+        },
+        {
+          "rank": 3,
+          "name": "이준석",
+          "school": "서강대",
+          "bojHandle": "junlee1216"
+        },
+        {
+          "rank": 4,
+          "name": "이지은",
+          "school": "홍익대",
+          "bojHandle": "leeju1013"
+        },
+        {
+          "rank": 4,
+          "name": "장유빈",
+          "school": "서강대",
+          "bojHandle": "youvebeen"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "단순한 문제 (Small)",
+          "link": "https://www.acmicpc.net/problem/25494",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "에어팟",
+          "link": "https://www.acmicpc.net/problem/25495",
+          "setter": {
+            "name": "임민수",
+            "school": "서원대",
+            "bojHandle": "lms0806"
+          }
+        },
+        {
+          "problemTitle": "장신구 명장 임스",
+          "link": "https://www.acmicpc.net/problem/25496",
+          "setter": {
+            "name": "임민수",
+            "school": "서원대",
+            "bojHandle": "lms0806"
+          }
+        },
+        {
+          "problemTitle": "기술 연계마스터 임스",
+          "link": "https://www.acmicpc.net/problem/25497",
+          "setter": {
+            "name": "임민수",
+            "school": "서원대",
+            "bojHandle": "lms0806"
+          }
+        },
+        {
+          "problemTitle": "핸들 뭘로 하지",
+          "link": "https://www.acmicpc.net/problem/25498",
+          "setter": {
+            "name": "이상원",
+            "school": "삼성전자",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "Tipover Transform",
+          "link": "https://www.acmicpc.net/problem/25499",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "무자비한 최단 경로",
+          "link": "https://www.acmicpc.net/problem/25500",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "김동건",
+          "school": "서강대",
+          "bojHandle": "dong_gas"
+        },
+        {
+          "rank": 2,
+          "name": "정회윤",
+          "school": "서강대",
+          "bojHandle": "yunny_world"
+        },
+        {
+          "rank": 3,
+          "name": "정호용",
+          "school": "연세대",
+          "bojHandle": "portal3046"
+        },
+        {
+          "rank": 4,
+          "name": "이협",
+          "school": "연세대",
+          "bojHandle": "dlguq0107"
+        },
+        {
+          "rank": 5,
+          "name": "김종민",
+          "school": "연세대",
+          "bojHandle": "luciaholic"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "단순한 문제 (Large)",
+          "link": "https://www.acmicpc.net/problem/25487",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "토큰",
+          "link": "https://www.acmicpc.net/problem/25488",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "반짝반짝 3",
+          "link": "https://www.acmicpc.net/problem/25489",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "수열의 점수",
+          "link": "https://www.acmicpc.net/problem/25490",
+          "setter": {
+            "name": "이상원",
+            "school": "삼성전자",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "Mexor tree",
+          "link": "https://www.acmicpc.net/problem/25491",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "전깃줄 연결",
+          "link": "https://www.acmicpc.net/problem/25492",
+          "setter": {
+            "name": "이상원",
+            "school": "삼성전자",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "까다로운 형제",
+          "link": "https://www.acmicpc.net/problem/25493",
+          "setter": {
+            "name": "이상원",
+            "school": "삼성전자",
+            "bojHandle": "gumgood"
+          }
+        }
+      ]
+    }
+  ]
+}

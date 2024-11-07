@@ -1,0 +1,157 @@
+{
+  "$schema": "./schema.json",
+  "year": 2020,
+  "season": "Winter",
+  "dateTime": "2020년 2월 2일 오후 2시 ~ 오후 5시",
+  "note": "신촌연합에서 처음으로 진행된 캠프 콘테스트입니다. 알고리즘 캠프의 성취도를 확인하는 목적으로 중간고사와 기말고사가 진행되었으며 문제를 새로 출제하는 대신 BOJ의 문제를 선정하는 방식이었습니다.",
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "중간고사",
+      "problemPicker": [
+        {
+          "name": "이태한",
+          "school": "서강대"
+        },
+        {
+          "name": "이재열",
+          "school": "홍익대"
+        },
+        {
+          "name": "김성민",
+          "school": "홍익대"
+        }
+      ],
+      "awards": [
+        {
+          "rank": 1,
+          "name": "강상원",
+          "school": "서강대",
+          "bojHandle": "kevink1113"
+        },
+        {
+          "rank": 2,
+          "name": "주상민",
+          "school": "서강대",
+          "bojHandle": "jsm3465"
+        },
+        {
+          "rank": 3,
+          "name": "윤상현",
+          "school": "서강대",
+          "bojHandle": "tkdgus0782"
+        }
+      ]
+    },
+    {
+      "level": "초급",
+      "contestName": "기말고사",
+      "problemPicker": [
+        {
+          "name": "이태한",
+          "school": "서강대"
+        },
+        {
+          "name": "이재열",
+          "school": "홍익대"
+        },
+        {
+          "name": "김성민",
+          "school": "홍익대"
+        },
+        {
+          "name": "정연두",
+          "school": "홍익대"
+        }
+      ],
+      "awards": [
+        {
+          "rank": 1,
+          "name": "강상원",
+          "school": "서강대",
+          "bojHandle": "kevink1113"
+        },
+        {
+          "rank": 2,
+          "name": "주상민",
+          "school": "서강대",
+          "bojHandle": "jsm3465"
+        },
+        {
+          "rank": 3,
+          "name": "임세홍",
+          "school": "서강대",
+          "bojHandle": "sehjong1602"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "중간고사",
+      "problemPicker": [
+        {
+          "name": "임지환",
+          "school": "서강대"
+        },
+        {
+          "name": "이기현",
+          "school": "서강대"
+        }
+      ],
+      "awards": [
+        {
+          "rank": 1,
+          "name": "백성익",
+          "school": "홍익대",
+          "bojHandle": "906bc"
+        },
+        {
+          "rank": 2,
+          "name": "정재현",
+          "school": "홍익대",
+          "bojHandle": "dicohy27"
+        },
+        {
+          "rank": 3,
+          "name": "강승구",
+          "school": "서강대",
+          "bojHandle": "v010309"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "기말고사",
+      "problemPicker": [
+        {
+          "name": "임지환",
+          "school": "서강대"
+        },
+        {
+          "name": "이기현",
+          "school": "서강대"
+        }
+      ],
+      "awards": [
+        {
+          "rank": 1,
+          "name": "장주호",
+          "school": "서강대",
+          "bojHandle": "jayjangjooho"
+        },
+        {
+          "rank": 2,
+          "name": "백성익",
+          "school": "홍익대",
+          "bojHandle": "906bc"
+        },
+        {
+          "rank": 3,
+          "name": "정재현",
+          "school": "홍익대",
+          "bojHandle": "dicohy27"
+        }
+      ]
+    }
+  ]
+}
