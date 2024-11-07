@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import type { Prisma, Semester } from '@prisma/client';
 import type { SemesterRepository } from './semester.repository';
+import type { CreateSemesterDto } from './dto/create-semester.dto';
 
 @Injectable()
 export class SemesterService {
   constructor(private semesterRepository: SemesterRepository) {}
 
-  async createSemester(params: { data: Prisma.SemesterCreateInput }) {
-    const { data } = params;
-    const semester = await this.semesterRepository.createSemester({ data });
+  async createSemester(createSemesterDto: CreateSemesterDto) {
+    const semester = await this.semesterRepository.createSemester(createSemesterDto);
     return semester;
   }
 
