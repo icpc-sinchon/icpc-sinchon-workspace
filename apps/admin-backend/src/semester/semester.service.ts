@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { SemesterRepository } from './semester.repository';
 import type { Prisma, Semester } from '@prisma/client';
-import type { SemesterRepository } from './semester.repository';
 import type { CreateSemesterDto } from './dto/create-semester.dto';
 import type { UpdateSemesterDto } from './dto/update-semester.dto';
 

@@ -25,7 +25,8 @@
         "noInvalidUseBeforeDeclaration": "off",
         "noUnusedVariables": "error"
       },
-      "suspicious": { "noArrayIndexKey": "warn" }
+      "suspicious": { "noArrayIndexKey": "warn" },
+      "style": { "useImportType": "off" }
     }
   },
   "javascript": {

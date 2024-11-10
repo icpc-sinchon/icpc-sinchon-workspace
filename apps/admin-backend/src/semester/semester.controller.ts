@@ -1,6 +1,6 @@
 import { Controller, Body, Param, Get, Post, Patch, Delete, ParseIntPipe  } from '@nestjs/common';
+import { SemesterService } from './semester.service';
 import type { Semester } from '@prisma/client';
-import type { SemesterService } from './semester.service';
 import type { CreateSemesterDto } from './dto/create-semester.dto';
 import type { UpdateSemesterDto } from './dto/update-semester.dto';
 

@@ -35,6 +35,9 @@ importers:
       '@prisma/client':
         specifier: 5.20.0
         version: 5.20.0(prisma@5.20.0)
+      bcryptjs:
+        specifier: ^2.4.3
+        version: 2.4.3
       class-validator:
         specifier: ^0.14.1
         version: 0.14.1
