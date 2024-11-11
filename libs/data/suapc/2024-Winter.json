@@ -1,0 +1,375 @@
+{
+  "$schema": "./schema.json",
+  "year": 2024,
+  "season": "Winter",
+  "dateTime": "2024년 2월 17일(토) 오후 12시 ~ 오후 5시",
+  "note": "",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/4149",
+    "solutionPdf": "SUAPC_2024_Winter_Solution.pdf",
+    "scoreboard": ["https://www.acmicpc.net/contest/spotboard/1237"],
+    "posterImage": "SUAPC_2024w_Poster.jpeg"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 11,
+          "teamName": "AKARAKA",
+          "school": "연세대학교",
+          "member": ["김태윤", "정용진", "김건우"]
+        },
+        {
+          "rank": 2,
+          "solved": 9,
+          "teamName": "goraani",
+          "school": "서강대학교",
+          "member": ["김동건", "조원빈", "강효규"]
+        },
+        {
+          "rank": 3,
+          "solved": 9,
+          "teamName": "Raa_FanClub",
+          "school": "서강대학교",
+          "member": ["송근수", "이승형", "박성준"]
+        },
+        {
+          "rank": 4,
+          "solved": 9,
+          "teamName": "입대 전 라스트댄스",
+          "school": "연세대학교",
+          "member": ["이협", "이도훈", "최우현"]
+        },
+        {
+          "rank": 5,
+          "solved": 8,
+          "teamName": "진짜1등하러왔습니다",
+          "school": "연세대학교",
+          "member": ["곽재혁", "김형진", "박경욱"]
+        },
+        {
+          "rank": 6,
+          "solved": 8,
+          "teamName": "돈비고고",
+          "school": "연세대학교",
+          "member": ["장현우", "김지호", "최원준"]
+        },
+        {
+          "rank": 7,
+          "solved": 8,
+          "teamName": "가지오이당근",
+          "school": "연세대학교",
+          "member": ["한의엽", "전우제", "이지언"]
+        },
+        {
+          "rank": 8,
+          "solved": 8,
+          "teamName": "병공병",
+          "school": "홍익대학교",
+          "member": ["정재현", "김도현", "김재헌"]
+        },
+        {
+          "rank": 9,
+          "solved": 8,
+          "teamName": "기령손",
+          "school": "서강대학교",
+          "member": ["손기령", "김서인", "이하윤"]
+        },
+        {
+          "rank": 10,
+          "solved": 8,
+          "teamName": "홍하예프",
+          "school": "홍익대학교",
+          "member": ["전승민", "한승준", "심동현"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "가상 검증 기술",
+          "link": "https://www.acmicpc.net/problem/31416",
+          "setter": {
+            "name": "유상혁",
+            "school": "아주대학교",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "가장 짧은 높이",
+          "link": "https://www.acmicpc.net/problem/31417",
+          "setter": {
+            "name": "현지훈",
+            "school": "KAIST",
+            "bojHandle": "qawbecrdtey"
+          }
+        },
+        {
+          "problemTitle": "스펀지",
+          "link": "https://www.acmicpc.net/problem/31418",
+          "setter": {
+            "name": "이지훈",
+            "school": "서강대학교",
+            "bojHandle": "maker29"
+          }
+        },
+        {
+          "problemTitle": "배열 제작의 달인",
+          "link": "https://www.acmicpc.net/problem/31419",
+          "setter": {
+            "name": "김규진",
+            "school": "액션파워",
+            "bojHandle": "snrnsidy"
+          }
+        },
+        {
+          "problemTitle": "문자열 - 그래프 매칭",
+          "link": "https://www.acmicpc.net/problem/31420",
+          "setter": {
+            "name": "유호영",
+            "school": "서강대학교",
+            "bojHandle": "tkfkddl59323"
+          }
+        },
+        {
+          "problemTitle": "호떡 뒤집기",
+          "link": "https://www.acmicpc.net/problem/31421",
+          "setter": {
+            "name": "임예준",
+            "school": "한국과학영재학교",
+            "bojHandle": "edward3378"
+          }
+        },
+        {
+          "problemTitle": "AND, OR, XOR 2",
+          "link": "https://www.acmicpc.net/problem/31422",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "신촌 통폐합 계획",
+          "link": "https://www.acmicpc.net/problem/31423",
+          "setter": {
+            "name": "박진한",
+            "school": "고려대학교",
+            "bojHandle": "jinhan814"
+          }
+        },
+        {
+          "problemTitle": "최대공약수 게임",
+          "link": "https://www.acmicpc.net/problem/31424",
+          "setter": {
+            "name": "유상혁",
+            "school": "아주대학교",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "토지 판매",
+          "link": "https://www.acmicpc.net/problem/31425",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "신촌방위본부: 지하벙커의 비밀",
+          "link": "https://www.acmicpc.net/problem/31426",
+          "setter": {
+            "name": "김도훈",
+            "school": "한양대학교",
+            "bojHandle": "dohoon"
+          }
+        },
+        {
+          "problemTitle": "신촌 도로망 관리와 쿼리",
+          "link": "https://www.acmicpc.net/problem/31427",
+          "setter": {
+            "name": "노현제",
+            "school": "서울과학기술대학교",
+            "bojHandle": "hjroh0315"
+          }
+        },
+        {
+          "problemTitle": "엘리스 트랙 매칭",
+          "link": "https://www.acmicpc.net/problem/31428",
+          "setter": {
+            "name": "조다니엘",
+            "school": "서강대학교",
+            "bojHandle": "arduinocc04"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "노현제",
+      "school": "서울과학기술대학교",
+      "bojHandle": "hjroh0315"
+    },
+    {
+      "name": "장래오",
+      "school": "포항공과대학교",
+      "bojHandle": "leo020630"
+    },
+    {
+      "name": "박진한",
+      "school": "고려대학교",
+      "bojHandle": "jinhan814"
+    },
+    {
+      "name": "이지훈",
+      "school": "서강대학교",
+      "bojHandle": "maker29"
+    },
+    {
+      "name": "임예준",
+      "school": "한국과학영재학교",
+      "bojHandle": "edward3378"
+    },
+    {
+      "name": "김도훈",
+      "school": "한양대학교",
+      "bojHandle": "dohoon"
+    },
+    {
+      "name": "전형록",
+      "school": "경북대학교",
+      "bojHandle": "exqt"
+    },
+    {
+      "name": "유상혁",
+      "school": "아주대학교",
+      "bojHandle": "golazcc83"
+    },
+    {
+      "name": "김규진",
+      "school": "액션파워",
+      "bojHandle": "snrnsidy"
+    },
+    {
+      "name": "현지훈",
+      "school": "KAIST",
+      "bojHandle": "qawbecrdtey"
+    },
+    {
+      "name": "유호영",
+      "school": "서강대학교",
+      "bojHandle": "tkfkddl59323"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "정우경",
+      "school": "전북대학교",
+      "bojHandle": "man_of_learning"
+    },
+    {
+      "name": "강희원",
+      "school": "서울대학교",
+      "bojHandle": "heeda0528"
+    },
+    {
+      "name": "문정후",
+      "school": "경기과학고등학교",
+      "bojHandle": "mjhmjh1104"
+    },
+    {
+      "name": "박진식",
+      "school": "클루미오",
+      "bojHandle": "pjshwa"
+    },
+    {
+      "name": "조상렬",
+      "school": "서울대학교",
+      "bojHandle": "whqkrkt04"
+    },
+    {
+      "name": "白崎杏子(cologne)",
+      "school": "開拓団訓練所",
+      "bojHandle": "cologne"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "autoever",
+      "name": "현대오토에버"
+    },
+    {
+      "id": "hanbit",
+      "name": "한빛미디어"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "j&s",
+      "name": "J&S factory"
+    },
+    {
+      "id": "shinhands",
+      "name": "신한 DS"
+    },
+    {
+      "id": "solvedac",
+      "name": "솔브드"
+    },
+    {
+      "id": "multiply",
+      "name": "멀티플라이"
+    },
+    {
+      "id": "goorm",
+      "name": "구름"
+    },
+    {
+      "id": "startlink",
+      "name": "스타트링크"
+    },
+    {
+      "id": "elice",
+      "name": "엘리스"
+    }
+  ],
+  "personalSponsor": [
+    {
+      "id": "이재열",
+      "name": "이재열"
+    },
+    {
+      "id": "pjshwa",
+      "name": "pjshwa"
+    },
+    {
+      "id": "신촌고라니",
+      "name": "신촌고라니"
+    },
+    {
+      "id": "천민재",
+      "name": "천민재"
+    },
+    {
+      "id": "킹갓캠프장정은채",
+      "name": "킹갓캠프장정은채"
+    },
+    {
+      "id": "풀스택해커인공지능PS킹캣박경욱",
+      "name": "풀스택해커인공지능PS킹캣박경욱"
+    },
+    {
+      "id": "정은체",
+      "name": "정은체"
+    }
+  ]
+}
