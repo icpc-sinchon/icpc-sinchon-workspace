@@ -11,15 +11,18 @@
       "problemPicker": [
         {
           "name": "이태한",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "sogangcse"
         },
         {
           "name": "이재열",
-          "school": "홍익대"
+          "school": "홍익대",
+          "bojHandle": "malkoring"
         },
         {
           "name": "김성민",
-          "school": "홍익대"
+          "school": "홍익대",
+          "bojHandle": "tolelom"
         }
       ],
       "awards": [
@@ -49,19 +52,23 @@
       "problemPicker": [
         {
           "name": "이태한",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "sogangcse"
         },
         {
           "name": "이재열",
-          "school": "홍익대"
+          "school": "홍익대",
+          "bojHandle": "malkoring"
         },
         {
           "name": "김성민",
-          "school": "홍익대"
+          "school": "홍익대",
+          "bojHandle": "tolelom"
         },
         {
           "name": "정연두",
-          "school": "홍익대"
+          "school": "홍익대",
+          "bojHandle": "Green55"
         }
       ],
       "awards": [
@@ -91,11 +98,13 @@
       "problemPicker": [
         {
           "name": "임지환",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "raararaara"
         },
         {
           "name": "이기현",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "sbrus_1213"
         }
       ],
       "awards": [
@@ -125,11 +134,13 @@
       "problemPicker": [
         {
           "name": "임지환",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "raararaara"
         },
         {
           "name": "이기현",
-          "school": "서강대"
+          "school": "서강대",
+          "bojHandle": "sbrus_1213"
         }
       ],
       "awards": [
