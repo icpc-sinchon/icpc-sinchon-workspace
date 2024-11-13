@@ -1,17 +1,5 @@
-import { ElementType } from "react";
 import type { CampContest } from "src/types/campContest";
-
-const renderBojHandle = (bojHandle: string) => (
-  <a
-    href={`https://www.acmicpc.net/user/${bojHandle}`}
-    target="_blank"
-    rel="noreferrer"
-    style={{ color: "black" }}
-    key={bojHandle}
-  >
-    {bojHandle}
-  </a>
-);
+import { renderLink, renderPerson } from "./renderHelpers";
 
 const renderRank = (rank: number) => {
   if (rank === 1) {
@@ -33,26 +21,14 @@ type Problem = NonNullable<
 const renderProblem = (problem: Problem) => {
   return {
     ...problem,
-    link: (
-      <a
-        href={problem.link}
-        target="_blank"
-        rel="noreferrer"
-        style={{ color: "black" }}
-      >
-        {problem.problemTitle}
-      </a>
-    ),
-    setter: (
-      <a
-        href={`https://www.acmicpc.net/user/${problem.setter.bojHandle}`}
-        target="_blank"
-        rel="noreferrer"
-        style={{ color: "black" }}
-      >
-        {problem.setter.name}
-      </a>
-    ),
+    link: renderLink({
+      title: problem.problemTitle,
+      url: problem.link,
+    }),
+    setter: renderLink({
+      title: problem.setter.name,
+      url: `https://www.acmicpc.net/user/${problem.setter.bojHandle}`,
+    }),
     setterSchool: problem.setter.school,
   };
 };
@@ -62,15 +38,13 @@ export const renderCampContestData = (data: CampContest) => {
     ...data,
     contest: data.contest?.map((contest) => ({
       ...contest,
-      problemPicker: contest.problemPicker?.map((picker) => ({
-        ...picker,
-        bojHandle: renderBojHandle(picker.bojHandle),
-      })),
-      awards: contest.awards?.map((award) => ({
-        ...award,
-        rank: renderRank(award.rank),
-        bojHandle: renderBojHandle(award.bojHandle),
-      })),
+      problemPicker: contest.problemPicker?.map(renderPerson),
+      awards: contest.awards
+        ?.map((award) => ({
+          ...award,
+          rank: renderRank(award.rank),
+        }))
+        .map(renderPerson),
       problemList: contest.problemList?.map((problem) =>
         renderProblem(problem),
       ),
