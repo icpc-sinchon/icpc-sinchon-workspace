@@ -64,7 +64,6 @@ export interface CampContest {
        * 문제 선정자의 BOJ 핸들
        */
       bojHandle: string;
-      [k: string]: unknown;
     }[];
     /**
      * 캠프 콘테스트의 수상자들
