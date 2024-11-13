@@ -1,17 +1,17 @@
 import { vars } from "@styles/theme.css";
 import { style } from "@vanilla-extract/css";
 
+export const container = style({
+  overflowX: "auto",
+  whiteSpace: "nowrap",
+});
+
 export const table = style({
   width: "100%",
-
   textAlign: "center",
   fontSize: "0.8rem",
 
   borderCollapse: "collapse",
-
-  overflowX: "auto",
-  whiteSpace: "nowrap",
-
   overflowY: "hidden",
 });
 

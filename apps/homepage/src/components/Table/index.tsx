@@ -25,30 +25,32 @@ function DataTable<T extends TableItem>({
   fixedLayout,
 }: TableProps<T>) {
   return (
-    <table
-      className={`${styles.table} ${fixedLayout ? styles.fixedLayout : ""}`}
-    >
-      <thead>
-        <tr>
-          {columns.map((column) => (
-            <th key={String(column.key)} className={styles.tableHeader}>
-              {column.header}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, rowIndex) => (
-          <tr key={rowIndex} className={styles.tableRow}>
+    <div className={styles.container}>
+      <table
+        className={`${styles.table} ${fixedLayout ? styles.fixedLayout : ""}`}
+      >
+        <thead>
+          <tr>
             {columns.map((column) => (
-              <td key={String(column.key)} className={styles.tableData}>
-                {row[column.key]}
-              </td>
+              <th key={String(column.key)} className={styles.tableHeader}>
+                {column.header}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((row, rowIndex) => (
+            <tr key={rowIndex} className={styles.tableRow}>
+              {columns.map((column) => (
+                <td key={String(column.key)} className={styles.tableData}>
+                  {row[column.key]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
