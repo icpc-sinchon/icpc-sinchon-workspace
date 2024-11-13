@@ -144,7 +144,7 @@ function CampContestPage() {
             )}
             {contest.problemList && (
               <TableSection
-                title={`${contest.contestName} 문제 리스트`}
+                title={`${contest.contestName} 문제 목록`}
                 titleBadge={contest.level}
                 data={contest.problemList.map((problem, index) => ({
                   ...problem,
