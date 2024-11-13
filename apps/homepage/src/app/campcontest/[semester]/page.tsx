@@ -1,19 +1,32 @@
-import { title } from "@components/HeroTitle/styles.css";
 import HistoryLayout from "@components/HistoryLayout";
-import LinkButton from "@components/LinkButton";
-import DataTable from "@components/Table";
-import Text from "@components/Text";
-import Title from "@components/Title";
 import ContestLinks from "@ui/ContestLinks";
+import TableSection from "@ui/TableSection";
 import TabNav from "@ui/TabNav";
+import TextSection from "@ui/TextSection";
 import { notFound } from "next/navigation";
+import React from "react";
 import type { Semester } from "src/types";
 
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getDataFromFile } from "src/utils/getDataFromFile";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { renderCampContestData } from "src/utils/renderCampContestData";
-import { renderCampHistoryData } from "src/utils/renderCampHistoryData";
+
+function CampContestIntro({ contestDateTime }: { contestDateTime: string }) {
+  return (
+    <>
+      <TextSection title="콘테스트 일자" text={contestDateTime} />
+      <TextSection
+        title="캠프 콘테스트 소개"
+        text="캠프 콘테스트는 캠프 기간동안 배운 알고리즘을 적용해볼 수 있는 모의고사 형식의 대회입니다. 개인전으로 진행되며, ICPC Sinchon Algorithm Camp 참가자만 참여할 수 있습니다."
+      />
+      <TextSection
+        title="출제 경향"
+        text="ICPC Sinchon Algorithm Camp을 통해 학습한 대부분의 알고리즘을 문제로 다루는 것을 목표로 합니다."
+      />
+    </>
+  );
+}
 
 // TODO: 2024 Summer 캠프 데이터 추가
 function CampContestPage({
@@ -61,19 +74,7 @@ function CampContestPage({
           }
         />
         <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
-          <Title>콘테스트 일자</Title>
-          <Text>{campContestData.dateTime}</Text>
-          <Title>캠프 콘테스트 소개</Title>
-          <Text>
-            캠프 콘테스트는 캠프 기간동안 배운 알고리즘을 적용해볼 수 있는
-            모의고사 형식의 대회입니다. 개인전으로 진행되며, ICPC Sinchon
-            Algorithm Camp 참가자만 참여할 수 있습니다.
-          </Text>
-          <Title>출제 경향</Title>
-          <Text>
-            ICPC Sinchon Algorithm Camp을 통해 학습한 대부분의 알고리즘을 문제로
-            다루는 것을 목표로 합니다.
-          </Text>
+          <CampContestIntro contestDateTime={campContestData.dateTime} />
         </HistoryLayout>
       </div>
     );
@@ -119,69 +120,51 @@ function CampContestPage({
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
         {campContestData.links && <ContestLinks links={contestLinks} />}
-        <Title>콘테스트 일자</Title>
-        <Text>{campContestData.dateTime}</Text>
-        <Title>캠프 콘테스트 소개</Title>
-        <Text>
-          캠프 콘테스트는 캠프 기간동안 배운 알고리즘을 적용해볼 수 있는
-          모의고사 형식의 대회입니다. 개인전으로 진행되며, ICPC Sinchon
-          Algorithm Camp 참가자만 참여할 수 있습니다.
-        </Text>
-        <Title>출제 경향</Title>
-        <Text>
-          ICPC Sinchon Algorithm Camp을 통해 학습한 대부분의 알고리즘을 문제로
-          다루는 것을 목표로 합니다.
-        </Text>
+        <CampContestIntro contestDateTime={campContestData.dateTime} />
         {campContestData.contest.map((contest) => (
-          <>
-            <Title key={contest.contestName} badge={contest.level}>
-              {contest.contestName} 수상자
-            </Title>
-            <DataTable
-              key={contest.contestName}
+          <React.Fragment key={contest.level}>
+            <TableSection
+              title={`${contest.contestName} 수상자`}
+              titleBadge={contest.level}
               data={contest.awards}
               columns={[
-                { header: "순위", key: "rank" },
-                { header: "이름", key: "name" },
-                { header: "BOJ 핸들", key: "bojHandle" },
-                { header: "소속", key: "school" },
+                { key: "rank", header: "순위" },
+                { key: "name", header: "이름" },
+                { key: "bojHandle", header: "BOJ 핸들" },
+                { key: "school", header: "소속" },
               ]}
+              fixedLayout
             />
             {contest.problemPicker && (
-              <>
-                <Title badge={contest.level}>
-                  {contest.contestName} 문제 선정자
-                </Title>
-                <DataTable
-                  data={contest.problemPicker}
-                  columns={[
-                    { header: "이름", key: "name" },
-                    { header: "BOJ 핸들", key: "bojHandle" },
-                    { header: "소속", key: "school" },
-                  ]}
-                />
-              </>
+              <TableSection
+                title={`${contest.contestName} 문제 선정자`}
+                titleBadge={contest.level}
+                data={contest.problemPicker}
+                columns={[
+                  { key: "name", header: "이름" },
+                  { key: "bojHandle", header: "BOJ 핸들" },
+                  { key: "school", header: "소속" },
+                ]}
+                fixedLayout
+              />
             )}
             {contest.problemList && (
-              <>
-                <Title badge={contest.level}>
-                  {contest.contestName} 문제 리스트
-                </Title>
-                <DataTable
-                  data={contest.problemList.map((problem, index) => ({
-                    ...problem,
-                    problemIndex: String.fromCharCode(65 + index),
-                  }))}
-                  columns={[
-                    { header: "#", key: "problemIndex" },
-                    { header: "문제", key: "link" },
-                    { header: "출제자", key: "setter" },
-                    { header: "소속", key: "setterSchool" },
-                  ]}
-                />
-              </>
+              <TableSection
+                title={`${contest.contestName} 문제 리스트`}
+                titleBadge={contest.level}
+                data={contest.problemList.map((problem, index) => ({
+                  ...problem,
+                  problemIndex: String.fromCharCode(65 + index),
+                }))}
+                columns={[
+                  { header: "#", key: "problemIndex" },
+                  { header: "문제", key: "link" },
+                  { header: "출제자", key: "setter" },
+                  { header: "소속", key: "setterSchool" },
+                ]}
+              />
             )}
-          </>
+          </React.Fragment>
         ))}
       </HistoryLayout>
     </div>
