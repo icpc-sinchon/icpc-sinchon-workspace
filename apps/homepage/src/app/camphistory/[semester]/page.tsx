@@ -43,7 +43,7 @@ function CampHistoryPage({
   const pageSubTitle = `${currentPageSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 알고리즘 캠프`;
 
   return (
-    <div>
+    <>
       <TabNav
         tabList={allDataRouters}
         currentTabIndex={selectedTabIndex}
@@ -109,7 +109,7 @@ function CampHistoryPage({
           </React.Fragment>
         ))}
       </HistoryLayout>
-    </div>
+    </>
   );
 }
 
