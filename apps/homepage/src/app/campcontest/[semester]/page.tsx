@@ -62,7 +62,7 @@ function CampContestPage({
   // TODO: note를 적당히 렌더링하기
   if (campContestData.contest.length === 0) {
     return (
-      <div>
+      <>
         <TabNav
           tabList={allDataRouters}
           currentTabIndex={selectedTabIndex}
@@ -76,7 +76,7 @@ function CampContestPage({
         <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
           <CampContestIntro contestDateTime={campContestData.dateTime} />
         </HistoryLayout>
-      </div>
+      </>
     );
   }
 
@@ -107,7 +107,7 @@ function CampContestPage({
 
   // TODO: DataTable의 width 배열 props 등을 통해서 표의 각 열의 너비를 조절할 수 있도록 하기
   return (
-    <div>
+    <>
       <TabNav
         tabList={allDataRouters}
         currentTabIndex={selectedTabIndex}
@@ -167,7 +167,7 @@ function CampContestPage({
           </React.Fragment>
         ))}
       </HistoryLayout>
-    </div>
+    </>
   );
 }
 
