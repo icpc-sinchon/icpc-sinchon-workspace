@@ -1,18 +1,5 @@
 import type { CampContest } from "src/types/campContest";
-import { renderLink, renderPerson } from "./renderHelpers";
-
-const renderRank = (rank: number) => {
-  if (rank === 1) {
-    return "1 🥇";
-  }
-  if (rank === 2) {
-    return "2 🥈";
-  }
-  if (rank === 3) {
-    return "3 🥉";
-  }
-  return rank;
-};
+import { renderLink, renderPerson, renderRank } from "./renderHelpers";
 
 type Problem = NonNullable<
   NonNullable<CampContest["contest"]>[number]["problemList"]

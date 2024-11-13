@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-export function renderLink({ title, url }: { title: string; url: string }) {
+export function renderLink({
+  title,
+  url,
+}: { title: string; url: string }): React.ReactNode {
   return (
     <Link
       target="_blank"
@@ -13,7 +16,7 @@ export function renderLink({ title, url }: { title: string; url: string }) {
   );
 }
 
-export function renderPerson(person: { bojHandle: string }) {
+export function renderPerson<T extends { bojHandle: string }>(person: T) {
   return {
     ...person,
     bojHandle: renderLink({
@@ -21,4 +24,17 @@ export function renderPerson(person: { bojHandle: string }) {
       url: `https://www.acmicpc.net/user/${person.bojHandle}`,
     }),
   };
+}
+
+export function renderRank(rank: number) {
+  if (rank === 1) {
+    return "1 🥇";
+  }
+  if (rank === 2) {
+    return "2 🥈";
+  }
+  if (rank === 3) {
+    return "3 🥉";
+  }
+  return rank;
 }
