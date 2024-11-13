@@ -12,7 +12,7 @@ export const historyLayout = style({
 
   display: "flex",
   flexDirection: "column",
-  gap: "2rem",
+  gap: "2.5rem",
 
   "@media": {
     "(max-width: 640px)": {
