@@ -18,7 +18,7 @@ function LogoSection({ title, titleBadge, logoSources }: Props) {
         {logoSources.map((source) => (
           <div key={source} className={styles.logoWrapper}>
             <Image
-              width={100}
+              width={300}
               height={100}
               key={source}
               className={styles.logo}
