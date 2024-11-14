@@ -1,3 +1,5 @@
+import type { Person, Problem } from ".";
+
 /**
  * 신촌연합 알고리즘 캠프의 캠프 콘테스트 기록을 담은 데이터 스키마
  */
@@ -51,74 +53,15 @@ export interface CampContest {
     /**
      * 문제 선정자. 신촌연합 초기에는 콘테스트가 백준에서 문제를 뽑아 진행되었는데 이때 문제를 선정한 사람들
      */
-    problemPicker?: {
-      /**
-       * 문제 선정자의 이름
-       */
-      name: string;
-      /**
-       * 문제 선정자의 소속 학교
-       */
-      school: string;
-      /**
-       * 문제 선정자의 BOJ 핸들
-       */
-      bojHandle: string;
-    }[];
+    problemPicker?: Person[];
     /**
      * 캠프 콘테스트의 수상자들
      */
-    awards?: {
-      /**
-       * 수상 순위
-       */
-      rank: number;
-      /**
-       * 수상자의 이름
-       */
-      name: string;
-      /**
-       * 수상자의 소속 학교
-       */
-      school: string;
-      /**
-       * 수상자의 BOJ 핸들
-       */
-      bojHandle: string;
-      [k: string]: unknown;
-    }[];
+    awards?: ({ rank: number } & Person)[]; // rank 추가
     /**
      * 캠프 콘테스트의 문제 리스트
      */
-    problemList?: {
-      /**
-       * 문제 제목
-       */
-      problemTitle: string;
-      /**
-       * 문제의 BOJ 링크
-       */
-      link: string;
-      /**
-       * 문제 출제자
-       */
-      setter: {
-        /**
-         * 문제 출제자의 이름
-         */
-        name: string;
-        /**
-         * 문제 출제자의 소속 학교
-         */
-        school: string;
-        /**
-         * 문제 출제자의 BOJ 핸들
-         */
-        bojHandle: string;
-        [k: string]: unknown;
-      };
-      [k: string]: unknown;
-    }[];
+    problemList?: Problem[];
     [k: string]: unknown;
   }[];
   [k: string]: unknown;
