@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: attendance_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d # SQL 스크립트 파일 마운트
+
+  app:
+    image: ghcr.io/icpc-sinchon/admin-service-new-backend/node-app
+    command: sh -c "npx prisma migrate deploy && npx prisma generate && npm run start"
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: Asia/Seoul  # timezone 설정 부분
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: icpc-sinchon.io
+      DB_NAME: attendance_db
+      DB_PORT: 3306
+      JWT_SECRET: ${JWT_SECRET}
+      DATABASE_URL: ${DATABASE_URL}
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      DISCORD_ALARM_CHANNEL_ID: ${DISCORD_ALARM_CHANNEL_ID}
+      DISCORD_NOVICE_CHANNEL_ID: ${DISCORD_NOVICE_CHANNEL_ID}
+      DISCORD_ADVANCED_CHANNEL_ID: ${DISCORD_ADVANCED_CHANNEL_ID}
+      SINCHON_BOJ_ID: ${SINCHON_BOJ_ID}
+      SINCHON_BOJ_PW: ${SINCHON_BOJ_PW}
+    depends_on:
+      - db
+
+volumes:
+  db_data:
