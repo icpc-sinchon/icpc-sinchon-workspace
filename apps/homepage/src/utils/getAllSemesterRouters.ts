@@ -1,6 +1,5 @@
 import path from "node:path";
 import fs from "node:fs";
-import { formatFilenames } from "./formatFilenames";
 import type { Semester } from "src/types";
 
 // 존재하는 모든 학기들의 정보를 가져온다
