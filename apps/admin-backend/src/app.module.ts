@@ -4,10 +4,6 @@ import { SemesterModule } from './semester/semester.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: 'src/.env',
-      isGlobal: true,
-    }),
     SemesterModule
   ]
 })
