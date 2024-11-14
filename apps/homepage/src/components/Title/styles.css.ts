@@ -16,7 +16,7 @@ export const title = style({
   lineHeight: 1.2,
 
   "@media": {
-    "(max-width: 640px)": {
+    "(max-width: 768px)": {
       fontSize: "1.1rem",
     },
   },

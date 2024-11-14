@@ -15,7 +15,7 @@ export const historyLayout = style({
   gap: "2.5rem",
 
   "@media": {
-    "(max-width: 640px)": {
+    "(max-width: 768px)": {
       margin: "0 auto 2rem auto",
       padding: "2rem",
 
