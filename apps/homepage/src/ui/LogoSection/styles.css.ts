@@ -11,7 +11,7 @@ export const imageContainer = style({
   flexDirection: "row",
   overflow: "auto",
   gap: "1.5rem",
-  justifyContent: "start",
+  justifyContent: "flex-start",
   flexWrap: "wrap",
   marginTop: "1rem",
 });
