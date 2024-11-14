@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Problem } from "src/types";
 
 export function renderLink({
   title,
@@ -38,3 +39,18 @@ export function renderRank(rank: number) {
   }
   return rank;
 }
+
+export const renderProblem = (problem: Problem) => {
+  return {
+    ...problem,
+    link: renderLink({
+      title: problem.problemTitle,
+      url: problem.link,
+    }),
+    setter: renderLink({
+      title: problem.setter.name,
+      url: `https://www.acmicpc.net/user/${problem.setter.bojHandle}`,
+    }),
+    setterSchool: problem.setter.school,
+  };
+};

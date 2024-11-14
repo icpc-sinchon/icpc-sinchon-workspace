@@ -1,24 +1,5 @@
 import type { CampContest } from "src/types/campContest";
-import { renderLink, renderPerson, renderRank } from "./renderHelpers";
-
-type Problem = NonNullable<
-  NonNullable<CampContest["contest"]>[number]["problemList"]
->[number];
-
-const renderProblem = (problem: Problem) => {
-  return {
-    ...problem,
-    link: renderLink({
-      title: problem.problemTitle,
-      url: problem.link,
-    }),
-    setter: renderLink({
-      title: problem.setter.name,
-      url: `https://www.acmicpc.net/user/${problem.setter.bojHandle}`,
-    }),
-    setterSchool: problem.setter.school,
-  };
-};
+import { renderPerson, renderRank, renderProblem } from "./renderHelpers";
 
 export const renderCampContestData = (data: CampContest) => {
   const renderData = {
