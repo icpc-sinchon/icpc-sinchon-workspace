@@ -19,15 +19,18 @@
       "problemPicker": [
         {
           "name": "이길원",
-          "school": "서강대학교"
+          "school": "서강대학교",
+          "bojHandle": "monch98"
         },
         {
           "name": "전해성",
-          "school": "서강대학교"
+          "school": "서강대학교",
+          "bojHandle": "seastar105"
         },
         {
           "name": "남수연",
-          "school": "숙명여자대학교"
+          "school": "숙명여자대학교",
+          "bojHandle": "ccoco"
         }
       ],
       "awards": [
@@ -155,11 +158,13 @@
       "problemPicker": [
         {
           "name": "이기현",
-          "school": "서강대학교"
+          "school": "서강대학교",
+          "bojHandle": "sbrus_1213"
         },
         {
           "name": "최재민",
-          "school": "KAIST"
+          "school": "KAIST",
+          "bojHandle": "jh05013"
         }
       ],
       "awards": [

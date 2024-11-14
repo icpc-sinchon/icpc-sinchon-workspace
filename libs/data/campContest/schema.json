@@ -75,9 +75,13 @@
                 "school": {
                   "type": "string",
                   "description": "문제 선정자의 소속 학교"
+                },
+                "bojHandle": {
+                  "type": "string",
+                  "description": "문제 선정자의 BOJ 핸들"
                 }
               },
-              "required": ["name", "school"]
+              "required": ["name", "school", "bojHandle"]
             }
           },
           "awards": {

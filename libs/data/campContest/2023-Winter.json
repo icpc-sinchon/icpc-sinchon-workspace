@@ -1,0 +1,194 @@
+{
+  "$schema": "./schema.json",
+  "year": 2023,
+  "season": "Winter",
+  "dateTime": "2023년 2월 18일 오후 12시 ~ 오후 5시",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/801",
+    "solutionPdf": "2023_ICPC_Sinchon_Winter_Algorithm_Camp_Contest_Solution.pdf",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/947",
+      "https://www.acmicpc.net/contest/spotboard/948"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "김기철",
+          "school": "서강대",
+          "bojHandle": "gi9410"
+        },
+        {
+          "rank": 2,
+          "name": "이형민",
+          "school": "홍익대",
+          "bojHandle": "kurage3822"
+        },
+        {
+          "rank": 3,
+          "name": "채문혁",
+          "school": "연세대",
+          "bojHandle": "chaemh2013"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "2023년은 검은 토끼의 해",
+          "link": "https://www.acmicpc.net/problem/27494",
+          "setter": {
+            "name": "김범수",
+            "school": "홍익대",
+            "bojHandle": "starbow"
+          }
+        },
+        {
+          "problemTitle": "만다라트 만들기",
+          "link": "https://www.acmicpc.net/problem/27495",
+          "setter": {
+            "name": "강다혜",
+            "school": "서강대",
+            "bojHandle": "psst54"
+          }
+        },
+        {
+          "problemTitle": "발머의 피크 이론",
+          "link": "https://www.acmicpc.net/problem/27496",
+          "setter": {
+            "name": "손기령",
+            "school": "서강대",
+            "bojHandle": "lickelon"
+          }
+        },
+        {
+          "problemTitle": "알파벳 블록",
+          "link": "https://www.acmicpc.net/problem/27497",
+          "setter": {
+            "name": "김범수",
+            "school": "홍익대",
+            "bojHandle": "starbow"
+          }
+        },
+        {
+          "problemTitle": "연애 혁명",
+          "link": "https://www.acmicpc.net/problem/27498",
+          "setter": {
+            "name": "손기령",
+            "school": "서강대",
+            "bojHandle": "lickelon"
+          }
+        },
+        {
+          "problemTitle": "레이저 쏘기",
+          "link": "https://www.acmicpc.net/problem/27499",
+          "setter": {
+            "name": "유호영",
+            "school": "서강대",
+            "bojHandle": "tkfkddl59323"
+          }
+        },
+        {
+          "problemTitle": "이 게임에서 진정한 탑은 누구인가",
+          "link": "https://www.acmicpc.net/problem/27500",
+          "setter": {
+            "name": "김성민",
+            "school": "홍익대",
+            "bojHandle": "tolelom"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "이승형",
+          "school": "서강대",
+          "bojHandle": "tmdgud0617"
+        },
+        {
+          "rank": 2,
+          "name": "채성우",
+          "school": "서강대",
+          "bojHandle": "lem0nad3"
+        },
+        {
+          "rank": 3,
+          "name": "한승준",
+          "school": "홍익대",
+          "bojHandle": "dosawas"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "RGB트리",
+          "link": "https://www.acmicpc.net/problem/27501",
+          "setter": {
+            "name": "곽재혁",
+            "school": "연세대",
+            "bojHandle": "dreami63"
+          }
+        },
+        {
+          "problemTitle": "천국의 계단",
+          "link": "https://www.acmicpc.net/problem/27505",
+          "setter": {
+            "name": "유호영",
+            "school": "서강대",
+            "bojHandle": "tkfkddl59323"
+          }
+        },
+        {
+          "problemTitle": "가난한 고흐와 붓",
+          "link": "https://www.acmicpc.net/problem/27502",
+          "setter": {
+            "name": "김태윤",
+            "school": "연세대",
+            "bojHandle": "ystaeyoon113"
+          }
+        },
+        {
+          "problemTitle": "요가 수업",
+          "link": "https://www.acmicpc.net/problem/27503",
+          "setter": {
+            "name": "김성현",
+            "school": "서강대",
+            "bojHandle": "dart"
+          }
+        },
+        {
+          "problemTitle": "상대음감의 노래찾기",
+          "link": "https://www.acmicpc.net/problem/27504",
+          "setter": {
+            "name": "손기령",
+            "school": "서강대",
+            "bojHandle": "lickelon"
+          }
+        },
+        {
+          "problemTitle": "함수열과 쿼리",
+          "link": "https://www.acmicpc.net/problem/27506",
+          "setter": {
+            "name": "유호영",
+            "school": "서강대",
+            "bojHandle": "tkfkddl59323"
+          }
+        },
+        {
+          "problemTitle": "K볼록껍질",
+          "link": "https://www.acmicpc.net/problem/27507",
+          "setter": {
+            "name": "곽재혁",
+            "school": "연세대",
+            "bojHandle": "dreami63"
+          }
+        }
+      ]
+    }
+  ]
+}

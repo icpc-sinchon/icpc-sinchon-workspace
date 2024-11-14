@@ -1,0 +1,194 @@
+{
+  "$schema": "./schema.json",
+  "year": 2023,
+  "season": "Summer",
+  "dateTime": "2023년 8월 20일 오후 12시 ~ 오후 5시",
+  "links": {
+    "solutionPdf": "2023_ICPC_Sinchon_Summer_Algorithm_Camp_Contest_Solution.pdf",
+    "problemBojLink": "https://www.acmicpc.net/category/909",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/1101",
+      "https://www.acmicpc.net/contest/spotboard/1102"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "김현서",
+          "school": "서강대",
+          "bojHandle": "alzflost"
+        },
+        {
+          "rank": 2,
+          "name": "변미담",
+          "school": "서강대",
+          "bojHandle": "midamida"
+        },
+        {
+          "rank": 3,
+          "name": "임정연",
+          "school": "서강대",
+          "bojHandle": "aprilfo01s"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "Toe Jumps",
+          "link": "https://www.acmicpc.net/problem/28463",
+          "setter": {
+            "name": "정회윤",
+            "school": "서강대",
+            "bojHandle": "yunny_world"
+          }
+        },
+        {
+          "problemTitle": "Potato",
+          "link": "https://www.acmicpc.net/problem/28464",
+          "setter": {
+            "name": "채성우",
+            "school": "서강대",
+            "bojHandle": "lem0nad3"
+          }
+        },
+        {
+          "problemTitle": "피보나치 사각형",
+          "link": "https://www.acmicpc.net/problem/28465",
+          "setter": {
+            "name": "이협",
+            "school": "연세대",
+            "bojHandle": "dlguq0107"
+          }
+        },
+        {
+          "problemTitle": "좋은 팀이란?",
+          "link": "https://www.acmicpc.net/problem/28466",
+          "setter": {
+            "name": "길수민",
+            "school": "숙명여대",
+            "bojHandle": "2093ab"
+          }
+        },
+        {
+          "problemTitle": "Spell Cards",
+          "link": "https://www.acmicpc.net/problem/28467",
+          "setter": {
+            "name": "채성우",
+            "school": "서강대",
+            "bojHandle": "lem0nad3"
+          }
+        },
+        {
+          "problemTitle": "납이야 나비야",
+          "link": "https://www.acmicpc.net/problem/28468",
+          "setter": {
+            "name": "최우현",
+            "school": "연세대",
+            "bojHandle": "starwh03"
+          }
+        },
+        {
+          "problemTitle": "Equilibrium Points",
+          "link": "https://www.acmicpc.net/problem/28469",
+          "setter": {
+            "name": "정회윤",
+            "school": "서강대",
+            "bojHandle": "yunny_world"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "박건휘",
+          "school": "연세대",
+          "bojHandle": "pgggggggggh"
+        },
+        {
+          "rank": 2,
+          "name": "한승준",
+          "school": "홍익대",
+          "bojHandle": "dosawas"
+        },
+        {
+          "rank": 3,
+          "name": "김태현",
+          "school": "연세대",
+          "bojHandle": "kth7493"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "슥~빡! 빡~슥!",
+          "link": "https://www.acmicpc.net/problem/28470",
+          "setter": {
+            "name": "정회윤",
+            "school": "서강대",
+            "bojHandle": "yunny_world"
+          }
+        },
+        {
+          "problemTitle": "W키가 빠진 성원이",
+          "link": "https://www.acmicpc.net/problem/28471",
+          "setter": {
+            "name": "이도훈",
+            "school": "연세대",
+            "bojHandle": "dhlee1031"
+          }
+        },
+        {
+          "problemTitle": "Minimax Tree",
+          "link": "https://www.acmicpc.net/problem/28472",
+          "setter": {
+            "name": "길수민",
+            "school": "숙명여대",
+            "bojHandle": "2093ab"
+          }
+        },
+        {
+          "problemTitle": "도로 위의 표지판",
+          "link": "https://www.acmicpc.net/problem/28473",
+          "setter": {
+            "name": "이도훈",
+            "school": "연세대",
+            "bojHandle": "dhlee1031"
+          }
+        },
+        {
+          "problemTitle": "피보나치 서로소",
+          "link": "https://www.acmicpc.net/problem/28474",
+          "setter": {
+            "name": "이협",
+            "school": "연세대",
+            "bojHandle": "dlguq0107"
+          }
+        },
+        {
+          "problemTitle": "편광판",
+          "link": "https://www.acmicpc.net/problem/28475",
+          "setter": {
+            "name": "최우현",
+            "school": "연세대",
+            "bojHandle": "starwh03"
+          }
+        },
+        {
+          "problemTitle": "나비야 나비야",
+          "link": "https://www.acmicpc.net/problem/28476",
+          "setter": {
+            "name": "채성우",
+            "school": "서강대",
+            "bojHandle": "lem0nad3"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -12,8 +12,10 @@ function HistoryLayout({
 }) {
   return (
     <article className={styles.historyLayout}>
-      <HeroTitle>{title}</HeroTitle>
-      <h2 className={styles.subTitle}>{subTitle}</h2>
+      <header className={styles.layoutHeader}>
+        <HeroTitle>{title}</HeroTitle>
+        <h2 className={styles.subTitle}>{subTitle}</h2>
+      </header>
       {children}
     </article>
   );

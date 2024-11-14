@@ -1,3 +1,5 @@
+import type { Person } from ".";
+
 /**
  * 신촌연합 알고리즘 캠프의 운영을 기록한 데이터 스키마
  */
@@ -32,17 +34,3 @@ export interface CampHistory {
     curriculum: string[];
   }[];
 }
-export type Person = {
-  /**
-   * 이름
-   */
-  name: string;
-  /**
-   * 소속 학교
-   */
-  school: string;
-  /**
-   * BOJ 아이디
-   */
-  bojHandle: string;
-};

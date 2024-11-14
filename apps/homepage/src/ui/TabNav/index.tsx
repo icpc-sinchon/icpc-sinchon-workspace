@@ -15,6 +15,7 @@ function TabNavItem({
   );
 }
 
+// TODO: 모바일 환경 tab nav에서 양쪽 화살표를 통해 스크롤임을 표시
 function TabNav<T extends object>({
   tabList,
   currentTabIndex,

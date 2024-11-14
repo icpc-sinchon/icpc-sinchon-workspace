@@ -10,6 +10,10 @@ export const historyLayout = style({
   margin: "0 auto 6rem auto",
   padding: "3rem 4rem 4rem 4rem",
 
+  display: "flex",
+  flexDirection: "column",
+  gap: "2.5rem",
+
   "@media": {
     "(max-width: 640px)": {
       margin: "0 auto 2rem auto",
@@ -21,6 +25,12 @@ export const historyLayout = style({
   },
 });
 
+export const layoutHeader = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: "0.5rem",
+});
+
 export const subTitle = style({
   fontWeight: 700,
 
@@ -28,8 +38,6 @@ export const subTitle = style({
   fontSize: "1.2rem",
   letterSpacing: "-0.08rem",
   lineHeight: 1.2,
-
-  margin: "0.5rem 0 3rem 0;",
 
   "@media": {
     "(max-width: 640px)": {

@@ -15,8 +15,6 @@ export const title = style({
   letterSpacing: "-0.08rem",
   lineHeight: 1.2,
 
-  margin: "1rem 0 0.5rem 0;",
-
   "@media": {
     "(max-width: 640px)": {
       fontSize: "1.1rem",
@@ -30,5 +28,4 @@ export const badge = style({
   backgroundColor: vars.colors.primarySurface, // 뱃지 배경색
   color: "white",
   padding: "0.2rem 0.4rem",
-  margin: "1rem 0 0.5rem 0;",
 });

@@ -1,0 +1,194 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Winter",
+  "dateTime": "2022년 2월 19일 오후 1시 ~ 오후 5시",
+  "links": {
+    "solutionPdf": "22w-Camp-Contest-Solution.pdf",
+    "problemBojLink": "https://www.acmicpc.net/category/797",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/759",
+      "https://www.acmicpc.net/contest/spotboard/758"
+    ]
+  },
+  "contest": [
+    {
+      "level": "초급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "이준하",
+          "school": "서강대",
+          "bojHandle": "imearth01"
+        },
+        {
+          "rank": 2,
+          "name": "이지은",
+          "school": "홍익대",
+          "bojHandle": "leeju1013"
+        },
+        {
+          "rank": 3,
+          "name": "김연웅",
+          "school": "연세대",
+          "bojHandle": "sodapop95"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "시간복잡도를 배운 도도",
+          "link": "https://www.acmicpc.net/problem/24510",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "상품의 주인은?",
+          "link": "https://www.acmicpc.net/problem/24509",
+          "setter": {
+            "name": "송혜민",
+            "school": "숙명여대",
+            "bojHandle": "songfox00"
+          }
+        },
+        {
+          "problemTitle": "queuestack",
+          "link": "https://www.acmicpc.net/problem/24511",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "Bottleneck Travelling Salesman Problem (Small)",
+          "link": "https://www.acmicpc.net/problem/24512",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "좀비 바이러스",
+          "link": "https://www.acmicpc.net/problem/24513",
+          "setter": {
+            "name": "송혜민",
+            "school": "숙명여대",
+            "bojHandle": "songfox00"
+          }
+        },
+        {
+          "problemTitle": "n번째 숫자 찾기",
+          "link": "https://www.acmicpc.net/problem/24514",
+          "setter": {
+            "name": "박준성",
+            "school": "서강대",
+            "bojHandle": "wnstjd13245"
+          }
+        },
+        {
+          "problemTitle": "히히 못가",
+          "link": "https://www.acmicpc.net/problem/24515",
+          "setter": {
+            "name": "이상원",
+            "school": "서강대",
+            "bojHandle": "gumgood"
+          }
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "contestName": "Camp Contest",
+      "awards": [
+        {
+          "rank": 1,
+          "name": "김태윤",
+          "school": "연세대",
+          "bojHandle": "ystaeyoon113"
+        },
+        {
+          "rank": 2,
+          "name": "김정모",
+          "school": "서강대",
+          "bojHandle": "meque98"
+        },
+        {
+          "rank": 3,
+          "name": "박준서",
+          "school": "서강대",
+          "bojHandle": "p_jun"
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "잘 알려진 수열 구하기",
+          "link": "https://www.acmicpc.net/problem/24516",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "잘 알려진 합 구하기",
+          "link": "https://www.acmicpc.net/problem/24518",
+          "setter": {
+            "name": "강효규",
+            "school": "서강대",
+            "bojHandle": "djs100201"
+          }
+        },
+        {
+          "problemTitle": "카드 게임과 쿼리",
+          "link": "https://www.acmicpc.net/problem/24517",
+          "setter": {
+            "name": "김도현",
+            "school": "홍익대",
+            "bojHandle": "swoon"
+          }
+        },
+        {
+          "problemTitle": "Bottleneck Travelling Salesman Problem (Large)",
+          "link": "https://www.acmicpc.net/problem/24519",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "Meet In The Middle",
+          "link": "https://www.acmicpc.net/problem/24520",
+          "setter": {
+            "name": "이상원",
+            "school": "서강대",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "스네이크 게임",
+          "link": "https://www.acmicpc.net/problem/24522",
+          "setter": {
+            "name": "이상원",
+            "school": "서강대",
+            "bojHandle": "gumgood"
+          }
+        },
+        {
+          "problemTitle": "토지 구입",
+          "link": "https://www.acmicpc.net/problem/24521",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대",
+            "bojHandle": "lky7674"
+          }
+        }
+      ]
+    }
+  ]
+}
