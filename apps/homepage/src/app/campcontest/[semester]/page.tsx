@@ -3,14 +3,14 @@ import ContestLinks from "@ui/ContestLinks";
 import TableSection from "@ui/TableSection";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
-import { notFound } from "next/navigation";
+
 import React from "react";
 import type { Semester } from "src/types";
 
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
-import { getDataFromFile } from "src/utils/getDataFromFile";
+
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
-import { renderCampContestData } from "src/utils/renderCampContestData";
+import { makePageData } from "src/utils/makePageData";
 
 function CampContestIntro({ contestDateTime }: { contestDateTime: string }) {
   return (
@@ -36,23 +36,11 @@ function CampContestPage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentPageSemester.year &&
-      semester.season === currentPageSemester.season,
-  );
-
-  if (selectedTabIndex === -1) {
-    notFound();
-  }
-
-  const rawData = getDataFromFile(
-    "campContest",
-    currentPageSemester.year,
-    currentPageSemester.season,
-  );
-  const campContestData = renderCampContestData(rawData);
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: campContestData,
+  } = makePageData(currentPageSemester, "campContest");
 
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
