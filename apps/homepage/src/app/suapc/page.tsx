@@ -4,15 +4,11 @@ import LogoSection from "@ui/LogoSection";
 import TableSection from "@ui/TableSection";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
-import { notFound } from "next/navigation";
 import React from "react";
 import type { Semester } from "src/types";
 import * as styles from "./styles.css";
-
-import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
-import { getDataFromFile } from "src/utils/getDataFromFile";
-import { renderSuapcData } from "src/utils/renderSuapcData";
+import { makePageData } from "src/utils/makePageData";
 
 const suapcDescription = `SUAPC는 신촌지역 5개 대학(서강, 숙명, 연세, 이화, 홍익)의
  학부생 및 대학원 1년차를 대상으로 하는 프로그래밍 대회입니다. 
@@ -25,23 +21,11 @@ const participantDescription = `서강대학교, 숙명여자대학교, 연세�
 
 function SUAPCPage() {
   const currentSemester = getCurrentSemester();
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentSemester.year &&
-      semester.season === currentSemester.season,
-  );
-
-  if (selectedTabIndex === -1) {
-    notFound();
-  }
-
-  const rawData = getDataFromFile(
-    "suapc",
-    currentSemester.year,
-    currentSemester.season,
-  );
-  const suapcData = renderSuapcData(rawData);
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: suapcData,
+  } = makePageData(currentSemester, "suapc");
 
   const currentSeason = currentSemester.season === "Winter" ? "겨울" : "여름";
   const pageTitle = `SUAPC ${currentSemester.year} ${currentSemester.season}`;

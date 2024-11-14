@@ -1,31 +1,21 @@
 import HistoryLayout from "@components/HistoryLayout";
 import TabNav from "@ui/TabNav";
 import type { Semester } from "src/types";
-import { renderHallOfFameData } from "src/utils/renderHallOfFameData";
-import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
-import { getDataFromFile } from "src/utils/getDataFromFile";
 import TextSection from "@ui/TextSection";
 import React from "react";
 import TableSection from "@ui/TableSection";
+import { makePageData } from "src/utils/makePageData";
 
 function HallOfFamePage() {
   const currentSemester = getCurrentSemester();
-  const rawData = getDataFromFile(
-    "hallOfFame",
-    currentSemester.year,
-    currentSemester.season,
-  );
-  const hallOfFameData = renderHallOfFameData(rawData);
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentSemester.year &&
-      semester.season === currentSemester.season,
-  );
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: hallOfFameData,
+  } = makePageData(currentSemester, "hallOfFame");
 
   const currentSeason = currentSemester.season === "Winter" ? "겨울" : "여름";
-
   const pageTitle = `${currentSemester.year} ${currentSemester.season} HALL OF FAME`;
   const pageSubTitle = `${currentSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 명예의 전당`;
 

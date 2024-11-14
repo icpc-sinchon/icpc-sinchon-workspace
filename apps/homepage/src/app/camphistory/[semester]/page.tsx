@@ -2,14 +2,11 @@ import HistoryLayout from "@components/HistoryLayout";
 import TableSection from "@ui/TableSection";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
-import { notFound } from "next/navigation";
 import React from "react";
 import type { Semester } from "src/types";
-
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
-import { getDataFromFile } from "src/utils/getDataFromFile";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
-import { renderCampHistoryData } from "src/utils/renderCampHistoryData";
+import { makePageData } from "src/utils/makePageData";
 
 // TODO: 2024 Summer 캠프 데이터 추가
 function CampHistoryPage({
@@ -19,23 +16,11 @@ function CampHistoryPage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentPageSemester.year &&
-      semester.season === currentPageSemester.season,
-  );
-
-  if (selectedTabIndex === -1) {
-    notFound();
-  }
-
-  const rawData = getDataFromFile(
-    "campHistory",
-    currentPageSemester.year,
-    currentPageSemester.season,
-  );
-  const campHistoryData = renderCampHistoryData(rawData);
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: campHistoryData,
+  } = makePageData(currentPageSemester, "campHistory");
 
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";

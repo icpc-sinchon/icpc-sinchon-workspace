@@ -4,26 +4,17 @@ import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
 import React from "react";
 import type { Semester } from "src/types";
-import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
-import { getDataFromFile } from "src/utils/getDataFromFile";
-import { renderCampHistoryData } from "src/utils/renderCampHistoryData";
+import { makePageData } from "src/utils/makePageData";
 
 function CampHistoryPage() {
   const currentSemester = getCurrentSemester();
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentSemester.year &&
-      semester.season === currentSemester.season,
-  );
 
-  const rawData = getDataFromFile(
-    "campHistory",
-    currentSemester.year,
-    currentSemester.season,
-  );
-  const campHistoryData = renderCampHistoryData(rawData);
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: campHistoryData,
+  } = makePageData(currentSemester, "campHistory");
 
   const currentSeason = currentSemester.season === "Winter" ? "겨울" : "여름";
   const pageTitle = `${currentSemester.year} ${currentSemester.season} Algorithm Camp`;

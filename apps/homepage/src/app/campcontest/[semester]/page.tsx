@@ -8,7 +8,6 @@ import React from "react";
 import type { Semester } from "src/types";
 
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
-
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 

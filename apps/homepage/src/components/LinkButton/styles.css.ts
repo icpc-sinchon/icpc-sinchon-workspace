@@ -1,6 +1,7 @@
 import { vars } from "@styles/theme.css";
 import { style } from "@vanilla-extract/css";
 
+// TODO: 모바일 환경의 버튼 디자인 보강
 export const customButton = style({
   display: "inline-flex",
   alignItems: "center",
@@ -15,7 +16,7 @@ export const customButton = style({
   "@media": {
     "(max-width: 768px)": {
       border: "none",
-      padding: "0.2rem 0",
+      padding: "0.2rem",
     },
   },
 });

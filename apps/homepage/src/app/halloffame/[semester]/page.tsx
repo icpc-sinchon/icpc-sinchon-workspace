@@ -3,13 +3,11 @@ import HistoryLayout from "@components/HistoryLayout";
 import TabNav from "@ui/TabNav";
 import type { Semester } from "src/types";
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
-import { getDataFromFile } from "src/utils/getDataFromFile";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
-import { renderHallOfFameData } from "src/utils/renderHallOfFameData";
-import { notFound } from "next/navigation";
 import TextSection from "@ui/TextSection";
 import TableSection from "@ui/TableSection";
 import React from "react";
+import { makePageData } from "src/utils/makePageData";
 
 function HallOfFamePage({
   params,
@@ -18,23 +16,12 @@ function HallOfFamePage({
 }) {
   const { semester } = params;
   const currentPageSemester = getSemesterFromString(semester);
-  const allDataRouters = getAllSemesterRouters();
-  const selectedTabIndex = allDataRouters.findIndex(
-    (semester) =>
-      semester.year === currentPageSemester.year &&
-      semester.season === currentPageSemester.season,
-  );
 
-  if (selectedTabIndex === -1) {
-    notFound();
-  }
-
-  const rawData = getDataFromFile(
-    "hallOfFame",
-    currentPageSemester.year,
-    currentPageSemester.season,
-  );
-  const hallOfFameData = renderHallOfFameData(rawData);
+  const {
+    allDataRouters,
+    selectedTabIndex,
+    renderedPageData: hallOfFameData,
+  } = makePageData(currentPageSemester, "hallOfFame");
 
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
