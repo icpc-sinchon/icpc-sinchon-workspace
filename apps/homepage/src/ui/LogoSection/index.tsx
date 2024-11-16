@@ -1,6 +1,5 @@
 import Title from "@components/Title";
 import * as styles from "./styles.css";
-import { Sponsor } from "src/types";
 import Image from "next/image";
 
 type Props = {

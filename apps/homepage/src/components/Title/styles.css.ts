@@ -12,11 +12,10 @@ export const title = style({
 
   color: vars.colors.primarySurface,
   fontSize: "1.2rem",
-  letterSpacing: "-0.08rem",
   lineHeight: 1.2,
 
   "@media": {
-    "(max-width: 640px)": {
+    "(max-width: 768px)": {
       fontSize: "1.1rem",
     },
   },
