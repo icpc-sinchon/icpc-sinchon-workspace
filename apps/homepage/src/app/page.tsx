@@ -1,5 +1,4 @@
 import MainContainer from "@components/MainContainer";
-import Title from "@components/Title";
 import IntroCard from "@ui/IntroCard";
 import MainBanner from "@ui/MainBanner";
 
