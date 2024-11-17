@@ -76,10 +76,25 @@ export const subwayLineContainer = style({
   padding: "0 1.5rem",
 });
 
+export const mobileHidden = style({
+  "@media": {
+    "screen and (max-width: 768px)": {
+      display: "none",
+    },
+  },
+});
+
 export const nodeContainer = style({
   width: "100%",
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
   gap: "0.5rem",
+
+  "@media": {
+    "screen and (max-width: 768px)": {
+      flexWrap: "wrap",
+      justifyContent: "space-evenly",
+    },
+  },
 });

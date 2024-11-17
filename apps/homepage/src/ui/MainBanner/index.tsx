@@ -147,11 +147,13 @@ function MainBanner() {
             <SchoolNode key={school.clubName} {...school} />
           ))}
         </div>
-        <SinchonSubwayLine />
-        <div className={styles.nodeContainer}>
-          {schools.map((school) => (
-            <StationNode key={school.clubName} {...school.station} />
-          ))}
+        <div className={styles.mobileHidden}>
+          <SinchonSubwayLine />
+          <div className={styles.nodeContainer}>
+            {schools.map((school) => (
+              <StationNode key={school.clubName} {...school.station} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
