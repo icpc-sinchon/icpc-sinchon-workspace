@@ -15,7 +15,6 @@ export const cardContainer = style({
   transition: "transform 0.2s, box-shadow 0.2s",
   textAlign: "center",
   ":hover": {
-    transform: "scale(1.05)",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
   },
 });
