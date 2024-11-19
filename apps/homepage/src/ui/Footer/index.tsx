@@ -3,6 +3,7 @@ import * as styles from "./styles.css";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
 import { getDataFromFile } from "src/utils/getDataFromFile";
 import type { HallOfFame } from "src/types/hallOfFame";
+import Link from "next/link";
 
 type Manager = {
   name: string;
@@ -20,7 +21,40 @@ function OrgDescription({ children }) {
   return <p className={styles.orgDescription}>{children}</p>;
 }
 
-// DB에 저장된 정보를 쓰거나 아니면 current semester json 파일을 사용
+function SNSIcons() {
+  return (
+    <span className={styles.snsIcons}>
+      <Link
+        href="https://youtube.com/@icpcsinchonofficial"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="/res/footer/youtube.svg" alt="youtube-icon" />
+      </Link>
+      <Link
+        href="https://instagram.com/icpc_sinchon_official"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img src="/res/footer/instagram.svg" alt="instagram-icon" />
+      </Link>
+      <Link href="https://fb.com/icpc-sinchon" target="_blank" rel="noreferrer">
+        <img src="/res/footer/facebook.svg" alt="facebook-icon" />
+      </Link>
+      <Link
+        href="https://pf.kakao.com/_xehxhAK"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img src="/res/footer/talk-gray.svg" alt="kakaotalk-icon" />
+      </Link>
+      <Link href="mailto:icpc.sinchon@gmail.com">
+        <img src="/res/footer/mail-gray.svg" alt="email-icon" />
+      </Link>
+    </span>
+  );
+}
+
 function Footer() {
   const currentSemester = getCurrentSemester();
   const hallOfFameData: HallOfFame = getDataFromFile(
@@ -33,6 +67,7 @@ function Footer() {
       <div className={styles.container}>
         <Logo />
         <OrgTitle>신촌지역 대학교 프로그래밍 동아리 연합</OrgTitle>
+        <SNSIcons />
         <br />
         <OrgTitle>회장</OrgTitle>
         <OrgDescription>
