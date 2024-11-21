@@ -9,6 +9,7 @@ import type { Semester } from "src/types";
 import * as styles from "./styles.css";
 import { getCurrentSemester } from "src/utils/getCurrentSemester";
 import { makePageData } from "src/utils/makePageData";
+import { formatLinkURL } from "src/utils/formatLinkURL";
 
 const suapcDescription = `SUAPC는 신촌지역 5개 대학(서강, 숙명, 연세, 이화, 홍익)의
  학부생 및 대학원 1년차를 대상으로 하는 프로그래밍 대회입니다. 
@@ -35,35 +36,23 @@ function SUAPCPage() {
     ? [
         {
           title: "문제(BOJ 링크)",
-          href: suapcData.links.problemBojLink ?? "",
+          href: formatLinkURL(suapcData.links.problemBojLink, currentSemester),
         },
         {
           title: "문제 PDF",
-          href: suapcData.links.problemPdf
-            ? `/res/${currentSemester.year}${
-                currentSemester.season === "Winter" ? "w" : "s"
-              }/${suapcData.links.problemPdf}`
-            : "",
+          href: formatLinkURL(suapcData.links.problemPdf, currentSemester),
         },
         {
           title: "해설 PDF",
-          href: suapcData.links.solutionPdf
-            ? `/res/${currentSemester.year}${
-                currentSemester.season === "Winter" ? "w" : "s"
-              }/${suapcData.links.solutionPdf}`
-            : "",
+          href: formatLinkURL(suapcData.links.solutionPdf, currentSemester),
         },
         {
           title: "스코어보드",
-          href: suapcData.links.scoreboard?.[0] ?? "",
+          href: formatLinkURL(suapcData.links.scoreboard?.[0], currentSemester),
         },
         {
           title: "공식 포스터",
-          href: suapcData.links.posterImage
-            ? `/res/${currentSemester.year}${
-                currentSemester.season === "Winter" ? "w" : "s"
-              }/${suapcData.links.posterImage}`
-            : "",
+          href: formatLinkURL(suapcData.links.posterImage, currentSemester),
         },
       ]
     : [];
