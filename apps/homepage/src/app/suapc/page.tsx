@@ -74,12 +74,14 @@ function SUAPCPage() {
         <TextSection title="대회 일자" text={suapcData.dateTime} />
         <TextSection title="대회 소개" text={suapcDescription} />
         <TextSection title="참가 대상" text={participantDescription} />
-        <LogoSection
-          title="후원사"
-          logoSources={suapcData.sponsor.map(
-            (sponsor) => `/res/sponsor-ci/${sponsor.id}.png`,
-          )}
-        />
+        {suapcData.sponsor && (
+          <LogoSection
+            title="후원사"
+            logoSources={suapcData.sponsor.map(
+              (sponsor) => `/res/sponsor-ci/${sponsor.id}.png`,
+            )}
+          />
+        )}
         {suapcData.personalSponsor && (
           <TextSection
             title="개인 후원"
@@ -122,26 +124,28 @@ function SUAPCPage() {
             />
           </React.Fragment>
         ))}
-        <section className={styles.tableContainer}>
-          <TableSection
-            title="출제진"
-            data={suapcData.setter}
-            columns={[
-              { key: "name", header: "이름" },
-              { key: "bojHandle", header: "BOJ 핸들" },
-              { key: "school", header: "소속" },
-            ]}
-          />
-          <TableSection
-            title="검수진"
-            data={suapcData.reviewer}
-            columns={[
-              { key: "name", header: "이름" },
-              { key: "bojHandle", header: "BOJ 핸들" },
-              { key: "school", header: "소속" },
-            ]}
-          />
-        </section>
+        {suapcData.setter && suapcData.reviewer && (
+          <section className={styles.tableContainer}>
+            <TableSection
+              title="출제진"
+              data={suapcData.setter}
+              columns={[
+                { key: "name", header: "이름" },
+                { key: "bojHandle", header: "BOJ 핸들" },
+                { key: "school", header: "소속" },
+              ]}
+            />
+            <TableSection
+              title="검수진"
+              data={suapcData.reviewer}
+              columns={[
+                { key: "name", header: "이름" },
+                { key: "bojHandle", header: "BOJ 핸들" },
+                { key: "school", header: "소속" },
+              ]}
+            />
+          </section>
+        )}
       </HistoryLayout>
     </>
   );
