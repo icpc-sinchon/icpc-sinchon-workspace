@@ -1,0 +1,85 @@
+{
+  "$schema": "./schema.json",
+  "year": 2024,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박찬솔",
+          "school": "숭실대학교",
+          "bojHandle": "chansol"
+        },
+        {
+          "name": "김지호",
+          "school": "연세대학교",
+          "bojHandle": "wlgh7407"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "최연재",
+          "school": "숙명여자대학교",
+          "bojHandle": "0yeonjae2"
+        },
+        {
+          "name": "전우제",
+          "school": "연세대학교",
+          "bojHandle": "kiwiyou"
+        }
+      ],
+      "curriculum": [
+        "Problem Solving, Time complexity, Basic C++",
+        "Linear data structures, N^2 Sorting",
+        "Nlog(N) Sorting, Basic Math",
+        "Prefix Sum, Two Pointer",
+        "Bruteforcing, Binary Search",
+        "Basic Dynamic Programming",
+        "Divide and Conquer, Recursive Function",
+        "Problem Solving Session",
+        "Tree, Graph, Map/Set",
+        "DFS, BFS"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "김영현",
+          "school": "서울대학교",
+          "bojHandle": "kipa00"
+        },
+        {
+          "name": "박진한",
+          "school": "고려대학교",
+          "bojHandle": "jinhan814"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "이재찬",
+          "school": "서강대학교",
+          "bojHandle": "dlwocks1209"
+        },
+        {
+          "name": "김건우",
+          "school": "연세대학교",
+          "bojHandle": "coconut99"
+        }
+      ],
+      "curriculum": [
+        "Segment Tree",
+        "Number Theory",
+        "Dynamic Programming (1)",
+        "Dynamic Programming (2)",
+        "Problem Solving Session (1)",
+        "Tree Algorithms",
+        "Data Structures",
+        "Shortest Path",
+        "String Algorithms",
+        "Problem Solving Session (2)"
+      ]
+    }
+  ]
+}

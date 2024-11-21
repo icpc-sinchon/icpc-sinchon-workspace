@@ -6,6 +6,7 @@ import TextSection from "@ui/TextSection";
 
 import React from "react";
 import type { Semester } from "src/types";
+import { formatLinkURL } from "src/utils/formatLinkURL";
 
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
@@ -71,23 +72,31 @@ function CampContestPage({
     ? [
         {
           title: "문제(BOJ 링크)",
-          href: campContestData.links.problemBojLink ?? "",
+          href: formatLinkURL(
+            campContestData.links.problemBojLink,
+            currentPageSemester,
+          ),
         },
         {
           title: "해설 PDF",
-          href: campContestData.links.solutionPdf
-            ? `/res/${currentPageSemester.year}${
-                currentPageSemester.season === "Winter" ? "w" : "s"
-              }/${campContestData.links.solutionPdf}`
-            : "",
+          href: formatLinkURL(
+            campContestData.links.solutionPdf,
+            currentPageSemester,
+          ),
         },
         {
           title: "초급 스코어보드",
-          href: campContestData.links.scoreboard?.[0] ?? "",
+          href: formatLinkURL(
+            campContestData.links.scoreboard?.[0],
+            currentPageSemester,
+          ),
         },
         {
           title: "중급 스코어보드",
-          href: campContestData.links.scoreboard?.[1] ?? "",
+          href: formatLinkURL(
+            campContestData.links.scoreboard?.[1],
+            currentPageSemester,
+          ),
         },
       ].filter((link) => link.href) // 유효한 링크만 포함
     : [];
