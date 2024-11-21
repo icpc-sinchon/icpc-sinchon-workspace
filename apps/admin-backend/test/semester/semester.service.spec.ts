@@ -146,7 +146,10 @@ describe("SemesterService", () => {
       mockSemesterRepository.getSemester.mockResolvedValue(null);
 
       await expect(
-        semesterService.updateSemester(999, updateSemesterDto as UpdateSemesterDto),
+        semesterService.updateSemester(
+          999,
+          updateSemesterDto as UpdateSemesterDto,
+        ),
       ).rejects.toThrow(NotFoundException);
 
       expect(mockSemesterRepository.getSemester).toHaveBeenCalledTimes(1);

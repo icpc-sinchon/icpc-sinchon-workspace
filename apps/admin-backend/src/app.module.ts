@@ -1,10 +1,7 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { SemesterModule } from './semester/semester.module';
+import { Module } from "@nestjs/common";
+import { SemesterModule } from "./semester/semester.module";
 
 @Module({
-  imports: [
-    SemesterModule
-  ]
+  imports: [SemesterModule],
 })
 export class AppModule {}
