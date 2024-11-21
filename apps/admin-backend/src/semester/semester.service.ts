@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { SemesterRepository } from './semester.repository';
 import type { Prisma, Semester } from '@prisma/client';
 import type { CreateSemesterDto } from './dto/create-semester.dto';
@@ -25,10 +25,20 @@ export class SemesterService {
     const semester = await this.semesterRepository.getSemester({
       where: { id },
     });
+
+    if (!semester) {
+      throw new NotFoundException(`Semester with ID ${id} not found`);
+    }
+
     return semester;
   }
 
   async updateSemester(id: number, updateSemesterDto: UpdateSemesterDto): Promise<Semester> {
+    const existingSemester = await this.getSemesterById(id);
+    if (!existingSemester) {
+      throw new NotFoundException(`Semester with ID ${id} not found`);
+    }
+
     const semesterUpdateInput: Prisma.SemesterUpdateInput = {
       ...updateSemesterDto,
     };
@@ -40,6 +50,11 @@ export class SemesterService {
   }
 
   async deleteSemester(id: number): Promise<Semester> {
+    const existingSemester = await this.getSemesterById(id);
+    if (!existingSemester) {
+      throw new NotFoundException(`Semester with ID ${id} not found`);
+    }
+    
     const semester = await this.semesterRepository.deleteSemester({
       where: { id },
     });
