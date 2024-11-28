@@ -1,0 +1,81 @@
+{
+  "$schema": "./schema.json",
+  "year": 2020,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "배철환",
+          "school": "서강대학교",
+          "bojHandle": "bcc0830"
+        },
+        {
+          "name": "백성익",
+          "school": "홍익대학교",
+          "bojHandle": "906bc"
+        }
+      ],
+      "curriculum": [
+        "브루트포스 & 시간복잡도 & 순열과 조합",
+        "백트래킹",
+        "정렬",
+        "이분탐색",
+        "스택",
+        "큐 & 덱",
+        "그리디",
+        "DFS & BFS",
+        "트리",
+        "Tree/Hash based Map/Set",
+        "우선순위 큐",
+        "다익스트라 알고리즘"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "윤인섭",
+          "school": "연세대학교",
+          "bojHandle": "pinebananais"
+        },
+        {
+          "name": "이준석",
+          "school": "서강대학교",
+          "bojHandle": "semteo04"
+        }
+      ],
+      "curriculum": [
+        "DP",
+        "그리디",
+        "분할정복",
+        "정수론",
+        "Segment tree",
+        "위상정렬 & SCC",
+        "조합론",
+        "2-SAT",
+        "Network flow",
+        "패턴 매칭",
+        "이분 매칭",
+        "기하"
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "전해성",
+          "school": "서강대학교",
+          "bojHandle": "seastar105"
+        }
+      ],
+      "curriculum": [
+        "Fast Fourier Transform",
+        "Convex Hull Trick",
+        "Heavy-Light Decomposition",
+        "Persistent Segment tree"
+      ]
+    }
+  ]
+}

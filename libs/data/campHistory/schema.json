@@ -42,7 +42,8 @@
         "properties": {
           "level": {
             "type": "string",
-            "description": "스터디의 난이도"
+            "description": "스터디의 난이도",
+            "enum": ["초급", "중급", "고급"]
           },
           "lecturer": {
             "type": "array",
@@ -69,6 +70,7 @@
             }
           }
         },
+        "additionalProperties": false,
         "required": ["level", "lecturer", "curriculum"]
       }
     }

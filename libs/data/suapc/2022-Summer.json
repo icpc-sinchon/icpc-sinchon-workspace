@@ -1,0 +1,328 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Summer",
+  "dateTime": "2022년 9월 4일(일) 오후 12시 ~ 오후 5시",
+  "note": "",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/3180",
+    "problemPdf": "SUAPC_2022_Summer_Problems.pdf",
+    "solutionPdf": "SUAPC_2022_Summer_Solutions.pdf",
+    "scoreboard": ["https://www.acmicpc.net/contest/spotboard/840"],
+    "posterImage": "SUAPC_2022s_Poster.jpg"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 11,
+          "teamName": "우승하러 왔습니다",
+          "school": "서강대학교",
+          "member": ["강효규", "박재형", "채성우"]
+        },
+        {
+          "rank": 2,
+          "solved": 10,
+          "teamName": "DSP",
+          "school": "서강대학교",
+          "member": ["김동건", "이준석", "전민수"]
+        },
+        {
+          "rank": 3,
+          "solved": 10,
+          "teamName": "백준검색창에lky7674를검색해보세요",
+          "school": "연세대학교",
+          "member": ["김건우", "김종민", "정기웅"]
+        },
+        {
+          "rank": 4,
+          "solved": 9,
+          "teamName": "정열맨",
+          "school": "홍익대학교",
+          "member": ["김도현", "김재헌", "정재현"]
+        },
+        {
+          "rank": 5,
+          "solved": 9,
+          "teamName": "삼대진미",
+          "school": "연세대학교",
+          "member": ["김태윤", "이협", "최우현"]
+        },
+        {
+          "rank": 6,
+          "solved": 8,
+          "teamName": "djs212222",
+          "school": "서강대학교",
+          "member": ["김서인", "김정모", "이재혁"]
+        },
+        {
+          "rank": 7,
+          "solved": 7,
+          "teamName": "ㅡㅡㅡㅡㅡ수상컷ㅡㅡㅡㅡㅡ",
+          "school": "서강대학교",
+          "member": ["성주희", "조성훈", "정회윤"]
+        },
+        {
+          "rank": 8,
+          "solved": 6,
+          "teamName": "신촌 노랑통닭",
+          "school": "연세대학교",
+          "member": ["김민수", "곽재혁", "노준영"]
+        },
+        {
+          "rank": 9,
+          "solved": 6,
+          "teamName": "전역 3일 전 SUAPC 하는 중",
+          "school": "연세대학교",
+          "member": ["박광호", "조우현", "한의엽"]
+        },
+        {
+          "rank": 10,
+          "solved": 6,
+          "teamName": "종환지훈준석",
+          "school": "서강대학교",
+          "member": ["이지훈", "이준석", "임종환"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "수 맞히기 게임",
+          "link": "https://www.acmicpc.net/problem/25557",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대학교",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "내비게이션",
+          "link": "https://www.acmicpc.net/problem/25558",
+          "setter": {
+            "name": "이국렬",
+            "school": "연세대학교",
+            "bojHandle": "lky7674"
+          }
+        },
+        {
+          "problemTitle": "패스",
+          "link": "https://www.acmicpc.net/problem/25559",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대학교",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "포탈",
+          "link": "https://www.acmicpc.net/problem/25560",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대학교",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "1-3 트리",
+          "link": "https://www.acmicpc.net/problem/25561",
+          "setter": {
+            "name": "신용명",
+            "school": "한양대학교",
+            "bojHandle": "tlsdydaud1"
+          }
+        },
+        {
+          "problemTitle": "차의 개수",
+          "link": "https://www.acmicpc.net/problem/25562",
+          "setter": {
+            "name": "강희원",
+            "school": "경기과학고등학교",
+            "bojHandle": "heeda0528"
+          }
+        },
+        {
+          "problemTitle": "AND, OR, XOR",
+          "link": "https://www.acmicpc.net/problem/25563",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "역삼역",
+          "link": "https://www.acmicpc.net/problem/25564",
+          "setter": {
+            "name": "신정환",
+            "school": "성균관대학교",
+            "bojHandle": "shjohw12"
+          }
+        },
+        {
+          "problemTitle": "딸기와 토마토",
+          "link": "https://www.acmicpc.net/problem/25565",
+          "setter": {
+            "name": "강희원",
+            "school": "경기과학고등학교",
+            "bojHandle": "heeda0528"
+          }
+        },
+        {
+          "problemTitle": "김밥",
+          "link": "https://www.acmicpc.net/problem/25566",
+          "setter": {
+            "name": "신정환",
+            "school": "성균관대학교",
+            "bojHandle": "shjohw12"
+          }
+        },
+        {
+          "problemTitle": "줄 세우기",
+          "link": "https://www.acmicpc.net/problem/25567",
+          "setter": {
+            "name": "박찬솔",
+            "school": "숭실대학교",
+            "bojHandle": "chansol"
+          }
+        },
+        {
+          "problemTitle": "피라미드",
+          "link": "https://www.acmicpc.net/problem/25568",
+          "setter": {
+            "name": "박진식",
+            "school": "크리마",
+            "bojHandle": "pjshwa"
+          }
+        },
+        {
+          "problemTitle": "My뷰 꾸미기",
+          "link": "https://www.acmicpc.net/problem/25569",
+          "setter": {
+            "name": "박진식",
+            "school": "크리마",
+            "bojHandle": "pjshwa"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "강희원",
+      "school": "경기과학고등학교",
+      "bojHandle": "heeda0528"
+    },
+    {
+      "name": "박진식",
+      "school": "크리마",
+      "bojHandle": "pjshwa"
+    },
+    {
+      "name": "박찬솔",
+      "school": "숭실대학교",
+      "bojHandle": "chansol"
+    },
+    {
+      "name": "신용명",
+      "school": "한양대학교",
+      "bojHandle": "tlsdydaud1"
+    },
+    {
+      "name": "신정환",
+      "school": "성균관대학교",
+      "bojHandle": "shjohw12"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "장래오",
+      "school": "포항공과대학교",
+      "bojHandle": "leo020630"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "김동규",
+      "school": "KAIST AI대학원",
+      "bojHandle": "eaststar"
+    },
+    {
+      "name": "김태영",
+      "school": "KAIST",
+      "bojHandle": "tae826"
+    },
+    {
+      "name": "남현욱",
+      "school": "팀 사모예드",
+      "bojHandle": "jwvg0425"
+    },
+    {
+      "name": "문정후",
+      "school": "경기과학고등학교",
+      "bojHandle": "mjhmjh1104"
+    },
+    {
+      "name": "이상원",
+      "school": "삼성전자",
+      "bojHandle": "gumgood"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "kakao",
+      "name": "카카오"
+    },
+    {
+      "id": "autoever",
+      "name": "현대오토에버"
+    },
+    {
+      "id": "naver-d2",
+      "name": "NAVER D2"
+    },
+    {
+      "id": "secmem",
+      "name": "삼성소프트웨어멤버십"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "hanbit",
+      "name": "한빛미디어"
+    },
+    {
+      "id": "jetbrains",
+      "name": "JetBrains"
+    },
+    {
+      "id": "planetarium",
+      "name": "플라네타리움"
+    },
+    {
+      "id": "moloco",
+      "name": "Moloco"
+    },
+    {
+      "id": "devocean",
+      "name": "데보션"
+    },
+    {
+      "id": "jpub",
+      "name": "제이펍"
+    },
+    {
+      "id": "startlink",
+      "name": "스타트링크"
+    }
+  ]
+}

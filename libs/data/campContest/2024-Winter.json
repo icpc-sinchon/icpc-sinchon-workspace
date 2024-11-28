@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "year": 2024,
+  "season": "Winter",
+  "dateTime": "이번 시즌에는 Camp Contest가 진행되지 않았습니다. 다음 시즌을 기대해 주세요.",
+  "note": "캠프 콘테스트가 진행되지 않았습니다.",
+  "links": {},
+  "contest": []
+}

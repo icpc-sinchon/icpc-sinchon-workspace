@@ -37,7 +37,8 @@
             "description": "회장의 역할 표기(일반적으로 회장)"
           }
         },
-        "required": ["name", "school", "role"]
+        "required": ["name", "school", "role"],
+        "additionalProperties": false
       }
     },
     "manager": {
@@ -59,7 +60,8 @@
             "description": "운영진의 역할 표기"
           }
         },
-        "required": ["name", "school", "role"]
+        "required": ["name", "school", "role"],
+        "additionalProperties": false
       }
     },
     "contributor": {
@@ -81,7 +83,8 @@
             "description": "기여자의 역할 표기"
           }
         },
-        "required": ["name", "school", "role"]
+        "required": ["name", "school", "role"],
+        "additionalProperties": false
       }
     },
     "campContributor": {
@@ -114,7 +117,8 @@
                   "description": "강사의 BOJ 핸들"
                 }
               },
-              "required": ["name", "school", "bojHandle"]
+              "required": ["name", "school", "bojHandle"],
+              "additionalProperties": false
             }
           },
           "mentor": {
@@ -136,11 +140,13 @@
                   "description": "멘토의 BOJ 핸들"
                 }
               },
-              "required": ["name", "school", "bojHandle"]
+              "required": ["name", "school", "bojHandle"],
+              "additionalProperties": false
             }
           }
         },
-        "required": ["level", "lecturer"]
+        "required": ["level", "lecturer"],
+        "additionalProperties": false
       }
     }
   },

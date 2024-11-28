@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Winter",
+  "dateTime": "아직 2025 Winter 시즌이 진행되지 않았습니다.",
+  "note": "",
+  "links": {},
+  "contest": []
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Winter",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "이지은",
+          "school": "홍익대",
+          "bojHandle": "leeju1013"
+        },
+        {
+          "name": "함윤주",
+          "school": "홍익대",
+          "bojHandle": "ohhamma"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "길수민",
+          "school": "숙명여대",
+          "bojHandle": "2093ab"
+        },
+        {
+          "name": "권찬",
+          "school": "홍익대",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "신유승",
+          "school": "홍익대",
+          "bojHandle": "boysoeng"
+        }
+      ],
+      "curriculum": [
+        "Problem Solving, Basic c++, Time complexity, Sorting",
+        "Linear data structure",
+        "Bruteforcing, Backtracking",
+        "Basic Math",
+        "Dynamic Programming",
+        "Greedy",
+        "Divide and Conquer / Binary Search",
+        "Graph",
+        "Tree",
+        "Shortest Path",
+        "DSU / MST"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "유호영",
+          "school": "서강대",
+          "bojHandle": "tkfkddl59323"
+        },
+        {
+          "name": "한상필",
+          "school": "서강대",
+          "bojHandle": "tksvlf123"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "이협",
+          "school": "연세대",
+          "bojHandle": "dlguq0107"
+        },
+        {
+          "name": "정회윤",
+          "school": "서강대",
+          "bojHandle": "yunny_world"
+        },
+        {
+          "name": "한승준",
+          "school": "홍익대",
+          "bojHandle": "dosawas"
+        }
+      ],
+      "curriculum": [
+        "Sparse Table, Lowest Common Ancestor",
+        "Number Theory",
+        "Segment Tree",
+        "Dynamic Programming",
+        "KMP algorithm, Trie",
+        "Geometry",
+        "Offline Query",
+        "Divide and Conquer, Merge Sort Tree",
+        "Topological Sort, Strongly Connected Component, 2-SAT",
+        "Game",
+        "Network Flow, Bipartite Matching"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,11 @@
-"use client";
 import Header from "@ui/Header";
-import StyledComponentsRegistry from "../lib/registry";
-import "../styles/reset.css";
-import { ThemeProvider } from "styled-components";
-import { COLORS } from "src/styles/color";
+import Footer from "@ui/Footer";
+import PageLayout from "@ui/PageLayout";
+
+import "@styles/reset.css";
+import "@styles/theme.css";
+import "@styles/font.css";
+import { themeClass } from "@styles/theme.css";
 
 export default function RootLayout({
   children,
@@ -12,13 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={{ colors: COLORS }}>
-            <Header />
-            {children}
-          </ThemeProvider>
-        </StyledComponentsRegistry>
+      <body className={themeClass}>
+        <Header />
+        <PageLayout>{children}</PageLayout>
+        <Footer />
       </body>
     </html>
   );

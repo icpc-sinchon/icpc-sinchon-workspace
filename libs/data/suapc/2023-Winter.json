@@ -1,0 +1,311 @@
+{
+  "$schema": "./schema.json",
+  "year": 2023,
+  "season": "Winter",
+  "dateTime": "2023년 2월 25일(토) 오후 12시 ~ 오후 5시",
+  "note": "",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/3517",
+    "solutionPdf": "SUAPC_2023_Winter_Solution.pdf",
+    "scoreboard": ["https://www.acmicpc.net/contest/spotboard/950"],
+    "posterImage": "SUAPC_2023w_Poster.jpg"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 10,
+          "teamName": "Make Yonsei Great Again",
+          "school": "연세대학교",
+          "member": ["정용진", "김건우", "김태윤"]
+        },
+        {
+          "rank": 2,
+          "solved": 8,
+          "teamName": "내가만든쿠키",
+          "school": "연세대학교",
+          "member": ["곽재혁", "김형진", "박경욱"]
+        },
+        {
+          "rank": 3,
+          "solved": 8,
+          "teamName": "연세대학",
+          "school": "연세대학교",
+          "member": ["이협", "최우현", "이도훈"]
+        },
+        {
+          "rank": 4,
+          "solved": 7,
+          "teamName": "정열맨",
+          "school": "홍익대학교",
+          "member": ["정재현", "김도현", "김재헌"]
+        },
+        {
+          "rank": 5,
+          "solved": 6,
+          "teamName": "혼혈 서강..준",
+          "school": "서강대학교",
+          "member": ["이승형", "이준석", "송근수"]
+        },
+        {
+          "rank": 6,
+          "solved": 6,
+          "teamName": "상 타면 군대 감ㅅㄱ",
+          "school": "서강대학교",
+          "member": ["손기령", "신동준", "김서인"]
+        },
+        {
+          "rank": 7,
+          "solved": 6,
+          "teamName": "-------------------10등컷---------------------",
+          "school": "서강대학교",
+          "member": ["김정모", "이소영", "박준하"]
+        },
+        {
+          "rank": 8,
+          "solved": 6,
+          "teamName": "tksvlf123의 last dance",
+          "school": "서강대학교",
+          "member": ["이우진", "유호영", "한상필"]
+        },
+        {
+          "rank": 9,
+          "solved": 6,
+          "teamName": "저녁 뭐 먹지",
+          "school": "연세대학교",
+          "member": ["한의엽", "박광호", "조우현"]
+        },
+        {
+          "rank": 10,
+          "solved": 6,
+          "teamName": "10만원감사합니다",
+          "school": "연세대학교",
+          "member": ["박준열", "이현수", "이승훈"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "카트라이더: 드리프트",
+          "link": "https://www.acmicpc.net/problem/27522",
+          "setter": {
+            "name": "김태훈",
+            "school": "고려대학교",
+            "bojHandle": "amel"
+          }
+        },
+        {
+          "problemTitle": "신촌방위본부 탈출",
+          "link": "https://www.acmicpc.net/problem/27523",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "점수 내기",
+          "link": "https://www.acmicpc.net/problem/27524",
+          "setter": {
+            "name": "김태훈",
+            "school": "고려대학교",
+            "bojHandle": "amel"
+          }
+        },
+        {
+          "problemTitle": "듣기 평가 연습",
+          "link": "https://www.acmicpc.net/problem/27525",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "슬라이딩 퍼즐 마스터",
+          "link": "https://www.acmicpc.net/problem/27526",
+          "setter": {
+            "name": "김도훈",
+            "school": "송도고등학교",
+            "bojHandle": "dohoon"
+          }
+        },
+        {
+          "problemTitle": "배너 걸기",
+          "link": "https://www.acmicpc.net/problem/27527",
+          "setter": {
+            "name": "박진식",
+            "school": "크리마",
+            "bojHandle": "pjshwa"
+          }
+        },
+        {
+          "problemTitle": "Azber is playing at Biou's house",
+          "link": "https://www.acmicpc.net/problem/27528",
+          "setter": {
+            "name": "장근영",
+            "school": "KAIST",
+            "bojHandle": "azberjibiou"
+          }
+        },
+        {
+          "problemTitle": "양 가두기",
+          "link": "https://www.acmicpc.net/problem/27529",
+          "setter": {
+            "name": "김태훈",
+            "school": "고려대학교",
+            "bojHandle": "amel"
+          }
+        },
+        {
+          "problemTitle": "UFO in the Sinchon",
+          "link": "https://www.acmicpc.net/problem/27530",
+          "setter": {
+            "name": "박신욱",
+            "school": "DGIST",
+            "bojHandle": "bnb2011"
+          }
+        },
+        {
+          "problemTitle": "치즈",
+          "link": "https://www.acmicpc.net/problem/27531",
+          "setter": {
+            "name": "박진식",
+            "school": "크리마",
+            "bojHandle": "pjshwa"
+          }
+        },
+        {
+          "problemTitle": "시계 맞추기",
+          "link": "https://www.acmicpc.net/problem/27532",
+          "setter": {
+            "name": "김태훈",
+            "school": "고려대학교",
+            "bojHandle": "amel"
+          }
+        },
+        {
+          "problemTitle": "따로 걸어가기",
+          "link": "https://www.acmicpc.net/problem/27533",
+          "setter": {
+            "name": "박진식",
+            "school": "크리마",
+            "bojHandle": "pjshwa"
+          }
+        },
+        {
+          "problemTitle": "좋은 문자열 만들기",
+          "link": "https://www.acmicpc.net/problem/27534",
+          "setter": {
+            "name": "장근영",
+            "school": "KAIST",
+            "bojHandle": "azberjibiou"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "김도훈",
+      "school": "송도고등학교",
+      "bojHandle": "dohoon"
+    },
+    {
+      "name": "김태훈",
+      "school": "고려대학교",
+      "bojHandle": "amel"
+    },
+    {
+      "name": "박신욱",
+      "school": "DGIST",
+      "bojHandle": "bnb2011"
+    },
+    {
+      "name": "박진식",
+      "school": "크리마",
+      "bojHandle": "pjshwa"
+    },
+    {
+      "name": "장근영",
+      "school": "KAIST",
+      "bojHandle": "azberjibiou"
+    },
+    {
+      "name": "장래오",
+      "school": "포항공과대학교",
+      "bojHandle": "leo020630"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "강희원",
+      "school": "서울대학교",
+      "bojHandle": "heeda0528"
+    },
+    {
+      "name": "문정후",
+      "school": "경기과학고등학교",
+      "bojHandle": "mjhmjh1104"
+    },
+    {
+      "name": "신용명",
+      "school": "한양대학교",
+      "bojHandle": "tlsdydaud1"
+    },
+    {
+      "name": "옥찬호",
+      "school": "Momenti",
+      "bojHandle": "utilforever"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "주감동",
+      "school": "국민대학교",
+      "bojHandle": "jthis"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "autoever",
+      "name": "현대오토에버"
+    },
+    {
+      "id": "nexon",
+      "name": "넥슨"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "devocean",
+      "name": "데보션"
+    },
+    {
+      "id": "startlink",
+      "name": "스타트링크"
+    },
+    {
+      "id": "moloco",
+      "name": "몰로코"
+    },
+    {
+      "id": "secmem",
+      "name": "삼성소프트웨어멤버십"
+    },
+    {
+      "id": "solvedac",
+      "name": "솔브드"
+    }
+  ]
+}

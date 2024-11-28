@@ -1,0 +1,168 @@
+{
+  "$schema": "./schema.json",
+  "year": 2021,
+  "season": "Winter",
+  "duration": "2020년 2학기 ~ 2021년 2월",
+  "president": [
+    {
+      "name": "김도은",
+      "school": "숙명여자대학교",
+      "role": "회장"
+    }
+  ],
+  "manager": [
+    {
+      "name": "남수연",
+      "school": "숙명여자대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "김도현",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "이동주",
+      "school": "서강대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "김경근",
+      "school": "홍익대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "강효규",
+      "school": "서강대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "홍재령",
+      "school": "이화여자대학교",
+      "role": "임원진"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교",
+      "role": "임원진"
+    }
+  ],
+  "campContributor": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "강효규",
+          "school": "서강대학교",
+          "bojHandle": "djs100201"
+        },
+        {
+          "name": "김기선",
+          "school": "홍익대학교",
+          "bojHandle": "xkdlaldtjfnl"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "박재형",
+          "school": "서강대학교",
+          "bojHandle": "pjh6792"
+        },
+        {
+          "name": "고민재",
+          "school": "홍익대학교",
+          "bojHandle": "minjae705"
+        },
+        {
+          "name": "김성현",
+          "school": "서강대학교",
+          "bojHandle": "dart"
+        },
+        {
+          "name": "박건",
+          "school": "서강대학교",
+          "bojHandle": "jkroll87"
+        },
+        {
+          "name": "박장성",
+          "school": "홍익대학교",
+          "bojHandle": "kimchist"
+        },
+        {
+          "name": "권찬",
+          "school": "홍익대학교",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "박원",
+          "school": "UNIST",
+          "bojHandle": "chunghan"
+        },
+        {
+          "name": "박선종",
+          "school": "연세대학교",
+          "bojHandle": "standingbell"
+        },
+        {
+          "name": "이민희",
+          "school": "서강대학교",
+          "bojHandle": "minigimbob"
+        }
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "윤인섭",
+          "school": "연세대학교",
+          "bojHandle": "pinebananais"
+        },
+        {
+          "name": "한동규",
+          "school": "UNIST",
+          "bojHandle": "queued_q"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "조원빈",
+          "school": "서강대학교",
+          "bojHandle": "wbcho0504"
+        },
+        {
+          "name": "이윤제",
+          "school": "서강대학교",
+          "bojHandle": "yjyj1027"
+        },
+        {
+          "name": "윤이빈",
+          "school": "숙명여자대학교",
+          "bojHandle": "yibin99"
+        }
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "전해성",
+          "school": "서강대학교",
+          "bojHandle": "seastar105"
+        },
+        {
+          "name": "이국렬",
+          "school": "연세대학교",
+          "bojHandle": "lky7674"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "이상원",
+          "school": "서강대학교",
+          "bojHandle": "gumgood"
+        }
+      ]
+    }
+  ]
+}

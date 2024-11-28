@@ -1,0 +1,131 @@
+{
+  "$schema": "./schema.json",
+  "year": 2022,
+  "season": "Winter",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "김성현",
+          "school": "서강대",
+          "bojHandle": "dart"
+        },
+        {
+          "name": "임지환",
+          "school": "서강대",
+          "bojHandle": "raararaara"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "권찬",
+          "school": "홍익대",
+          "bojHandle": "kckc0608"
+        },
+        {
+          "name": "김동건",
+          "school": "서강대",
+          "bojHandle": "dong_gas"
+        },
+        {
+          "name": "김서인",
+          "school": "서강대",
+          "bojHandle": "seoin0110"
+        },
+        {
+          "name": "김성민",
+          "school": "홍익대",
+          "bojHandle": "tolelom"
+        },
+        {
+          "name": "박준서",
+          "school": "서강대",
+          "bojHandle": "p_jun"
+        },
+        {
+          "name": "한상필",
+          "school": "서강대",
+          "bojHandle": "tksvlf123"
+        }
+      ],
+      "curriculum": [
+        "시간복잡도, 정렬",
+        "문자열",
+        "DP",
+        "그리디",
+        "스택, 큐, 덱",
+        "백트래킹, 완전탐색",
+        "분할정복, 이분탐색",
+        "그래프, 그래프 순회",
+        "트리",
+        "최단경로 알고리즘",
+        "Union Find, MST 알고리즘"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "강효규",
+          "school": "서강대",
+          "bojHandle": "djs100201"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "김도현",
+          "school": "홍익대",
+          "bojHandle": "swoon"
+        },
+        {
+          "name": "남유진",
+          "school": "연세대",
+          "bojHandle": "youx"
+        },
+        {
+          "name": "조원빈",
+          "school": "서강대",
+          "bojHandle": "wbcho0504"
+        }
+      ],
+      "curriculum": [
+        "Number Theory, Simple Math",
+        "DP",
+        "Game",
+        "Segment Tree",
+        "실전 문제 풀이 (1)",
+        "LCA, Sparse Table, Offline Query",
+        "SCC, 2-SAT",
+        "Flow, Bipartite Matching",
+        "실전 문제 풀이 (2)",
+        "KMP, Hashing",
+        "Lazy Segment Tree"
+      ]
+    },
+    {
+      "level": "고급",
+      "lecturer": [
+        {
+          "name": "이국렬",
+          "school": "연세대",
+          "bojHandle": "lky7674"
+        },
+        {
+          "name": "전해성",
+          "school": "서강대",
+          "bojHandle": "seastar105"
+        }
+      ],
+      "curriculum": [
+        "Suffix Array",
+        "Advanced Segment Tree (1)",
+        "Sqrt Decomposition & Mo's",
+        "Advanced Segment Tree (2)",
+        "Convex Hull Trick",
+        "Heavy-Light Decomposition",
+        "Fast Fourier Transform"
+      ]
+    }
+  ]
+}

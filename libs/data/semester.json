@@ -1,0 +1,52 @@
+{
+  "currentSemester": {
+    "year": 2025,
+    "season": "Winter"
+  },
+  "semesters": [
+    {
+      "year": 2025,
+      "season": "Winter"
+    },
+    {
+      "year": 2024,
+      "season": "Summer"
+    },
+    {
+      "year": 2024,
+      "season": "Winter"
+    },
+    {
+      "year": 2023,
+      "season": "Summer"
+    },
+    {
+      "year": 2023,
+      "season": "Winter"
+    },
+    {
+      "year": 2022,
+      "season": "Summer"
+    },
+    {
+      "year": 2022,
+      "season": "Winter"
+    },
+    {
+      "year": 2021,
+      "season": "Summer"
+    },
+    {
+      "year": 2021,
+      "season": "Winter"
+    },
+    {
+      "year": 2020,
+      "season": "Summer"
+    },
+    {
+      "year": 2020,
+      "season": "Winter"
+    }
+  ]
+}
