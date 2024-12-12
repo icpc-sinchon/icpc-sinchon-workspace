@@ -62,7 +62,7 @@ function PersonalSponsorPage() {
       />
       <ListSection
         title="다음의 계좌로 후원금을 받고 있습니다."
-        items={["79798752726 카카오뱅크 (예금주 : 김예송)"]}
+        items={["3333320730595 카카오뱅크 (예금주: 신정화)"]}
       />
       <section className={styles.container}>
         <Title>후원 후 다음의 폼을 작성해 주세요.</Title>
