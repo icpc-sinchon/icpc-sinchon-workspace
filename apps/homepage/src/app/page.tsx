@@ -2,6 +2,7 @@ import MainContainer from "@components/MainContainer";
 import IntroCard from "@ui/IntroCard";
 import MainBanner from "@ui/MainBanner";
 
+// TODO: 메타데이터 추가
 function HomePage() {
   return (
     <>
