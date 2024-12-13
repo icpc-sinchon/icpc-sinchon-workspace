@@ -7,8 +7,7 @@ import type { SUAPCData } from "src/types/suapc";
 const makeCampContestData = (semester: Semester): CampContest => {
   return {
     ...semester,
-    dateTime:
-      "아직 2025 Winter 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.",
+    dateTime: `아직 ${semester.year} ${semester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`,
     links: {},
     contest: [],
   };
@@ -24,8 +23,7 @@ const makeCampHistoryData = (semester: Semester): CampHistory => {
 const makeHallOfFameData = (semester: Semester): HallOfFame => {
   return {
     ...semester,
-    duration:
-      "아직 2025 Winter 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.",
+    duration: `아직 ${semester.year} ${semester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`,
     manager: [],
     campContributor: [],
   };
@@ -34,8 +32,7 @@ const makeHallOfFameData = (semester: Semester): HallOfFame => {
 const makeSUAPCData = (semester: Semester): SUAPCData => {
   return {
     ...semester,
-    dateTime:
-      "아직 2025 Winter 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.",
+    dateTime: `아직 ${semester.year} ${semester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`,
     links: {},
     contest: [],
     setter: [],
