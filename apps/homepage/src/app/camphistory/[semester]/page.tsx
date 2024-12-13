@@ -40,6 +40,12 @@ function CampHistoryPage({
         }
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
+        {campHistoryData.study.length ? null : (
+          <TextSection
+            title="안내"
+            text={`아직 ${currentPageSemester.year} ${currentPageSemester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`}
+          />
+        )}
         <TextSection
           title="알고리즘 캠프 소개"
           text="ICPC Sinchon에서는 매 시즌 참가자들의 개인적인 성장을 위해 알고리즘

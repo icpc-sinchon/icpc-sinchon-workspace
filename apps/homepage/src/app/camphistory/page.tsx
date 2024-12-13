@@ -33,12 +33,19 @@ function CampHistoryPage() {
         }
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
+        {campHistoryData.study.length ? null : (
+          <TextSection
+            title="안내"
+            text={`아직 ${currentSemester.year} ${currentSemester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`}
+          />
+        )}
         <TextSection
           title="알고리즘 캠프 소개"
           text="ICPC Sinchon에서는 매 시즌 참가자들의 개인적인 성장을 위해 알고리즘
           캠프를 개최하고 있습니다. 각 시즌의 알고리즘 캠프에 기여해 주신 분들과
           커리큘럼을 기록합니다."
         />
+
         {campHistoryData.study.map((campStudy) => (
           <React.Fragment key={campStudy.level}>
             {campStudy.lecturer && (
