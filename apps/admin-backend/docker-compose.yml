@@ -1,0 +1,26 @@
+#version: "3.8"
+
+services:
+  # nodeapp:
+  #   platform: linux/amd64
+  #   image: ghcr.io/icpc-sinchon/admin-service-new-backend/node-app
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - DB_HOST=mysql
+  #     - DB_USER=root
+  #     - DB_PASS=icpc-sinchon.io
+  #     - DB_NAME=attendance_db
+  #     - DB_PORT=3306
+  #   depends_on:
+  #     - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=icpc-sinchon.io
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d # SQL 스크립트 파일 마운트
+    ports:
+      - "3306:3306"

@@ -25,7 +25,8 @@
         "noInvalidUseBeforeDeclaration": "off",
         "noUnusedVariables": "error"
       },
-      "suspicious": { "noArrayIndexKey": "warn" }
+      "suspicious": { "noArrayIndexKey": "warn" },
+      "style": { "useImportType": "off" }
     }
   },
   "javascript": {
@@ -39,6 +40,9 @@
       "quoteStyle": "double",
       "attributePosition": "auto",
       "bracketSpacing": true
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "overrides": [
