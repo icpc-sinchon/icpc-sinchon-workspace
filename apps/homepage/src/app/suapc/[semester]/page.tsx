@@ -82,7 +82,9 @@ function SUAPCPage({
         }
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
-        {suapcData.links && <ContestLinks links={contestLinks} />}
+        {suapcData.links && Object.keys(suapcData.links).length > 0 && (
+          <ContestLinks links={contestLinks} />
+        )}
         <TextSection title="대회 일자" text={suapcData.dateTime} />
         <TextSection title="대회 소개" text={suapcDescription} />
         <TextSection title="참가 대상" text={participantDescription} />
