@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typegen": "openapi-typescript ./swagger.json -o ../../libs/shared/src/schema.ts"
   },
   "dependencies": {
     "@icpc-sinchon/shared": "workspace:*",
@@ -45,6 +46,7 @@
     "@types/supertest": "^6.0.0",
     "dotenv-cli": "^7.4.2",
     "jest": "^29.7.0",
+    "openapi-typescript": "^7.4.4",
     "prisma": "^6.0.1",
     "prisma-markdown": "^1.0.9",
     "source-map-support": "^0.5.21",
