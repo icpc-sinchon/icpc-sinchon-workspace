@@ -7,14 +7,11 @@ import {
   Patch,
   Delete,
   ParseIntPipe,
-  UsePipes,
-  ValidationPipe,
 } from "@nestjs/common";
 import { SemesterService } from "./semester.service";
-import { Semester } from "@prisma/client";
 import { CreateSemesterDto } from "./dto/create-semester.dto";
 import { UpdateSemesterDto } from "./dto/update-semester.dto";
-import { ApiBody, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { SemesterEntity } from "./entities/semester.entity";
 
 @ApiTags("semester")
