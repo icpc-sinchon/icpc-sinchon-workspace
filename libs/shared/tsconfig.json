@@ -3,16 +3,16 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "lib": ["esnext"],
     "strict": true,
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
+    "declarationDir": "./dist",
     "composite": true,
     "baseUrl": "./"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
