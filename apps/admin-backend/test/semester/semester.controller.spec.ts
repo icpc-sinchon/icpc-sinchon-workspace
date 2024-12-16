@@ -18,17 +18,15 @@ describe("SemesterController", () => {
   let semesterController: SemesterController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [SemesterController],
-      providers: [
-        {
-          provide: SemesterService,
-          useValue: mockSemesterService,
-        },
-      ],
-    }).compile();
+      providers: [SemesterService],
+    })
+      .overrideProvider(SemesterService)
+      .useValue(mockSemesterService)
+      .compile();
 
-    semesterController = module.get<SemesterController>(SemesterController);
+    semesterController = moduleRef.get<SemesterController>(SemesterController);
 
     jest.clearAllMocks();
   });

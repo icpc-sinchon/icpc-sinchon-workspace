@@ -17,17 +17,14 @@ describe("SemesterService", () => {
   let semesterService: SemesterService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        SemesterService,
-        {
-          provide: SemesterRepository,
-          useValue: mockSemesterRepository,
-        },
-      ],
-    }).compile();
+    const moduleRef: TestingModule = await Test.createTestingModule({
+      providers: [SemesterService, SemesterRepository],
+    })
+      .overrideProvider(SemesterRepository)
+      .useValue(mockSemesterRepository)
+      .compile();
 
-    semesterService = module.get<SemesterService>(SemesterService);
+    semesterService = moduleRef.get<SemesterService>(SemesterService);
 
     jest.clearAllMocks();
   });
@@ -36,7 +33,7 @@ describe("SemesterService", () => {
     test("학기를 생성하고 반환해야 합니다", async () => {
       const createSemesterDto: CreateSemesterDto = {
         year: 2024,
-        season: Season.Spring, // Season Enum 사용
+        season: Season.Summer, // Season Enum 사용
       };
       const createdSemester = { id: 1, ...createSemesterDto };
 
@@ -54,8 +51,8 @@ describe("SemesterService", () => {
   describe("getSemesters", () => {
     test("모든 학기를 반환해야 합니다", async () => {
       const semesters = [
-        { id: 1, year: 2024, season: Season.Spring },
-        { id: 2, year: 2023, season: Season.Fall },
+        { id: 1, year: 2024, season: Season.Summer },
+        { id: 2, year: 2023, season: Season.Winter },
       ];
 
       mockSemesterRepository.getSemesters.mockResolvedValue(semesters);
@@ -69,7 +66,7 @@ describe("SemesterService", () => {
 
   describe("getSemesterById", () => {
     test("ID로 특정 학기를 반환해야 합니다", async () => {
-      const semester = { id: 1, year: 2024, season: Season.Spring };
+      const semester = { id: 1, year: 2024, season: Season.Summer };
 
       mockSemesterRepository.getSemester.mockResolvedValue(semester);
 
