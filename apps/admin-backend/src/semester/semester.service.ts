@@ -14,8 +14,8 @@ export class SemesterService {
     return this.semesterRepository.createSemester({ data: createSemesterDto });
   }
 
-  async getSemesters(): Promise<Semester[]> {
-    return this.semesterRepository.getSemesters();
+  async getAllSemesters(): Promise<Semester[]> {
+    return this.semesterRepository.getAllSemesters();
   }
 
   async getSemesterById(id: number): Promise<Semester | null> {

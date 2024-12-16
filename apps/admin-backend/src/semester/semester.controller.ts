@@ -25,7 +25,7 @@ export class SemesterController {
     description: "모든 학기를 반환합니다.",
   })
   getAllSemester(): Promise<SemesterEntity[]> {
-    return this.semesterService.getSemesters();
+    return this.semesterService.getAllSemesters();
   }
 
   @Get(":id")
