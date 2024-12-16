@@ -305,10 +305,6 @@ importers:
         version: 2.4.7(@types/node@22.7.4)(next@14.2.13(@babel/core@7.25.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.79.4))(sass@1.79.4)(terser@5.34.1)(webpack@5.94.0)
 
   libs/shared:
-    dependencies:
-      '@prisma/client':
-        specifier: 5.20.0
-        version: 5.20.0(prisma@5.20.0)
     devDependencies:
       prisma:
         specifier: ^5.14.0
