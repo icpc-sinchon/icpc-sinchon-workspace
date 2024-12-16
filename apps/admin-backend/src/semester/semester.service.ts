@@ -11,18 +11,11 @@ export class SemesterService {
   async createSemester(
     createSemesterDto: CreateSemesterDto,
   ): Promise<Semester> {
-    const semesterCreateInput: Prisma.SemesterCreateInput = {
-      ...createSemesterDto,
-    };
-    const semester = await this.semesterRepository.createSemester({
-      data: semesterCreateInput,
-    });
-    return semester;
+    return this.semesterRepository.createSemester({ data: createSemesterDto });
   }
 
   async getSemesters(): Promise<Semester[]> {
-    const semesters = await this.semesterRepository.getSemesters();
-    return semesters;
+    return this.semesterRepository.getSemesters();
   }
 
   async getSemesterById(id: number): Promise<Semester | null> {
@@ -41,30 +34,20 @@ export class SemesterService {
     id: number,
     updateSemesterDto: UpdateSemesterDto,
   ): Promise<Semester> {
-    const existingSemester = await this.getSemesterById(id);
-    if (!existingSemester) {
-      throw new NotFoundException(`Semester with ID ${id} not found`);
-    }
+    // getSemesterById에서 존재하지 않으면 예외 발생하므로 별도 체크 불필요
+    await this.getSemesterById(id);
 
-    const semesterUpdateInput: Prisma.SemesterUpdateInput = {
-      ...updateSemesterDto,
-    };
     const semester = await this.semesterRepository.updateSemester({
       where: { id },
-      data: semesterUpdateInput,
+      data: updateSemesterDto,
     });
     return semester;
   }
 
   async deleteSemester(id: number): Promise<Semester> {
-    const existingSemester = await this.getSemesterById(id);
-    if (!existingSemester) {
-      throw new NotFoundException(`Semester with ID ${id} not found`);
-    }
+    // getSemesterById에서 존재하지 않으면 예외 발생하므로 별도 체크 불필요
+    await this.getSemesterById(id);
 
-    const semester = await this.semesterRepository.deleteSemester({
-      where: { id },
-    });
-    return semester;
+    return this.semesterRepository.deleteSemester({ where: { id } });
   }
 }
