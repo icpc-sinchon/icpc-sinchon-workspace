@@ -7,32 +7,41 @@ import {
   Patch,
   Delete,
   ParseIntPipe,
+  UsePipes,
+  ValidationPipe,
 } from "@nestjs/common";
 import { SemesterService } from "./semester.service";
 import { Semester } from "@prisma/client";
-import type { CreateSemesterDto } from "./dto/create-semester.dto";
-import type { UpdateSemesterDto } from "./dto/update-semester.dto";
+import { CreateSemesterDto } from "./dto/create-semester.dto";
+import { UpdateSemesterDto } from "./dto/update-semester.dto";
+import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { SemesterEntity } from "./entities/semester.entity";
 
+@ApiTags("semester")
 @Controller("semester")
 export class SemesterController {
   constructor(private semesterService: SemesterService) {}
 
   @Get()
-  getAllSemester(): Promise<Semester[]> {
+  @ApiOkResponse({
+    type: [SemesterEntity],
+    description: "모든 학기를 반환합니다.",
+  })
+  getAllSemester(): Promise<SemesterEntity[]> {
     return this.semesterService.getSemesters();
   }
 
-  @Get("/:id")
+  @Get(":id")
   getSemesterById(
     @Param("id", ParseIntPipe) id: number,
-  ): Promise<Semester | null> {
+  ): Promise<SemesterEntity | null> {
     return this.semesterService.getSemesterById(id);
   }
 
   @Post()
   createSemester(
     @Body() createSemesterDto: CreateSemesterDto,
-  ): Promise<Semester> {
+  ): Promise<SemesterEntity> {
     return this.semesterService.createSemester(createSemesterDto);
   }
 
@@ -40,12 +49,14 @@ export class SemesterController {
   updateSemester(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateSemesterDto: UpdateSemesterDto,
-  ): Promise<Semester> {
+  ): Promise<SemesterEntity> {
     return this.semesterService.updateSemester(id, updateSemesterDto);
   }
 
   @Delete("/:id")
-  deleteSemester(@Param("id", ParseIntPipe) id: number): Promise<Semester> {
+  deleteSemester(
+    @Param("id", ParseIntPipe) id: number,
+  ): Promise<SemesterEntity> {
     return this.semesterService.deleteSemester(id);
   }
 }
