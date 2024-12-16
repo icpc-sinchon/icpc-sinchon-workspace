@@ -8,7 +8,7 @@ import {
   WEEKLY_ATTEND_LOG,
   REFUND_POLICY,
 } from "./mock";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -22,10 +22,13 @@ async function main() {
   await prisma.weeklyAttendLog.deleteMany();
 
   const hashedAdminData = await Promise.all(
-    ADMIN.map(async (admin) => ({
-      ...admin,
-      password: await bcrypt.hash(admin.password, 10),
-    })),
+    ADMIN.map(async (admin) => {
+      const hashedPassword = await bcrypt.hash(admin.password, 10);
+      return {
+        ...admin,
+        password: hashedPassword,
+      };
+    }),
   );
 
   // 목 데이터 삽입
