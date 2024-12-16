@@ -9,7 +9,7 @@ import {
   ParseIntPipe,
 } from "@nestjs/common";
 import { SemesterService } from "./semester.service";
-import type { Semester } from "@prisma/client";
+import { Semester } from "@prisma/client";
 import type { CreateSemesterDto } from "./dto/create-semester.dto";
 import type { UpdateSemesterDto } from "./dto/update-semester.dto";
 

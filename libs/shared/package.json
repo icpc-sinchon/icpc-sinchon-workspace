@@ -8,10 +8,6 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy"
   },
-  "devDependencies": {
-    "prisma": "^5.14.0",
-    "prisma-markdown": "^1.0.9"
-  },
   "keywords": [],
   "author": "Kim Sung Hyun",
   "license": "ISC"
