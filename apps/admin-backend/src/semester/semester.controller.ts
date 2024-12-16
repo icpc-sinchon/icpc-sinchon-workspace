@@ -14,7 +14,7 @@ import { SemesterService } from "./semester.service";
 import { Semester } from "@prisma/client";
 import { CreateSemesterDto } from "./dto/create-semester.dto";
 import { UpdateSemesterDto } from "./dto/update-semester.dto";
-import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBody, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { SemesterEntity } from "./entities/semester.entity";
 
 @ApiTags("semester")
