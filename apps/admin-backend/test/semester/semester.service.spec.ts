@@ -7,7 +7,7 @@ import { Season } from "@prisma/client";
 
 const mockSemesterRepository = {
   createSemester: jest.fn(),
-  getSemesters: jest.fn(),
+  getAllSemesters: jest.fn(),
   getSemester: jest.fn(),
   updateSemester: jest.fn(),
   deleteSemester: jest.fn(),
@@ -55,12 +55,12 @@ describe("SemesterService", () => {
         { id: 2, year: 2023, season: Season.Winter },
       ];
 
-      mockSemesterRepository.getSemesters.mockResolvedValue(semesters);
+      mockSemesterRepository.getAllSemesters.mockResolvedValue(semesters);
 
-      const result = await semesterService.getSemesters();
+      const result = await semesterService.getAllSemesters();
       expect(result).toEqual(semesters);
-      expect(mockSemesterRepository.getSemesters).toHaveBeenCalledTimes(1);
-      expect(mockSemesterRepository.getSemesters).toHaveBeenCalledWith();
+      expect(mockSemesterRepository.getAllSemesters).toHaveBeenCalledTimes(1);
+      expect(mockSemesterRepository.getAllSemesters).toHaveBeenCalledWith();
     });
   });
 
