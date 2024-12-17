@@ -6,7 +6,7 @@ import { LectureRepository } from "./lecture.repository";
 
 @Module({
   imports: [PrismaModule],
-  controllers: [LectureController],
   providers: [LectureRepository, LectureService],
+  controllers: [LectureController],
 })
 export class LectureModule {}
