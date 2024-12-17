@@ -4,6 +4,9 @@ module.exports = {
   transform: {
     "^.+.tsx?$": ["ts-jest", {}],
   },
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.ts", "!src/**/*.spec.ts"],
   coverageReporters: ["text", "lcov"],
