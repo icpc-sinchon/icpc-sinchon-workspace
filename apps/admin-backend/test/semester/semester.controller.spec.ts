@@ -1,15 +1,15 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { SemesterController } from "../../src/semester/semester.controller";
-import { SemesterService } from "../../src/semester/semester.service";
+import { SemesterController } from "@/semester/semester.controller";
+import { SemesterService } from "@/semester/semester.service";
 import { NotFoundException } from "@nestjs/common";
-import { CreateSemesterDto } from "../../src/semester/dto/create-semester.dto";
-import { UpdateSemesterDto } from "../../src/semester/dto/update-semester.dto";
+import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
+import { UpdateSemesterDto } from "@/semester/dto/update-semester.dto";
 import { Season } from "@prisma/client";
 
 const mockSemesterService = {
-  getSemesters: jest.fn(),
-  getSemesterById: jest.fn(),
   createSemester: jest.fn(),
+  getAllSemesters: jest.fn(),
+  getSemesterById: jest.fn(),
   updateSemester: jest.fn(),
   deleteSemester: jest.fn(),
 };
@@ -37,11 +37,11 @@ describe("SemesterController", () => {
         { id: 1, year: 2024, season: Season.Spring },
         { id: 2, year: 2023, season: Season.Fall },
       ];
-      mockSemesterService.getSemesters.mockResolvedValue(semesters);
+      mockSemesterService.getAllSemesters.mockResolvedValue(semesters);
 
       const result = await semesterController.getAllSemester();
       expect(result).toEqual(semesters);
-      expect(mockSemesterService.getSemesters).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.getAllSemesters).toHaveBeenCalledTimes(1);
     });
   });
 
