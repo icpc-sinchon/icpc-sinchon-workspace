@@ -13,7 +13,7 @@ export class SemesterRepository {
     return this.prisma.semester.create({ data });
   }
 
-  async getSemesters(): Promise<Semester[]> {
+  async getAllSemesters(): Promise<Semester[]> {
     return this.prisma.semester.findMany();
   }
 

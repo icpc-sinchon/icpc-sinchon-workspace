@@ -55,7 +55,6 @@
     "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.26.5",
     "vitest": "^1.6.0"
   },
   "prisma": {

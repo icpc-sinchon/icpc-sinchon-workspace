@@ -16,8 +16,8 @@ export const ADMIN: Admin[] = [
   },
   {
     id: 2,
-    username: "icpc-sinchon",
-    password: "icpc-sinchon",
+    username: "witch-test",
+    password: "witch-password",
   },
 ];
 

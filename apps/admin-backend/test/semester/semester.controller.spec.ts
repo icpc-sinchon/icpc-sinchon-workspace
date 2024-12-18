@@ -1,35 +1,30 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { SemesterController } from "../../src/semester/semester.controller";
-import { SemesterService } from "../../src/semester/semester.service";
+import { SemesterController } from "@/semester/semester.controller";
+import { SemesterService } from "@/semester/semester.service";
 import { NotFoundException } from "@nestjs/common";
-import { CreateSemesterDto } from "../../src/semester/dto/create-semester.dto";
-import { UpdateSemesterDto } from "../../src/semester/dto/update-semester.dto";
+import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
+import { UpdateSemesterDto } from "@/semester/dto/update-semester.dto";
 import { Season } from "@prisma/client";
+import { mockDeep } from "jest-mock-extended";
 
-const mockSemesterService = {
-  getSemesters: jest.fn(),
-  getSemesterById: jest.fn(),
-  createSemester: jest.fn(),
-  updateSemester: jest.fn(),
-  deleteSemester: jest.fn(),
-};
+const mockSemesterService = mockDeep<SemesterService>();
 
 describe("SemesterController", () => {
   let semesterController: SemesterController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [SemesterController],
-      providers: [
-        {
-          provide: SemesterService,
-          useValue: mockSemesterService,
-        },
-      ],
-    }).compile();
+      providers: [SemesterService],
+    })
+      .overrideProvider(SemesterService)
+      .useValue(mockSemesterService)
+      .compile();
 
-    semesterController = module.get<SemesterController>(SemesterController);
+    semesterController = moduleRef.get<SemesterController>(SemesterController);
+  });
 
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -39,11 +34,11 @@ describe("SemesterController", () => {
         { id: 1, year: 2024, season: Season.Spring },
         { id: 2, year: 2023, season: Season.Fall },
       ];
-      mockSemesterService.getSemesters.mockResolvedValue(semesters);
+      mockSemesterService.getAllSemesters.mockResolvedValue(semesters);
 
       const result = await semesterController.getAllSemester();
       expect(result).toEqual(semesters);
-      expect(mockSemesterService.getSemesters).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.getAllSemesters).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -92,7 +87,7 @@ describe("SemesterController", () => {
 
   describe("updateSemester", () => {
     test("학기를 수정하고 반환해야 합니다", async () => {
-      const updateSemesterDto: UpdateSemesterDto = {
+      const updateSemesterDto = {
         year: 2025,
         season: Season.Fall,
       };

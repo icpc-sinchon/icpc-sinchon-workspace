@@ -1,5 +1,2 @@
-import { PrismaClient } from "@prisma/client";
-
-export * from "@prisma/client";
-
-export const prisma = new PrismaClient();
+export const add = (a: number, b: number): number => a + b;
+export * from "./schema";

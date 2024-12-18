@@ -1,0 +1,383 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/semester": {
+      "get": {
+        "operationId": "SemesterController_getAllSemester",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "모든 학기를 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SemesterEntity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "semester"
+        ]
+      },
+      "post": {
+        "operationId": "SemesterController_createSemester",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSemesterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemesterEntity"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "semester"
+        ]
+      }
+    },
+    "/semester/{id}": {
+      "get": {
+        "operationId": "SemesterController_getSemesterById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemesterEntity"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "semester"
+        ]
+      },
+      "patch": {
+        "operationId": "SemesterController_updateSemester",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSemesterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemesterEntity"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "semester"
+        ]
+      },
+      "delete": {
+        "operationId": "SemesterController_deleteSemester",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemesterEntity"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "semester"
+        ]
+      }
+    },
+    "/lecture": {
+      "post": {
+        "operationId": "LectureController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLectureDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      },
+      "get": {
+        "operationId": "LectureController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      }
+    },
+    "/lecture/{id}": {
+      "get": {
+        "operationId": "LectureController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      },
+      "patch": {
+        "operationId": "LectureController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLectureDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      },
+      "delete": {
+        "operationId": "LectureController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Sinchon Admin Backend",
+    "description": "신촌연합 관리자 페이지 API 문서",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "SemesterEntity": {
+        "type": "object",
+        "properties": {
+          "season": {
+            "type": "string",
+            "enum": [
+              "Spring",
+              "Summer",
+              "Fall",
+              "Winter"
+            ]
+          },
+          "id": {
+            "type": "number"
+          },
+          "year": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "season",
+          "id",
+          "year"
+        ]
+      },
+      "CreateSemesterDto": {
+        "type": "object",
+        "properties": {
+          "season": {
+            "type": "string",
+            "enum": [
+              "Spring",
+              "Summer",
+              "Fall",
+              "Winter"
+            ]
+          },
+          "year": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "season",
+          "year"
+        ]
+      },
+      "UpdateSemesterDto": {
+        "type": "object",
+        "properties": {
+          "season": {
+            "type": "string",
+            "enum": [
+              "Spring",
+              "Summer",
+              "Fall",
+              "Winter"
+            ]
+          },
+          "year": {
+            "type": "number"
+          }
+        }
+      },
+      "CreateLectureDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateLectureDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

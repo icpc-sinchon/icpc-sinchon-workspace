@@ -1,34 +1,29 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { SemesterService } from "../../src/semester/semester.service";
-import { SemesterRepository } from "../../src/semester/semester.repository";
+import { SemesterService } from "@/semester/semester.service";
+import { SemesterRepository } from "@/semester/semester.repository";
 import { NotFoundException } from "@nestjs/common";
-import { CreateSemesterDto } from "src/semester/dto/create-semester.dto";
-import { Season } from "@prisma/client";
+import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
+import { Season, Semester } from "@prisma/client";
+import { mockDeep } from "jest-mock-extended";
+import { UpdateSemesterDto } from "@/semester/dto/update-semester.dto";
 
-const mockSemesterRepository = {
-  createSemester: jest.fn(),
-  getSemesters: jest.fn(),
-  getSemester: jest.fn(),
-  updateSemester: jest.fn(),
-  deleteSemester: jest.fn(),
-};
+const mockSemesterRepository = mockDeep<SemesterRepository>();
 
 describe("SemesterService", () => {
   let semesterService: SemesterService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        SemesterService,
-        {
-          provide: SemesterRepository,
-          useValue: mockSemesterRepository,
-        },
-      ],
-    }).compile();
+    const moduleRef: TestingModule = await Test.createTestingModule({
+      providers: [SemesterService, SemesterRepository],
+    })
+      .overrideProvider(SemesterRepository)
+      .useValue(mockSemesterRepository)
+      .compile();
 
-    semesterService = module.get<SemesterService>(SemesterService);
+    semesterService = moduleRef.get<SemesterService>(SemesterService);
+  });
 
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -36,7 +31,7 @@ describe("SemesterService", () => {
     test("학기를 생성하고 반환해야 합니다", async () => {
       const createSemesterDto: CreateSemesterDto = {
         year: 2024,
-        season: Season.Spring, // Season Enum 사용
+        season: Season.Summer, // Season Enum 사용
       };
       const createdSemester = { id: 1, ...createSemesterDto };
 
@@ -54,22 +49,22 @@ describe("SemesterService", () => {
   describe("getSemesters", () => {
     test("모든 학기를 반환해야 합니다", async () => {
       const semesters = [
-        { id: 1, year: 2024, season: Season.Spring },
-        { id: 2, year: 2023, season: Season.Fall },
+        { id: 1, year: 2024, season: Season.Summer },
+        { id: 2, year: 2023, season: Season.Winter },
       ];
 
-      mockSemesterRepository.getSemesters.mockResolvedValue(semesters);
+      mockSemesterRepository.getAllSemesters.mockResolvedValue(semesters);
 
-      const result = await semesterService.getSemesters();
+      const result = await semesterService.getAllSemesters();
       expect(result).toEqual(semesters);
-      expect(mockSemesterRepository.getSemesters).toHaveBeenCalledTimes(1);
-      expect(mockSemesterRepository.getSemesters).toHaveBeenCalledWith();
+      expect(mockSemesterRepository.getAllSemesters).toHaveBeenCalledTimes(1);
+      expect(mockSemesterRepository.getAllSemesters).toHaveBeenCalledWith();
     });
   });
 
   describe("getSemesterById", () => {
     test("ID로 특정 학기를 반환해야 합니다", async () => {
-      const semester = { id: 1, year: 2024, season: Season.Spring };
+      const semester = { id: 1, year: 2024, season: Season.Summer };
 
       mockSemesterRepository.getSemester.mockResolvedValue(semester);
 
@@ -96,9 +91,12 @@ describe("SemesterService", () => {
 
   describe("updateSemester", () => {
     test("학기를 수정하고 반환해야 합니다", async () => {
-      const updateSemesterDto = { year: 2025, season: Season.Fall };
+      const updateSemesterDto: UpdateSemesterDto = {
+        year: 2025,
+        season: Season.Fall,
+      };
       const existingSemester = { id: 1, year: 2024, season: Season.Spring };
-      const updatedSemester = { id: 1, ...updateSemesterDto };
+      const updatedSemester = { id: 1, ...updateSemesterDto } as Semester;
 
       // 기존 학기를 찾도록 mock 설정
       mockSemesterRepository.getSemester.mockResolvedValue(existingSemester);

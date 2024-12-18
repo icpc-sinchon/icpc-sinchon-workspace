@@ -1,21 +1,23 @@
 {
   "name": "@icpc-sinchon/shared",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "generate": "prisma generate",
     "migrate:dev": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy"
   },
-  "devDependencies": {
-    "prisma": "^5.14.0",
-    "prisma-markdown": "^1.0.9"
-  },
   "keywords": [],
   "author": "Kim Sung Hyun",
-  "license": "ISC",
-  "dependencies": {
-    "@prisma/client": "5.20.0"
-  }
+  "license": "ISC"
 }
