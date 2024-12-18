@@ -1,8 +1,8 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { SemesterService } from "../../src/semester/semester.service";
-import { SemesterRepository } from "../../src/semester/semester.repository";
+import { SemesterService } from "@/semester/semester.service";
+import { SemesterRepository } from "@/semester/semester.repository";
 import { NotFoundException } from "@nestjs/common";
-import { CreateSemesterDto } from "src/semester/dto/create-semester.dto";
+import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
 import { Season } from "@prisma/client";
 
 const mockSemesterRepository = {
