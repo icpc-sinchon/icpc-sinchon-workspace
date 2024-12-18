@@ -22,7 +22,9 @@ describe("SemesterController", () => {
       .compile();
 
     semesterController = moduleRef.get<SemesterController>(SemesterController);
+  });
 
+  afterEach(() => {
     jest.clearAllMocks();
   });
 

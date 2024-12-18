@@ -3,8 +3,9 @@ import { SemesterService } from "@/semester/semester.service";
 import { SemesterRepository } from "@/semester/semester.repository";
 import { NotFoundException } from "@nestjs/common";
 import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
-import { Season } from "@prisma/client";
+import { Season, Semester } from "@prisma/client";
 import { mockDeep } from "jest-mock-extended";
+import { UpdateSemesterDto } from "@/semester/dto/update-semester.dto";
 
 const mockSemesterRepository = mockDeep<SemesterRepository>();
 
@@ -20,7 +21,9 @@ describe("SemesterService", () => {
       .compile();
 
     semesterService = moduleRef.get<SemesterService>(SemesterService);
+  });
 
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -88,9 +91,12 @@ describe("SemesterService", () => {
 
   describe("updateSemester", () => {
     test("학기를 수정하고 반환해야 합니다", async () => {
-      const updateSemesterDto = { year: 2025, season: Season.Fall };
+      const updateSemesterDto: UpdateSemesterDto = {
+        year: 2025,
+        season: Season.Fall,
+      };
       const existingSemester = { id: 1, year: 2024, season: Season.Spring };
-      const updatedSemester = { id: 1, ...updateSemesterDto };
+      const updatedSemester = { id: 1, ...updateSemesterDto } as Semester;
 
       // 기존 학기를 찾도록 mock 설정
       mockSemesterRepository.getSemester.mockResolvedValue(existingSemester);
