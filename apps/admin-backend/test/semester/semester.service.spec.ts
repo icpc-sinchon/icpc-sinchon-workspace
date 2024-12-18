@@ -4,14 +4,9 @@ import { SemesterRepository } from "@/semester/semester.repository";
 import { NotFoundException } from "@nestjs/common";
 import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
 import { Season } from "@prisma/client";
+import { mockDeep } from "jest-mock-extended";
 
-const mockSemesterRepository = {
-  createSemester: jest.fn(),
-  getAllSemesters: jest.fn(),
-  getSemester: jest.fn(),
-  updateSemester: jest.fn(),
-  deleteSemester: jest.fn(),
-};
+const mockSemesterRepository = mockDeep<SemesterRepository>();
 
 describe("SemesterService", () => {
   let semesterService: SemesterService;

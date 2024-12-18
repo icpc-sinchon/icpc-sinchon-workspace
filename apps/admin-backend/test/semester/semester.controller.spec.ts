@@ -5,14 +5,9 @@ import { NotFoundException } from "@nestjs/common";
 import { CreateSemesterDto } from "@/semester/dto/create-semester.dto";
 import { UpdateSemesterDto } from "@/semester/dto/update-semester.dto";
 import { Season } from "@prisma/client";
+import { mockDeep } from "jest-mock-extended";
 
-const mockSemesterService = {
-  createSemester: jest.fn(),
-  getAllSemesters: jest.fn(),
-  getSemesterById: jest.fn(),
-  updateSemester: jest.fn(),
-  deleteSemester: jest.fn(),
-};
+const mockSemesterService = mockDeep<SemesterService>();
 
 describe("SemesterController", () => {
   let semesterController: SemesterController;
@@ -90,7 +85,7 @@ describe("SemesterController", () => {
 
   describe("updateSemester", () => {
     test("학기를 수정하고 반환해야 합니다", async () => {
-      const updateSemesterDto: UpdateSemesterDto = {
+      const updateSemesterDto = {
         year: 2025,
         season: Season.Fall,
       };
