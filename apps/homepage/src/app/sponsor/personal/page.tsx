@@ -70,8 +70,8 @@ function PersonalSponsorPage() {
           원활한 특전 제공을 위해 아래의 폼을 작성하여 제출해주시길 바랍니다.
           <br />
           {renderLink({
-            title: "https://forms.gle/zTBdraCHA2J4PpVx5",
-            url: "https://forms.gle/zTBdraCHA2J4PpVx5",
+            title: "https://forms.gle/o7BCD6mU68DhUs5S7",
+            url: "https://forms.gle/o7BCD6mU68DhUs5S7",
           })}
         </Text>
       </section>
