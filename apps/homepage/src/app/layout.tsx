@@ -6,6 +6,7 @@ import "@styles/reset.css";
 import "@styles/theme.css";
 import "@styles/font.css";
 import { themeClass } from "@styles/theme.css";
+import { Metadata } from "next";
 
 export default function RootLayout({
   children,
@@ -22,3 +23,7 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  themeColor: "#00A84D",
+};
