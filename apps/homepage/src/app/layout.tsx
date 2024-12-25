@@ -26,4 +26,14 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   themeColor: "#00A84D",
+  title: "메인 페이지 | ICPC Sinchon",
+  description: "신촌지역 대학교 프로그래밍 연합입니다.",
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    title: "메인 페이지 | ICPC Sinchon",
+    description: "신촌지역 대학교 프로그래밍 연합입니다.",
+    url: "https://icpc-sinchon.io/",
+    images: ["/res/og_image.png"],
+  },
 };
