@@ -68,7 +68,7 @@ describe("SemesterService", () => {
 
       mockSemesterRepository.getSemester.mockResolvedValue(semester);
 
-      const result = await semesterService.getSemesterById(1);
+      const result = await semesterService.findSemesterById(1);
       expect(result).toEqual(semester);
       expect(mockSemesterRepository.getSemester).toHaveBeenCalledTimes(1);
       expect(mockSemesterRepository.getSemester).toHaveBeenCalledWith({
@@ -79,7 +79,7 @@ describe("SemesterService", () => {
     test("존재하지 않는 학기를 조회하면 NotFoundException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemester.mockResolvedValue(null);
 
-      await expect(semesterService.getSemesterById(999)).rejects.toThrow(
+      await expect(semesterService.findSemesterById(999)).rejects.toThrow(
         NotFoundException,
       );
       expect(mockSemesterRepository.getSemester).toHaveBeenCalledTimes(1);
@@ -140,7 +140,7 @@ describe("SemesterService", () => {
       mockSemesterRepository.getSemester.mockResolvedValue(existingSemester);
       mockSemesterRepository.deleteSemester.mockResolvedValue(existingSemester);
 
-      const result = await semesterService.deleteSemester(1);
+      const result = await semesterService.removeSemester(1);
 
       expect(result).toEqual(existingSemester);
       expect(mockSemesterRepository.getSemester).toHaveBeenCalledTimes(1);
@@ -156,7 +156,7 @@ describe("SemesterService", () => {
     test("존재하지 않는 학기를 삭제하려고 하면 NotFoundException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemester.mockResolvedValue(null);
 
-      await expect(semesterService.deleteSemester(999)).rejects.toThrow(
+      await expect(semesterService.removeSemester(999)).rejects.toThrow(
         NotFoundException,
       );
 
