@@ -28,7 +28,7 @@ export class LectureController {
 
   @Post()
   createLecture(@Body() createLectureDto: CreateLectureDto) {
-    return this.lectureService.createLecture(createLectureDto);
+    return this.lectureService.createLectureWithTasks(createLectureDto);
   }
 
   @Patch(":id")

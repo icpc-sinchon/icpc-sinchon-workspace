@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, BadRequestException } from "@nestjs/common";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureRepository } from "./lecture.repository";
@@ -17,82 +17,122 @@ export class LectureService {
   async createLectureWithTasks(createLectureDto: CreateLectureDto) {
     const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
 
-    const semesterExists = await this.semesterRepository.getSemester({
-      where: { id: semesterId },
-    });
-    if (!semesterExists) {
-      throw new NotFoundException(`Semester with ID ${semesterId} not found`);
+    try {
+      const semesterExists = await this.semesterRepository.getSemester({
+        where: { id: semesterId },
+      });
+
+      if (!semesterExists) {
+        throw new NotFoundException(`Semester with ID ${semesterId} not found`);
+      }
+
+      const newLecture = await this.lectureRepository.createLecture({
+        data: {
+          ...lectureData,
+          lectureSemester: { connect: { id: semesterId } },
+        },
+      });
+
+      const tasks = Array.from({ length: lectureNumber }, (_, i) => ({
+        lectureId: newLecture.id,
+        round: i + 1,
+        practiceId: 0,
+        minSolveCount: 0,
+      }));
+
+      await this.taskRepository.createTasks(tasks);
+
+      return newLecture;
+    } catch (error) {
+      throw new BadRequestException(`Failed to create lecture with tasks: ${error.message}`);
     }
-
-    const newLecture = await this.lectureRepository.createLecture({
-      data: {
-        ...lectureData,
-        lectureSemester: { connect: { id: semesterId } },
-      },
-    });
-
-    const tasks = Array.from({ length: lectureNumber }, (_, i) => ({
-      lectureId: newLecture.id,
-      round: i + 1,
-      practiceId: 0,
-      minSolveCount: 0,
-    }));
-
-    await this.taskRepository.createTasks(tasks);
-
-    return newLecture;
   }
 
-  findLectureById(id: number) {
-    return this.lectureRepository.getLecture({ where: { id } });
+  async findLectureById(id: number) {
+    try {
+      const lecture = await this.lectureRepository.getLecture({ where: { id } });
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${id} not found`);
+      }
+      return lecture;
+    } catch (error) {
+      throw new BadRequestException(`Failed to find lecture: ${error.message}`);
+    }
   }
 
-  findLecturesBySemester(year: number, season: Season) {
-    return this.lectureRepository.getLectures({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+  async findLecturesBySemester(year: number, season: Season) {
+    try {
+      return await this.lectureRepository.getLectures({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      throw new BadRequestException(`Failed to find lectures by semester: ${error.message}`);
+    }
   }
 
-  findLectureBySemesterAndLevel(year: number, season: Season, level: Level) {
-    return this.lectureRepository.getLectures({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+  async findLectureBySemesterAndLevel(year: number, season: Season, level: Level) {
+    try {
+      return await this.lectureRepository.getLectures({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
+          level,
         },
-        level,
-      },
-    });
+      });
+    } catch (error) {
+      throw new BadRequestException(`Failed to find lecture by semester and level: ${error.message}`);
+    }
   }
 
-  findLecturesWithTasksBySemester(year: number, season: Season) {
-    return this.lectureRepository.getLecturesWithTasks({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+  async findLecturesWithTasksBySemester(year: number, season: Season) {
+    try {
+      return await this.lectureRepository.getLecturesWithTasks({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      throw new BadRequestException(`Failed to find lectures with tasks: ${error.message}`);
+    }
   }
 
-  updateLecture(id: number, updateLectureDto: UpdateLectureDto) {
-    return this.lectureRepository.updateLecture({
-      where: { id },
-      data: updateLectureDto,
-    });
+  async updateLecture(id: number, updateLectureDto: UpdateLectureDto) {
+    try {
+      await this.findLectureById(id); // Check if lecture exists
+
+      return await this.lectureRepository.updateLecture({
+        where: { id },
+        data: updateLectureDto,
+      });
+    } catch (error) {
+      throw new BadRequestException(`Failed to update lecture: ${error.message}`);
+    }
   }
 
-  getAllLectures() {
-    return this.lectureRepository.getAllLectures();
+  async getAllLectures() {
+    try {
+      return await this.lectureRepository.getAllLectures();
+    } catch (error) {
+      throw new BadRequestException(`Failed to retrieve all lectures: ${error.message}`);
+    }
   }
 
-  removeLecture(id: number) {
-    return this.lectureRepository.deleteLecture({ where: { id } });
+  async removeLecture(id: number) {
+    try {
+      await this.findLectureById(id); // Check if lecture exists
+      return await this.lectureRepository.deleteLecture({ where: { id } });
+    } catch (error) {
+      throw new BadRequestException(`Failed to delete lecture: ${error.message}`);
+    }
   }
 }
