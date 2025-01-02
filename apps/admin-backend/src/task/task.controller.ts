@@ -11,7 +11,7 @@ import {
 } from "@nestjs/common";
 import { TaskService } from "./task.service";
 import { CreateTaskDto } from "./dto/create-task.dto";
-import { UpdateTaskDto } from "./dto/update-task.dto";
+import type { Prisma } from "@prisma/client";
 import { ApiTags } from "@nestjs/swagger";
 
 @ApiTags("task")
@@ -34,9 +34,14 @@ export class TaskController {
   @Patch(":id")
   updateTask(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateTaskDto: UpdateTaskDto,
+    @Body()
+    updateData: {
+      minSolveCount: number;
+      practiceId: number;
+      problems: Prisma.ProblemCreateManyInput[];
+    },
   ) {
-    return this.taskService.updateTask(id, updateTaskDto);
+    this.taskService.updateTask(id, updateData);
   }
 
   @Delete(":id")

@@ -13,6 +13,13 @@ export class ProblemRepository {
     return this.prisma.problem.create({ data });
   }
 
+  async createProblems(params: {
+    data: Prisma.ProblemCreateManyInput[];
+  }): Promise<void> {
+    const { data } = params;
+    await this.prisma.problem.createMany({ data, skipDuplicates: true });
+  }
+
   async getAllProblems(): Promise<Problem[]> {
     return this.prisma.problem.findMany();
   }
@@ -44,6 +51,10 @@ export class ProblemRepository {
   }): Promise<Problem> {
     const { where } = params;
     return this.prisma.problem.delete({ where });
+  }
+
+  async deleteProblemsByTaskId(taskId: number): Promise<void> {
+    await this.prisma.problem.deleteMany({ where: { taskId } });
   }
 
   async resetProblems(): Promise<void> {
