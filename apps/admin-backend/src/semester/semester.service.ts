@@ -2,7 +2,7 @@ import { Injectable, NotFoundException, BadRequestException } from "@nestjs/comm
 import type { CreateSemesterDto } from "./dto/create-semester.dto";
 import type { UpdateSemesterDto } from "./dto/update-semester.dto";
 import { SemesterRepository } from "./semester.repository";
-import type { Semester } from "@prisma/client";
+import type { Semester, Season } from "@prisma/client";
 
 @Injectable()
 export class SemesterService {
@@ -25,6 +25,31 @@ export class SemesterService {
       return semester;
     } catch (error) {
       throw new BadRequestException(`Failed to retrieve semester: ${error.message}`);
+    }
+  }
+
+  async findSemesterBySeason(year: number, season: Season): Promise<Semester> {
+    try {
+      const semester = await this.semesterRepository.getSemester({
+        where: {
+          year_season: {
+            year,
+            season,
+          },
+        },
+      });
+  
+      if (!semester) {
+        throw new NotFoundException(
+          `Semester for year ${year} and season ${season} not found`,
+        );
+      }
+  
+      return semester;
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve semester for year ${year} and season ${season}: ${error.message}`,
+      );
     }
   }
 
