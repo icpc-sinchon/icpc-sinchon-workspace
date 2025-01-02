@@ -1,20 +1,46 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureRepository } from "./lecture.repository";
+import { TaskRepository } from "../task/task.repository";
+import { SemesterRepository } from "../semester/semester.repository";
 import { Level, Season } from "@prisma/client";
 
 @Injectable()
 export class LectureService {
-  constructor(private lectureRepository: LectureRepository) {}
+  constructor(
+    private lectureRepository: LectureRepository,
+    private taskRepository: TaskRepository,
+    private semesterRepository: SemesterRepository,
+  ) {}
 
-  createLecture(createLectureDto: CreateLectureDto) {
-    return this.lectureRepository.createLecture({
+  async createLectureWithTasks(createLectureDto: CreateLectureDto) {
+    const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
+
+    const semesterExists = await this.semesterRepository.getSemester({
+      where: { id: semesterId },
+    });
+    if (!semesterExists) {
+      throw new NotFoundException(`Semester with ID ${semesterId} not found`);
+    }
+
+    const newLecture = await this.lectureRepository.createLecture({
       data: {
-        ...createLectureDto,
-        lectureSemester: { connect: { id: createLectureDto.semesterId } },
+        ...lectureData,
+        lectureSemester: { connect: { id: semesterId } },
       },
     });
+
+    const tasks = Array.from({ length: lectureNumber }, (_, i) => ({
+      lectureId: newLecture.id,
+      round: i + 1,
+      practiceId: 0,
+      minSolveCount: 0,
+    }));
+
+    await this.taskRepository.createTasks(tasks);
+
+    return newLecture;
   }
 
   findLectureById(id: number) {

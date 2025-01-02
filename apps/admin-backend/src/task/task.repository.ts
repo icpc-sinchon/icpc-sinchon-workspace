@@ -11,6 +11,14 @@ export class TaskRepository {
     return this.prisma.task.create({ data });
   }
 
+  async createTasks(data: Prisma.TaskCreateManyInput[]): Promise<number> {
+    const result = await this.prisma.task.createMany({
+      data,
+      skipDuplicates: true,
+    });
+    return result.count;
+  }
+
   async getAllTasks(): Promise<Task[]> {
     return this.prisma.task.findMany();
   }
