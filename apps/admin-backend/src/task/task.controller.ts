@@ -12,18 +12,21 @@ import {
 import { TaskService } from "./task.service";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import type { Prisma } from "@prisma/client";
-import { ApiTags } from "@nestjs/swagger";
 
-@ApiTags("task")
 @Controller("task")
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
+
+  @Get(":id")
+  findTaskById(@Param("id", ParseIntPipe) id: number) {
+    return this.taskService.findTaskById(id);
+  }
 
   @Get()
   findTasksByLecture(
     @Query("lectureId", ParseIntPipe) lectureId: number,
   ) {
-    return this.taskService.findTasksByLecture(lectureId);
+    return this.taskService.findTasksByLectureId(lectureId);
   }
 
   @Post()
