@@ -21,7 +21,7 @@ export class ProblemController {
   findProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
   ) {
-    return this.problemService.findProblemsByTask(taskId);
+    return this.problemService.findProblemsByTaskId(taskId);
   }
 
   @Post()
