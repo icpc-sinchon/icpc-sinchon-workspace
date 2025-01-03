@@ -56,7 +56,6 @@ export class TaskService {
     const { minSolveCount, practiceId, problems } = updateData;
 
     try {
-      // Find the task with its associated problems
       const task = await this.taskRepository.getTasksWithProblems({
         where: { id },
       });
@@ -64,16 +63,13 @@ export class TaskService {
         throw new NotFoundException(`Task with ID ${id} not found`);
       }
 
-      // Update the task's details
       const updatedTask = await this.taskRepository.updateTask({
         where: { id },
         data: { minSolveCount, practiceId },
       });
 
-      // Delete existing problems associated with the task
       await this.problemRepository.deleteProblemsByTaskId(id);
 
-      // Recreate the new problems
       const problemData = problems.map((problem) => ({
         ...problem,
         taskId: id,
