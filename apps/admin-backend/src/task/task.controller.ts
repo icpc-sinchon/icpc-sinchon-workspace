@@ -23,9 +23,7 @@ export class TaskController {
   }
 
   @Get()
-  findTasksByLecture(
-    @Query("lectureId", ParseIntPipe) lectureId: number,
-  ) {
+  findTasksByLecture(@Query("lectureId", ParseIntPipe) lectureId: number) {
     return this.taskService.findTasksByLectureId(lectureId);
   }
 
