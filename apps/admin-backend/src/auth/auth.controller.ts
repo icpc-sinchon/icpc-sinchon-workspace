@@ -5,8 +5,11 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Res,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import { SignInDto } from "./dto/login.dto";
+import { Response } from "express";
 
 @Controller("auth")
 export class AuthController {
@@ -19,8 +22,21 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post("login")
-  signIn(@Body() signInDto: Record<string, string>) {
+  async login(
+    @Body() signInDto: SignInDto,
+    @Res({ passthrough: true }) res: Response
+  ) {
     console.log(signInDto);
-    return this.authService.login(signInDto.username, signInDto.password);
+    const { username, password } = signInDto;
+    const loginResult = await this.authService.login(username, password);
+    const token = loginResult.access_token;
+    // 쿠키 설정
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 1000,
+      sameSite: "strict",
+    });
+    res.json({ success: true, message: "Login successful", token });
   }
 }
