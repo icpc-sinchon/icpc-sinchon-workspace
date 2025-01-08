@@ -17,7 +17,7 @@ export class CreateTaskDto {
   @IsNotEmpty()
   lectureId: number;
 
-  @ApiProperty({ description: "출석 여부를 판단하는 최소 문제 해결 수", required: false })
+  @ApiProperty({ description: "출석 여부를 판단하는 최소 문제 해결 수" })
   @IsInt()
   @IsNotEmpty()
   minSolveCount: number;
