@@ -7,7 +7,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "모든 학기를 반환합니다.",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -21,7 +21,7 @@
           }
         },
         "tags": [
-          "semester"
+          "Semester"
         ]
       },
       "post": {
@@ -50,13 +50,13 @@
           }
         },
         "tags": [
-          "semester"
+          "Semester"
         ]
       }
     },
     "/semester/{id}": {
       "get": {
-        "operationId": "SemesterController_getSemesterById",
+        "operationId": "SemesterController_findSemesterById",
         "parameters": [
           {
             "name": "id",
@@ -80,7 +80,7 @@
           }
         },
         "tags": [
-          "semester"
+          "Semester"
         ]
       },
       "patch": {
@@ -118,7 +118,7 @@
           }
         },
         "tags": [
-          "semester"
+          "Semester"
         ]
       },
       "delete": {
@@ -146,13 +146,42 @@
           }
         },
         "tags": [
-          "semester"
+          "Semester"
         ]
       }
     },
     "/lecture": {
+      "get": {
+        "operationId": "LectureController_findLectures",
+        "parameters": [
+          {
+            "name": "year",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "season",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Lecture"
+        ]
+      },
       "post": {
-        "operationId": "LectureController_create",
+        "operationId": "LectureController_createLecture",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -166,33 +195,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Lecture"
-        ]
-      },
-      "get": {
-        "operationId": "LectureController_findAll",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -201,43 +204,15 @@
       }
     },
     "/lecture/{id}": {
-      "get": {
-        "operationId": "LectureController_findOne",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Lecture"
-        ]
-      },
       "patch": {
-        "operationId": "LectureController_update",
+        "operationId": "LectureController_updateLecture",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
             "schema": {
-              "type": "string"
+              "type": "number"
             }
           }
         ],
@@ -253,14 +228,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
@@ -268,31 +236,233 @@
         ]
       },
       "delete": {
-        "operationId": "LectureController_remove",
+        "operationId": "LectureController_removeLecture",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
             "schema": {
-              "type": "string"
+              "type": "number"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": ""
           }
         },
         "tags": [
           "Lecture"
+        ]
+      }
+    },
+    "/task/{id}": {
+      "get": {
+        "operationId": "TaskController_findTaskById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      },
+      "patch": {
+        "operationId": "TaskController_updateTask",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      },
+      "delete": {
+        "operationId": "TaskController_removeTask",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      }
+    },
+    "/task": {
+      "get": {
+        "operationId": "TaskController_findTasksByLecture",
+        "parameters": [
+          {
+            "name": "lectureId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      },
+      "post": {
+        "operationId": "TaskController_createTask",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Task"
+        ]
+      }
+    },
+    "/problem": {
+      "get": {
+        "operationId": "ProblemController_findProblemsByTask",
+        "parameters": [
+          {
+            "name": "taskId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Problem"
+        ]
+      },
+      "post": {
+        "operationId": "ProblemController_createProblem",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProblemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Problem"
+        ]
+      }
+    },
+    "/problem/{id}": {
+      "patch": {
+        "operationId": "ProblemController_updateProblem",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProblemDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Problem"
+        ]
+      },
+      "delete": {
+        "operationId": "ProblemController_removeProblem",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Problem"
         ]
       }
     }
@@ -372,11 +542,108 @@
       },
       "CreateLectureDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "Novice",
+              "Intermediate",
+              "Advanced"
+            ],
+            "description": "강의 난이도 (Novice, Intermediate, Advanced)"
+          },
+          "lectureNumber": {
+            "type": "number",
+            "minimum": 1,
+            "description": "강의 회차수 (기본값: 10)"
+          },
+          "bojGroupId": {
+            "type": "number",
+            "description": "BOJ 그룹 ID"
+          },
+          "semesterId": {
+            "type": "number",
+            "minimum": 1,
+            "description": "학기 ID (Semester의 id 값)"
+          }
+        },
+        "required": [
+          "level",
+          "bojGroupId",
+          "semesterId"
+        ]
       },
       "UpdateLectureDto": {
         "type": "object",
         "properties": {}
+      },
+      "CreateTaskDto": {
+        "type": "object",
+        "properties": {
+          "round": {
+            "type": "number",
+            "description": "강의 회차 (round)"
+          },
+          "practiceId": {
+            "type": "number",
+            "description": "BOJ 그룹 내 연습 ID (practiceId)"
+          },
+          "lectureId": {
+            "type": "number",
+            "description": "연결된 강의 ID (Lecture의 id 값)"
+          },
+          "minSolveCount": {
+            "type": "number",
+            "description": "출석 여부를 판단하는 최소 문제 해결 수"
+          }
+        },
+        "required": [
+          "round",
+          "practiceId",
+          "lectureId",
+          "minSolveCount"
+        ]
+      },
+      "CreateProblemDto": {
+        "type": "object",
+        "properties": {
+          "bojProblemNumber": {
+            "type": "number",
+            "description": "BOJ 문제 번호"
+          },
+          "essential": {
+            "type": "boolean",
+            "description": "필수 문제 여부"
+          },
+          "taskId": {
+            "type": "number",
+            "minimum": 1,
+            "description": "과제 ID (Task의 id 값)"
+          }
+        },
+        "required": [
+          "bojProblemNumber",
+          "essential",
+          "taskId"
+        ]
+      },
+      "UpdateProblemDto": {
+        "type": "object",
+        "properties": {
+          "bojProblemNumber": {
+            "type": "number",
+            "description": "BOJ 문제 번호"
+          },
+          "essential": {
+            "type": "boolean",
+            "description": "필수 문제 여부"
+          },
+          "taskId": {
+            "type": "number",
+            "minimum": 1,
+            "description": "과제 ID (Task의 id 값)"
+          }
+        }
       }
     }
   }
