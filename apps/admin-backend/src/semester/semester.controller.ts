@@ -15,7 +15,7 @@ import { SemesterEntity } from "./entities/semester.entity";
 
 @Controller("semester")
 export class SemesterController {
-  constructor(private semesterService: SemesterService) {}
+  constructor(private readonly semesterService: SemesterService) {}
 
   @Get()
   getAllSemester(): Promise<SemesterEntity[]> {

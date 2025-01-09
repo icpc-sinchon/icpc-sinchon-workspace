@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
-import type { Prisma, Problem } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { ProblemEntity } from "./entities/problem.entity";
 
 @Injectable()
 export class ProblemRepository {
@@ -8,32 +9,33 @@ export class ProblemRepository {
 
   async createProblem(params: {
     data: Prisma.ProblemCreateInput;
-  }): Promise<Problem> {
+  }): Promise<ProblemEntity> {
     const { data } = params;
     return this.prisma.problem.create({ data });
   }
 
-  async createProblems(params: {
-    data: Prisma.ProblemCreateManyInput[];
-  }): Promise<void> {
-    const { data } = params;
-    await this.prisma.problem.createMany({ data, skipDuplicates: true });
+  async createProblems(data: Prisma.ProblemCreateManyInput[]): Promise<number> {
+    const result = await this.prisma.problem.createMany({
+      data,
+      skipDuplicates: true,
+    });
+    return result.count;
   }
 
-  async getAllProblems(): Promise<Problem[]> {
+  async getAllProblems(): Promise<ProblemEntity[]> {
     return this.prisma.problem.findMany();
   }
 
   async getProblem(params: {
     where: Prisma.ProblemWhereUniqueInput;
-  }): Promise<Problem | null> {
+  }): Promise<ProblemEntity> {
     const { where } = params;
     return this.prisma.problem.findUnique({ where });
   }
 
-  async getProblems(params: { where: Prisma.ProblemWhereInput }): Promise<
-    Problem[]
-  > {
+  async getProblems(params: {
+    where: Prisma.ProblemWhereInput;
+  }): Promise<ProblemEntity[]> {
     const { where } = params;
     return this.prisma.problem.findMany({ where });
   }
@@ -41,14 +43,14 @@ export class ProblemRepository {
   async updateProblem(params: {
     where: Prisma.ProblemWhereUniqueInput;
     data: Prisma.ProblemUpdateInput;
-  }): Promise<Problem> {
+  }): Promise<ProblemEntity> {
     const { where, data } = params;
     return this.prisma.problem.update({ where, data });
   }
 
   async deleteProblem(params: {
     where: Prisma.ProblemWhereUniqueInput;
-  }): Promise<Problem> {
+  }): Promise<ProblemEntity> {
     const { where } = params;
     return this.prisma.problem.delete({ where });
   }

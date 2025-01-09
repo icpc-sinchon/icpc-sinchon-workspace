@@ -6,18 +6,20 @@ import {
 import { ProblemRepository } from "./problem.repository";
 import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
-import type { Problem } from "@prisma/client";
+import { ProblemEntity } from "./entities/problem.entity";
 
 @Injectable()
 export class ProblemService {
   constructor(private readonly problemRepository: ProblemRepository) {}
 
-  async createProblem(createProblemDto: CreateProblemDto): Promise<Problem> {
+  async createProblem(
+    createProblemDto: CreateProblemDto,
+  ): Promise<ProblemEntity> {
     try {
       return await this.problemRepository.createProblem({
         data: {
           ...createProblemDto,
-          task: { connect: { id: createProblemDto.taskId } }, // 관계 설정
+          task: { connect: { id: createProblemDto.taskId } },
         },
       });
     } catch (error) {
@@ -27,7 +29,7 @@ export class ProblemService {
     }
   }
 
-  async findProblemById(id: number): Promise<Problem> {
+  async findProblemById(id: number): Promise<ProblemEntity> {
     try {
       const problem = await this.problemRepository.getProblem({
         where: { id },
@@ -46,7 +48,7 @@ export class ProblemService {
   async findProblemByBojProblemNumber(
     taskId: number,
     bojProblemNumber: number,
-  ): Promise<Problem | null> {
+  ): Promise<ProblemEntity> {
     try {
       const problems = await this.problemRepository.getProblems({
         where: { taskId, bojProblemNumber },
@@ -59,7 +61,7 @@ export class ProblemService {
     }
   }
 
-  async findProblemsByTaskId(taskId: number): Promise<Problem[]> {
+  async findProblemsByTaskId(taskId: number): Promise<ProblemEntity[]> {
     try {
       return await this.problemRepository.getProblems({ where: { taskId } });
     } catch (error) {
@@ -72,9 +74,9 @@ export class ProblemService {
   async updateProblem(
     id: number,
     updateProblemDto: UpdateProblemDto,
-  ): Promise<Problem> {
+  ): Promise<ProblemEntity> {
     try {
-      await this.findProblemById(id); // Ensure the problem exists
+      await this.findProblemById(id);
       return await this.problemRepository.updateProblem({
         where: { id },
         data: updateProblemDto,
@@ -84,7 +86,7 @@ export class ProblemService {
     }
   }
 
-  async getAllProblems(): Promise<Problem[]> {
+  async getAllProblems(): Promise<ProblemEntity[]> {
     try {
       return await this.problemRepository.getAllProblems();
     } catch (error) {
@@ -94,9 +96,9 @@ export class ProblemService {
     }
   }
 
-  async removeProblem(id: number): Promise<Problem> {
+  async removeProblem(id: number): Promise<ProblemEntity> {
     try {
-      await this.findProblemById(id); // Ensure the problem exists
+      await this.findProblemById(id);
       return await this.problemRepository.deleteProblem({ where: { id } });
     } catch (error) {
       throw new BadRequestException(

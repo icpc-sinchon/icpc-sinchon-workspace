@@ -6,12 +6,12 @@ import {
 import type { CreateSemesterDto } from "./dto/create-semester.dto";
 import type { UpdateSemesterDto } from "./dto/update-semester.dto";
 import { SemesterRepository } from "./semester.repository";
-import type { Semester, Season } from "@prisma/client";
+import type { Season } from "@prisma/client";
 import { SemesterEntity } from "./entities/semester.entity";
 
 @Injectable()
 export class SemesterService {
-  constructor(private semesterRepository: SemesterRepository) {}
+  constructor(private readonly semesterRepository: SemesterRepository) {}
 
   async createSemester(
     createSemesterDto: CreateSemesterDto,

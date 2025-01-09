@@ -1,9 +1,13 @@
-import { Injectable, NotFoundException, BadRequestException } from "@nestjs/common";
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from "@nestjs/common";
 import { CreateTaskDto } from "./dto/create-task.dto";
-import { UpdateTaskDto } from "./dto/update-task.dto";
 import { TaskRepository } from "./task.repository";
 import { ProblemRepository } from "../problem/problem.repository";
-import type { Prisma, Task } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
+import { TaskEntity } from "./entities/task.entity";
 
 @Injectable()
 export class TaskService {
@@ -12,7 +16,7 @@ export class TaskService {
     private readonly problemRepository: ProblemRepository,
   ) {}
 
-  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+  async createTask(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
     try {
       return await this.taskRepository.createTask({
         data: {
@@ -25,7 +29,7 @@ export class TaskService {
     }
   }
 
-  async findTaskById(id: number): Promise<Task> {
+  async findTaskById(id: number): Promise<TaskEntity> {
     try {
       const task = await this.taskRepository.getTask({ where: { id } });
       if (!task) {
@@ -33,15 +37,21 @@ export class TaskService {
       }
       return task;
     } catch (error) {
-      throw new BadRequestException(`Failed to retrieve task: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to retrieve task: ${error.message}`,
+      );
     }
   }
 
-  async findTasksByLectureId(lectureId: number): Promise<Task[]> {
+  async findTasksByLectureId(lectureId: number): Promise<TaskEntity[]> {
     try {
-      return await this.taskRepository.getTasksWithProblems({ where: { lectureId } });
+      return await this.taskRepository.getTasksWithProblems({
+        where: { lectureId },
+      });
     } catch (error) {
-      throw new BadRequestException(`Failed to retrieve tasks: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to retrieve tasks: ${error.message}`,
+      );
     }
   }
 
@@ -52,7 +62,7 @@ export class TaskService {
       practiceId: number;
       problems: Prisma.ProblemCreateManyInput[];
     },
-  ): Promise<Task> {
+  ): Promise<TaskEntity> {
     const { minSolveCount, practiceId, problems } = updateData;
 
     try {
@@ -74,7 +84,7 @@ export class TaskService {
         ...problem,
         taskId: id,
       }));
-      await this.problemRepository.createProblems({ data: problemData });
+      await this.problemRepository.createProblems(problemData);
 
       return updatedTask;
     } catch (error) {
@@ -82,15 +92,17 @@ export class TaskService {
     }
   }
 
-  async getAllTasks(): Promise<Task[]> {
+  async getAllTasks(): Promise<TaskEntity[]> {
     try {
       return await this.taskRepository.getAllTasks();
     } catch (error) {
-      throw new BadRequestException(`Failed to retrieve tasks: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to retrieve tasks: ${error.message}`,
+      );
     }
   }
 
-  async removeTask(id: number): Promise<Task> {
+  async removeTask(id: number): Promise<TaskEntity> {
     try {
       const task = await this.findTaskById(id);
       return await this.taskRepository.deleteTask({ where: { id: task.id } });

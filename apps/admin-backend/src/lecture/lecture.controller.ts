@@ -12,6 +12,7 @@ import {
 import { LectureService } from "./lecture.service";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
+import { LectureEntity } from "./entities/lecture.entity";
 import { Season } from "@prisma/client";
 
 @Controller("lecture")
@@ -22,12 +23,14 @@ export class LectureController {
   findLectures(
     @Query("year", ParseIntPipe) year: number,
     @Query("season") season: Season,
-  ) {
+  ): Promise<LectureEntity[]> {
     return this.lectureService.findLecturesWithTasksBySemester(year, season);
   }
 
   @Post()
-  createLecture(@Body() createLectureDto: CreateLectureDto) {
+  createLecture(
+    @Body() createLectureDto: CreateLectureDto,
+  ): Promise<LectureEntity> {
     return this.lectureService.createLectureWithTasks(createLectureDto);
   }
 
@@ -35,12 +38,12 @@ export class LectureController {
   updateLecture(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateLectureDto: UpdateLectureDto,
-  ) {
+  ): Promise<LectureEntity> {
     return this.lectureService.updateLecture(id, updateLectureDto);
   }
 
   @Delete(":id")
-  removeLecture(@Param("id", ParseIntPipe) id: number) {
+  removeLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
     return this.lectureService.removeLecture(id);
   }
 }

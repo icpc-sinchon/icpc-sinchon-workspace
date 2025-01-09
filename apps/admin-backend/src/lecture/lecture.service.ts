@@ -9,18 +9,19 @@ import { LectureRepository } from "./lecture.repository";
 import { TaskRepository } from "../task/task.repository";
 import { SemesterRepository } from "../semester/semester.repository";
 import { Lecture, Level, Season } from "@prisma/client";
+import { LectureEntity } from "./entities/lecture.entity";
 
 @Injectable()
 export class LectureService {
   constructor(
-    private lectureRepository: LectureRepository,
-    private taskRepository: TaskRepository,
-    private semesterRepository: SemesterRepository,
+    private readonly lectureRepository: LectureRepository,
+    private readonly taskRepository: TaskRepository,
+    private readonly semesterRepository: SemesterRepository,
   ) {}
 
   async createLectureWithTasks(
     createLectureDto: CreateLectureDto,
-  ): Promise<Lecture> {
+  ): Promise<LectureEntity> {
     const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
 
     try {
@@ -56,7 +57,7 @@ export class LectureService {
     }
   }
 
-  async findLectureById(id: number): Promise<Lecture> {
+  async findLectureById(id: number): Promise<LectureEntity> {
     try {
       const lecture = await this.lectureRepository.getLecture({
         where: { id },
@@ -73,7 +74,7 @@ export class LectureService {
   async findLecturesBySemester(
     year: number,
     season: Season,
-  ): Promise<Lecture[]> {
+  ): Promise<LectureEntity[]> {
     try {
       return await this.lectureRepository.getLectures({
         where: {
@@ -94,7 +95,7 @@ export class LectureService {
     year: number,
     season: Season,
     level: Level,
-  ): Promise<Lecture[]> {
+  ): Promise<LectureEntity[]> {
     try {
       return await this.lectureRepository.getLectures({
         where: {
@@ -115,7 +116,7 @@ export class LectureService {
   async findLecturesWithTasksBySemester(
     year: number,
     season: Season,
-  ): Promise<Lecture[]> {
+  ): Promise<LectureEntity[]> {
     try {
       return await this.lectureRepository.getLecturesWithTasks({
         where: {
@@ -135,7 +136,7 @@ export class LectureService {
   async updateLecture(
     id: number,
     updateLectureDto: UpdateLectureDto,
-  ): Promise<Lecture> {
+  ): Promise<LectureEntity> {
     try {
       await this.findLectureById(id);
       return await this.lectureRepository.updateLecture({
@@ -147,20 +148,24 @@ export class LectureService {
     }
   }
 
-  async getAllLectures(): Promise<Lecture[]> {
+  async getAllLectures(): Promise<LectureEntity[]> {
     try {
       return await this.lectureRepository.getAllLectures();
     } catch (error) {
-      throw new BadRequestException(`Failed to retrieve all lectures: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to retrieve all lectures: ${error.message}`,
+      );
     }
   }
 
-  async removeLecture(id: number): Promise<Lecture> {
+  async removeLecture(id: number): Promise<LectureEntity> {
     try {
       await this.findLectureById(id);
       return await this.lectureRepository.deleteLecture({ where: { id } });
     } catch (error) {
-      throw new BadRequestException(`Lecture deletion failed: ${error.message}`);
+      throw new BadRequestException(
+        `Lecture deletion failed: ${error.message}`,
+      );
     }
   }
 }

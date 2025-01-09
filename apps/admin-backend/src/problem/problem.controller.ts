@@ -12,6 +12,7 @@ import {
 import { ProblemService } from "./problem.service";
 import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
+import { ProblemEntity } from "./entities/problem.entity";
 
 @Controller("problem")
 export class ProblemController {
@@ -20,12 +21,14 @@ export class ProblemController {
   @Get()
   findProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
-  ) {
+  ): Promise<ProblemEntity[]> {
     return this.problemService.findProblemsByTaskId(taskId);
   }
 
   @Post()
-  createProblem(@Body() createProblemDto: CreateProblemDto) {
+  createProblem(
+    @Body() createProblemDto: CreateProblemDto,
+  ): Promise<ProblemEntity> {
     return this.problemService.createProblem(createProblemDto);
   }
 
@@ -33,12 +36,12 @@ export class ProblemController {
   updateProblem(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateProblemDto: UpdateProblemDto,
-  ) {
+  ): Promise<ProblemEntity> {
     return this.problemService.updateProblem(id, updateProblemDto);
   }
 
   @Delete(":id")
-  removeProblem(@Param("id", ParseIntPipe) id: number) {
+  removeProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
     return this.problemService.removeProblem(id);
   }
 }
