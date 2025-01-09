@@ -37,6 +37,9 @@ export class SemesterService {
       }
       return semester;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve semester: ${error.message}`,
       );
@@ -65,6 +68,9 @@ export class SemesterService {
 
       return semester;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve semester for year ${year} and season ${season}: ${error.message}`,
       );
@@ -82,6 +88,9 @@ export class SemesterService {
         data: updateSemesterDto,
       });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Semester update failed: ${error.message}`);
     }
   }
@@ -101,6 +110,9 @@ export class SemesterService {
       await this.findSemesterById(id);
       return await this.semesterRepository.deleteSemester({ where: { id } });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Semester deletion failed: ${error.message}`,
       );

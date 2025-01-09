@@ -37,6 +37,9 @@ export class TaskService {
       }
       return task;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve task: ${error.message}`,
       );
@@ -88,6 +91,9 @@ export class TaskService {
 
       return updatedTask;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Task update failed: ${error.message}`);
     }
   }
@@ -107,6 +113,9 @@ export class TaskService {
       const task = await this.findTaskById(id);
       return await this.taskRepository.deleteTask({ where: { id: task.id } });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Task deletion failed: ${error.message}`);
     }
   }

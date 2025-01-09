@@ -7,7 +7,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "모든 학기를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -39,7 +39,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "새로운 학기를 생성합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -47,6 +47,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "학기 생성에 실패했습니다."
           }
         },
         "tags": [
@@ -69,7 +72,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 학기를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -77,6 +80,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "학기를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -107,7 +113,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 학기를 업데이트합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -115,6 +121,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "학기 업데이트에 실패했습니다."
+          },
+          "404": {
+            "description": "업데이트하려는 학기를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -135,7 +147,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 학기를 삭제합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -143,6 +155,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "학기 삭제에 실패했습니다."
+          },
+          "404": {
+            "description": "삭제하려는 학기를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -173,7 +191,17 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LectureEntity"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -195,7 +223,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LectureEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -228,7 +263,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LectureEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -249,7 +291,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LectureEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -272,7 +321,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -293,7 +349,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -314,7 +377,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -337,7 +407,17 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskEntity"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -359,7 +439,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -382,7 +469,17 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProblemEntity"
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -404,7 +501,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -437,7 +541,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -458,7 +569,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemEntity"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -540,6 +658,38 @@
           }
         }
       },
+      "LectureEntity": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "Novice",
+              "Intermediate",
+              "Advanced"
+            ]
+          },
+          "id": {
+            "type": "number"
+          },
+          "lectureNumber": {
+            "type": "number"
+          },
+          "bojGroupId": {
+            "type": "number"
+          },
+          "semesterId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "level",
+          "id",
+          "lectureNumber",
+          "bojGroupId",
+          "semesterId"
+        ]
+      },
       "CreateLectureDto": {
         "type": "object",
         "properties": {
@@ -577,6 +727,33 @@
         "type": "object",
         "properties": {}
       },
+      "TaskEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "round": {
+            "type": "number"
+          },
+          "practiceId": {
+            "type": "number"
+          },
+          "lectureId": {
+            "type": "number"
+          },
+          "minSolveCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "round",
+          "practiceId",
+          "lectureId",
+          "minSolveCount"
+        ]
+      },
       "CreateTaskDto": {
         "type": "object",
         "properties": {
@@ -602,6 +779,29 @@
           "practiceId",
           "lectureId",
           "minSolveCount"
+        ]
+      },
+      "ProblemEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "bojProblemNumber": {
+            "type": "number"
+          },
+          "essential": {
+            "type": "boolean"
+          },
+          "taskId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "bojProblemNumber",
+          "essential",
+          "taskId"
         ]
       },
       "CreateProblemDto": {

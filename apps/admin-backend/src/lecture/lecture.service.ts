@@ -67,6 +67,9 @@ export class LectureService {
       }
       return lecture;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Failed to find lecture: ${error.message}`);
     }
   }
@@ -144,6 +147,9 @@ export class LectureService {
         data: updateLectureDto,
       });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Lecture update failed: ${error.message}`);
     }
   }
@@ -163,6 +169,9 @@ export class LectureService {
       await this.findLectureById(id);
       return await this.lectureRepository.deleteLecture({ where: { id } });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Lecture deletion failed: ${error.message}`,
       );

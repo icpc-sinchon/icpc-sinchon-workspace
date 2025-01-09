@@ -39,6 +39,9 @@ export class ProblemService {
       }
       return problem;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve problem: ${error.message}`,
       );
@@ -82,6 +85,9 @@ export class ProblemService {
         data: updateProblemDto,
       });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Problem update failed: ${error.message}`);
     }
   }
@@ -101,6 +107,9 @@ export class ProblemService {
       await this.findProblemById(id);
       return await this.problemRepository.deleteProblem({ where: { id } });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Problem deletion failed: ${error.message}`,
       );
