@@ -816,7 +816,31 @@
       },
       "UpdateLectureDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "Novice",
+              "Intermediate",
+              "Advanced"
+            ],
+            "description": "강의 난이도 (Novice, Intermediate, Advanced)"
+          },
+          "lectureNumber": {
+            "type": "number",
+            "minimum": 1,
+            "description": "강의 회차수 (기본값: 10)"
+          },
+          "bojGroupId": {
+            "type": "number",
+            "description": "BOJ 그룹 ID"
+          },
+          "semesterId": {
+            "type": "number",
+            "minimum": 1,
+            "description": "학기 ID (Semester의 id 값)"
+          }
+        }
       },
       "TaskEntity": {
         "type": "object",
