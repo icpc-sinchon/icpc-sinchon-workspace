@@ -15,10 +15,11 @@ export class ProblemService {
   async createProblem(
     createProblemDto: CreateProblemDto,
   ): Promise<ProblemEntity> {
+    const { taskId, ...problemData } = createProblemDto;
     try {
       return await this.problemRepository.createProblem({
         data: {
-          ...createProblemDto,
+          ...problemData,
           task: { connect: { id: createProblemDto.taskId } },
         },
       });

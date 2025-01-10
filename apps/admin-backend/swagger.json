@@ -703,38 +703,48 @@
       "CreateSemesterDto": {
         "type": "object",
         "properties": {
+          "year": {
+            "type": "number",
+            "minimum": 1,
+            "description": "해당 학기가 속한 연도 (예: 2024)",
+            "example": 2024
+          },
           "season": {
             "type": "string",
+            "description": "해당 학기가 속한 계절 (Spring, Summer, Fall, Winter 중 하나)",
             "enum": [
               "Spring",
               "Summer",
               "Fall",
               "Winter"
-            ]
-          },
-          "year": {
-            "type": "number"
+            ],
+            "example": "Summer"
           }
         },
         "required": [
-          "season",
-          "year"
+          "year",
+          "season"
         ]
       },
       "UpdateSemesterDto": {
         "type": "object",
         "properties": {
+          "year": {
+            "type": "number",
+            "minimum": 1,
+            "description": "해당 학기가 속한 연도 (예: 2024)",
+            "example": 2024
+          },
           "season": {
             "type": "string",
+            "description": "해당 학기가 속한 계절 (Spring, Summer, Fall, Winter 중 하나)",
             "enum": [
               "Spring",
               "Summer",
               "Fall",
               "Winter"
-            ]
-          },
-          "year": {
-            "type": "number"
+            ],
+            "example": "Summer"
           }
         }
       },
@@ -799,6 +809,7 @@
         },
         "required": [
           "level",
+          "lectureNumber",
           "bojGroupId",
           "semesterId"
         ]

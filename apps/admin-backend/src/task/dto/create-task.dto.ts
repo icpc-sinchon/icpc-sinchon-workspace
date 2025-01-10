@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNotEmpty, IsOptional } from "class-validator";
+import { IsInt, IsNotEmpty } from "class-validator";
 
 export class CreateTaskDto {
   @ApiProperty({ description: "강의 회차 (round)" })

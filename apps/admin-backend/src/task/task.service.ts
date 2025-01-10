@@ -4,6 +4,7 @@ import {
   BadRequestException,
 } from "@nestjs/common";
 import { CreateTaskDto } from "./dto/create-task.dto";
+import { UpdateTaskDto } from "./dto/update-task.dto";
 import { TaskRepository } from "./task.repository";
 import { ProblemRepository } from "../problem/problem.repository";
 import type { Prisma } from "@prisma/client";
@@ -60,13 +61,9 @@ export class TaskService {
 
   async updateTask(
     id: number,
-    updateData: {
-      minSolveCount: number;
-      practiceId: number;
-      problems: Prisma.ProblemCreateManyInput[];
-    },
+    updateTaskDto: UpdateTaskDto,
   ): Promise<TaskEntity> {
-    const { minSolveCount, practiceId, problems } = updateData;
+    const { minSolveCount, practiceId, problems } = updateTaskDto;
 
     try {
       const task = await this.taskRepository.getTasksWithProblems({

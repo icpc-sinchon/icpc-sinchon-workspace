@@ -36,6 +36,7 @@ export class LectureService {
       const newLecture = await this.lectureRepository.createLecture({
         data: {
           ...lectureData,
+          lectureNumber,
           lectureSemester: { connect: { id: semesterId } },
         },
       });
