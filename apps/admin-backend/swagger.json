@@ -176,6 +176,7 @@
             "name": "year",
             "required": true,
             "in": "query",
+            "description": "조회할 강의가 속한 학기의 연도입니다.",
             "schema": {
               "type": "number"
             }
@@ -184,14 +185,21 @@
             "name": "season",
             "required": true,
             "in": "query",
+            "description": "조회할 강의가 속한 학기의 학기(예: Summer, Winter)입니다.",
             "schema": {
+              "enum": [
+                "Spring",
+                "Summer",
+                "Fall",
+                "Winter"
+              ],
               "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 학기와 학기에 속한 강의를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -202,6 +210,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "강의를 조회하는 데 실패했습니다."
           }
         },
         "tags": [
@@ -223,7 +234,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "새로운 강의를 생성합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -231,6 +242,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "강의 생성에 실패했습니다."
           }
         },
         "tags": [
@@ -263,7 +277,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 강의를 업데이트합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -271,6 +285,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "강의 업데이트에 실패했습니다."
+          },
+          "404": {
+            "description": "업데이트하려는 강의를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -291,7 +311,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 강의를 삭제합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -299,6 +319,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "강의 삭제에 실패했습니다."
+          },
+          "404": {
+            "description": "삭제하려는 강의를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -321,7 +347,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 과제를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -329,6 +355,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "잘못된 요청입니다."
+          },
+          "404": {
+            "description": "과제를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -347,9 +379,19 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 과제를 업데이트합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -357,6 +399,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "과제 업데이트에 실패했습니다."
+          },
+          "404": {
+            "description": "업데이트하려는 과제를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -377,7 +425,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 과제를 삭제합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -385,6 +433,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "과제 삭제에 실패했습니다."
+          },
+          "404": {
+            "description": "삭제하려는 과제를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -400,6 +454,7 @@
             "name": "lectureId",
             "required": true,
             "in": "query",
+            "description": "조회할 과제가 속한 강의의 ID입니다.",
             "schema": {
               "type": "number"
             }
@@ -407,7 +462,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 강의에 속한 모든 과제를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -418,6 +473,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "잘못된 요청입니다."
           }
         },
         "tags": [
@@ -439,7 +497,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "새로운 과제를 생성합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -447,6 +505,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "과제 생성에 실패했습니다."
           }
         },
         "tags": [
@@ -462,6 +523,7 @@
             "name": "taskId",
             "required": true,
             "in": "query",
+            "description": "조회할 문제가 속한 과제의 ID입니다.",
             "schema": {
               "type": "number"
             }
@@ -469,7 +531,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 과제에 속한 모든 문제를 반환합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -480,6 +542,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "잘못된 요청입니다."
           }
         },
         "tags": [
@@ -501,7 +566,7 @@
         },
         "responses": {
           "201": {
-            "description": "",
+            "description": "새로운 문제를 생성합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -509,6 +574,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "문제 생성에 실패했습니다."
           }
         },
         "tags": [
@@ -541,7 +609,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 문제를 업데이트합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -549,6 +617,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "문제 업데이트에 실패했습니다."
+          },
+          "404": {
+            "description": "업데이트하려는 문제를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -569,7 +643,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "특정 ID를 가진 문제를 삭제합니다.",
             "content": {
               "application/json": {
                 "schema": {
@@ -577,6 +651,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "문제 삭제에 실패했습니다."
+          },
+          "404": {
+            "description": "삭제하려는 문제를 찾을 수 없습니다."
           }
         },
         "tags": [
@@ -781,29 +861,6 @@
           "minSolveCount"
         ]
       },
-      "ProblemEntity": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "bojProblemNumber": {
-            "type": "number"
-          },
-          "essential": {
-            "type": "boolean"
-          },
-          "taskId": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "id",
-          "bojProblemNumber",
-          "essential",
-          "taskId"
-        ]
-      },
       "CreateProblemDto": {
         "type": "object",
         "properties": {
@@ -822,6 +879,57 @@
           }
         },
         "required": [
+          "bojProblemNumber",
+          "essential",
+          "taskId"
+        ]
+      },
+      "UpdateTaskDto": {
+        "type": "object",
+        "properties": {
+          "round": {
+            "type": "number",
+            "description": "강의 회차 (round)"
+          },
+          "practiceId": {
+            "type": "number",
+            "description": "BOJ 그룹 내 연습 ID (practiceId)"
+          },
+          "lectureId": {
+            "type": "number",
+            "description": "연결된 강의 ID (Lecture의 id 값)"
+          },
+          "minSolveCount": {
+            "type": "number",
+            "description": "출석 여부를 판단하는 최소 문제 해결 수"
+          },
+          "problems": {
+            "description": "문제 배열 (BOJ 문제 정보)",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateProblemDto"
+            }
+          }
+        }
+      },
+      "ProblemEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "bojProblemNumber": {
+            "type": "number"
+          },
+          "essential": {
+            "type": "boolean"
+          },
+          "taskId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
           "bojProblemNumber",
           "essential",
           "taskId"
