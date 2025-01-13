@@ -45,25 +45,25 @@ describe("SemesterController", () => {
   describe("getSemesterById", () => {
     test("ID로 특정 학기를 반환해야 합니다", async () => {
       const semester = { id: 1, year: 2024, season: Season.Spring };
-      mockSemesterService.getSemesterById.mockResolvedValue(semester);
+      mockSemesterService.findSemesterById.mockResolvedValue(semester);
 
-      const result = await semesterController.getSemesterById(1);
+      const result = await semesterController.findSemesterById(1);
       expect(result).toEqual(semester);
-      expect(mockSemesterService.getSemesterById).toHaveBeenCalledTimes(1);
-      expect(mockSemesterService.getSemesterById).toHaveBeenCalledWith(1);
+      expect(mockSemesterService.findSemesterById).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.findSemesterById).toHaveBeenCalledWith(1);
     });
 
     test("존재하지 않는 학기를 조회하려고 하면 NotFoundException을 던져야 합니다", async () => {
-      mockSemesterService.getSemesterById.mockRejectedValue(
+      mockSemesterService.findSemesterById.mockRejectedValue(
         new NotFoundException("Semester with ID 999 not found"),
       );
 
-      await expect(semesterController.getSemesterById(999)).rejects.toThrow(
+      await expect(semesterController.findSemesterById(999)).rejects.toThrow(
         NotFoundException,
       );
 
-      expect(mockSemesterService.getSemesterById).toHaveBeenCalledTimes(1);
-      expect(mockSemesterService.getSemesterById).toHaveBeenCalledWith(999);
+      expect(mockSemesterService.findSemesterById).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.findSemesterById).toHaveBeenCalledWith(999);
     });
   });
 
@@ -133,16 +133,16 @@ describe("SemesterController", () => {
     test("학기를 삭제하고 삭제된 학기를 반환해야 합니다", async () => {
       const deletedSemester = { id: 1, year: 2024, season: Season.Spring };
 
-      mockSemesterService.deleteSemester.mockResolvedValue(deletedSemester);
+      mockSemesterService.removeSemester.mockResolvedValue(deletedSemester);
 
       const result = await semesterController.deleteSemester(1);
       expect(result).toEqual(deletedSemester);
-      expect(mockSemesterService.deleteSemester).toHaveBeenCalledTimes(1);
-      expect(mockSemesterService.deleteSemester).toHaveBeenCalledWith(1);
+      expect(mockSemesterService.removeSemester).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.removeSemester).toHaveBeenCalledWith(1);
     });
 
     test("존재하지 않는 학기를 삭제하려고 하면 NotFoundException을 던져야 합니다", async () => {
-      mockSemesterService.deleteSemester.mockRejectedValue(
+      mockSemesterService.removeSemester.mockRejectedValue(
         new NotFoundException("Semester with ID 999 not found"),
       );
 
@@ -150,8 +150,8 @@ describe("SemesterController", () => {
         NotFoundException,
       );
 
-      expect(mockSemesterService.deleteSemester).toHaveBeenCalledTimes(1);
-      expect(mockSemesterService.deleteSemester).toHaveBeenCalledWith(999);
+      expect(mockSemesterService.removeSemester).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.removeSemester).toHaveBeenCalledWith(999);
     });
   });
 });

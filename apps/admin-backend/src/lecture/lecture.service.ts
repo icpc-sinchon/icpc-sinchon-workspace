@@ -1,72 +1,181 @@
-import { Injectable } from "@nestjs/common";
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from "@nestjs/common";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureRepository } from "./lecture.repository";
-import { Level, Season } from "@prisma/client";
+import { TaskRepository } from "../task/task.repository";
+import { SemesterRepository } from "../semester/semester.repository";
+import { Lecture, Level, Season } from "@prisma/client";
+import { LectureEntity } from "./entities/lecture.entity";
 
 @Injectable()
 export class LectureService {
-  constructor(private lectureRepository: LectureRepository) {}
+  constructor(
+    private readonly lectureRepository: LectureRepository,
+    private readonly taskRepository: TaskRepository,
+    private readonly semesterRepository: SemesterRepository,
+  ) {}
 
-  createLecture(createLectureDto: CreateLectureDto) {
-    return this.lectureRepository.createLecture({
-      data: {
-        ...createLectureDto,
-        lectureSemester: { connect: { id: createLectureDto.semesterId } },
-      },
-    });
-  }
+  async createLectureWithTasks(
+    createLectureDto: CreateLectureDto,
+  ): Promise<LectureEntity> {
+    const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
 
-  findLectureById(id: number) {
-    return this.lectureRepository.getLecture({ where: { id } });
-  }
+    try {
+      const semesterExists = await this.semesterRepository.getSemester({
+        where: { id: semesterId },
+      });
 
-  findLecturesBySemester(year: number, season: Season) {
-    return this.lectureRepository.getLectures({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+      if (!semesterExists) {
+        throw new NotFoundException(`Semester with ID ${semesterId} not found`);
+      }
+
+      const newLecture = await this.lectureRepository.createLecture({
+        data: {
+          ...lectureData,
+          lectureNumber,
+          lectureSemester: { connect: { id: semesterId } },
         },
-      },
-    });
+      });
+
+      const tasks = Array.from({ length: lectureNumber }, (_, i) => ({
+        lectureId: newLecture.id,
+        round: i + 1,
+        practiceId: 0,
+        minSolveCount: 0,
+      }));
+
+      await this.taskRepository.createTasks(tasks);
+
+      return newLecture;
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to create lecture with tasks: ${error.message}`,
+      );
+    }
   }
 
-  findLectureBySemesterAndLevel(year: number, season: Season, level: Level) {
-    return this.lectureRepository.getLectures({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+  async findLectureById(id: number): Promise<LectureEntity> {
+    try {
+      const lecture = await this.lectureRepository.getLecture({
+        where: { id },
+      });
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${id} not found`);
+      }
+      return lecture;
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException(`Failed to find lecture: ${error.message}`);
+    }
+  }
+
+  async findLecturesBySemester(
+    year: number,
+    season: Season,
+  ): Promise<LectureEntity[]> {
+    try {
+      return await this.lectureRepository.getLectures({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
         },
-        level,
-      },
-    });
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to find lectures by semester: ${error.message}`,
+      );
+    }
   }
 
-  findLecturesWithTasksBySemester(year: number, season: Season) {
-    return this.lectureRepository.getLecturesWithTasks({
-      where: {
-        lectureSemester: {
-          year,
-          season,
+  async findLectureBySemesterAndLevel(
+    year: number,
+    season: Season,
+    level: Level,
+  ): Promise<LectureEntity[]> {
+    try {
+      return await this.lectureRepository.getLectures({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
+          level,
         },
-      },
-    });
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to find lecture by semester and level: ${error.message}`,
+      );
+    }
   }
 
-  updateLecture(id: number, updateLectureDto: UpdateLectureDto) {
-    return this.lectureRepository.updateLecture({
-      where: { id },
-      data: updateLectureDto,
-    });
+  async findLecturesWithTasksBySemester(
+    year: number,
+    season: Season,
+  ): Promise<LectureEntity[]> {
+    try {
+      return await this.lectureRepository.getLecturesWithTasks({
+        where: {
+          lectureSemester: {
+            year,
+            season,
+          },
+        },
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to find lectures with tasks: ${error.message}`,
+      );
+    }
   }
 
-  getAllLectures() {
-    return this.lectureRepository.getAllLectures();
+  async updateLecture(
+    id: number,
+    updateLectureDto: UpdateLectureDto,
+  ): Promise<LectureEntity> {
+    try {
+      await this.findLectureById(id);
+      return await this.lectureRepository.updateLecture({
+        where: { id },
+        data: updateLectureDto,
+      });
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException(`Lecture update failed: ${error.message}`);
+    }
   }
 
-  removeLecture(id: number) {
-    return this.lectureRepository.deleteLecture({ where: { id } });
+  async getAllLectures(): Promise<LectureEntity[]> {
+    try {
+      return await this.lectureRepository.getAllLectures();
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve all lectures: ${error.message}`,
+      );
+    }
+  }
+
+  async removeLecture(id: number): Promise<LectureEntity> {
+    try {
+      await this.findLectureById(id);
+      return await this.lectureRepository.deleteLecture({ where: { id } });
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException(
+        `Lecture deletion failed: ${error.message}`,
+      );
+    }
   }
 }

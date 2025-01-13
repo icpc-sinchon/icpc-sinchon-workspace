@@ -76,7 +76,7 @@ model Semester {
   lecture      Lecture[]
   refundPolicy RefundPolicy[]
   // 연도와 계절이 유일한 조합이어야 함
-  @@unique([year, season])
+  @@unique([year, season], name: "year_season")
 }
 
 /// 강의 정보
