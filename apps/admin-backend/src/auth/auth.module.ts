@@ -12,7 +12,7 @@ import { jwtConstants } from "./constants";
       global: true,
       secret: jwtConstants.secret,
       // TODO: 이후에 만료 시간 늘리기
-      signOptions: { expiresIn: "60s" },
+      signOptions: { expiresIn: "300s" },
     }),
   ],
   controllers: [AuthController],
