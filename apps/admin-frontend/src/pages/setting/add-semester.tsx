@@ -4,7 +4,6 @@ import Layout from "@/ui/Layout";
 import AddSemester from "@/components/setting/AddSemester";
 import TabNavigation from "@/ui/TabNavigation";
 import { routers } from ".";
-import { withAuth } from "@/components/withAuth";
 
 function AddSemesterPage() {
   return (

@@ -9,7 +9,6 @@ import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 import AttendTable from "@/ui/Table/AttendTable";
 import { useSemester } from "@/contexts/SemesterContext";
-import { withAuth } from "@/components/withAuth";
 import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";
 import Spinner from "@/components/Spinner";
@@ -167,4 +166,4 @@ function StudentAttendPage() {
   );
 }
 
-export default withAuth(StudentAttendPage);
+export default StudentAttendPage;
