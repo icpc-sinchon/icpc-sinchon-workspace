@@ -1,5 +1,5 @@
 import type React from "react";
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { type AuthResponse, loginAPI, logoutAPI } from "@/utils/auth";
@@ -7,8 +7,6 @@ import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 
 type AuthContextType = {
-  isLoading: boolean;
-  isAuthenticated: boolean;
   user?: {
     id: number;
     username: string;
@@ -19,44 +17,31 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const fetcher = async (url: string) => {
-  const response = await adminAPI.get(url);
-  return response.data;
-};
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { data, error, mutate } = useSWR(API_URL.AUTH.CHECK, fetcher, {
-    shouldRetryOnError: false,
-    revalidateOnFocus: false,
-  });
 
-  const isLoading = !data && !error;
-  const isAuthenticated = data?.isAuthenticated ?? false;
-  const user = data?.user;
+  // useCallback으로 login 함수 캐싱
+  const login = useCallback(
+    async (username: string, password: string) => {
+      const result = await loginAPI(username, password);
+      console.log(result);
+      if (result.success) {
+        router.push("/student");
+      }
+      return result;
+    },
+    [router],
+  );
 
-  const login = async (username: string, password: string) => {
-    const result = await loginAPI(username, password);
-    if (result.success) {
-      await mutate();
-      router.push("/student");
-    }
-    return result;
-  };
-
-  const logout = async () => {
+  const logout = useCallback(async () => {
     const result = await logoutAPI();
     if (result.success) {
-      await mutate(null, false);
       router.push("/login", undefined, { shallow: true });
     }
     return result;
-  };
+  }, [router]);
 
-  const value = useMemo(
-    () => ({ isLoading, isAuthenticated, user, login, logout }),
-    [isAuthenticated, isLoading, user],
-  );
+  const value = useMemo(() => ({ login, logout }), [login, logout]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
