@@ -20,4 +20,4 @@ function AddAdminPage() {
   );
 }
 
-export default withAuth(AddAdminPage);
+export default AddAdminPage;

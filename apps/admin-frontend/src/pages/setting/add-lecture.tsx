@@ -20,4 +20,4 @@ function AddLecturePage() {
   );
 }
 
-export default withAuth(AddLecturePage);
+export default AddLecturePage;

@@ -20,4 +20,4 @@ function ChangeLecturePage() {
   );
 }
 
-export default withAuth(ChangeLecturePage);
+export default ChangeLecturePage;

@@ -20,4 +20,4 @@ function AddSemesterPage() {
   );
 }
 
-export default withAuth(AddSemesterPage);
+export default AddSemesterPage;
