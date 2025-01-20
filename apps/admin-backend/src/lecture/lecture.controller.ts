@@ -9,38 +9,94 @@ import {
   Query,
   ParseIntPipe,
 } from "@nestjs/common";
+import {
+  ApiTags,
+  ApiOkResponse,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiBadRequestResponse,
+  ApiQuery,
+} from "@nestjs/swagger";
 import { LectureService } from "./lecture.service";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
+import { LectureEntity } from "./entities/lecture.entity";
 import { Season } from "@prisma/client";
 
+@ApiTags("Lecture")
 @Controller("lecture")
 export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
   @Get()
+  @ApiQuery({
+    name: "year",
+    type: Number,
+    description: "조회할 강의가 속한 학기의 연도입니다.",
+  })
+  @ApiQuery({
+    name: "season",
+    enum: Season,
+    description: "조회할 강의가 속한 학기의 학기(예: Summer, Winter)입니다.",
+  })
+  @ApiOkResponse({
+    type: [LectureEntity],
+    description: "특정 학기와 학기에 속한 강의를 반환합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "강의를 조회하는 데 실패했습니다.",
+  })
   findLectures(
     @Query("year", ParseIntPipe) year: number,
     @Query("season") season: Season,
-  ) {
+  ): Promise<LectureEntity[]> {
     return this.lectureService.findLecturesWithTasksBySemester(year, season);
   }
 
   @Post()
-  createLecture(@Body() createLectureDto: CreateLectureDto) {
-    return this.lectureService.createLecture(createLectureDto);
+  @ApiCreatedResponse({
+    type: LectureEntity,
+    description: "새로운 강의를 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "강의 생성에 실패했습니다.",
+  })
+  createLecture(
+    @Body() createLectureDto: CreateLectureDto,
+  ): Promise<LectureEntity> {
+    return this.lectureService.createLectureWithTasks(createLectureDto);
   }
 
   @Patch(":id")
+  @ApiOkResponse({
+    type: LectureEntity,
+    description: "특정 ID를 가진 강의를 업데이트합니다.",
+  })
+  @ApiNotFoundResponse({
+    description: "업데이트하려는 강의를 찾을 수 없습니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "강의 업데이트에 실패했습니다.",
+  })
   updateLecture(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateLectureDto: UpdateLectureDto,
-  ) {
+  ): Promise<LectureEntity> {
     return this.lectureService.updateLecture(id, updateLectureDto);
   }
 
   @Delete(":id")
-  removeLecture(@Param("id", ParseIntPipe) id: number) {
+  @ApiOkResponse({
+    type: LectureEntity,
+    description: "특정 ID를 가진 강의를 삭제합니다.",
+  })
+  @ApiNotFoundResponse({
+    description: "삭제하려는 강의를 찾을 수 없습니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "강의 삭제에 실패했습니다.",
+  })
+  removeLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
     return this.lectureService.removeLecture(id);
   }
 }
