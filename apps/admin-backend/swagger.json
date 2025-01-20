@@ -663,6 +663,173 @@
           "Problem"
         ]
       }
+    },
+    "/student": {
+      "get": {
+        "operationId": "StudentController_getAllStudent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "모든 학생을 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentEntity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Student"
+        ]
+      },
+      "post": {
+        "operationId": "StudentController_createStudent",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 학생을 생성합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "학생 생성에 실패했습니다."
+          }
+        },
+        "tags": [
+          "Student"
+        ]
+      }
+    },
+    "/student/{id}": {
+      "get": {
+        "operationId": "StudentController_findStudentById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "특정 ID를 가진 학생을 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "학생을 찾을 수 없습니다."
+          }
+        },
+        "tags": [
+          "Student"
+        ]
+      },
+      "patch": {
+        "operationId": "StudentController_updateStudent",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "특정 ID를 가진 학생을 업데이트합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "학생 업데이트에 실패했습니다."
+          },
+          "404": {
+            "description": "업데이트하려는 학생을 찾을 수 없습니다."
+          }
+        },
+        "tags": [
+          "Student"
+        ]
+      },
+      "delete": {
+        "operationId": "StudentController_deleteStudent",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "특정 ID를 가진 학생을 삭제합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "학생 삭제에 실패했습니다."
+          },
+          "404": {
+            "description": "삭제하려는 학생을 찾을 수 없습니다."
+          }
+        },
+        "tags": [
+          "Student"
+        ]
+      }
     }
   },
   "info": {
@@ -985,6 +1152,168 @@
             "type": "number",
             "minimum": 1,
             "description": "과제 ID (Task의 id 값)"
+          }
+        }
+      },
+      "StudentEntity": {
+        "type": "object",
+        "properties": {
+          "school": {
+            "type": "string",
+            "enum": [
+              "YONSEI",
+              "SOGANG",
+              "HONGIK",
+              "EWHA",
+              "SOOKMYUNG"
+            ]
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "PAID_30000",
+              "PAID_60000"
+            ]
+          },
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "bojHandle": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "studentNumber": {
+            "type": "string"
+          },
+          "refundAccount": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "school",
+          "paymentStatus",
+          "id",
+          "name",
+          "bojHandle",
+          "email",
+          "phone",
+          "studentNumber",
+          "refundAccount"
+        ]
+      },
+      "CreateStudentDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "학생 이름 (최대 50자)"
+          },
+          "bojHandle": {
+            "type": "string",
+            "description": "BOJ 핸들 (최대 50자, 고유값)"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "학생 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "학생 전화번호 (최대 20자)"
+          },
+          "school": {
+            "type": "string",
+            "enum": [
+              "YONSEI",
+              "SOGANG",
+              "HONGIK",
+              "EWHA",
+              "SOOKMYUNG"
+            ],
+            "description": "학생 학교 (YONSEI, SOGANG, HONGIK, EWHA, SOOKMYUNG 중 하나)"
+          },
+          "studentNumber": {
+            "type": "string",
+            "description": "학생 학번 (최대 20자)"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "PAID_30000",
+              "PAID_60000"
+            ],
+            "description": "학생 납부 상태 (PAID_30000, PAID_60000 중 하나)"
+          },
+          "refundAccount": {
+            "type": "string",
+            "description": "환불 계좌"
+          }
+        },
+        "required": [
+          "name",
+          "bojHandle",
+          "email",
+          "phone",
+          "school",
+          "studentNumber",
+          "paymentStatus",
+          "refundAccount"
+        ]
+      },
+      "UpdateStudentDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "학생 이름 (최대 50자)"
+          },
+          "bojHandle": {
+            "type": "string",
+            "description": "BOJ 핸들 (최대 50자, 고유값)"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "학생 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "학생 전화번호 (최대 20자)"
+          },
+          "school": {
+            "type": "string",
+            "enum": [
+              "YONSEI",
+              "SOGANG",
+              "HONGIK",
+              "EWHA",
+              "SOOKMYUNG"
+            ],
+            "description": "학생 학교 (YONSEI, SOGANG, HONGIK, EWHA, SOOKMYUNG 중 하나)"
+          },
+          "studentNumber": {
+            "type": "string",
+            "description": "학생 학번 (최대 20자)"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "PAID_30000",
+              "PAID_60000"
+            ],
+            "description": "학생 납부 상태 (PAID_30000, PAID_60000 중 하나)"
+          },
+          "refundAccount": {
+            "type": "string",
+            "description": "환불 계좌"
           }
         }
       }
