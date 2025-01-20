@@ -4,7 +4,6 @@ import Layout from "@/ui/Layout";
 import TabNavigation from "@/ui/TabNavigation";
 import { routers } from ".";
 import AddNewAdmin from "@/components/setting/AddAdmin";
-import { withAuth } from "@/components/withAuth";
 
 function AddAdminPage() {
   return (
@@ -20,4 +19,4 @@ function AddAdminPage() {
   );
 }
 
-export default withAuth(AddAdminPage);
+export default AddAdminPage;

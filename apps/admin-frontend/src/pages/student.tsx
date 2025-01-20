@@ -11,7 +11,6 @@ import type { Student } from "@/types/models";
 import StudentTable from "@/ui/Table/StudentTable";
 import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";
-import { withAuth } from "@/components/withAuth";
 import { COLORS } from "@/styles/colors";
 import Toast from "@/components/Toast";
 import StudentPageControlPanel from "@/ui/StudentPageControl";
@@ -252,4 +251,4 @@ function StudentPage() {
   );
 }
 
-export default withAuth(StudentPage);
+export default StudentPage;

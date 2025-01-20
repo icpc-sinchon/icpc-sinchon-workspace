@@ -4,7 +4,6 @@ import Layout from "@/ui/Layout";
 import TabNavigation from "@/ui/TabNavigation";
 import { routers } from ".";
 import AddLecture from "@/components/setting/AddLecture";
-import { withAuth } from "@/components/withAuth";
 
 function AddLecturePage() {
   return (
@@ -20,4 +19,4 @@ function AddLecturePage() {
   );
 }
 
-export default withAuth(AddLecturePage);
+export default AddLecturePage;

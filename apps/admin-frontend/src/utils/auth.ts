@@ -1,5 +1,6 @@
 import { API_URL } from "@/types/apis";
 import { adminAPI } from "./api";
+import { redirect } from "next/navigation";
 
 export type AuthResponse = {
   success: boolean;
@@ -7,7 +8,6 @@ export type AuthResponse = {
   token?: string;
 };
 
-// TODO: URL들을 상수 객체로 관리하도록 리팩토링
 export const registerAPI = async (
   username: string,
   password: string,
@@ -29,11 +29,12 @@ export const loginAPI = async (
   password: string,
 ): Promise<AuthResponse> => {
   try {
-    const response = await adminAPI.post<AuthResponse>(API_URL.AUTH.LOGIN, {
+    const { data } = await adminAPI.post<AuthResponse>(API_URL.AUTH.LOGIN, {
       username,
       password,
     });
-    return response.data;
+    console.log(data);
+    return data;
   } catch (error) {
     console.error("Login error:", error);
     throw error;
@@ -42,8 +43,8 @@ export const loginAPI = async (
 
 export const logoutAPI = async (): Promise<AuthResponse> => {
   try {
-    const response = await adminAPI.post<AuthResponse>(API_URL.AUTH.LOGOUT);
-    return response.data;
+    const { data } = await adminAPI.post<AuthResponse>(API_URL.AUTH.LOGOUT);
+    return data;
   } catch (error) {
     console.error("Logout error:", error);
     throw error;

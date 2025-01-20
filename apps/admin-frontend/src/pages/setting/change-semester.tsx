@@ -4,7 +4,6 @@ import Layout from "@/ui/Layout";
 import TabNavigation from "@/ui/TabNavigation";
 import { routers } from ".";
 import ChangeCurrentSemester from "@/components/setting/ChangeCurrentSemester";
-import { withAuth } from "@/components/withAuth";
 
 function ChangeSemesterPage() {
   return (
@@ -20,4 +19,4 @@ function ChangeSemesterPage() {
   );
 }
 
-export default withAuth(ChangeSemesterPage);
+export default ChangeSemesterPage;

@@ -16,9 +16,12 @@
   "author": "",
   "license": "ISC",
   "private": true,
-  "workspaces": ["apps/*", "libs/*"],
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "typescript": "^5.6.2"
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.7.2"
   }
 }

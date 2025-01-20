@@ -3,7 +3,6 @@ import Head from "next/head";
 import Layout from "@/ui/Layout";
 import TabNavigation from "@/ui/TabNavigation";
 import { routers } from ".";
-import { withAuth } from "@/components/withAuth";
 import RefundPolicySetting from "@/components/setting/RefundPolicy";
 
 function AddAdminPage() {
@@ -20,4 +19,4 @@ function AddAdminPage() {
   );
 }
 
-export default withAuth(AddAdminPage);
+export default AddAdminPage;

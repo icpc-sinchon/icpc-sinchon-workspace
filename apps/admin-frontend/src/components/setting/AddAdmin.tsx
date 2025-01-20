@@ -5,7 +5,6 @@ import { SettingTab } from "@/components/setting/SettingItem";
 import Input from "@/components/Input";
 import ErrorMessage from "../ErrorMessage";
 import { registerAPI } from "@/utils/auth";
-import { withAuth } from "../withAuth";
 import { API_URL } from "@/types/apis";
 
 type Admin = {
@@ -80,4 +79,4 @@ function AddNewAdmin() {
     </SettingTab>
   );
 }
-export default withAuth(AddNewAdmin);
+export default AddNewAdmin;
