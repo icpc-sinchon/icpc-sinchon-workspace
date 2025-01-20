@@ -1,6 +1,6 @@
 const ROUTE_URLS = {
   AUTH: "/auth",
-  STUDENT: "/student",
+  STUDENT: "/students",
   STUDENT_ATTENDANCE: "/student-attendance",
   SEMESTER: "/semester",
   LECTURE: "/lecture",

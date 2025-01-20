@@ -2,7 +2,6 @@ import { Flex, Text, Button } from "@radix-ui/themes";
 import Head from "next/head";
 import React from "react";
 import Layout from "@/ui/Layout";
-import { withAuth } from "@/components/withAuth";
 
 function Index() {
   return (
@@ -20,4 +19,4 @@ function Index() {
   );
 }
 
-export default withAuth(Index);
+export default Index;

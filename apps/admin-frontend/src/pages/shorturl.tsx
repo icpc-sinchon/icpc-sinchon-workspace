@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout from "@/ui/Layout";
-import { withAuth } from "@/components/withAuth";
 
 function ShortURL() {
   return (
@@ -15,4 +14,4 @@ function ShortURL() {
   );
 }
 
-export default withAuth(ShortURL);
+export default ShortURL;

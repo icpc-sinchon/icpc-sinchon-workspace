@@ -35,6 +35,7 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(userInfo);
     if (!validateForm()) return;
 
     setIsLoading(true);
