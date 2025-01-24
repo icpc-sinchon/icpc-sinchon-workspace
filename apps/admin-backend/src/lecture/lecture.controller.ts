@@ -50,7 +50,7 @@ export class LectureController {
     @Query("year", ParseIntPipe) year: number,
     @Query("season") season: Season,
   ): Promise<LectureEntity[]> {
-    return this.lectureService.findLecturesWithTasksBySemester(year, season);
+    return this.lectureService.getLecturesWithTasksBySemester(year, season);
   }
 
   @Post()

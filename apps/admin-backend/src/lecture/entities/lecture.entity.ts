@@ -22,10 +22,4 @@ export class LectureEntity implements Lecture {
 
   @ApiProperty({ description: "강의가 속한 학기의 ID" })
   semesterId: number;
-
-  @ApiProperty({ description: "강의가 속한 학기" })
-  lectureSemester: Semester;
-
-  @ApiProperty({ description: "강의와 연관된 과제 목록" })
-  task: Task[];
 }
