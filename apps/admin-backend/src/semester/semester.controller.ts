@@ -45,7 +45,7 @@ export class SemesterController {
   findSemesterById(
     @Param("id", ParseIntPipe) id: number,
   ): Promise<SemesterEntity> {
-    return this.semesterService.findSemesterById(id);
+    return this.semesterService.getSemesterById(id);
   }
 
   @Post()
@@ -94,6 +94,6 @@ export class SemesterController {
   deleteSemester(
     @Param("id", ParseIntPipe) id: number,
   ): Promise<SemesterEntity> {
-    return this.semesterService.removeSemester(id);
+    return this.semesterService.deleteSemester(id);
   }
 }

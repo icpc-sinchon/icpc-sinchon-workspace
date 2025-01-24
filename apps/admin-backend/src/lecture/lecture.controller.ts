@@ -96,7 +96,7 @@ export class LectureController {
   @ApiBadRequestResponse({
     description: "강의 삭제에 실패했습니다.",
   })
-  removeLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
-    return this.lectureService.removeLecture(id);
+  deleteLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
+    return this.lectureService.deleteLecture(id);
   }
 }

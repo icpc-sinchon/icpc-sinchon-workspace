@@ -3,22 +3,18 @@ import {
   NotFoundException,
   BadRequestException,
 } from "@nestjs/common";
-import { Level, Season } from "@prisma/client";
+import type { Level, Season } from "@prisma/client";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureEntity } from "./entities/lecture.entity";
 import { LectureRepository } from "./lecture.repository";
-import { TaskRepository } from "../task/task.repository";
 import { SemesterRepository } from "../semester/semester.repository";
-import { SemesterService } from "../semester/semester.service";
 
 @Injectable()
 export class LectureService {
   constructor(
     private readonly lectureRepository: LectureRepository,
-    private readonly taskRepository: TaskRepository,
     private readonly semesterRepository: SemesterRepository,
-    private readonly semesterService: SemesterService,
   ) {}
 
   async createLectureWithTasks(
@@ -27,20 +23,16 @@ export class LectureService {
     const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
 
     try {
-      const semester = await this.semesterRepository.getSemester({
-        where: { id: semesterId },
-      });
-
+      const semester =
+        await this.semesterRepository.getSemesterById(semesterId);
       if (!semester) {
         throw new NotFoundException(`Semester with ID ${semesterId} not found`);
       }
 
       const newLecture = await this.lectureRepository.createLectureWithTasks({
-        data: {
-          ...lectureData,
-          lectureNumber,
-          lectureSemester: { connect: { id: semesterId } },
-        },
+        ...lectureData,
+        lectureNumber,
+        lectureSemester: { connect: { id: semesterId } },
       });
 
       return newLecture;
@@ -54,11 +46,19 @@ export class LectureService {
     }
   }
 
+  async getAllLectures(): Promise<LectureEntity[]> {
+    try {
+      return await this.lectureRepository.getAllLectures();
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve all lectures: ${error.message}`,
+      );
+    }
+  }
+
   async getLectureById(id: number): Promise<LectureEntity> {
     try {
-      const lecture = await this.lectureRepository.getLecture({
-        where: { id },
-      });
+      const lecture = await this.lectureRepository.getLectureById(id);
       if (!lecture) {
         throw new NotFoundException(`Lecture with ID ${id} not found`);
       }
@@ -67,7 +67,9 @@ export class LectureService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Failed to find lecture: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to retrieve lecture: ${error.message}`,
+      );
     }
   }
 
@@ -76,12 +78,10 @@ export class LectureService {
     season: Season,
   ): Promise<LectureEntity[]> {
     try {
-      return await this.lectureRepository.getLecturesBySemester({
-        where: { lectureSemester: { year, season } },
-      });
+      return await this.lectureRepository.getLecturesBySemester(year, season);
     } catch (error) {
       throw new BadRequestException(
-        `Failed to find lectures by semester: ${error.message}`,
+        `Failed to retrieve lectures for year ${year} and season ${season}: ${error.message}`,
       );
     }
   }
@@ -92,11 +92,10 @@ export class LectureService {
     level: Level,
   ): Promise<LectureEntity> {
     try {
-      const semester = await this.semesterService.findSemesterBySeason(
+      const semester = await this.semesterRepository.getSemesterByYearAndSeason(
         year,
         season,
       );
-
       if (!semester) {
         throw new NotFoundException(
           `Semester not found for year: ${year}, season: ${season}`,
@@ -104,9 +103,9 @@ export class LectureService {
       }
 
       const lecture = await this.lectureRepository.getLectureBySemesterAndLevel(
-        { semesterId: semester.id, level },
+        semester.id,
+        level,
       );
-
       if (!lecture) {
         throw new NotFoundException(
           `Lecture not found for year: ${year}, season: ${season}, level: ${level}`,
@@ -119,7 +118,7 @@ export class LectureService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to find lecture by semester and level: ${error.message}`,
+        `Failed to retrieve lectures for year: ${year}, season: ${season}, level: ${level}: ${error.message}`,
       );
     }
   }
@@ -129,12 +128,13 @@ export class LectureService {
     season: Season,
   ): Promise<LectureEntity[]> {
     try {
-      return await this.lectureRepository.getLecturesWithTasksBySemester({
-        where: { lectureSemester: { year, season } },
-      });
+      return await this.lectureRepository.getLecturesWithTasksBySemester(
+        year,
+        season,
+      );
     } catch (error) {
       throw new BadRequestException(
-        `Failed to find lectures with tasks: ${error.message}`,
+        `Failed to retrieve lectures with tasks for year ${year} and season ${season}: ${error.message}`,
       );
     }
   }
@@ -144,39 +144,34 @@ export class LectureService {
     updateLectureDto: UpdateLectureDto,
   ): Promise<LectureEntity> {
     try {
-      await this.getLectureById(id);
-      return await this.lectureRepository.updateLecture({
-        where: { id },
-        data: updateLectureDto,
-      });
+      const lecture = await this.lectureRepository.getLectureById(id);
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${id} not found`);
+      }
+      return await this.lectureRepository.updateLecture(id, updateLectureDto);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Lecture update failed: ${error.message}`);
-    }
-  }
-
-  async getAllLectures(): Promise<LectureEntity[]> {
-    try {
-      return await this.lectureRepository.getAllLectures();
-    } catch (error) {
       throw new BadRequestException(
-        `Failed to retrieve all lectures: ${error.message}`,
+        `Failed to update lecture: ${error.message}`,
       );
     }
   }
 
-  async removeLecture(id: number): Promise<LectureEntity> {
+  async deleteLecture(id: number): Promise<LectureEntity> {
     try {
-      await this.getLectureById(id);
-      return await this.lectureRepository.deleteLecture({ where: { id } });
+      const lecture = await this.lectureRepository.getLectureById(id);
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${id} not found`);
+      }
+      return await this.lectureRepository.deleteLecture(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
       throw new BadRequestException(
-        `Lecture deletion failed: ${error.message}`,
+        `Failed to delete lecture: ${error.message}`,
       );
     }
   }
