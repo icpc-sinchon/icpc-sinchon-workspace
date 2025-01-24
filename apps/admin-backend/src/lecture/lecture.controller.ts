@@ -17,11 +17,11 @@ import {
   ApiBadRequestResponse,
   ApiQuery,
 } from "@nestjs/swagger";
-import { LectureService } from "./lecture.service";
+import { Season } from "@prisma/client";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureEntity } from "./entities/lecture.entity";
-import { Season } from "@prisma/client";
+import { LectureService } from "./lecture.service";
 
 @ApiTags("Lecture")
 @Controller("lecture")

@@ -17,10 +17,10 @@ import {
   ApiBadRequestResponse,
   ApiQuery,
 } from "@nestjs/swagger";
-import { ProblemService } from "./problem.service";
 import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
 import { ProblemEntity } from "./entities/problem.entity";
+import { ProblemService } from "./problem.service";
 
 @ApiTags("Problem")
 @Controller("problem")
@@ -38,12 +38,12 @@ export class ProblemController {
     description: "특정 과제에 속한 모든 문제를 반환합니다.",
   })
   @ApiBadRequestResponse({
-    description: "잘못된 요청입니다.",
+    description: "과제를 조회하는 데 실패했습니다.",
   })
   findProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
   ): Promise<ProblemEntity[]> {
-    return this.problemService.findProblemsByTaskId(taskId);
+    return this.problemService.getProblemsByTaskId(taskId);
   }
 
   @Post()

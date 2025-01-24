@@ -15,10 +15,10 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
 } from "@nestjs/swagger";
-import { SemesterService } from "./semester.service";
 import { CreateSemesterDto } from "./dto/create-semester.dto";
 import { UpdateSemesterDto } from "./dto/update-semester.dto";
 import { SemesterEntity } from "./entities/semester.entity";
+import { SemesterService } from "./semester.service";
 
 @ApiTags("Semester")
 @Controller("semester")
@@ -29,6 +29,9 @@ export class SemesterController {
   @ApiOkResponse({
     type: [SemesterEntity],
     description: "모든 학기를 반환합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "학기를 조회하는 데 실패했습니다.",
   })
   getAllSemester(): Promise<SemesterEntity[]> {
     return this.semesterService.getAllSemesters();
@@ -41,6 +44,9 @@ export class SemesterController {
   })
   @ApiNotFoundResponse({
     description: "학기를 찾을 수 없습니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "학기를 조회하는 데 실패했습니다.",
   })
   findSemesterById(
     @Param("id", ParseIntPipe) id: number,

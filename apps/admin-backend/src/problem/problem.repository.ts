@@ -5,12 +5,9 @@ import { ProblemEntity } from "./entities/problem.entity";
 
 @Injectable()
 export class ProblemRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
-  async createProblem(params: {
-    data: Prisma.ProblemCreateInput;
-  }): Promise<ProblemEntity> {
-    const { data } = params;
+  async createProblem(data: Prisma.ProblemCreateInput): Promise<ProblemEntity> {
     return this.prisma.problem.create({ data });
   }
 
@@ -26,33 +23,32 @@ export class ProblemRepository {
     return this.prisma.problem.findMany();
   }
 
-  async getProblem(params: {
-    where: Prisma.ProblemWhereUniqueInput;
-  }): Promise<ProblemEntity> {
-    const { where } = params;
-    return this.prisma.problem.findUnique({ where });
+  async getProblemById(id: number): Promise<ProblemEntity> {
+    return this.prisma.problem.findUnique({ where: { id } });
   }
 
-  async getProblems(params: {
-    where: Prisma.ProblemWhereInput;
-  }): Promise<ProblemEntity[]> {
-    const { where } = params;
-    return this.prisma.problem.findMany({ where });
+  async getProblemsByTaskId(taskId: number): Promise<ProblemEntity[]> {
+    return this.prisma.problem.findMany({ where: { taskId } });
   }
 
-  async updateProblem(params: {
-    where: Prisma.ProblemWhereUniqueInput;
-    data: Prisma.ProblemUpdateInput;
-  }): Promise<ProblemEntity> {
-    const { where, data } = params;
-    return this.prisma.problem.update({ where, data });
+  async getProblemByTaskIdAndBojProblemNumber(
+    taskId: number,
+    bojProblemNumber: number,
+  ): Promise<ProblemEntity> {
+    return this.prisma.problem.findUnique({
+      where: { taskId_bojProblemNumber: { taskId, bojProblemNumber } },
+    });
   }
 
-  async deleteProblem(params: {
-    where: Prisma.ProblemWhereUniqueInput;
-  }): Promise<ProblemEntity> {
-    const { where } = params;
-    return this.prisma.problem.delete({ where });
+  async updateProblem(
+    id: number,
+    data: Prisma.ProblemUpdateInput,
+  ): Promise<ProblemEntity> {
+    return this.prisma.problem.update({ where: { id }, data });
+  }
+
+  async deleteProblem(id: number): Promise<ProblemEntity> {
+    return this.prisma.problem.delete({ where: { id } });
   }
 
   async deleteProblemsByTaskId(taskId: number): Promise<void> {
