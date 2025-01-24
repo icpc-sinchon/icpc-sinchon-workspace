@@ -7,10 +7,14 @@ import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
 import { ProblemEntity } from "./entities/problem.entity";
 import { ProblemRepository } from "./problem.repository";
+import { TaskRepository } from "../task/task.repository";
 
 @Injectable()
 export class ProblemService {
-  constructor(private readonly problemRepository: ProblemRepository) {}
+  constructor(
+    private readonly problemRepository: ProblemRepository,
+    private readonly taskRepository: TaskRepository,
+  ) {}
 
   async createProblem(
     createProblemDto: CreateProblemDto,
@@ -57,6 +61,11 @@ export class ProblemService {
 
   async getProblemsByTaskId(taskId: number): Promise<ProblemEntity[]> {
     try {
+      const task = await this.taskRepository.getTaskById(taskId);
+      if (!task) {
+        throw new NotFoundException(`Task with ID ${taskId} not found`);
+      }
+
       return await this.problemRepository.getProblemsByTaskId(taskId);
     } catch (error) {
       throw new BadRequestException(

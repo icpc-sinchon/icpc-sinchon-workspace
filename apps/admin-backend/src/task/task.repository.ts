@@ -7,10 +7,7 @@ import { TaskEntity } from "./entities/task.entity";
 export class TaskRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createTask(params: {
-    data: Prisma.TaskCreateInput;
-  }): Promise<TaskEntity> {
-    const { data } = params;
+  async createTask(data: Prisma.TaskCreateInput): Promise<TaskEntity> {
     return this.prisma.task.create({ data });
   }
 
@@ -25,46 +22,32 @@ export class TaskRepository {
   async getAllTasks(): Promise<TaskEntity[]> {
     return this.prisma.task.findMany();
   }
-
-  async getTask(params: {
-    where: Prisma.TaskWhereUniqueInput;
-  }): Promise<TaskEntity> {
-    const { where } = params;
-    return this.prisma.task.findUnique({ where });
+  async getTaskById(id: number): Promise<TaskEntity> {
+    return this.prisma.task.findUnique({ where: { id } });
   }
 
-  async getTasks(params: {
-    where: Prisma.TaskWhereInput;
-  }): Promise<TaskEntity[]> {
-    const { where } = params;
-    return this.prisma.task.findMany({ where });
+  async getTasksByLectureId(lectureId: number): Promise<TaskEntity[]> {
+    return this.prisma.task.findMany({ where: { lectureId } });
   }
 
-  async getTasksWithProblems(params: {
-    where: Prisma.TaskWhereInput;
-  }): Promise<TaskEntity[]> {
-    const { where } = params;
+  async getTasksWithProblemsByLectureId(
+    lectureId: number,
+  ): Promise<TaskEntity[]> {
     return this.prisma.task.findMany({
-      where,
-      include: {
-        problems: true,
-      },
+      where: { lectureId },
+      include: { problems: true },
     });
   }
 
-  async updateTask(params: {
-    where: Prisma.TaskWhereUniqueInput;
-    data: Prisma.TaskUpdateInput;
-  }): Promise<TaskEntity> {
-    const { where, data } = params;
-    return this.prisma.task.update({ where, data });
+  async updateTask(
+    id: number,
+    data: Prisma.TaskUpdateInput,
+  ): Promise<TaskEntity> {
+    return this.prisma.task.update({ where: { id }, data });
   }
 
-  async deleteTask(params: {
-    where: Prisma.TaskWhereUniqueInput;
-  }): Promise<TaskEntity> {
-    const { where } = params;
-    return this.prisma.task.delete({ where });
+  async deleteTask(id: number): Promise<TaskEntity> {
+    return this.prisma.task.delete({ where: { id } });
   }
 
   async resetTask(): Promise<void> {

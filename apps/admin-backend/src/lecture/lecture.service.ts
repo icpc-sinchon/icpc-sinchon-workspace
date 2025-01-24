@@ -78,7 +78,17 @@ export class LectureService {
     season: Season,
   ): Promise<LectureEntity[]> {
     try {
-      return await this.lectureRepository.getLecturesBySemester(year, season);
+      const semester = await this.semesterRepository.getSemesterByYearAndSeason(
+        year,
+        season,
+      );
+      if (!semester) {
+        throw new NotFoundException(
+          `Semester not found for year: ${year}, season: ${season}`,
+        );
+      }
+
+      return await this.lectureRepository.getLecturesBySemester(semester.id);
     } catch (error) {
       throw new BadRequestException(
         `Failed to retrieve lectures for year ${year} and season ${season}: ${error.message}`,
@@ -128,9 +138,18 @@ export class LectureService {
     season: Season,
   ): Promise<LectureEntity[]> {
     try {
-      return await this.lectureRepository.getLecturesWithTasksBySemester(
+      const semester = await this.semesterRepository.getSemesterByYearAndSeason(
         year,
         season,
+      );
+      if (!semester) {
+        throw new NotFoundException(
+          `Semester not found for year: ${year}, season: ${season}`,
+        );
+      }
+
+      return await this.lectureRepository.getLecturesWithTasksBySemester(
+        semester.id,
       );
     } catch (error) {
       throw new BadRequestException(

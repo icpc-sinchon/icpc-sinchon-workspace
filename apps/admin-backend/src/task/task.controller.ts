@@ -17,31 +17,15 @@ import {
   ApiBadRequestResponse,
   ApiQuery,
 } from "@nestjs/swagger";
-import { TaskService } from "./task.service";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { UpdateTaskDto } from "./dto/update-task.dto";
 import { TaskEntity } from "./entities/task.entity";
-import type { Prisma } from "@prisma/client";
+import { TaskService } from "./task.service";
 
 @ApiTags("Task")
 @Controller("task")
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
-
-  @Get(":id")
-  @ApiOkResponse({
-    type: TaskEntity,
-    description: "특정 ID를 가진 과제를 반환합니다.",
-  })
-  @ApiNotFoundResponse({
-    description: "과제를 찾을 수 없습니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "잘못된 요청입니다.",
-  })
-  findTaskById(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
-    return this.taskService.findTaskById(id);
-  }
 
   @Get()
   @ApiQuery({
@@ -54,12 +38,27 @@ export class TaskController {
     description: "특정 강의에 속한 모든 과제를 반환합니다.",
   })
   @ApiBadRequestResponse({
-    description: "잘못된 요청입니다.",
+    description: "과제를 조회하는 데 실패했습니다.",
   })
   findTasksByLecture(
     @Query("lectureId", ParseIntPipe) lectureId: number,
   ): Promise<TaskEntity[]> {
-    return this.taskService.findTasksByLectureId(lectureId);
+    return this.taskService.getTasksByLectureId(lectureId);
+  }
+
+  @Get(":id")
+  @ApiOkResponse({
+    type: TaskEntity,
+    description: "특정 ID를 가진 과제를 반환합니다.",
+  })
+  @ApiNotFoundResponse({
+    description: "과제를 찾을 수 없습니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "과제를 조회하는 데 실패했습니다.",
+  })
+  findTaskById(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
+    return this.taskService.getTaskById(id);
   }
 
   @Post()

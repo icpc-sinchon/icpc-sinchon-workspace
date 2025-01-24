@@ -15,12 +15,6 @@ export class TaskEntity implements Task {
   })
   practiceId: number;
 
-  @ApiProperty({
-    description: "과제에 속한 BOJ 문제 목록",
-    type: () => [ProblemEntity],
-  })
-  problems: ProblemEntity[];
-
   @ApiProperty({ description: "과제 출석 여부를 판단하기 위한 기준 문제 수" })
   minSolveCount: number;
 

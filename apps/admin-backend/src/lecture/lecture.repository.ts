@@ -40,16 +40,10 @@ export class LectureRepository {
     return this.prisma.lecture.findUnique({ where: { id } });
   }
 
-  async getLecturesBySemester(
-    year: number,
-    season: Season,
-  ): Promise<LectureEntity[]> {
+  async getLecturesBySemester(semesterId: number): Promise<LectureEntity[]> {
     return this.prisma.lecture.findMany({
       where: {
-        lectureSemester: {
-          year,
-          season,
-        },
+        semesterId,
       },
     });
   }
@@ -69,15 +63,11 @@ export class LectureRepository {
   }
 
   async getLecturesWithTasksBySemester(
-    year: number,
-    season: Season,
+    semesterId: number,
   ): Promise<LectureEntity[]> {
     return this.prisma.lecture.findMany({
       where: {
-        lectureSemester: {
-          year,
-          season,
-        },
+        semesterId,
       },
       include: {
         task: {

@@ -38,7 +38,7 @@ export class ProblemController {
     description: "특정 과제에 속한 모든 문제를 반환합니다.",
   })
   @ApiBadRequestResponse({
-    description: "과제를 조회하는 데 실패했습니다.",
+    description: "문제를 조회하는 데 실패했습니다.",
   })
   findProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
