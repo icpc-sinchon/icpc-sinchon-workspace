@@ -8,6 +8,7 @@ import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureRepository } from "./lecture.repository";
 import { TaskRepository } from "../task/task.repository";
 import { SemesterRepository } from "../semester/semester.repository";
+import { SemesterService } from "../semester/semester.service";
 import { Lecture, Level, Season } from "@prisma/client";
 import { LectureEntity } from "./entities/lecture.entity";
 
@@ -17,6 +18,7 @@ export class LectureService {
     private readonly lectureRepository: LectureRepository,
     private readonly taskRepository: TaskRepository,
     private readonly semesterRepository: SemesterRepository,
+    private readonly semesterService: SemesterService,
   ) {}
 
   async createLectureWithTasks(
@@ -99,17 +101,35 @@ export class LectureService {
     year: number,
     season: Season,
     level: Level,
-  ): Promise<LectureEntity[]> {
+  ): Promise<LectureEntity> {
     try {
-      return await this.lectureRepository.getLectures({
+      const semester = await this.semesterService.findSemesterBySeason(
+        year,
+        season,
+      );
+
+      if (!semester) {
+        throw new NotFoundException(
+          `Semester not found for year: ${year}, season: ${season}`,
+        );
+      }
+
+      const lecture = await this.lectureRepository.getLecture({
         where: {
-          lectureSemester: {
-            year,
-            season,
+          semesterId_level: {
+            semesterId: semester.id,
+            level,
           },
-          level,
         },
       });
+
+      if (!lecture) {
+        throw new NotFoundException(
+          `Lecture not found for year: ${year}, season: ${season}, level: ${level}`,
+        );
+      }
+
+      return lecture;
     } catch (error) {
       throw new BadRequestException(
         `Failed to find lecture by semester and level: ${error.message}`,
