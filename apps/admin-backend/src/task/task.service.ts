@@ -51,7 +51,7 @@ export class TaskService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve task: ${error.message}`,
+        `Failed to retrieve task for id ${id}: ${error.message}`,
       );
     }
   }

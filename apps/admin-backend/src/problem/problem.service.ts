@@ -54,7 +54,7 @@ export class ProblemService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve problem: ${error.message}`,
+        `Failed to retrieve problem for id ${id}: ${error.message}`,
       );
     }
   }

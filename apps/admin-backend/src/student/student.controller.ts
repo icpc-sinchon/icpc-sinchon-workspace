@@ -15,10 +15,10 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
 } from "@nestjs/swagger";
-import { StudentService } from "./student.service";
 import { CreateStudentDto } from "./dto/create-student.dto";
 import { UpdateStudentDto } from "./dto/update-student.dto";
 import { StudentEntity } from "./entities/student.entity";
+import { StudentService } from "./student.service";
 
 @ApiTags("Student")
 @Controller("student")
@@ -29,6 +29,9 @@ export class StudentController {
   @ApiOkResponse({
     type: [StudentEntity],
     description: "모든 학생을 반환합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "학생을 조회하는 데 실패했습니다.",
   })
   getAllStudent(): Promise<StudentEntity[]> {
     return this.studentService.getAllStudents();
@@ -42,10 +45,13 @@ export class StudentController {
   @ApiNotFoundResponse({
     description: "학생을 찾을 수 없습니다.",
   })
+  @ApiBadRequestResponse({
+    description: "학생을 조회하는 데 실패했습니다.",
+  })
   findStudentById(
     @Param("id", ParseIntPipe) id: number,
   ): Promise<StudentEntity> {
-    return this.studentService.findStudentById(id);
+    return this.studentService.getStudentById(id);
   }
 
   @Post()
@@ -91,9 +97,7 @@ export class StudentController {
   @ApiBadRequestResponse({
     description: "학생 삭제에 실패했습니다.",
   })
-  deleteStudent(
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<StudentEntity> {
-    return this.studentService.removeStudent(id);
+  deleteStudent(@Param("id", ParseIntPipe) id: number): Promise<StudentEntity> {
+    return this.studentService.deleteStudent(id);
   }
 }

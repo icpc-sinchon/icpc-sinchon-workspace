@@ -68,7 +68,7 @@ export class LectureService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve lecture: ${error.message}`,
+        `Failed to retrieve lecture for id ${id}: ${error.message}`,
       );
     }
   }

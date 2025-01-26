@@ -47,7 +47,7 @@ export class SemesterService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve semester: ${error.message}`,
+        `Failed to retrieve semester for id ${id}: ${error.message}`,
       );
     }
   }
