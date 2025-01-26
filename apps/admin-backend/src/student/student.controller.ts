@@ -33,7 +33,7 @@ export class StudentController {
   @ApiBadRequestResponse({
     description: "학생을 조회하는 데 실패했습니다.",
   })
-  getAllStudent(): Promise<StudentEntity[]> {
+  getAllStudents(): Promise<StudentEntity[]> {
     return this.studentService.getAllStudents();
   }
 

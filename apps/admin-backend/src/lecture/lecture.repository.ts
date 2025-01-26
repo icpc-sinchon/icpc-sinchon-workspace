@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "@/prisma/prisma.service";
-import type { Prisma, Level, Season } from "@prisma/client";
+import type { Prisma, Level } from "@prisma/client";
 import { LectureEntity } from "./entities/lecture.entity";
 import { TaskRepository } from "../task/task.repository";
 

@@ -46,7 +46,7 @@ export class LectureController {
   @ApiBadRequestResponse({
     description: "강의를 조회하는 데 실패했습니다.",
   })
-  findLectures(
+  getLectures(
     @Query("year", ParseIntPipe) year: number,
     @Query("season") season: Season,
   ): Promise<LectureEntity[]> {

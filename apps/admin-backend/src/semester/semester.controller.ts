@@ -33,7 +33,7 @@ export class SemesterController {
   @ApiBadRequestResponse({
     description: "학기를 조회하는 데 실패했습니다.",
   })
-  getAllSemester(): Promise<SemesterEntity[]> {
+  getAllSemesters(): Promise<SemesterEntity[]> {
     return this.semesterService.getAllSemesters();
   }
 
@@ -48,7 +48,7 @@ export class SemesterController {
   @ApiBadRequestResponse({
     description: "학기를 조회하는 데 실패했습니다.",
   })
-  findSemesterById(
+  getSemesterById(
     @Param("id", ParseIntPipe) id: number,
   ): Promise<SemesterEntity> {
     return this.semesterService.getSemesterById(id);

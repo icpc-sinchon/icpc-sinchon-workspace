@@ -7,10 +7,9 @@ import { StudentLectureLogEntity } from "./entities/student-lecture-log.entity";
 export class StudentLectureLogRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createStudentLectureLog(params: {
-    data: Prisma.StudentLectureLogCreateInput;
-  }): Promise<StudentLectureLogEntity> {
-    const { data } = params;
+  async createStudentLectureLog(
+    data: Prisma.StudentLectureLogCreateInput,
+  ): Promise<StudentLectureLogEntity> {
     return this.prisma.studentLectureLog.create({ data });
   }
 
@@ -18,33 +17,28 @@ export class StudentLectureLogRepository {
     return this.prisma.studentLectureLog.findMany();
   }
 
-  async getStudentLectureLog(params: {
-    where: Prisma.StudentLectureLogWhereUniqueInput;
-  }): Promise<StudentLectureLogEntity> {
-    const { where } = params;
-    return this.prisma.studentLectureLog.findUnique({ where });
+  async getStudentLectureLogById(id: number): Promise<StudentLectureLogEntity> {
+    return this.prisma.studentLectureLog.findUnique({ where: { id } });
   }
 
-  async getStudentLectureLogs(params: {
-    where: Prisma.StudentLectureLogWhereInput;
-  }): Promise<StudentLectureLogEntity[]> {
-    const { where } = params;
-    return this.prisma.studentLectureLog.findMany({ where });
+  async getStudentLectureLogByLectureId(
+    studentId: number,
+    lectureId: number,
+  ): Promise<StudentLectureLogEntity> {
+    return this.prisma.studentLectureLog.findUnique({
+      where: { studentId_lectureId: { studentId, lectureId } },
+    });
   }
 
-  async updateStudentLectureLog(params: {
-    where: Prisma.StudentLectureLogWhereUniqueInput;
-    data: Prisma.StudentLectureLogUpdateInput;
-  }): Promise<StudentLectureLogEntity> {
-    const { where, data } = params;
-    return this.prisma.studentLectureLog.update({ where, data });
+  async updateStudentLectureLog(
+    id: number,
+    data: Prisma.StudentLectureLogUpdateInput,
+  ): Promise<StudentLectureLogEntity> {
+    return this.prisma.studentLectureLog.update({ where: { id }, data });
   }
 
-  async deleteStudentLectureLog(params: {
-    where: Prisma.StudentLectureLogWhereUniqueInput;
-  }): Promise<StudentLectureLogEntity> {
-    const { where } = params;
-    return this.prisma.studentLectureLog.delete({ where });
+  async deleteStudentLectureLog(id: number): Promise<StudentLectureLogEntity> {
+    return this.prisma.studentLectureLog.delete({ where: { id } });
   }
 
   async resetStudentLectureLog(): Promise<void> {

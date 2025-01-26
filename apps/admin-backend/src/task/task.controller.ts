@@ -40,7 +40,7 @@ export class TaskController {
   @ApiBadRequestResponse({
     description: "과제를 조회하는 데 실패했습니다.",
   })
-  findTasksByLecture(
+  getTasksByLecture(
     @Query("lectureId", ParseIntPipe) lectureId: number,
   ): Promise<TaskEntity[]> {
     return this.taskService.getTasksByLectureId(lectureId);
@@ -57,7 +57,7 @@ export class TaskController {
   @ApiBadRequestResponse({
     description: "과제를 조회하는 데 실패했습니다.",
   })
-  findTaskById(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
+  getTaskById(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
     return this.taskService.getTaskById(id);
   }
 
@@ -102,7 +102,7 @@ export class TaskController {
   @ApiBadRequestResponse({
     description: "과제 삭제에 실패했습니다.",
   })
-  removeTask(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
+  deleteTask(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
     return this.taskService.removeTask(id);
   }
 }

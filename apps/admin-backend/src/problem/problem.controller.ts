@@ -40,7 +40,7 @@ export class ProblemController {
   @ApiBadRequestResponse({
     description: "문제를 조회하는 데 실패했습니다.",
   })
-  findProblemsByTask(
+  getProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
   ): Promise<ProblemEntity[]> {
     return this.problemService.getProblemsByTaskId(taskId);
@@ -89,7 +89,7 @@ export class ProblemController {
   @ApiBadRequestResponse({
     description: "문제 삭제에 실패했습니다.",
   })
-  removeProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
+  deleteProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
     return this.problemService.removeProblem(id);
   }
 }
