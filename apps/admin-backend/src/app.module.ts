@@ -5,6 +5,7 @@ import { TaskModule } from "./task/task.module";
 import { ProblemModule } from "./problem/problem.module";
 import { StudentModule } from "./student/student.module";
 import { AuthModule } from "./auth/auth.module";
+import { StudentAttendModule } from './student-attend/student-attend.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from "./auth/auth.module";
     ProblemModule,
     StudentModule,
     AuthModule,
+    StudentAttendModule,
   ],
 })
 export class AppModule {}
