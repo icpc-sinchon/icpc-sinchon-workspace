@@ -30,11 +30,6 @@ export class StudentLectureService {
       const student = await this.studentRepository.getStudentByBojHandle(
         studentData.bojHandle,
       );
-      if (student) {
-        throw new BadRequestException(
-          `Student with boj handle ${studentData.bojHandle} already exists`,
-        );
-      }
 
       const { year, season, level } = lectureInfo;
 
@@ -58,10 +53,25 @@ export class StudentLectureService {
         );
       }
 
-      return this.studentLectureRepository.createStudentWithLectureLog(
-        studentData,
-        lecture.id,
-      );
+      // 학생이 존재하지 않으면 새로 생성하고 수강 로그 추가
+      if (!student) {
+        return this.studentLectureRepository.createStudentWithLectureLog(
+          studentData,
+          lecture.id,
+        );
+      }
+
+      // 학생이 존재하면 수강 로그만 추가
+      return this.studentLectureLogRepository.createStudentLectureLog({
+        isCancelled: false,
+        isInvited: false,
+        student: {
+          connect: { id: student.id },
+        },
+        lecture: {
+          connect: { id: lecture.id },
+        },
+      });
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -111,9 +121,7 @@ export class StudentLectureService {
           studentNumber: student.studentNumber,
           paymentStatus: student.paymentStatus,
           refundAccount: student.refundAccount,
-          lectureLevels: student.studentLectureLog.map(
-            (log) => log.lectureId,
-          ),
+          lectureLevels: student.studentLectureLog.map((log) => log.lectureId),
         };
       });
     } catch (error) {

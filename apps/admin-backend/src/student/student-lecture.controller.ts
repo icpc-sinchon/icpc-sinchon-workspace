@@ -16,6 +16,7 @@ import {
 import { Season } from "@prisma/client";
 import { CreateStudentLectureDto } from "./dto/create-student-lecture.dto";
 import { StudentEntity } from "./entities/student.entity";
+import { StudentLectureLogEntity } from "../student-lecture-log/entities/student-lecture-log.entity";
 import { StudentLectureService } from "./student-lecture.service";
 
 @ApiTags("StudentLecture")
@@ -52,7 +53,7 @@ export class StudentLectureController {
   })
   createStudentWithLectureLog(
     @Body() createStudentLectureDto: CreateStudentLectureDto,
-  ): Promise<StudentEntity> {
+  ): Promise<StudentEntity | StudentLectureLogEntity> {
     const { lectureInfo, ...studentData } = createStudentLectureDto;
     return this.studentLectureService.createStudentWithLectureLog(
       studentData,
