@@ -7,6 +7,7 @@ import {
   STUDENT_LECTURE_LOG,
   WEEKLY_ATTEND_LOG,
   REFUND_POLICY,
+  TASK,
 } from "./mock";
 import * as bcrypt from "bcrypt";
 
@@ -28,7 +29,7 @@ async function main() {
         ...admin,
         password: hashedPassword,
       };
-    }),
+    })
   );
 
   // 목 데이터 삽입
@@ -49,6 +50,11 @@ async function main() {
 
   await prisma.lecture.createMany({
     data: LECTURE,
+    skipDuplicates: true,
+  });
+
+  await prisma.task.createMany({
+    data: TASK,
     skipDuplicates: true,
   });
 
