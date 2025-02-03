@@ -16,7 +16,7 @@ datasource db {
 /// 관리자 계정 정보
 /// @namespace 관리자
 model Admin {
-  /// Primary Key.
+  /// Primary Key
   id       Int    @id @default(autoincrement())
   /// 관리자 ID는 중복될 수 없음
   username String @unique @db.VarChar(255)
@@ -45,14 +45,6 @@ model Student {
   school            School              @default(SOGANG)
   /// 학생의 학번
   studentNumber     String              @db.VarChar(20)
-  /// 학생의 납부 상태
-  ///
-  /// 3만원 혹은 6만원 중 하나(2024 Summer 기준)
-  ///
-  /// 3만원은 비환급, 6만원은 환급 옵션
-  paymentStatus    PaymentStatus      @default(PAID_30000)
-  /// 환불 계좌
-  refundAccount     String
   /// @minItems 1
   studentLectureLog StudentLectureLog[]
   weeklyAttendLog   WeeklyAttendLog[]
@@ -75,6 +67,7 @@ model Semester {
   season       Season         @default(Summer)
   lecture      Lecture[]
   refundPolicy RefundPolicy[]
+
   // 연도와 계절이 유일한 조합이어야 함
   @@unique([year, season], name: "year_season")
 }
@@ -100,9 +93,9 @@ model Lecture {
   task              Task[]
   weeklyAttendLog   WeeklyAttendLog[]
 
-  @@index([semesterId], map: "semesterId")
   // 강의의 학기와 난이도가 유일한 조합이어야 함
   @@unique([semesterId, level])
+  @@index([semesterId], map: "semesterId")
 }
 
 /// 강의의 과제 정보
@@ -115,24 +108,24 @@ model Lecture {
 ///
 /// @namespace 학생관리
 model Task {
-  id         Int       @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   /// 과제가 속한 강의의 회차
-  round      Int
+  round         Int
   /// 해당 강의의 BOJ 그룹 내에서 과제를 나타내는 연습의 ID
   ///
   /// BOJ 크롤링 시에 사용
-  practiceId      Int
+  practiceId    Int
   /// 과제가 속한 강의
-  lecture          Lecture @relation(fields: [lectureId], references: [id], onDelete: Cascade)
-  lectureId       Int
+  lecture       Lecture   @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+  lectureId     Int
   /// 과제에 속한 BOJ 문제 목록
-  problems Problem[]
+  problems      Problem[]
   /// 과제 출석 여부를 판단하기 위한 기준 문제 수
-  minSolveCount   Int
+  minSolveCount Int
 
-  @@index([lectureId], map: "lectureId")
   // 과제가 속한 강의와 과제의 회차가 유일한 조합이어야 함
   @@unique([lectureId, round])
+  @@index([lectureId], map: "lectureId")
 }
 
 /// 강의의 과제에 포함된 문제 정보
@@ -153,9 +146,9 @@ model Problem {
   taskId           Int
   task             Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
 
-  @@index([taskId], map: "taskId")
   // 문제가 속한 과제와 BOJ 문제 번호가 유일한 조합이어야 함
   @@unique([taskId, bojProblemNumber])
+  @@index([taskId], map: "taskId")
 }
 
 /// 환급 정책 정보
@@ -183,10 +176,10 @@ model RefundPolicy {
   /// 해당 환급조건의 최대 출석 횟수
   maxAttend      Int
   /// 환급되는 금액의 비율
-  refundAmount Int
+  refundAmount   Int
   /// 해당 환급 정책이 적용되는 학기
-  refundSemester Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade)
-  semesterId Int
+  refundSemester Semester   @relation(fields: [semesterId], references: [id], onDelete: Cascade)
+  semesterId     Int
 
   @@index([semesterId], map: "semesterId")
 }
@@ -205,21 +198,25 @@ enum RefundType {
 /// 수강신청, 취소 상태와 BOJ 그룹 초대 여부를 저장
 /// @namespace 학생관리
 model StudentLectureLog {
-  id          Int     @id @default(autoincrement())
-  studentId   Int
-  lectureId   Int
+  id            Int          @id @default(autoincrement())
+  studentId     Int
+  lectureId     Int
+  /// 학생의 환급 옵션 (환급, 비환급 중 하나)
+  RefundOption  RefundOption @default(Refundable)
+  /// 환불 계좌
+  refundAccount String
   /// 학생이 BOJ 그룹에 초대되었는지 여부. 초대되었을 시 true
   ///
   /// 처음에는 초대되어 있지 않을 것이므로 기본값 false
-  isInvited   Boolean @default(false)
+  isInvited     Boolean      @default(false)
   /// 수강신청이 취소되었는지 여부. 취소되었을 시 true
-  isCancelled Boolean @default(false)
-  lecture     Lecture @relation(fields: [lectureId], references: [id], onDelete: Cascade)
-  student     Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  isCancelled   Boolean      @default(false)
+  lecture       Lecture      @relation(fields: [lectureId], references: [id], onDelete: Cascade)
+  student       Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
+  @@unique([studentId, lectureId])
   @@index([lectureId], map: "lectureId")
   @@index([studentId], map: "studentId")
-  @@unique([studentId, lectureId])
 }
 
 /// 학생의 강의 회차별 출석 기록
@@ -246,14 +243,14 @@ model WeeklyAttendLog {
   lecture     Lecture @relation(fields: [lectureId], references: [id], onDelete: Cascade)
   student     Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
+  @@unique([studentId, lectureId, round])
   @@index([lectureId], map: "lectureId")
   @@index([studentId], map: "studentId")
-  @@unique([studentId, lectureId, round])
 }
 
-enum PaymentStatus {
-  PAID_30000
-  PAID_60000
+enum RefundOption {
+  Refundable
+  Nonrefundable
 }
 
 enum School {
@@ -273,6 +270,6 @@ enum Season {
 
 enum Level {
   Novice
-  Intermediate
   Advanced
+  Expert
 }
