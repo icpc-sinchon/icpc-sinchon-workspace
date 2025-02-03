@@ -14,6 +14,7 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiBadRequestResponse,
+  ApiOperation,
 } from "@nestjs/swagger";
 import { CreateStudentDto } from "./dto/create-student.dto";
 import { UpdateStudentDto } from "./dto/update-student.dto";
@@ -26,6 +27,7 @@ export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get()
+  @ApiOperation({ summary: "모든 학생 목록 조회" })
   @ApiOkResponse({
     type: [StudentEntity],
     description: "모든 학생을 반환합니다.",
@@ -38,6 +40,7 @@ export class StudentController {
   }
 
   @Get(":id")
+  @ApiOperation({ summary: "특정 학생 조회" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 반환합니다.",
@@ -55,6 +58,7 @@ export class StudentController {
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 학생 생성" })
   @ApiCreatedResponse({
     type: StudentEntity,
     description: "새로운 학생을 생성합니다.",
@@ -69,6 +73,7 @@ export class StudentController {
   }
 
   @Patch("/:id")
+  @ApiOperation({ summary: "특정 학생 수정" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 업데이트합니다.",
@@ -87,6 +92,7 @@ export class StudentController {
   }
 
   @Delete("/:id")
+  @ApiOperation({ summary: "특정 학생 삭제" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 삭제합니다.",

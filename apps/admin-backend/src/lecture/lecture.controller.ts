@@ -16,6 +16,7 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiQuery,
+  ApiOperation,
 } from "@nestjs/swagger";
 import { Season } from "@prisma/client";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
@@ -29,6 +30,7 @@ export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
   @Get()
+  @ApiOperation({ summary: "특정 학기의 강의 목록 조회" })
   @ApiQuery({
     name: "year",
     type: Number,
@@ -54,6 +56,7 @@ export class LectureController {
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 강의 생성" })
   @ApiCreatedResponse({
     type: LectureEntity,
     description: "새로운 강의를 생성합니다.",
@@ -68,6 +71,7 @@ export class LectureController {
   }
 
   @Patch(":id")
+  @ApiOperation({ summary: "특정 강의 수정" })
   @ApiOkResponse({
     type: LectureEntity,
     description: "특정 ID를 가진 강의를 업데이트합니다.",
@@ -86,6 +90,7 @@ export class LectureController {
   }
 
   @Delete(":id")
+  @ApiOperation({ summary: "특정 강의 삭제" })
   @ApiOkResponse({
     type: LectureEntity,
     description: "특정 ID를 가진 강의를 삭제합니다.",

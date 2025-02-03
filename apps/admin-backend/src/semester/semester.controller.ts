@@ -14,6 +14,7 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiBadRequestResponse,
+  ApiOperation,
 } from "@nestjs/swagger";
 import { CreateSemesterDto } from "./dto/create-semester.dto";
 import { UpdateSemesterDto } from "./dto/update-semester.dto";
@@ -26,6 +27,7 @@ export class SemesterController {
   constructor(private readonly semesterService: SemesterService) {}
 
   @Get()
+  @ApiOperation({ summary: "모든 학기 목록 조회" })
   @ApiOkResponse({
     type: [SemesterEntity],
     description: "모든 학기를 반환합니다.",
@@ -38,6 +40,7 @@ export class SemesterController {
   }
 
   @Get(":id")
+  @ApiOperation({ summary: "특정 학기 조회" })
   @ApiOkResponse({
     type: SemesterEntity,
     description: "특정 ID를 가진 학기를 반환합니다.",
@@ -55,6 +58,7 @@ export class SemesterController {
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 학기 생성" })
   @ApiCreatedResponse({
     type: SemesterEntity,
     description: "새로운 학기를 생성합니다.",
@@ -69,6 +73,7 @@ export class SemesterController {
   }
 
   @Patch("/:id")
+  @ApiOperation({ summary: "특정 학기 수정" })
   @ApiOkResponse({
     type: SemesterEntity,
     description: "특정 ID를 가진 학기를 업데이트합니다.",
@@ -87,6 +92,7 @@ export class SemesterController {
   }
 
   @Delete("/:id")
+  @ApiOperation({ summary: "특정 학기 삭제" })
   @ApiOkResponse({
     type: SemesterEntity,
     description: "특정 ID를 가진 학기를 삭제합니다.",

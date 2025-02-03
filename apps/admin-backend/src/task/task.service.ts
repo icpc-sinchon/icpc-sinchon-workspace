@@ -19,12 +19,21 @@ export class TaskService {
   ) {}
 
   async createTask(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
+    const { lectureId, ...taskData } = createTaskDto;
     try {
+      const lecture = await this.lectureRepository.getLectureById(lectureId);
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${lectureId} not found`);
+      }
+
       return await this.taskRepository.createTask({
-        ...createTaskDto,
-        lecture: { connect: { id: createTaskDto.lectureId } },
+        ...taskData,
+        lecture: { connect: { id: lectureId } },
       });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(`Failed to create task: ${error.message}`);
     }
   }

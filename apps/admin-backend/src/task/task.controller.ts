@@ -16,6 +16,7 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiQuery,
+  ApiOperation,
 } from "@nestjs/swagger";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { UpdateTaskDto } from "./dto/update-task.dto";
@@ -28,6 +29,7 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get()
+  @ApiOperation({ summary: "특정 강의의 과제 목록 조회" })
   @ApiQuery({
     name: "lectureId",
     type: Number,
@@ -47,6 +49,7 @@ export class TaskController {
   }
 
   @Get(":id")
+  @ApiOperation({ summary: "특정 과제 조회" })
   @ApiOkResponse({
     type: TaskEntity,
     description: "특정 ID를 가진 과제를 반환합니다.",
@@ -62,6 +65,7 @@ export class TaskController {
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 과제 생성" })
   @ApiCreatedResponse({
     type: TaskEntity,
     description: "새로운 과제를 생성합니다.",
@@ -74,6 +78,7 @@ export class TaskController {
   }
 
   @Patch(":id")
+  @ApiOperation({ summary: "특정 과제 수정" })
   @ApiOkResponse({
     type: TaskEntity,
     description: "특정 ID를 가진 과제를 업데이트합니다.",
@@ -92,6 +97,7 @@ export class TaskController {
   }
 
   @Delete(":id")
+  @ApiOperation({ summary: "특정 과제 삭제" })
   @ApiOkResponse({
     type: TaskEntity,
     description: "특정 ID를 가진 과제를 삭제합니다.",
