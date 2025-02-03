@@ -1,5 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsEnum, IsNotEmpty, IsEmail, IsString, IsPositive } from "class-validator";
+import {
+  IsInt,
+  IsEnum,
+  IsNotEmpty,
+  IsEmail,
+  IsString,
+  IsPositive,
+} from "class-validator";
 import { School, PaymentStatus } from "@prisma/client";
 import type { LectureIdentifier } from "../../types";
 
@@ -50,6 +57,14 @@ export class CreateStudentLectureDto {
   @IsString()
   refundAccount: string;
 
-  @ApiProperty({ description: "강의 정보" })
+  @ApiProperty({
+    description: "강의 정보",
+    type: Object,
+    example: {
+      year: 2025,
+      season: "Winter",
+      level: "Novice"
+    }
+  })
   lectureInfo: LectureIdentifier;
 }

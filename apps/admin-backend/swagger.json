@@ -866,6 +866,110 @@
         ]
       }
     },
+    "/student-lecture/semester/{year}/{season}": {
+      "get": {
+        "operationId": "StudentLectureController_getStudentsWithLectureLevelsBySemester",
+        "parameters": [
+          {
+            "name": "year",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "season",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "해당 학기에 수강 중인 학생 목록을 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentEntity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "학생울 조회하는 데 실패했습니다."
+          }
+        },
+        "summary": "특정 학기의 수강생 목록 조회",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
+    "/student-lecture": {
+      "post": {
+        "operationId": "StudentLectureController_createStudentWithLectureLog",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentLectureDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 학생과 강의 로그를 생성합니다."
+          },
+          "400": {
+            "description": "학생 생성에 실패했습니다."
+          }
+        },
+        "summary": "새로운 학생과 강의 로그 생성",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
+    "/student-lecture/multiple": {
+      "post": {
+        "operationId": "StudentLectureController_createMultipleStudents",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 여러 학생과 강의 로그를 생성합니다."
+          },
+          "400": {
+            "description": "학생 생성에 실패했습니다."
+          }
+        },
+        "summary": "새로운 여러 학생과 강의 로그 생성",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
     "/auth/users": {
       "get": {
         "operationId": "AuthController_allUsers",
@@ -1436,6 +1540,75 @@
             "description": "환불 계좌"
           }
         }
+      },
+      "CreateStudentLectureDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "학생 이름 (최대 50자)"
+          },
+          "bojHandle": {
+            "type": "string",
+            "description": "BOJ 핸들 (최대 50자, 고유값)"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "학생 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "학생 전화번호 (최대 20자)"
+          },
+          "school": {
+            "type": "string",
+            "enum": [
+              "YONSEI",
+              "SOGANG",
+              "HONGIK",
+              "EWHA",
+              "SOOKMYUNG"
+            ],
+            "description": "학생 학교 (YONSEI, SOGANG, HONGIK, EWHA, SOOKMYUNG 중 하나)"
+          },
+          "studentNumber": {
+            "type": "string",
+            "description": "학생 학번 (최대 20자)"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "PAID_30000",
+              "PAID_60000"
+            ],
+            "description": "학생 납부 상태 (PAID_30000, PAID_60000 중 하나)"
+          },
+          "refundAccount": {
+            "type": "string",
+            "description": "환불 계좌"
+          },
+          "lectureInfo": {
+            "type": "object",
+            "description": "강의 정보",
+            "example": {
+              "year": 2025,
+              "season": "Winter",
+              "level": "Novice"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "bojHandle",
+          "email",
+          "phone",
+          "school",
+          "studentNumber",
+          "paymentStatus",
+          "refundAccount",
+          "lectureInfo"
+        ]
       },
       "SignInDto": {
         "type": "object",
