@@ -28,7 +28,7 @@ async function main() {
         ...admin,
         password: hashedPassword,
       };
-    }),
+    })
   );
 
   // 목 데이터 삽입
