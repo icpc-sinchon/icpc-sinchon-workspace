@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Student, School, PaymentStatus } from "@prisma/client";
+import { School, PaymentStatus } from "@prisma/client";
+import { StudentLectureLogEntity } from "../../student-lecture-log/entities/student-lecture-log.entity";
 
-export class StudentEntity implements Student {
+export class StudentLectureEntity {
   @ApiProperty({ description: "고유 ID 값" })
   id: number;
 
@@ -37,4 +38,10 @@ export class StudentEntity implements Student {
 
   @ApiProperty({ description: "학생의 환불 계좌" })
   refundAccount: string;
+
+  @ApiProperty({
+    description: "학생과 연관된 강의 로그 목록",
+    type: () => [StudentLectureLogEntity],
+  })
+  studentLectureLog: StudentLectureLogEntity[];
 }

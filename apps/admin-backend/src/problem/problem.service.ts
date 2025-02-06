@@ -3,14 +3,18 @@ import {
   NotFoundException,
   BadRequestException,
 } from "@nestjs/common";
-import { ProblemRepository } from "./problem.repository";
 import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
 import { ProblemEntity } from "./entities/problem.entity";
+import { ProblemRepository } from "./problem.repository";
+import { TaskRepository } from "../task/task.repository";
 
 @Injectable()
 export class ProblemService {
-  constructor(private readonly problemRepository: ProblemRepository) {}
+  constructor(
+    private readonly problemRepository: ProblemRepository,
+    private readonly taskRepository: TaskRepository,
+  ) {}
 
   async createProblem(
     createProblemDto: CreateProblemDto,
@@ -18,23 +22,29 @@ export class ProblemService {
     const { taskId, ...problemData } = createProblemDto;
     try {
       return await this.problemRepository.createProblem({
-        data: {
-          ...problemData,
-          task: { connect: { id: createProblemDto.taskId } },
-        },
+        ...problemData,
+        task: { connect: { id: taskId } },
       });
     } catch (error) {
       throw new BadRequestException(
-        `Problem creation failed: ${error.message}`,
+        `Failed to create problem: ${error.message}`,
       );
     }
   }
 
-  async findProblemById(id: number): Promise<ProblemEntity> {
+  async getAllProblems(): Promise<ProblemEntity[]> {
     try {
-      const problem = await this.problemRepository.getProblem({
-        where: { id },
-      });
+      return await this.problemRepository.getAllProblems();
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve all problems: ${error.message}`,
+      );
+    }
+  }
+
+  async getProblemById(id: number): Promise<ProblemEntity> {
+    try {
+      const problem = await this.problemRepository.getProblemById(id);
       if (!problem) {
         throw new NotFoundException(`Problem with ID ${id} not found`);
       }
@@ -44,33 +54,45 @@ export class ProblemService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve problem: ${error.message}`,
+        `Failed to retrieve problem for id ${id}: ${error.message}`,
       );
     }
   }
 
-  async findProblemByBojProblemNumber(
+  async getProblemsByTaskId(taskId: number): Promise<ProblemEntity[]> {
+    try {
+      const task = await this.taskRepository.getTaskById(taskId);
+      if (!task) {
+        throw new NotFoundException(`Task with ID ${taskId} not found`);
+      }
+
+      return await this.problemRepository.getProblemsByTaskId(taskId);
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve problems for task id ${taskId}: ${error.message}`,
+      );
+    }
+  }
+
+  async getProblemByBojProblemNumber(
     taskId: number,
     bojProblemNumber: number,
   ): Promise<ProblemEntity> {
     try {
-      const problems = await this.problemRepository.getProblems({
-        where: { taskId, bojProblemNumber },
-      });
-      return problems.length > 0 ? problems[0] : null;
+      const problem =
+        await this.problemRepository.getProblemByTaskIdAndBojProblemNumber(
+          taskId,
+          bojProblemNumber,
+        );
+      if (!problem) {
+        throw new NotFoundException(
+          `Problem not found for task id ${taskId} and BOJ problem number ${bojProblemNumber}`,
+        );
+      }
+      return problem;
     } catch (error) {
       throw new BadRequestException(
-        `Failed to find problem with BOJ problem number ${bojProblemNumber}: ${error.message}`,
-      );
-    }
-  }
-
-  async findProblemsByTaskId(taskId: number): Promise<ProblemEntity[]> {
-    try {
-      return await this.problemRepository.getProblems({ where: { taskId } });
-    } catch (error) {
-      throw new BadRequestException(
-        `Failed to retrieve problems: ${error.message}`,
+        `Failed to retrieve problem for task id ${taskId} and BOJ problem number ${bojProblemNumber}: ${error.message}`,
       );
     }
   }
@@ -80,39 +102,34 @@ export class ProblemService {
     updateProblemDto: UpdateProblemDto,
   ): Promise<ProblemEntity> {
     try {
-      await this.findProblemById(id);
-      return await this.problemRepository.updateProblem({
-        where: { id },
-        data: updateProblemDto,
-      });
+      const problem = await this.problemRepository.getProblemById(id);
+      if (!problem) {
+        throw new NotFoundException(`Problem with ID ${id} not found`);
+      }
+      return await this.problemRepository.updateProblem(id, updateProblemDto);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Problem update failed: ${error.message}`);
-    }
-  }
-
-  async getAllProblems(): Promise<ProblemEntity[]> {
-    try {
-      return await this.problemRepository.getAllProblems();
-    } catch (error) {
       throw new BadRequestException(
-        `Failed to retrieve problems: ${error.message}`,
+        `Failed to update problem: ${error.message}`,
       );
     }
   }
 
   async removeProblem(id: number): Promise<ProblemEntity> {
     try {
-      await this.findProblemById(id);
-      return await this.problemRepository.deleteProblem({ where: { id } });
+      const problem = await this.problemRepository.getProblemById(id);
+      if (!problem) {
+        throw new NotFoundException(`Problem with ID ${id} not found`);
+      }
+      return await this.problemRepository.deleteProblem(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
       throw new BadRequestException(
-        `Problem deletion failed: ${error.message}`,
+        `Failed to delete problem: ${error.message}`,
       );
     }
   }

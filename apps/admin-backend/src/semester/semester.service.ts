@@ -3,11 +3,11 @@ import {
   NotFoundException,
   BadRequestException,
 } from "@nestjs/common";
+import type { Season } from "@prisma/client";
 import type { CreateSemesterDto } from "./dto/create-semester.dto";
 import type { UpdateSemesterDto } from "./dto/update-semester.dto";
-import { SemesterRepository } from "./semester.repository";
-import type { Season } from "@prisma/client";
 import { SemesterEntity } from "./entities/semester.entity";
+import { SemesterRepository } from "./semester.repository";
 
 @Injectable()
 export class SemesterService {
@@ -17,21 +17,27 @@ export class SemesterService {
     createSemesterDto: CreateSemesterDto,
   ): Promise<SemesterEntity> {
     try {
-      return await this.semesterRepository.createSemester({
-        data: createSemesterDto,
-      });
+      return await this.semesterRepository.createSemester(createSemesterDto);
     } catch (error) {
       throw new BadRequestException(
-        `Semester creation failed: ${error.message}`,
+        `Failed to create semester: ${error.message}`,
       );
     }
   }
 
-  async findSemesterById(id: number): Promise<SemesterEntity> {
+  async getAllSemesters(): Promise<SemesterEntity[]> {
     try {
-      const semester = await this.semesterRepository.getSemester({
-        where: { id },
-      });
+      return await this.semesterRepository.getAllSemesters();
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve all semesters: ${error.message}`,
+      );
+    }
+  }
+
+  async getSemesterById(id: number): Promise<SemesterEntity> {
+    try {
+      const semester = await this.semesterRepository.getSemesterById(id);
       if (!semester) {
         throw new NotFoundException(`Semester with ID ${id} not found`);
       }
@@ -41,31 +47,25 @@ export class SemesterService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve semester: ${error.message}`,
+        `Failed to retrieve semester for id ${id}: ${error.message}`,
       );
     }
   }
 
-  async findSemesterBySeason(
+  async getSemesterByYearAndSeason(
     year: number,
     season: Season,
   ): Promise<SemesterEntity> {
     try {
-      const semester = await this.semesterRepository.getSemester({
-        where: {
-          year_season: {
-            year,
-            season,
-          },
-        },
-      });
-
+      const semester = await this.semesterRepository.getSemesterByYearAndSeason(
+        year,
+        season,
+      );
       if (!semester) {
         throw new NotFoundException(
-          `Semester for year ${year} and season ${season} not found`,
+          `Semester not found for year ${year} and season ${season}`,
         );
       }
-
       return semester;
     } catch (error) {
       if (error instanceof NotFoundException) {
@@ -82,39 +82,37 @@ export class SemesterService {
     updateSemesterDto: UpdateSemesterDto,
   ): Promise<SemesterEntity> {
     try {
-      await this.findSemesterById(id);
-      return await this.semesterRepository.updateSemester({
-        where: { id },
-        data: updateSemesterDto,
-      });
+      const semester = await this.semesterRepository.getSemesterById(id);
+      if (!semester) {
+        throw new NotFoundException(`Semester with ID ${id} not found`);
+      }
+      return await this.semesterRepository.updateSemester(
+        id,
+        updateSemesterDto,
+      );
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Semester update failed: ${error.message}`);
-    }
-  }
-
-  async getAllSemesters(): Promise<SemesterEntity[]> {
-    try {
-      return await this.semesterRepository.getAllSemesters();
-    } catch (error) {
       throw new BadRequestException(
-        `Failed to retrieve semesters: ${error.message}`,
+        `Failed to update semester: ${error.message}`,
       );
     }
   }
 
-  async removeSemester(id: number): Promise<SemesterEntity> {
+  async deleteSemester(id: number): Promise<SemesterEntity> {
     try {
-      await this.findSemesterById(id);
-      return await this.semesterRepository.deleteSemester({ where: { id } });
+      const semester = await this.semesterRepository.getSemesterById(id);
+      if (!semester) {
+        throw new NotFoundException(`Semester with ID ${id} not found`);
+      }
+      return await this.semesterRepository.deleteSemester(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
       throw new BadRequestException(
-        `Semester deletion failed: ${error.message}`,
+        `Failed to delete semester: ${error.message}`,
       );
     }
   }

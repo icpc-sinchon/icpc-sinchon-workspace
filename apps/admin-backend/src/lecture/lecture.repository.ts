@@ -1,43 +1,74 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "@/prisma/prisma.service";
-import type { Prisma } from "@prisma/client";
+import type { Prisma, Level } from "@prisma/client";
 import { LectureEntity } from "./entities/lecture.entity";
+import { TaskRepository } from "../task/task.repository";
 
 @Injectable()
 export class LectureRepository {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private readonly taskRepository: TaskRepository,
+  ) {}
 
-  async createLecture(params: {
-    data: Prisma.LectureCreateInput;
-  }): Promise<LectureEntity> {
-    const { data } = params;
+  async createLecture(data: Prisma.LectureCreateInput): Promise<LectureEntity> {
     return this.prisma.lecture.create({ data });
+  }
+
+  async createLectureWithTasks(
+    data: Prisma.LectureCreateInput,
+  ): Promise<LectureEntity> {
+    const newLecture = await this.prisma.lecture.create({ data });
+
+    const tasks = Array.from({ length: newLecture.lectureNumber }, (_, i) => ({
+      lectureId: newLecture.id,
+      round: i + 1,
+      practiceId: 0,
+      minSolveCount: 0,
+    }));
+
+    await this.taskRepository.createTasks(tasks);
+
+    return newLecture;
   }
 
   async getAllLectures(): Promise<LectureEntity[]> {
     return this.prisma.lecture.findMany();
   }
 
-  async getLecture(params: {
-    where: Prisma.LectureWhereUniqueInput;
-  }): Promise<LectureEntity> {
-    const { where } = params;
-    return this.prisma.lecture.findUnique({ where });
+  async getLectureById(id: number): Promise<LectureEntity> {
+    return this.prisma.lecture.findUnique({ where: { id } });
   }
 
-  async getLectures(params: {
-    where: Prisma.LectureWhereInput;
-  }): Promise<LectureEntity[]> {
-    const { where } = params;
-    return this.prisma.lecture.findMany({ where });
-  }
-
-  async getLecturesWithTasks(params: {
-    where: Prisma.LectureWhereInput;
-  }): Promise<LectureEntity[]> {
-    const { where } = params;
+  async getLecturesBySemester(semesterId: number): Promise<LectureEntity[]> {
     return this.prisma.lecture.findMany({
-      where,
+      where: {
+        semesterId,
+      },
+    });
+  }
+
+  async getLectureBySemesterAndLevel(
+    semesterId: number,
+    level: Level,
+  ): Promise<LectureEntity | null> {
+    return this.prisma.lecture.findUnique({
+      where: {
+        semesterId_level: {
+          semesterId,
+          level,
+        },
+      },
+    });
+  }
+
+  async getLecturesWithTasksBySemester(
+    semesterId: number,
+  ): Promise<LectureEntity[]> {
+    return this.prisma.lecture.findMany({
+      where: {
+        semesterId,
+      },
       include: {
         task: {
           include: { problems: true },
@@ -46,19 +77,15 @@ export class LectureRepository {
     });
   }
 
-  async updateLecture(params: {
-    where: Prisma.LectureWhereUniqueInput;
-    data: Prisma.LectureUpdateInput;
-  }): Promise<LectureEntity> {
-    const { where, data } = params;
-    return this.prisma.lecture.update({ where, data });
+  async updateLecture(
+    id: number,
+    data: Prisma.LectureUpdateInput,
+  ): Promise<LectureEntity> {
+    return this.prisma.lecture.update({ where: { id }, data });
   }
 
-  async deleteLecture(params: {
-    where: Prisma.LectureWhereUniqueInput;
-  }): Promise<LectureEntity> {
-    const { where } = params;
-    return this.prisma.lecture.delete({ where });
+  async deleteLecture(id: number): Promise<LectureEntity> {
+    return this.prisma.lecture.delete({ where: { id } });
   }
 
   async resetLecture(): Promise<void> {

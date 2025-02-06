@@ -3,7 +3,7 @@
   "paths": {
     "/semester": {
       "get": {
-        "operationId": "SemesterController_getAllSemester",
+        "operationId": "SemesterController_getAllSemesters",
         "parameters": [],
         "responses": {
           "200": {
@@ -18,8 +18,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "학기를 조회하는 데 실패했습니다."
           }
         },
+        "summary": "모든 학기 목록 조회",
         "tags": [
           "Semester"
         ]
@@ -52,6 +56,7 @@
             "description": "학기 생성에 실패했습니다."
           }
         },
+        "summary": "새로운 학기 생성",
         "tags": [
           "Semester"
         ]
@@ -59,7 +64,7 @@
     },
     "/semester/{id}": {
       "get": {
-        "operationId": "SemesterController_findSemesterById",
+        "operationId": "SemesterController_getSemesterById",
         "parameters": [
           {
             "name": "id",
@@ -81,10 +86,14 @@
               }
             }
           },
+          "400": {
+            "description": "학기를 조회하는 데 실패했습니다."
+          },
           "404": {
             "description": "학기를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학기 조회",
         "tags": [
           "Semester"
         ]
@@ -129,6 +138,7 @@
             "description": "업데이트하려는 학기를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학기 수정",
         "tags": [
           "Semester"
         ]
@@ -163,6 +173,7 @@
             "description": "삭제하려는 학기를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학기 삭제",
         "tags": [
           "Semester"
         ]
@@ -170,7 +181,7 @@
     },
     "/lecture": {
       "get": {
-        "operationId": "LectureController_findLectures",
+        "operationId": "LectureController_getLectures",
         "parameters": [
           {
             "name": "year",
@@ -215,6 +226,7 @@
             "description": "강의를 조회하는 데 실패했습니다."
           }
         },
+        "summary": "특정 학기의 강의 목록 조회",
         "tags": [
           "Lecture"
         ]
@@ -247,6 +259,7 @@
             "description": "강의 생성에 실패했습니다."
           }
         },
+        "summary": "새로운 강의 생성",
         "tags": [
           "Lecture"
         ]
@@ -293,12 +306,13 @@
             "description": "업데이트하려는 강의를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 강의 수정",
         "tags": [
           "Lecture"
         ]
       },
       "delete": {
-        "operationId": "LectureController_removeLecture",
+        "operationId": "LectureController_deleteLecture",
         "parameters": [
           {
             "name": "id",
@@ -327,14 +341,86 @@
             "description": "삭제하려는 강의를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 강의 삭제",
         "tags": [
           "Lecture"
         ]
       }
     },
+    "/task": {
+      "get": {
+        "operationId": "TaskController_getTasksByLecture",
+        "parameters": [
+          {
+            "name": "lectureId",
+            "required": true,
+            "in": "query",
+            "description": "조회할 과제가 속한 강의의 ID입니다.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "특정 강의에 속한 모든 과제를 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskEntity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "과제를 조회하는 데 실패했습니다."
+          }
+        },
+        "summary": "특정 강의의 과제 목록 조회",
+        "tags": [
+          "Task"
+        ]
+      },
+      "post": {
+        "operationId": "TaskController_createTask",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 과제를 생성합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "과제 생성에 실패했습니다."
+          }
+        },
+        "summary": "새로운 과제 생성",
+        "tags": [
+          "Task"
+        ]
+      }
+    },
     "/task/{id}": {
       "get": {
-        "operationId": "TaskController_findTaskById",
+        "operationId": "TaskController_getTaskById",
         "parameters": [
           {
             "name": "id",
@@ -357,12 +443,13 @@
             }
           },
           "400": {
-            "description": "잘못된 요청입니다."
+            "description": "과제를 조회하는 데 실패했습니다."
           },
           "404": {
             "description": "과제를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 과제 조회",
         "tags": [
           "Task"
         ]
@@ -407,12 +494,13 @@
             "description": "업데이트하려는 과제를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 과제 수정",
         "tags": [
           "Task"
         ]
       },
       "delete": {
-        "operationId": "TaskController_removeTask",
+        "operationId": "TaskController_deleteTask",
         "parameters": [
           {
             "name": "id",
@@ -441,75 +529,7 @@
             "description": "삭제하려는 과제를 찾을 수 없습니다."
           }
         },
-        "tags": [
-          "Task"
-        ]
-      }
-    },
-    "/task": {
-      "get": {
-        "operationId": "TaskController_findTasksByLecture",
-        "parameters": [
-          {
-            "name": "lectureId",
-            "required": true,
-            "in": "query",
-            "description": "조회할 과제가 속한 강의의 ID입니다.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "특정 강의에 속한 모든 과제를 반환합니다.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TaskEntity"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "잘못된 요청입니다."
-          }
-        },
-        "tags": [
-          "Task"
-        ]
-      },
-      "post": {
-        "operationId": "TaskController_createTask",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateTaskDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "새로운 과제를 생성합니다.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TaskEntity"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "과제 생성에 실패했습니다."
-          }
-        },
+        "summary": "특정 과제 삭제",
         "tags": [
           "Task"
         ]
@@ -517,7 +537,7 @@
     },
     "/problem": {
       "get": {
-        "operationId": "ProblemController_findProblemsByTask",
+        "operationId": "ProblemController_getProblemsByTask",
         "parameters": [
           {
             "name": "taskId",
@@ -544,9 +564,10 @@
             }
           },
           "400": {
-            "description": "잘못된 요청입니다."
+            "description": "문제를 조회하는 데 실패했습니다."
           }
         },
+        "summary": "특정 과제의 문제 목록 조회",
         "tags": [
           "Problem"
         ]
@@ -579,6 +600,7 @@
             "description": "문제 생성에 실패했습니다."
           }
         },
+        "summary": "새로운 문제 생성",
         "tags": [
           "Problem"
         ]
@@ -625,12 +647,13 @@
             "description": "업데이트하려는 문제를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 문제 수정",
         "tags": [
           "Problem"
         ]
       },
       "delete": {
-        "operationId": "ProblemController_removeProblem",
+        "operationId": "ProblemController_deleteProblem",
         "parameters": [
           {
             "name": "id",
@@ -659,6 +682,7 @@
             "description": "삭제하려는 문제를 찾을 수 없습니다."
           }
         },
+        "summary": "특정 문제 삭제",
         "tags": [
           "Problem"
         ]
@@ -666,7 +690,7 @@
     },
     "/student": {
       "get": {
-        "operationId": "StudentController_getAllStudent",
+        "operationId": "StudentController_getAllStudents",
         "parameters": [],
         "responses": {
           "200": {
@@ -681,8 +705,12 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "학생을 조회하는 데 실패했습니다."
           }
         },
+        "summary": "모든 학생 목록 조회",
         "tags": [
           "Student"
         ]
@@ -715,6 +743,7 @@
             "description": "학생 생성에 실패했습니다."
           }
         },
+        "summary": "새로운 학생 생성",
         "tags": [
           "Student"
         ]
@@ -744,10 +773,14 @@
               }
             }
           },
+          "400": {
+            "description": "학생을 조회하는 데 실패했습니다."
+          },
           "404": {
             "description": "학생을 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학생 조회",
         "tags": [
           "Student"
         ]
@@ -792,6 +825,7 @@
             "description": "업데이트하려는 학생을 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학생 수정",
         "tags": [
           "Student"
         ]
@@ -826,8 +860,165 @@
             "description": "삭제하려는 학생을 찾을 수 없습니다."
           }
         },
+        "summary": "특정 학생 삭제",
         "tags": [
           "Student"
+        ]
+      }
+    },
+    "/student-lecture/semester/{year}/{season}": {
+      "get": {
+        "operationId": "StudentLectureController_getStudentsWithLectureLevelsBySemester",
+        "parameters": [
+          {
+            "name": "year",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "season",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "해당 학기에 수강 중인 학생 목록을 반환합니다.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentEntity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "학생울 조회하는 데 실패했습니다."
+          }
+        },
+        "summary": "특정 학기의 수강생 목록 조회",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
+    "/student-lecture": {
+      "post": {
+        "operationId": "StudentLectureController_createStudentWithLectureLog",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentLectureDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 학생과 강의 로그를 생성합니다."
+          },
+          "400": {
+            "description": "학생 생성에 실패했습니다."
+          }
+        },
+        "summary": "새로운 학생과 강의 로그 생성",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
+    "/student-lecture/multiple": {
+      "post": {
+        "operationId": "StudentLectureController_createMultipleStudents",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "새로운 여러 학생과 강의 로그를 생성합니다."
+          },
+          "400": {
+            "description": "학생 생성에 실패했습니다."
+          }
+        },
+        "summary": "새로운 여러 학생과 강의 로그 생성",
+        "tags": [
+          "StudentLecture"
+        ]
+      }
+    },
+    "/auth/users": {
+      "get": {
+        "operationId": "AuthController_allUsers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
         ]
       }
     }
@@ -845,6 +1036,14 @@
       "SemesterEntity": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "description": "고유 ID 값"
+          },
+          "year": {
+            "type": "number",
+            "description": "해당 학기가 속한 연도. ex) 2024"
+          },
           "season": {
             "type": "string",
             "enum": [
@@ -852,19 +1051,14 @@
               "Summer",
               "Fall",
               "Winter"
-            ]
-          },
-          "id": {
-            "type": "number"
-          },
-          "year": {
-            "type": "number"
+            ],
+            "description": "해당 학기가 속한 계절. ex) Summer"
           }
         },
         "required": [
-          "season",
           "id",
-          "year"
+          "year",
+          "season"
         ]
       },
       "CreateSemesterDto": {
@@ -918,30 +1112,35 @@
       "LectureEntity": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "description": "고유 ID 값"
+          },
           "level": {
             "type": "string",
             "enum": [
               "Novice",
               "Intermediate",
               "Advanced"
-            ]
-          },
-          "id": {
-            "type": "number"
+            ],
+            "description": "강의 난이도. 초급, 중급, 고급 중 하나"
           },
           "lectureNumber": {
-            "type": "number"
+            "type": "number",
+            "description": "강의의 총 회차수. 기본값은 10회차"
           },
           "bojGroupId": {
-            "type": "number"
+            "type": "number",
+            "description": "강의에 연계된 BOJ 그룹 ID. 학생의 과제 출석체크를 위한 크롤링에 쓰임"
           },
           "semesterId": {
-            "type": "number"
+            "type": "number",
+            "description": "강의가 속한 학기의 ID"
           }
         },
         "required": [
-          "level",
           "id",
+          "level",
           "lectureNumber",
           "bojGroupId",
           "semesterId"
@@ -1013,27 +1212,32 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "description": "고유 ID 값"
           },
           "round": {
-            "type": "number"
+            "type": "number",
+            "description": "과제가 속한 강의의 회차"
           },
           "practiceId": {
-            "type": "number"
-          },
-          "lectureId": {
-            "type": "number"
+            "type": "number",
+            "description": "해당 강의의 BOJ 그룹 내에서 과제를 나타내는 연습의 ID (BOJ 크롤링 시 사용)"
           },
           "minSolveCount": {
-            "type": "number"
+            "type": "number",
+            "description": "과제 출석 여부를 판단하기 위한 기준 문제 수"
+          },
+          "lectureId": {
+            "type": "number",
+            "description": "과제가 속한 강의의 ID"
           }
         },
         "required": [
           "id",
           "round",
           "practiceId",
-          "lectureId",
-          "minSolveCount"
+          "minSolveCount",
+          "lectureId"
         ]
       },
       "CreateTaskDto": {
@@ -1118,16 +1322,20 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "description": "고유 ID 값"
           },
           "bojProblemNumber": {
-            "type": "number"
+            "type": "number",
+            "description": "문제의 BOJ 번호"
           },
           "essential": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "해당 문제가 과제의 필수 문제인지 여부. 기본값은 true"
           },
           "taskId": {
-            "type": "number"
+            "type": "number",
+            "description": "해당 문제가 속한 과제의 ID"
           }
         },
         "required": [
@@ -1158,6 +1366,26 @@
       "StudentEntity": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "description": "고유 ID 값"
+          },
+          "name": {
+            "type": "string",
+            "description": "학생의 이름"
+          },
+          "bojHandle": {
+            "type": "string",
+            "description": "학생의 BOJ 핸들 (문제풀이 체크 및 관리에 사용)"
+          },
+          "email": {
+            "type": "string",
+            "description": "학생의 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "학생의 전화번호"
+          },
           "school": {
             "type": "string",
             "enum": [
@@ -1166,46 +1394,35 @@
               "HONGIK",
               "EWHA",
               "SOOKMYUNG"
-            ]
+            ],
+            "description": "학생이 소속된 학교. 연세대, 서강대, 홍익대, 이화여대, 숙명여대 중 하나"
+          },
+          "studentNumber": {
+            "type": "string",
+            "description": "학생의 학번"
           },
           "paymentStatus": {
             "type": "string",
             "enum": [
               "PAID_30000",
               "PAID_60000"
-            ]
-          },
-          "id": {
-            "type": "number"
-          },
-          "name": {
-            "type": "string"
-          },
-          "bojHandle": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          },
-          "studentNumber": {
-            "type": "string"
+            ],
+            "description": "학생의 납부 상태 (3만원 비환급 / 6만원 환급 옵션)"
           },
           "refundAccount": {
-            "type": "string"
+            "type": "string",
+            "description": "학생의 환불 계좌"
           }
         },
         "required": [
-          "school",
-          "paymentStatus",
           "id",
           "name",
           "bojHandle",
           "email",
           "phone",
+          "school",
           "studentNumber",
+          "paymentStatus",
           "refundAccount"
         ]
       },
@@ -1316,6 +1533,90 @@
             "description": "환불 계좌"
           }
         }
+      },
+      "CreateStudentLectureDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "학생 이름 (최대 50자)"
+          },
+          "bojHandle": {
+            "type": "string",
+            "description": "BOJ 핸들 (최대 50자, 고유값)"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "학생 이메일"
+          },
+          "phone": {
+            "type": "string",
+            "description": "학생 전화번호 (최대 20자)"
+          },
+          "school": {
+            "type": "string",
+            "enum": [
+              "YONSEI",
+              "SOGANG",
+              "HONGIK",
+              "EWHA",
+              "SOOKMYUNG"
+            ],
+            "description": "학생 학교 (YONSEI, SOGANG, HONGIK, EWHA, SOOKMYUNG 중 하나)"
+          },
+          "studentNumber": {
+            "type": "string",
+            "description": "학생 학번 (최대 20자)"
+          },
+          "paymentStatus": {
+            "type": "string",
+            "enum": [
+              "PAID_30000",
+              "PAID_60000"
+            ],
+            "description": "학생 납부 상태 (PAID_30000, PAID_60000 중 하나)"
+          },
+          "refundAccount": {
+            "type": "string",
+            "description": "환불 계좌"
+          },
+          "lectureInfo": {
+            "type": "object",
+            "description": "강의 정보",
+            "example": {
+              "year": 2025,
+              "season": "Winter",
+              "level": "Novice"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "bojHandle",
+          "email",
+          "phone",
+          "school",
+          "studentNumber",
+          "paymentStatus",
+          "refundAccount",
+          "lectureInfo"
+        ]
+      },
+      "SignInDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
       }
     }
   }

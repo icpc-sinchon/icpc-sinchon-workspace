@@ -18,7 +18,7 @@ erDiagram
 관리자 계정 정보
 
 **Properties**
-  - `id`: Primary Key.
+  - `id`: Primary Key
   - `username`: 관리자 ID는 중복될 수 없음
   - `password`: 
 
@@ -34,8 +34,6 @@ erDiagram
   String phone
   School school
   String studentNumber
-  PaymentStatus paymentStatus
-  String refundAccount
 }
 "Semester" {
   Int id PK
@@ -74,6 +72,8 @@ erDiagram
   Int id PK
   Int studentId FK
   Int lectureId FK
+  RefundOption refundOption
+  String refundAccount
   Boolean isInvited
   Boolean isCancelled
 }
@@ -113,13 +113,6 @@ erDiagram
   - `phone`: 
   - `school`: 연세대, 서강대, 홍익대, 이화여대, 숙명여대 중 하나
   - `studentNumber`: 학생의 학번
-  - `paymentStatus`
-    > 학생의 납부 상태
-    > 
-    > 3만원 혹은 6만원 중 하나(2024 Summer 기준)
-    > 
-    > 3만원은 비환급, 6만원은 환급 옵션
-  - `refundAccount`: 환불 계좌
 
 ### `Semester`
 학기 정보
@@ -220,6 +213,8 @@ BOJ 문제 번호와 각 문제의 필수 여부를 가지고 있음
   - `id`: 
   - `studentId`: 
   - `lectureId`: 
+  - `refundOption`: 학생의 환급 옵션 (환급, 비환급 중 하나)
+  - `refundAccount`: 환불 계좌
   - `isInvited`
     > 학생이 BOJ 그룹에 초대되었는지 여부. 초대되었을 시 true
     > 
