@@ -102,6 +102,9 @@ export class SemesterService {
 
   async deleteSemester(id: number): Promise<SemesterEntity> {
     try {
+      if (!id || id <= 0) {
+        throw new BadRequestException(`Invalid semester ID: ${id}`);
+      }
       const semester = await this.semesterRepository.getSemesterById(id);
       if (!semester) {
         throw new NotFoundException(`Semester with ID ${id} not found`);
