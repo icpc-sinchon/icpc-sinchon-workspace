@@ -74,6 +74,12 @@ describe("SemesterService", () => {
       expect(result).toEqual(semesters);
       expect(mockSemesterRepository.getAllSemesters).toHaveBeenCalledTimes(1);
     });
+
+    test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
+      mockSemesterRepository.getAllSemesters.mockRejectedValue(new Error("Database connection failed"));
+  
+      await expect(semesterService.getAllSemesters()).rejects.toThrow(BadRequestException);
+    });
   });
 
   describe("getSemesterById", () => {
@@ -93,6 +99,50 @@ describe("SemesterService", () => {
 
       await expect(semesterService.getSemesterById(999)).rejects.toThrow(
         NotFoundException,
+      );
+    });
+
+    test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
+      mockSemesterRepository.getSemesterById.mockRejectedValue(new Error("Database timeout error"));
+  
+      await expect(semesterService.getSemesterById(1)).rejects.toThrow(BadRequestException);
+    });
+  });
+
+  describe("getSemesterByYearAndSeason", () => {
+    test("특정 연도와 계절의 학기를 반환해야 합니다", async () => {
+      const year = 2024;
+      const season = Season.Summer;
+      const semester = { id: 1, year, season };
+  
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
+  
+      const result = await semesterService.getSemesterByYearAndSeason(year, season);
+  
+      expect(result).toEqual(semester);
+      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledTimes(1);
+      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledWith(year, season);
+    });
+  
+    test("존재하지 않는 학기를 조회하면 NotFoundException을 던져야 합니다", async () => {
+      const year = 2025;
+      const season = Season.Winter;
+  
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
+  
+      await expect(semesterService.getSemesterByYearAndSeason(year, season)).rejects.toThrow(
+        NotFoundException,
+      );
+    });
+  
+    test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
+      const year = 2024;
+      const season = Season.Spring;
+  
+      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(new Error("Database error"));
+  
+      await expect(semesterService.getSemesterByYearAndSeason(year, season)).rejects.toThrow(
+        BadRequestException,
       );
     });
   });

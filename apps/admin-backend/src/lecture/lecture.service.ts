@@ -94,6 +94,9 @@ export class LectureService {
 
       return await this.lectureRepository.getLecturesBySemester(semester.id);
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve lectures for year ${year} and season ${season}: ${error.message}`,
       );
@@ -156,6 +159,9 @@ export class LectureService {
         semester.id,
       );
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve lectures with tasks for year ${year} and season ${season}: ${error.message}`,
       );
