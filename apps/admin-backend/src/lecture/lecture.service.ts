@@ -22,6 +22,10 @@ export class LectureService {
   ): Promise<LectureEntity> {
     const { semesterId, lectureNumber, ...lectureData } = createLectureDto;
 
+    if (!semesterId) {
+      throw new BadRequestException("Semester ID is required");
+    }
+
     try {
       const semester =
         await this.semesterRepository.getSemesterById(semesterId);
@@ -180,6 +184,9 @@ export class LectureService {
 
   async deleteLecture(id: number): Promise<LectureEntity> {
     try {
+      if (!id || id <= 0) {
+        throw new BadRequestException(`Invalid semester ID: ${id}`);
+      }
       const lecture = await this.lectureRepository.getLectureById(id);
       if (!lecture) {
         throw new NotFoundException(`Lecture with ID ${id} not found`);

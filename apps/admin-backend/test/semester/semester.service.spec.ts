@@ -29,7 +29,7 @@ describe("SemesterService", () => {
   });
 
   describe("createSemester", () => {
-    test("학기를 생성하고 반환해야 합니다", async () => {
+    test("새 학기를 생성하고 반환해야 합니다", async () => {
       const createSemesterDto: CreateSemesterDto = {
         year: 2024,
         season: Season.Summer,

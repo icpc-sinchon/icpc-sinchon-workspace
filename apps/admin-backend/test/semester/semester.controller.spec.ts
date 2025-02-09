@@ -1,5 +1,4 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { NotFoundException } from "@nestjs/common";
 import { mockDeep } from "jest-mock-extended";
 import { Season } from "@prisma/client";
 import { SemesterEntity } from "@/semester/entities/semester.entity";
@@ -27,6 +26,26 @@ describe("SemesterController", () => {
 
   afterEach(() => {
     jest.clearAllMocks();
+  });
+
+  describe("createSemester", () => {
+    test("새 학기를 생성하고 반환해야 합니다", async () => {
+      const createSemesterDto: CreateSemesterDto = {
+        year: 2024,
+        season: Season.Spring,
+      };
+      const createdSemester: SemesterEntity = { id: 1, ...createSemesterDto };
+
+      mockSemesterService.createSemester.mockResolvedValue(createdSemester);
+
+      const result = await semesterController.createSemester(createSemesterDto);
+      
+      expect(result).toEqual(createdSemester);
+      expect(mockSemesterService.createSemester).toHaveBeenCalledTimes(1);
+      expect(mockSemesterService.createSemester).toHaveBeenCalledWith(
+        createSemesterDto,
+      );
+    });
   });
 
   describe("getAllSemesters", () => {
@@ -60,26 +79,6 @@ describe("SemesterController", () => {
       expect(result).toEqual(semester);
       expect(mockSemesterService.getSemesterById).toHaveBeenCalledTimes(1);
       expect(mockSemesterService.getSemesterById).toHaveBeenCalledWith(1);
-    });
-  });
-
-  describe("createSemester", () => {
-    test("새 학기를 생성하고 반환해야 합니다", async () => {
-      const createSemesterDto: CreateSemesterDto = {
-        year: 2024,
-        season: Season.Spring,
-      };
-      const createdSemester: SemesterEntity = { id: 1, ...createSemesterDto };
-
-      mockSemesterService.createSemester.mockResolvedValue(createdSemester);
-
-      const result = await semesterController.createSemester(createSemesterDto);
-      
-      expect(result).toEqual(createdSemester);
-      expect(mockSemesterService.createSemester).toHaveBeenCalledTimes(1);
-      expect(mockSemesterService.createSemester).toHaveBeenCalledWith(
-        createSemesterDto,
-      );
     });
   });
 
