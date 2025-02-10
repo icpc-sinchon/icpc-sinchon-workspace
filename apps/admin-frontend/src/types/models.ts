@@ -64,3 +64,12 @@ export type FormattedAttendance = {
   lectureRefund: boolean;
   taskRefund: boolean;
 };
+
+export type WeeklyAttendLog = {
+  id: number;
+  round: number;
+  lectureDone: boolean;
+  taskDone: boolean;
+  studentId: number;
+  lectureId: number;
+};

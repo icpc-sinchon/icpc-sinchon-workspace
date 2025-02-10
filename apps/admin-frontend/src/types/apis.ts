@@ -25,6 +25,7 @@ export const API_URL = {
   },
   STUDENT_ATTENDANCE: {
     BASE: ROUTE_URLS.STUDENT_ATTENDANCE,
+    MULTIPLE: `${ROUTE_URLS.STUDENT_ATTENDANCE}/multiple`,
     byStudentId: (studentId: number | string) =>
       `${ROUTE_URLS.STUDENT_ATTENDANCE}/${studentId}`,
   },
