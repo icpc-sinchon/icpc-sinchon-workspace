@@ -7,10 +7,7 @@ import { StudentEntity } from "./entities/student.entity";
 export class StudentRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createStudent(params: {
-    data: Prisma.StudentCreateInput;
-  }): Promise<StudentEntity> {
-    const { data } = params;
+  async createStudent(data: Prisma.StudentCreateInput): Promise<StudentEntity> {
     return this.prisma.student.create({ data });
   }
 
@@ -18,33 +15,23 @@ export class StudentRepository {
     return this.prisma.student.findMany();
   }
 
-  async getStudent(params: {
-    where: Prisma.StudentWhereUniqueInput;
-  }): Promise<StudentEntity> {
-    const { where } = params;
-    return this.prisma.student.findUnique({ where });
+  async getStudentById(id: number): Promise<StudentEntity> {
+    return this.prisma.student.findUnique({ where: { id } });
   }
 
-  async getStudents(params: {
-    where: Prisma.StudentWhereInput;
-  }): Promise<StudentEntity[]> {
-    const { where } = params;
-    return this.prisma.student.findMany({ where });
+  async getStudentByBojHandle(bojHandle: string): Promise<StudentEntity> {
+    return this.prisma.student.findUnique({ where: { bojHandle } });
   }
 
-  async updateStudent(params: {
-    where: Prisma.StudentWhereUniqueInput;
-    data: Prisma.StudentUpdateInput;
-  }): Promise<StudentEntity> {
-    const { where, data } = params;
-    return this.prisma.student.update({ where, data });
+  async updateStudent(
+    id: number,
+    data: Prisma.StudentUpdateInput,
+  ): Promise<StudentEntity> {
+    return this.prisma.student.update({ where: { id }, data });
   }
 
-  async deleteStudent(params: {
-    where: Prisma.StudentWhereUniqueInput;
-  }): Promise<StudentEntity> {
-    const { where } = params;
-    return this.prisma.student.delete({ where });
+  async deleteStudent(id: number): Promise<StudentEntity> {
+    return this.prisma.student.delete({ where: { id } });
   }
 
   async resetStudent(): Promise<void> {

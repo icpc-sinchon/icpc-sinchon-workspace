@@ -16,12 +16,13 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiQuery,
+  ApiOperation,
 } from "@nestjs/swagger";
-import { LectureService } from "./lecture.service";
+import { Season } from "@prisma/client";
 import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureEntity } from "./entities/lecture.entity";
-import { Season } from "@prisma/client";
+import { LectureService } from "./lecture.service";
 
 @ApiTags("Lecture")
 @Controller("lecture")
@@ -29,6 +30,7 @@ export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
   @Get()
+  @ApiOperation({ summary: "특정 학기의 강의 목록 조회" })
   @ApiQuery({
     name: "year",
     type: Number,
@@ -46,14 +48,15 @@ export class LectureController {
   @ApiBadRequestResponse({
     description: "강의를 조회하는 데 실패했습니다.",
   })
-  findLectures(
+  getLectures(
     @Query("year", ParseIntPipe) year: number,
     @Query("season") season: Season,
   ): Promise<LectureEntity[]> {
-    return this.lectureService.findLecturesWithTasksBySemester(year, season);
+    return this.lectureService.getLecturesWithTasksBySemester(year, season);
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 강의 생성" })
   @ApiCreatedResponse({
     type: LectureEntity,
     description: "새로운 강의를 생성합니다.",
@@ -68,6 +71,7 @@ export class LectureController {
   }
 
   @Patch(":id")
+  @ApiOperation({ summary: "특정 강의 수정" })
   @ApiOkResponse({
     type: LectureEntity,
     description: "특정 ID를 가진 강의를 업데이트합니다.",
@@ -86,6 +90,7 @@ export class LectureController {
   }
 
   @Delete(":id")
+  @ApiOperation({ summary: "특정 강의 삭제" })
   @ApiOkResponse({
     type: LectureEntity,
     description: "특정 ID를 가진 강의를 삭제합니다.",
@@ -96,7 +101,7 @@ export class LectureController {
   @ApiBadRequestResponse({
     description: "강의 삭제에 실패했습니다.",
   })
-  removeLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
-    return this.lectureService.removeLecture(id);
+  deleteLecture(@Param("id", ParseIntPipe) id: number): Promise<LectureEntity> {
+    return this.lectureService.deleteLecture(id);
   }
 }

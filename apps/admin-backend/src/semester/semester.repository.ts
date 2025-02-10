@@ -1,16 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
-import type { Prisma } from "@prisma/client";
+import type { Prisma, Season } from "@prisma/client";
 import { SemesterEntity } from "./entities/semester.entity";
 
 @Injectable()
 export class SemesterRepository {
   constructor(private prisma: PrismaService) {}
 
-  async createSemester(params: {
-    data: Prisma.SemesterCreateInput;
-  }): Promise<SemesterEntity> {
-    const { data } = params;
+  async createSemester(
+    data: Prisma.SemesterCreateInput,
+  ): Promise<SemesterEntity> {
     return this.prisma.semester.create({ data });
   }
 
@@ -18,33 +17,33 @@ export class SemesterRepository {
     return this.prisma.semester.findMany();
   }
 
-  async getSemester(params: {
-    where: Prisma.SemesterWhereUniqueInput;
-  }): Promise<SemesterEntity> {
-    const { where } = params;
-    return this.prisma.semester.findUnique({ where });
+  async getSemesterById(id: number): Promise<SemesterEntity> {
+    return this.prisma.semester.findUnique({ where: { id } });
   }
 
-  async getSemesters(params: {
-    where: Prisma.SemesterWhereInput;
-  }): Promise<SemesterEntity[]> {
-    const { where } = params;
-    return this.prisma.semester.findMany({ where });
+  async getSemesterByYearAndSeason(
+    year: number,
+    season: Season,
+  ): Promise<SemesterEntity> {
+    return this.prisma.semester.findUnique({
+      where: {
+        year_season: {
+          year,
+          season,
+        },
+      },
+    });
   }
 
-  async updateSemester(params: {
-    where: Prisma.SemesterWhereUniqueInput;
-    data: Prisma.SemesterUpdateInput;
-  }): Promise<SemesterEntity> {
-    const { where, data } = params;
-    return this.prisma.semester.update({ where, data });
+  async updateSemester(
+    id: number,
+    data: Prisma.SemesterUpdateInput,
+  ): Promise<SemesterEntity> {
+    return this.prisma.semester.update({ where: { id }, data });
   }
 
-  async deleteSemester(params: {
-    where: Prisma.SemesterWhereUniqueInput;
-  }): Promise<SemesterEntity> {
-    const { where } = params;
-    return this.prisma.semester.delete({ where });
+  async deleteSemester(id: number): Promise<SemesterEntity> {
+    return this.prisma.semester.delete({ where: { id } });
   }
 
   async resetSemester(): Promise<void> {

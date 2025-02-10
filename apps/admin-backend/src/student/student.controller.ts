@@ -14,11 +14,12 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiBadRequestResponse,
+  ApiOperation,
 } from "@nestjs/swagger";
-import { StudentService } from "./student.service";
 import { CreateStudentDto } from "./dto/create-student.dto";
 import { UpdateStudentDto } from "./dto/update-student.dto";
 import { StudentEntity } from "./entities/student.entity";
+import { StudentService } from "./student.service";
 
 @ApiTags("Student")
 @Controller("student")
@@ -26,15 +27,20 @@ export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get()
+  @ApiOperation({ summary: "모든 학생 목록 조회" })
   @ApiOkResponse({
     type: [StudentEntity],
     description: "모든 학생을 반환합니다.",
   })
-  getAllStudent(): Promise<StudentEntity[]> {
+  @ApiBadRequestResponse({
+    description: "학생을 조회하는 데 실패했습니다.",
+  })
+  getAllStudents(): Promise<StudentEntity[]> {
     return this.studentService.getAllStudents();
   }
 
   @Get(":id")
+  @ApiOperation({ summary: "특정 학생 조회" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 반환합니다.",
@@ -42,13 +48,17 @@ export class StudentController {
   @ApiNotFoundResponse({
     description: "학생을 찾을 수 없습니다.",
   })
+  @ApiBadRequestResponse({
+    description: "학생을 조회하는 데 실패했습니다.",
+  })
   findStudentById(
     @Param("id", ParseIntPipe) id: number,
   ): Promise<StudentEntity> {
-    return this.studentService.findStudentById(id);
+    return this.studentService.getStudentById(id);
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 학생 생성" })
   @ApiCreatedResponse({
     type: StudentEntity,
     description: "새로운 학생을 생성합니다.",
@@ -63,6 +73,7 @@ export class StudentController {
   }
 
   @Patch("/:id")
+  @ApiOperation({ summary: "특정 학생 수정" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 업데이트합니다.",
@@ -81,6 +92,7 @@ export class StudentController {
   }
 
   @Delete("/:id")
+  @ApiOperation({ summary: "특정 학생 삭제" })
   @ApiOkResponse({
     type: StudentEntity,
     description: "특정 ID를 가진 학생을 삭제합니다.",
@@ -91,9 +103,7 @@ export class StudentController {
   @ApiBadRequestResponse({
     description: "학생 삭제에 실패했습니다.",
   })
-  deleteStudent(
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<StudentEntity> {
-    return this.studentService.removeStudent(id);
+  deleteStudent(@Param("id", ParseIntPipe) id: number): Promise<StudentEntity> {
+    return this.studentService.deleteStudent(id);
   }
 }

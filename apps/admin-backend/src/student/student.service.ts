@@ -5,8 +5,8 @@ import {
 } from "@nestjs/common";
 import type { CreateStudentDto } from "./dto/create-student.dto";
 import type { UpdateStudentDto } from "./dto/update-student.dto";
-import { StudentRepository } from "./student.repository";
 import { StudentEntity } from "./entities/student.entity";
+import { StudentRepository } from "./student.repository";
 
 @Injectable()
 export class StudentService {
@@ -16,12 +16,10 @@ export class StudentService {
     createStudentDto: CreateStudentDto,
   ): Promise<StudentEntity> {
     try {
-      return await this.studentRepository.createStudent({
-        data: createStudentDto,
-      });
+      return await this.studentRepository.createStudent(createStudentDto);
     } catch (error) {
       throw new BadRequestException(
-        `Student creation failed: ${error.message}`,
+        `Failed to create student: ${error.message}`,
       );
     }
   }
@@ -31,16 +29,14 @@ export class StudentService {
       return await this.studentRepository.getAllStudents();
     } catch (error) {
       throw new BadRequestException(
-        `Failed to retrieve students: ${error.message}`,
+        `Failed to retrieve all students: ${error.message}`,
       );
     }
   }
 
-  async findStudentById(id: number): Promise<StudentEntity> {
+  async getStudentById(id: number): Promise<StudentEntity> {
     try {
-      const student = await this.studentRepository.getStudent({
-        where: { id },
-      });
+      const student = await this.studentRepository.getStudentById(id);
       if (!student) {
         throw new NotFoundException(`Student with ID ${id} not found`);
       }
@@ -50,16 +46,15 @@ export class StudentService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve student: ${error.message}`,
+        `Failed to retrieve student for id ${id}: ${error.message}`,
       );
     }
   }
 
-  async findStudentByBojHandle(bojHandle: string): Promise<StudentEntity> {
+  async getStudentByBojHandle(bojHandle: string): Promise<StudentEntity> {
     try {
-      const student = await this.studentRepository.getStudent({
-        where: { bojHandle },
-      });
+      const student =
+        await this.studentRepository.getStudentByBojHandle(bojHandle);
       if (!student) {
         throw new NotFoundException(
           `Student with BojHandle ${bojHandle} not found`,
@@ -71,7 +66,7 @@ export class StudentService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve student by BojHandle: ${error.message}`,
+        `Failed to retrieve student for boj handle ${bojHandle}: ${error.message}`,
       );
     }
   }
@@ -81,29 +76,34 @@ export class StudentService {
     updateStudentDto: UpdateStudentDto,
   ): Promise<StudentEntity> {
     try {
-      await this.findStudentById(id);
-      return await this.studentRepository.updateStudent({
-        where: { id },
-        data: updateStudentDto,
-      });
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
+      const student = await this.studentRepository.getStudentById(id);
+      if (!student) {
+        throw new NotFoundException(`Student with ID ${id} not found`);
       }
-      throw new BadRequestException(`Student update failed: ${error.message}`);
-    }
-  }
-
-  async removeStudent(id: number): Promise<StudentEntity> {
-    try {
-      await this.findStudentById(id);
-      return await this.studentRepository.deleteStudent({ where: { id } });
+      return await this.studentRepository.updateStudent(id, updateStudentDto);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
       throw new BadRequestException(
-        `Student deletion failed: ${error.message}`,
+        `Failed to update student: ${error.message}`,
+      );
+    }
+  }
+
+  async deleteStudent(id: number): Promise<StudentEntity> {
+    try {
+      const student = await this.studentRepository.getStudentById(id);
+      if (!student) {
+        throw new NotFoundException(`Student with ID ${id} not found`);
+      }
+      return await this.studentRepository.deleteStudent(id);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException(
+        `Failed to delete student: ${error.message}`,
       );
     }
   }

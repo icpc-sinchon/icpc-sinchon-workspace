@@ -16,11 +16,12 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiQuery,
+  ApiOperation,
 } from "@nestjs/swagger";
-import { ProblemService } from "./problem.service";
 import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
 import { ProblemEntity } from "./entities/problem.entity";
+import { ProblemService } from "./problem.service";
 
 @ApiTags("Problem")
 @Controller("problem")
@@ -28,6 +29,7 @@ export class ProblemController {
   constructor(private readonly problemService: ProblemService) {}
 
   @Get()
+  @ApiOperation({ summary: "특정 과제의 문제 목록 조회" })
   @ApiQuery({
     name: "taskId",
     type: Number,
@@ -38,15 +40,16 @@ export class ProblemController {
     description: "특정 과제에 속한 모든 문제를 반환합니다.",
   })
   @ApiBadRequestResponse({
-    description: "잘못된 요청입니다.",
+    description: "문제를 조회하는 데 실패했습니다.",
   })
-  findProblemsByTask(
+  getProblemsByTask(
     @Query("taskId", ParseIntPipe) taskId: number,
   ): Promise<ProblemEntity[]> {
-    return this.problemService.findProblemsByTaskId(taskId);
+    return this.problemService.getProblemsByTaskId(taskId);
   }
 
   @Post()
+  @ApiOperation({ summary: "새로운 문제 생성" })
   @ApiCreatedResponse({
     type: ProblemEntity,
     description: "새로운 문제를 생성합니다.",
@@ -61,6 +64,7 @@ export class ProblemController {
   }
 
   @Patch(":id")
+  @ApiOperation({ summary: "특정 문제 수정" })
   @ApiOkResponse({
     type: ProblemEntity,
     description: "특정 ID를 가진 문제를 업데이트합니다.",
@@ -79,6 +83,7 @@ export class ProblemController {
   }
 
   @Delete(":id")
+  @ApiOperation({ summary: "특정 문제 삭제" })
   @ApiOkResponse({
     type: ProblemEntity,
     description: "특정 ID를 가진 문제를 삭제합니다.",
@@ -89,7 +94,7 @@ export class ProblemController {
   @ApiBadRequestResponse({
     description: "문제 삭제에 실패했습니다.",
   })
-  removeProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
+  deleteProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
     return this.problemService.removeProblem(id);
   }
 }

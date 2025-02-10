@@ -5,34 +5,52 @@ import {
 } from "@nestjs/common";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { UpdateTaskDto } from "./dto/update-task.dto";
+import { TaskEntity } from "./entities/task.entity";
 import { TaskRepository } from "./task.repository";
 import { ProblemRepository } from "../problem/problem.repository";
-import type { Prisma } from "@prisma/client";
-import { TaskEntity } from "./entities/task.entity";
+import { LectureRepository } from "../lecture/lecture.repository";
 
 @Injectable()
 export class TaskService {
   constructor(
     private readonly taskRepository: TaskRepository,
     private readonly problemRepository: ProblemRepository,
+    private readonly lectureRepository: LectureRepository,
   ) {}
 
   async createTask(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
+    const { lectureId, ...taskData } = createTaskDto;
     try {
+      const lecture = await this.lectureRepository.getLectureById(lectureId);
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${lectureId} not found`);
+      }
+
       return await this.taskRepository.createTask({
-        data: {
-          ...createTaskDto,
-          lecture: { connect: { id: createTaskDto.lectureId } },
-        },
+        ...taskData,
+        lecture: { connect: { id: lectureId } },
       });
     } catch (error) {
-      throw new BadRequestException(`Task creation failed: ${error.message}`);
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new BadRequestException(`Failed to create task: ${error.message}`);
     }
   }
 
-  async findTaskById(id: number): Promise<TaskEntity> {
+  async getAllTasks(): Promise<TaskEntity[]> {
     try {
-      const task = await this.taskRepository.getTask({ where: { id } });
+      return await this.taskRepository.getAllTasks();
+    } catch (error) {
+      throw new BadRequestException(
+        `Failed to retrieve all tasks: ${error.message}`,
+      );
+    }
+  }
+
+  async getTaskById(id: number): Promise<TaskEntity> {
+    try {
+      const task = await this.taskRepository.getTaskById(id);
       if (!task) {
         throw new NotFoundException(`Task with ID ${id} not found`);
       }
@@ -42,16 +60,21 @@ export class TaskService {
         throw error;
       }
       throw new BadRequestException(
-        `Failed to retrieve task: ${error.message}`,
+        `Failed to retrieve task for id ${id}: ${error.message}`,
       );
     }
   }
 
-  async findTasksByLectureId(lectureId: number): Promise<TaskEntity[]> {
+  async getTasksByLectureId(lectureId: number): Promise<TaskEntity[]> {
     try {
-      return await this.taskRepository.getTasksWithProblems({
-        where: { lectureId },
-      });
+      const lecture = await this.lectureRepository.getLectureById(lectureId);
+      if (!lecture) {
+        throw new NotFoundException(`Lecture with ID ${lectureId} not found`);
+      }
+
+      return await this.taskRepository.getTasksWithProblemsByLectureId(
+        lectureId,
+      );
     } catch (error) {
       throw new BadRequestException(
         `Failed to retrieve tasks: ${error.message}`,
@@ -66,16 +89,14 @@ export class TaskService {
     const { minSolveCount, practiceId, problems } = updateTaskDto;
 
     try {
-      const task = await this.taskRepository.getTasksWithProblems({
-        where: { id },
-      });
+      const task = await this.taskRepository.getTaskById(id);
       if (!task) {
         throw new NotFoundException(`Task with ID ${id} not found`);
       }
 
-      const updatedTask = await this.taskRepository.updateTask({
-        where: { id },
-        data: { minSolveCount, practiceId },
+      const updatedTask = await this.taskRepository.updateTask(id, {
+        minSolveCount,
+        practiceId,
       });
 
       await this.problemRepository.deleteProblemsByTaskId(id);
@@ -91,29 +112,22 @@ export class TaskService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Task update failed: ${error.message}`);
-    }
-  }
-
-  async getAllTasks(): Promise<TaskEntity[]> {
-    try {
-      return await this.taskRepository.getAllTasks();
-    } catch (error) {
-      throw new BadRequestException(
-        `Failed to retrieve tasks: ${error.message}`,
-      );
+      throw new BadRequestException(`Failed to update task: ${error.message}`);
     }
   }
 
   async removeTask(id: number): Promise<TaskEntity> {
     try {
-      const task = await this.findTaskById(id);
-      return await this.taskRepository.deleteTask({ where: { id: task.id } });
+      const task = await this.taskRepository.getTaskById(id);
+      if (!task) {
+        throw new NotFoundException(`Task with ID ${id} not found`);
+      }
+      return await this.taskRepository.deleteTask(id);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException(`Task deletion failed: ${error.message}`);
+      throw new BadRequestException(`Failed to delete task: ${error.message}`);
     }
   }
 }
