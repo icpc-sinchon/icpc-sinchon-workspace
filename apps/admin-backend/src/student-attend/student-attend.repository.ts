@@ -1,5 +1,6 @@
 import { PrismaService } from "@/prisma/prisma.service";
 import { Injectable } from "@nestjs/common";
+import { UpdateAttendanceDto } from "./dto/update-student-attend.dto";
 
 @Injectable()
 export class StudentAttendRepository {
@@ -113,6 +114,7 @@ export class StudentAttendRepository {
       where: {
         studentLectureLog: {
           some: {
+            isCancelled: false,
             lecture: {
               id: lectureId,
             },
