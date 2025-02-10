@@ -54,10 +54,12 @@ export class StudentLectureController {
   createStudentWithLectureLog(
     @Body() createStudentLectureDto: CreateStudentLectureDto,
   ): Promise<StudentEntity | StudentLectureLogEntity> {
-    const { lectureInfo, ...studentData } = createStudentLectureDto;
+    const { lectureInfo, studentLectureLogInfo, ...studentData } =
+      createStudentLectureDto;
     return this.studentLectureService.createStudentWithLectureLog(
       studentData,
       lectureInfo,
+      studentLectureLogInfo,
     );
   }
 
@@ -73,10 +75,11 @@ export class StudentLectureController {
     @Body() createStudentLectureDto: CreateStudentLectureDto[],
   ): Promise<void> {
     const formattedStudents = createStudentLectureDto.map((student) => {
-      const { lectureInfo, ...rest } = student;
+      const { lectureInfo, studentLectureLogInfo, ...rest } = student;
       return {
         student: rest,
         lectureInfo,
+        studentLectureLogInfo,
       };
     });
     await this.studentLectureService.createStudentsWithLectureLog(

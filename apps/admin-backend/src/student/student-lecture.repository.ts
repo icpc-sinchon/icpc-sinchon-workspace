@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
-import type { Prisma, Season, Level } from "@prisma/client";
+import type { Prisma, Season, Level, RefundOption } from "@prisma/client";
 import { StudentEntity } from "./entities/student.entity";
 import { StudentLectureEntity } from "./entities/student-lecture.entity";
 
@@ -14,16 +14,20 @@ export class StudentLectureRepository {
   async createStudentWithLectureLog(
     studentData: Prisma.StudentCreateInput,
     lectureId: number,
+    refundOption: RefundOption,
+    refundAccount: string,
   ): Promise<StudentEntity> {
     return this.prisma.student.create({
       data: {
         ...studentData,
         studentLectureLog: {
           create: {
-            isCancelled: false,
+            refundOption,
+            refundAccount,
             // 초대 여부는 기본 false로 설정
             // 언젠가 초대 기능도 만들어야...
             isInvited: false,
+            isCancelled: false,
             lecture: {
               connect: { id: lectureId },
             },

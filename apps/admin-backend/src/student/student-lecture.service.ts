@@ -9,7 +9,7 @@ import { StudentLectureRepository } from "./student-lecture.repository";
 import { SemesterRepository } from "../semester/semester.repository";
 import { StudentRepository } from "./student.repository";
 import { LectureRepository } from "../lecture/lecture.repository";
-import type { LectureIdentifier } from "../types";
+import type { LectureIdentifier, StudentLectureLogInfo } from "../types";
 
 @Injectable()
 export class StudentLectureService {
@@ -24,6 +24,7 @@ export class StudentLectureService {
   async createStudentWithLectureLog(
     studentData: Prisma.StudentCreateInput,
     lectureInfo: LectureIdentifier,
+    studentLectureLogInfo: StudentLectureLogInfo,
   ) {
     try {
       // 학생이 이미 존재하는지 확인
@@ -58,11 +59,15 @@ export class StudentLectureService {
         return this.studentLectureRepository.createStudentWithLectureLog(
           studentData,
           lecture.id,
+          studentLectureLogInfo.refundOption,
+          studentLectureLogInfo.refundAccount,
         );
       }
 
       // 학생이 존재하면 수강 로그만 추가
       return this.studentLectureLogRepository.createStudentLectureLog({
+        refundOption: studentLectureLogInfo.refundOption,
+        refundAccount: studentLectureLogInfo.refundAccount,
         isCancelled: false,
         isInvited: false,
         student: {
@@ -86,12 +91,19 @@ export class StudentLectureService {
     studentsData: Array<{
       student: Prisma.StudentCreateInput;
       lectureInfo: LectureIdentifier;
+      studentLectureLogInfo: StudentLectureLogInfo;
     }>,
   ) {
     try {
-      const studentsQuery = studentsData.map(({ student, lectureInfo }) => {
-        return this.createStudentWithLectureLog(student, lectureInfo);
-      });
+      const studentsQuery = studentsData.map(
+        ({ student, lectureInfo, studentLectureLogInfo }) => {
+          return this.createStudentWithLectureLog(
+            student,
+            lectureInfo,
+            studentLectureLogInfo,
+          );
+        },
+      );
 
       return await Promise.all(studentsQuery);
     } catch (error) {
@@ -119,8 +131,6 @@ export class StudentLectureService {
           email: student.email,
           phone: student.phone,
           studentNumber: student.studentNumber,
-          paymentStatus: student.paymentStatus,
-          refundAccount: student.refundAccount,
           lectureLevels: student.studentLectureLog.map((log) => log.lectureId),
         };
       });

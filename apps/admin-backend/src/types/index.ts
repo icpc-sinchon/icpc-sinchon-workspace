@@ -3,6 +3,7 @@ import {
   Lecture,
   Semester,
   Student,
+  StudentLectureLog,
   Prisma,
 } from "@prisma/client";
 
@@ -15,28 +16,33 @@ export interface BojLoginCredentials {
 
 export interface SemesterQuery {
   year: string;
-  season: Semester['season'];
+  season: Semester["season"];
 }
 
 export interface SemesterIdentifier {
-  year: Semester['year'];
-  season: Semester['season'];
+  year: Semester["year"];
+  season: Semester["season"];
 }
 
 export interface LectureQuery {
   year: string;
-  season: Semester['season'];
-  lectureLevel: Lecture['level'];
+  season: Semester["season"];
+  lectureLevel: Lecture["level"];
 }
 
 export interface LectureIdentifier {
-  year: Semester['year'];
-  season: Semester['season'];
-  level: Lecture['level'];
+  year: Semester["year"];
+  season: Semester["season"];
+  level: Lecture["level"];
+}
+
+export interface StudentLectureLogInfo {
+  refundOption: StudentLectureLog["refundOption"];
+  refundAccount: string;
 }
 
 export interface StudentPatchBody extends LectureQuery {
-  attendLog: StudentAttendance['attendLog'];
+  attendLog: StudentAttendance["attendLog"];
 }
 
 export interface NewStudent {
@@ -44,10 +50,8 @@ export interface NewStudent {
   bojHandle: string;
   email: string;
   phone: string;
-  school: Student['school'];
+  school: Student["school"];
   studentNumber: string;
-  paymentStatus: Student['paymentStatus'];
-  refundAccount: string;
   lectureInfo: LectureIdentifier;
 }
 
@@ -57,8 +61,6 @@ export interface StudentAttendance {
   name: string;
   bojHandle?: string;
   refundAccount?: string;
-  refundAmount?: number;
-  paymentStatus: Student['paymentStatus'];
   attendLog: Array<{
     round: number;
     lectureDone: boolean;
@@ -67,17 +69,17 @@ export interface StudentAttendance {
 }
 
 export interface RefundPolicyInput
-  extends Omit<Prisma.RefundPolicyCreateManyInput, 'semesterId'>,
+  extends Omit<Prisma.RefundPolicyCreateManyInput, "semesterId">,
     SemesterIdentifier {}
 
 export interface RefundPolicyVerification {
   minAttend: number;
   maxAttend: number;
-  type: RefundPolicy['type'];
+  type: RefundPolicy["type"];
 }
 
 export interface LectureInput extends SemesterQuery {
-  level: Lecture['level'];
+  level: Lecture["level"];
   lectureNumber: number;
   bojGroupId: number;
 }

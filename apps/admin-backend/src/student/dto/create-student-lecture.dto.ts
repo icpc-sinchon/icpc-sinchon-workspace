@@ -7,8 +7,8 @@ import {
   IsString,
   IsPositive,
 } from "class-validator";
-import { School, PaymentStatus } from "@prisma/client";
-import type { LectureIdentifier } from "../../types";
+import { School, RefundOption } from "@prisma/client";
+import type { LectureIdentifier, StudentLectureLogInfo } from "../../types";
 
 export class CreateStudentLectureDto {
   @ApiProperty({ description: "학생 이름 (최대 50자)" })
@@ -45,12 +45,12 @@ export class CreateStudentLectureDto {
   studentNumber: string;
 
   @ApiProperty({
-    enum: PaymentStatus,
+    enum: RefundOption,
     description: "학생 납부 상태 (PAID_30000, PAID_60000 중 하나)",
   })
   @IsNotEmpty()
-  @IsEnum(PaymentStatus)
-  paymentStatus: PaymentStatus;
+  @IsEnum(RefundOption)
+  paymentStatus: RefundOption;
 
   @ApiProperty({ description: "환불 계좌" })
   @IsNotEmpty()
@@ -63,8 +63,18 @@ export class CreateStudentLectureDto {
     example: {
       year: 2025,
       season: "Winter",
-      level: "Novice"
-    }
+      level: "Novice",
+    },
   })
   lectureInfo: LectureIdentifier;
+
+  @ApiProperty({
+    description: "학생 강의 수강 로그",
+    type: Object,
+    example: {
+      refundOption: "Refund",
+      refundAccount: "123-4567-890",
+    },
+  })
+  studentLectureLogInfo: StudentLectureLogInfo;
 }
