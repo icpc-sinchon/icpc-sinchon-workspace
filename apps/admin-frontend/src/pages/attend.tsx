@@ -73,7 +73,6 @@ function StudentAttendPage() {
 
   const lectureLevelOptions = lectures.map<Level>((lecture) => lecture.level);
   const lectureTasks = lectures[selectedLectureIndex]?.task;
-  const lectureId = lectures[selectedLectureIndex]?.id;
 
   useEffect(() => {
     if (!currentSemester || !lectures || !lectures.length) return;
@@ -116,7 +115,7 @@ function StudentAttendPage() {
         ) {
           changedLogs.push({
             studentId: edited.studentId,
-            lectureId: lectureId,
+            lectureId: edited.lectureId,
             round: editedLog.round,
             lectureDone: editedLog.lectureDone,
             taskDone: editedLog.taskDone,
