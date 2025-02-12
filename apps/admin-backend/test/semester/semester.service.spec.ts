@@ -39,7 +39,7 @@ describe("SemesterService", () => {
       mockSemesterRepository.createSemester.mockResolvedValue(createdSemester);
 
       const result = await semesterService.createSemester(createSemesterDto);
-      
+
       expect(result).toEqual(createdSemester);
       expect(mockSemesterRepository.createSemester).toHaveBeenCalledTimes(1);
       expect(mockSemesterRepository.createSemester).toHaveBeenCalledWith(
@@ -76,15 +76,23 @@ describe("SemesterService", () => {
     });
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      mockSemesterRepository.getAllSemesters.mockRejectedValue(new Error("Database connection failed"));
-  
-      await expect(semesterService.getAllSemesters()).rejects.toThrow(BadRequestException);
+      mockSemesterRepository.getAllSemesters.mockRejectedValue(
+        new Error("Database connection failed"),
+      );
+
+      await expect(semesterService.getAllSemesters()).rejects.toThrow(
+        BadRequestException,
+      );
     });
   });
 
   describe("getSemesterById", () => {
     test("특정 ID의 학기를 반환해야 합니다", async () => {
-      const semester = { id: 1, year: 2024, season: Season.Summer };
+      const semester: SemesterEntity = {
+        id: 1,
+        year: 2024,
+        season: Season.Summer,
+      };
 
       mockSemesterRepository.getSemesterById.mockResolvedValue(semester);
 
@@ -103,9 +111,13 @@ describe("SemesterService", () => {
     });
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      mockSemesterRepository.getSemesterById.mockRejectedValue(new Error("Database timeout error"));
-  
-      await expect(semesterService.getSemesterById(1)).rejects.toThrow(BadRequestException);
+      mockSemesterRepository.getSemesterById.mockRejectedValue(
+        new Error("Database timeout error"),
+      );
+
+      await expect(semesterService.getSemesterById(1)).rejects.toThrow(
+        BadRequestException,
+      );
     });
   });
 
@@ -114,36 +126,47 @@ describe("SemesterService", () => {
       const year = 2024;
       const season = Season.Summer;
       const semester = { id: 1, year, season };
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
-  
-      const result = await semesterService.getSemesterByYearAndSeason(year, season);
-  
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
+        semester,
+      );
+
+      const result = await semesterService.getSemesterByYearAndSeason(
+        year,
+        season,
+      );
+
       expect(result).toEqual(semester);
-      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledTimes(1);
-      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledWith(year, season);
+      expect(
+        mockSemesterRepository.getSemesterByYearAndSeason,
+      ).toHaveBeenCalledTimes(1);
+      expect(
+        mockSemesterRepository.getSemesterByYearAndSeason,
+      ).toHaveBeenCalledWith(year, season);
     });
-  
+
     test("존재하지 않는 학기를 조회하면 NotFoundException을 던져야 합니다", async () => {
       const year = 2025;
       const season = Season.Winter;
-  
+
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
-  
-      await expect(semesterService.getSemesterByYearAndSeason(year, season)).rejects.toThrow(
-        NotFoundException,
-      );
+
+      await expect(
+        semesterService.getSemesterByYearAndSeason(year, season),
+      ).rejects.toThrow(NotFoundException);
     });
-  
+
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
       const year = 2024;
       const season = Season.Spring;
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(new Error("Database error"));
-  
-      await expect(semesterService.getSemesterByYearAndSeason(year, season)).rejects.toThrow(
-        BadRequestException,
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
+        new Error("Database error"),
       );
+
+      await expect(
+        semesterService.getSemesterByYearAndSeason(year, season),
+      ).rejects.toThrow(BadRequestException);
     });
   });
 
@@ -177,19 +200,17 @@ describe("SemesterService", () => {
       );
     });
 
-    describe("updateSemester", () => {
-      test("존재하지 않는 학기를 수정하려고 하면 NotFoundException을 던져야 합니다", async () => {
-        const updateSemesterDto: UpdateSemesterDto = {
-          year: 2025,
-          season: Season.Fall,
-        };
+    test("존재하지 않는 학기를 수정하려고 하면 NotFoundException을 던져야 합니다", async () => {
+      const updateSemesterDto: UpdateSemesterDto = {
+        year: 2025,
+        season: Season.Fall,
+      };
 
-        mockSemesterRepository.getSemesterById.mockResolvedValue(null);
+      mockSemesterRepository.getSemesterById.mockResolvedValue(null);
 
-        await expect(
-          semesterService.updateSemester(999, updateSemesterDto),
-        ).rejects.toThrow(NotFoundException);
-      });
+      await expect(
+        semesterService.updateSemester(999, updateSemesterDto),
+      ).rejects.toThrow(NotFoundException);
     });
 
     test("잘못된 데이터로 학기를 수정하려고 하면 BadRequestException을 던져야 합니다", async () => {
@@ -215,7 +236,11 @@ describe("SemesterService", () => {
 
   describe("deleteSemester", () => {
     test("학기를 삭제하고 반환해야 합니다", async () => {
-      const deletedSemester = { id: 1, year: 2024, season: Season.Spring };
+      const deletedSemester: SemesterEntity = {
+        id: 1,
+        year: 2024,
+        season: Season.Spring,
+      };
 
       mockSemesterRepository.getSemesterById.mockResolvedValue(deletedSemester);
       mockSemesterRepository.deleteSemester.mockResolvedValue(deletedSemester);
@@ -223,6 +248,8 @@ describe("SemesterService", () => {
       const result = await semesterService.deleteSemester(1);
 
       expect(result).toEqual(deletedSemester);
+      expect(mockSemesterRepository.deleteSemester).toHaveBeenCalledTimes(1);
+      expect(mockSemesterRepository.deleteSemester).toHaveBeenCalledWith(1);
     });
 
     test("존재하지 않는 학기를 삭제하려고 하면 NotFoundException을 던져야 합니다", async () => {

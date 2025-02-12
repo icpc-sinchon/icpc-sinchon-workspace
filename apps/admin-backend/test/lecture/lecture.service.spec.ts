@@ -82,9 +82,26 @@ describe("LectureService", () => {
       ).rejects.toThrow(NotFoundException);
     });
 
-    test("잘못된 데이터로 강의를 생성하면 BadRequestException을 던져야 합니다", async () => {
+    test("semester id가 없으면 BadRequestException을 던져야 합니다", async () => {
       const invalidDto: Partial<CreateLectureDto> = {};
 
+      mockLectureRepository.createLectureWithTasks.mockRejectedValue(
+        new BadRequestException("Invalid lecture data"),
+      );
+
+      await expect(
+        lectureService.createLectureWithTasks(invalidDto as CreateLectureDto),
+      ).rejects.toThrow(BadRequestException);
+    });
+
+    test("잘못된 데이터로 강의를 생성하면 BadRequestException을 던져야 합니다", async () => {
+      const invalidDto: Partial<CreateLectureDto> = { semesterId: 1 };
+
+      mockSemesterRepository.getSemesterById.mockResolvedValue({
+        id: 1,
+        year: 2024,
+        season: Season.Spring,
+      });
       mockLectureRepository.createLectureWithTasks.mockRejectedValue(
         new BadRequestException("Invalid lecture data"),
       );
@@ -121,6 +138,16 @@ describe("LectureService", () => {
       expect(result).toEqual(lectures);
       expect(mockLectureRepository.getAllLectures).toHaveBeenCalledTimes(1);
     });
+
+    test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
+      mockLectureRepository.getAllLectures.mockRejectedValue(
+        new Error("Database connection failed"),
+      );
+
+      await expect(lectureService.getAllLectures()).rejects.toThrow(
+        BadRequestException,
+      );
+    });
   });
 
   describe("getLectureById", () => {
@@ -148,6 +175,16 @@ describe("LectureService", () => {
         NotFoundException,
       );
     });
+
+    test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
+      mockLectureRepository.getLectureById.mockRejectedValue(
+        new Error("Database connection failed"),
+      );
+
+      await expect(lectureService.getLectureById(1)).rejects.toThrow(
+        BadRequestException,
+      );
+    });
   });
 
   describe("getLecturesBySemester", () => {
@@ -156,122 +193,202 @@ describe("LectureService", () => {
       const season = Season.Summer;
       const semester = { id: 1, year, season };
       const lectures = [
-        { id: 1, level: Level.Novice, lectureNumber: 10, bojGroupId: 101, semesterId: 1 },
-        { id: 2, level: Level.Advanced, lectureNumber: 12, bojGroupId: 102, semesterId: 1 },
+        {
+          id: 1,
+          level: Level.Novice,
+          lectureNumber: 10,
+          bojGroupId: 101,
+          semesterId: 1,
+        },
+        {
+          id: 2,
+          level: Level.Advanced,
+          lectureNumber: 12,
+          bojGroupId: 102,
+          semesterId: 1,
+        },
       ];
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
+        semester,
+      );
       mockLectureRepository.getLecturesBySemester.mockResolvedValue(lectures);
-  
+
       const result = await lectureService.getLecturesBySemester(year, season);
-  
+
       expect(result).toEqual(lectures);
-      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledWith(year, season);
-      expect(mockLectureRepository.getLecturesBySemester).toHaveBeenCalledWith(semester.id);
+      expect(
+        mockSemesterRepository.getSemesterByYearAndSeason,
+      ).toHaveBeenCalledWith(year, season);
+      expect(mockLectureRepository.getLecturesBySemester).toHaveBeenCalledWith(
+        semester.id,
+      );
     });
-  
+
     test("존재하지 않는 학기의 강의를 조회하면 NotFoundException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
-  
-      await expect(lectureService.getLecturesBySemester(2025, Season.Winter)).rejects.toThrow(
-        NotFoundException,
-      );
+
+      await expect(
+        lectureService.getLecturesBySemester(2025, Season.Winter),
+      ).rejects.toThrow(NotFoundException);
     });
-  
+
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(new Error("Database error"));
-  
-      await expect(lectureService.getLecturesBySemester(2024, Season.Spring)).rejects.toThrow(
-        BadRequestException,
+      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
+        new Error("Database error"),
       );
+
+      await expect(
+        lectureService.getLecturesBySemester(2024, Season.Spring),
+      ).rejects.toThrow(BadRequestException);
     });
   });
-  
+
   describe("getLectureBySemesterAndLevel", () => {
     test("특정 연도, 계절, 레벨의 강의를 반환해야 합니다", async () => {
       const year = 2024;
       const season = Season.Summer;
       const level = Level.Advanced;
       const semester = { id: 1, year, season };
-      const lecture = { id: 2, level, lectureNumber: 12, bojGroupId: 102, semesterId: 1 };
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
-      mockLectureRepository.getLectureBySemesterAndLevel.mockResolvedValue(lecture);
-  
-      const result = await lectureService.getLectureBySemesterAndLevel(year, season, level);
-  
-      expect(result).toEqual(lecture);
-      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledWith(year, season);
-      expect(mockLectureRepository.getLectureBySemesterAndLevel).toHaveBeenCalledWith(
-        semester.id,
+      const lecture = {
+        id: 2,
+        level,
+        lectureNumber: 12,
+        bojGroupId: 102,
+        semesterId: 1,
+      };
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
+        semester,
+      );
+      mockLectureRepository.getLectureBySemesterAndLevel.mockResolvedValue(
+        lecture,
+      );
+
+      const result = await lectureService.getLectureBySemesterAndLevel(
+        year,
+        season,
         level,
       );
+
+      expect(result).toEqual(lecture);
+      expect(
+        mockSemesterRepository.getSemesterByYearAndSeason,
+      ).toHaveBeenCalledWith(year, season);
+      expect(
+        mockLectureRepository.getLectureBySemesterAndLevel,
+      ).toHaveBeenCalledWith(semester.id, level);
     });
-  
+
     test("존재하지 않는 학기의 강의를 조회하면 NotFoundException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
-  
+
       await expect(
-        lectureService.getLectureBySemesterAndLevel(2025, Season.Winter, Level.Novice),
+        lectureService.getLectureBySemesterAndLevel(
+          2025,
+          Season.Winter,
+          Level.Novice,
+        ),
       ).rejects.toThrow(NotFoundException);
     });
-  
+
     test("존재하지 않는 레벨의 강의를 조회하면 NotFoundException을 던져야 합니다", async () => {
       const semester = { id: 1, year: 2024, season: Season.Summer };
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
-      mockLectureRepository.getLectureBySemesterAndLevel.mockResolvedValue(null);
-  
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
+        semester,
+      );
+      mockLectureRepository.getLectureBySemesterAndLevel.mockResolvedValue(
+        null,
+      );
+
       await expect(
-        lectureService.getLectureBySemesterAndLevel(2024, Season.Summer, Level.Expert),
+        lectureService.getLectureBySemesterAndLevel(
+          2024,
+          Season.Summer,
+          Level.Expert,
+        ),
       ).rejects.toThrow(NotFoundException);
     });
-  
+
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(new Error("DB error"));
-  
+      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
+        new Error("DB error"),
+      );
+
       await expect(
-        lectureService.getLectureBySemesterAndLevel(2024, Season.Spring, Level.Advanced),
+        lectureService.getLectureBySemesterAndLevel(
+          2024,
+          Season.Spring,
+          Level.Advanced,
+        ),
       ).rejects.toThrow(BadRequestException);
     });
   });
-  
+
   describe("getLecturesWithTasksBySemester", () => {
     test("특정 연도와 계절의 강의 목록(과제 포함)을 반환해야 합니다", async () => {
       const year = 2024;
       const season = Season.Summer;
       const semester = { id: 1, year, season };
       const lecturesWithTasks = [
-        { id: 1, level: Level.Novice, lectureNumber: 10, bojGroupId: 101, semesterId: 1, tasks: [] },
-        { id: 2, level: Level.Advanced, lectureNumber: 12, bojGroupId: 102, semesterId: 1, tasks: [] },
+        {
+          id: 1,
+          level: Level.Novice,
+          lectureNumber: 10,
+          bojGroupId: 101,
+          semesterId: 1,
+          tasks: [],
+        },
+        {
+          id: 2,
+          level: Level.Advanced,
+          lectureNumber: 12,
+          bojGroupId: 102,
+          semesterId: 1,
+          tasks: [],
+        },
       ];
-  
-      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(semester);
-      mockLectureRepository.getLecturesWithTasksBySemester.mockResolvedValue(lecturesWithTasks);
-  
-      const result = await lectureService.getLecturesWithTasksBySemester(year, season);
-  
+
+      mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
+        semester,
+      );
+      mockLectureRepository.getLecturesWithTasksBySemester.mockResolvedValue(
+        lecturesWithTasks,
+      );
+
+      const result = await lectureService.getLecturesWithTasksBySemester(
+        year,
+        season,
+      );
+
       expect(result).toEqual(lecturesWithTasks);
-      expect(mockSemesterRepository.getSemesterByYearAndSeason).toHaveBeenCalledWith(year, season);
-      expect(mockLectureRepository.getLecturesWithTasksBySemester).toHaveBeenCalledWith(semester.id);
+      expect(
+        mockSemesterRepository.getSemesterByYearAndSeason,
+      ).toHaveBeenCalledWith(year, season);
+      expect(
+        mockLectureRepository.getLecturesWithTasksBySemester,
+      ).toHaveBeenCalledWith(semester.id);
     });
-  
+
     test("존재하지 않는 학기의 강의를 조회하면 NotFoundException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
-  
-      await expect(lectureService.getLecturesWithTasksBySemester(2025, Season.Winter)).rejects.toThrow(
-        NotFoundException,
-      );
+
+      await expect(
+        lectureService.getLecturesWithTasksBySemester(2025, Season.Winter),
+      ).rejects.toThrow(NotFoundException);
     });
-  
+
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(new Error("DB error"));
-  
-      await expect(lectureService.getLecturesWithTasksBySemester(2024, Season.Spring)).rejects.toThrow(
-        BadRequestException,
+      mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
+        new Error("DB error"),
       );
+
+      await expect(
+        lectureService.getLecturesWithTasksBySemester(2024, Season.Spring),
+      ).rejects.toThrow(BadRequestException);
     });
-  });  
+  });
 
   describe("updateLecture", () => {
     test("강의를 수정하고 반환해야 합니다", async () => {
