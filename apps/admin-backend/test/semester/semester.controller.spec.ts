@@ -39,7 +39,7 @@ describe("SemesterController", () => {
       mockSemesterService.createSemester.mockResolvedValue(createdSemester);
 
       const result = await semesterController.createSemester(createSemesterDto);
-      
+
       expect(result).toEqual(createdSemester);
       expect(mockSemesterService.createSemester).toHaveBeenCalledTimes(1);
       expect(mockSemesterService.createSemester).toHaveBeenCalledWith(
@@ -125,7 +125,7 @@ describe("SemesterController", () => {
       mockSemesterService.deleteSemester.mockResolvedValue(deletedSemester);
 
       const result = await semesterController.deleteSemester(1);
-      
+
       expect(result).toEqual(deletedSemester);
       expect(mockSemesterService.deleteSemester).toHaveBeenCalledTimes(1);
       expect(mockSemesterService.deleteSemester).toHaveBeenCalledWith(1);

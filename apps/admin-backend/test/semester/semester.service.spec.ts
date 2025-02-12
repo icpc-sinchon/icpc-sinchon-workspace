@@ -62,7 +62,7 @@ describe("SemesterService", () => {
 
   describe("getAllSemesters", () => {
     test("모든 학기를 반환해야 합니다", async () => {
-      const semesters = [
+      const semesters: SemesterEntity[] = [
         { id: 1, year: 2024, season: Season.Spring },
         { id: 2, year: 2023, season: Season.Fall },
       ];
@@ -112,7 +112,7 @@ describe("SemesterService", () => {
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterById.mockRejectedValue(
-        new Error("Database timeout error"),
+        new Error("Database connection failed"),
       );
 
       await expect(semesterService.getSemesterById(1)).rejects.toThrow(
@@ -125,7 +125,7 @@ describe("SemesterService", () => {
     test("특정 연도와 계절의 학기를 반환해야 합니다", async () => {
       const year = 2024;
       const season = Season.Summer;
-      const semester = { id: 1, year, season };
+      const semester: SemesterEntity = { id: 1, year, season };
 
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(
         semester,
@@ -146,26 +146,20 @@ describe("SemesterService", () => {
     });
 
     test("존재하지 않는 학기를 조회하면 NotFoundException을 던져야 합니다", async () => {
-      const year = 2025;
-      const season = Season.Winter;
-
       mockSemesterRepository.getSemesterByYearAndSeason.mockResolvedValue(null);
 
       await expect(
-        semesterService.getSemesterByYearAndSeason(year, season),
+        semesterService.getSemesterByYearAndSeason(2025, Season.Winter),
       ).rejects.toThrow(NotFoundException);
     });
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
-      const year = 2024;
-      const season = Season.Spring;
-
       mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
-        new Error("Database error"),
+        new Error("Database connection failed"),
       );
 
       await expect(
-        semesterService.getSemesterByYearAndSeason(year, season),
+        semesterService.getSemesterByYearAndSeason(2024, Season.Spring),
       ).rejects.toThrow(BadRequestException);
     });
   });

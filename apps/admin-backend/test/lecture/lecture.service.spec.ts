@@ -3,6 +3,7 @@ import { NotFoundException, BadRequestException } from "@nestjs/common";
 import { mockDeep } from "jest-mock-extended";
 import { Level, Season } from "@prisma/client";
 import { LectureEntity } from "@/lecture/entities/lecture.entity";
+import { SemesterEntity } from "@/semester/entities/semester.entity";
 import { CreateLectureDto } from "@/lecture/dto/create-lecture.dto";
 import { UpdateLectureDto } from "@/lecture/dto/update-lecture.dto";
 import { LectureRepository } from "@/lecture/lecture.repository";
@@ -114,7 +115,7 @@ describe("LectureService", () => {
 
   describe("getAllLectures", () => {
     test("모든 강의를 반환해야 합니다", async () => {
-      const lectures = [
+      const lectures: LectureEntity[] = [
         {
           id: 1,
           level: Level.Novice,
@@ -152,7 +153,7 @@ describe("LectureService", () => {
 
   describe("getLectureById", () => {
     test("특정 ID의 강의를 반환해야 합니다", async () => {
-      const lecture = {
+      const lecture: LectureEntity = {
         id: 1,
         level: Level.Expert,
         lectureNumber: 15,
@@ -191,8 +192,8 @@ describe("LectureService", () => {
     test("특정 연도와 계절의 강의 목록을 반환해야 합니다", async () => {
       const year = 2024;
       const season = Season.Summer;
-      const semester = { id: 1, year, season };
-      const lectures = [
+      const semester: SemesterEntity = { id: 1, year, season };
+      const lectures: LectureEntity[] = [
         {
           id: 1,
           level: Level.Novice,
@@ -235,7 +236,7 @@ describe("LectureService", () => {
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
-        new Error("Database error"),
+        new Error("Database connection failed"),
       );
 
       await expect(
@@ -249,8 +250,8 @@ describe("LectureService", () => {
       const year = 2024;
       const season = Season.Summer;
       const level = Level.Advanced;
-      const semester = { id: 1, year, season };
-      const lecture = {
+      const semester: SemesterEntity = { id: 1, year, season };
+      const lecture: LectureEntity = {
         id: 2,
         level,
         lectureNumber: 12,
@@ -313,7 +314,7 @@ describe("LectureService", () => {
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
-        new Error("DB error"),
+        new Error("Database connection failed"),
       );
 
       await expect(
@@ -330,15 +331,14 @@ describe("LectureService", () => {
     test("특정 연도와 계절의 강의 목록(과제 포함)을 반환해야 합니다", async () => {
       const year = 2024;
       const season = Season.Summer;
-      const semester = { id: 1, year, season };
-      const lecturesWithTasks = [
+      const semester: SemesterEntity = { id: 1, year, season };
+      const lectures: LectureEntity[] = [
         {
           id: 1,
           level: Level.Novice,
           lectureNumber: 10,
           bojGroupId: 101,
           semesterId: 1,
-          tasks: [],
         },
         {
           id: 2,
@@ -346,7 +346,6 @@ describe("LectureService", () => {
           lectureNumber: 12,
           bojGroupId: 102,
           semesterId: 1,
-          tasks: [],
         },
       ];
 
@@ -354,7 +353,7 @@ describe("LectureService", () => {
         semester,
       );
       mockLectureRepository.getLecturesWithTasksBySemester.mockResolvedValue(
-        lecturesWithTasks,
+        lectures,
       );
 
       const result = await lectureService.getLecturesWithTasksBySemester(
@@ -362,7 +361,7 @@ describe("LectureService", () => {
         season,
       );
 
-      expect(result).toEqual(lecturesWithTasks);
+      expect(result).toEqual(lectures);
       expect(
         mockSemesterRepository.getSemesterByYearAndSeason,
       ).toHaveBeenCalledWith(year, season);
@@ -381,7 +380,7 @@ describe("LectureService", () => {
 
     test("예기치 않은 오류가 발생하면 BadRequestException을 던져야 합니다", async () => {
       mockSemesterRepository.getSemesterByYearAndSeason.mockRejectedValue(
-        new Error("DB error"),
+        new Error("Database connection failed"),
       );
 
       await expect(
@@ -457,7 +456,7 @@ describe("LectureService", () => {
 
   describe("deleteLecture", () => {
     test("강의를 삭제하고 반환해야 합니다", async () => {
-      const deletedLecture = {
+      const deletedLecture: LectureEntity = {
         id: 1,
         level: Level.Novice,
         lectureNumber: 10,
