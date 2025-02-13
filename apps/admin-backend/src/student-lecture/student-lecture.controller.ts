@@ -15,9 +15,10 @@ import {
 } from "@nestjs/swagger";
 import { Season } from "@prisma/client";
 import { CreateStudentLectureDto } from "./dto/create-student-lecture.dto";
-import { StudentEntity } from "./entities/student.entity";
+
 import { StudentLectureLogEntity } from "../student-lecture-log/entities/student-lecture-log.entity";
 import { StudentLectureService } from "./student-lecture.service";
+import { StudentEntity } from "@/student/entities/student.entity";
 
 @ApiTags("StudentLecture")
 @Controller("student-lecture")
@@ -35,11 +36,11 @@ export class StudentLectureController {
   })
   getStudentsWithLectureLevelsBySemester(
     @Param("year", ParseIntPipe) year: number,
-    @Param("season") season: Season,
+    @Param("season") season: Season
   ): Promise<StudentEntity[]> {
     return this.studentLectureService.getStudentsWithLectureLevelsBySemester(
       year,
-      season,
+      season
     );
   }
 
@@ -52,12 +53,12 @@ export class StudentLectureController {
     description: "학생 생성에 실패했습니다.",
   })
   createStudentWithLectureLog(
-    @Body() createStudentLectureDto: CreateStudentLectureDto,
+    @Body() createStudentLectureDto: CreateStudentLectureDto
   ): Promise<StudentEntity | StudentLectureLogEntity> {
     const { lectureInfo, ...studentData } = createStudentLectureDto;
     return this.studentLectureService.createStudentWithLectureLog(
       studentData,
-      lectureInfo,
+      lectureInfo
     );
   }
 
@@ -70,7 +71,7 @@ export class StudentLectureController {
     description: "학생 생성에 실패했습니다.",
   })
   async createMultipleStudents(
-    @Body() createStudentLectureDto: CreateStudentLectureDto[],
+    @Body() createStudentLectureDto: CreateStudentLectureDto[]
   ): Promise<void> {
     const formattedStudents = createStudentLectureDto.map((student) => {
       const { lectureInfo, ...rest } = student;
@@ -80,7 +81,10 @@ export class StudentLectureController {
       };
     });
     await this.studentLectureService.createStudentsWithLectureLog(
-      formattedStudents,
+      formattedStudents.map((student) => ({
+        studentData: student.student,
+        lectureLogData: student.lectureInfo,
+      }))
     );
   }
 }
