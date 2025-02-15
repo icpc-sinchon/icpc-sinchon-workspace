@@ -11,17 +11,15 @@ import {
 } from "@nestjs/common";
 import { StudentAttendService } from "./student-attend.service";
 import { CreateStudentAttendDto } from "./dto/create-student-attend.dto";
-import { UpdateStudentAttendDto } from "./dto/update-student-attend.dto";
+import {
+  UpdateAttendanceDto,
+  UpdateStudentAttendDto,
+} from "./dto/update-student-attend.dto";
 import { Lecture } from "@prisma/client";
 
 @Controller("student-attend")
 export class StudentAttendController {
   constructor(private readonly studentAttendService: StudentAttendService) {}
-
-  @Post()
-  create(@Body() createStudentAttendDto: CreateStudentAttendDto) {
-    return this.studentAttendService.create(createStudentAttendDto);
-  }
 
   @Get()
   findAllStudent(
@@ -32,6 +30,12 @@ export class StudentAttendController {
       semesterId,
       lectureLevel
     );
+  }
+
+  @Patch("multiple")
+  async bulkUpdateAttendance(@Body("updates") dto: UpdateAttendanceDto[]) {
+    console.log("bulk update attendance", dto);
+    return this.studentAttendService.updateMultipleAttendance(dto);
   }
 
   @Get(":id")

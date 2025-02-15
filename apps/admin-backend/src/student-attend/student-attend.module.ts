@@ -5,6 +5,7 @@ import { PrismaModule } from "@/prisma/prisma.module";
 import { StudentAttendRepository } from "./student-attend.repository";
 import { LectureRepository } from "@/lecture/lecture.repository";
 import { WeeklyAttendLogRepository } from "@/weekly-attend-log/weekly-attend-log.repository";
+import { TaskRepository } from "@/task/task.repository";
 
 @Module({
   imports: [PrismaModule],
@@ -12,6 +13,7 @@ import { WeeklyAttendLogRepository } from "@/weekly-attend-log/weekly-attend-log
   providers: [
     StudentAttendRepository,
     LectureRepository,
+    TaskRepository,
     WeeklyAttendLogRepository,
     StudentAttendService,
   ],

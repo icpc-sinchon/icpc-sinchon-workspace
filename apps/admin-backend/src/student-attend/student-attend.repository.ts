@@ -72,14 +72,13 @@ export class StudentAttendRepository {
     });
   }
 
+  // TODO: student lecture log로 refundAccount 옮겨진 부분 적용
   async getAllStudentsWithAttendLogInLecture(lectureId: number) {
     return this.prisma.student.findMany({
       select: {
         id: true,
         name: true,
         bojHandle: true,
-        refundAccount: true,
-        paymentStatus: true,
         studentLectureLog: {
           where: {
             isCancelled: false,
@@ -88,6 +87,8 @@ export class StudentAttendRepository {
             },
           },
           select: {
+            refundAccount: true,
+            refundOption: true,
             lecture: {
               select: {
                 id: true,
