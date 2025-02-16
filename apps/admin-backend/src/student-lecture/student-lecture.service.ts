@@ -13,23 +13,6 @@ import { StudentLectureLogRepository } from "@/student-lecture-log/student-lectu
 import { LectureRepository } from "@/lecture/lecture.repository";
 import { LectureIdentifier } from "@/types";
 
-const studentWithLectureLog = Prisma.validator<Prisma.StudentDefaultArgs>()({
-  select: {
-    id: true,
-    name: true,
-    bojHandle: true,
-    studentLectureLog: {
-      select: {
-        lecture: { select: { id: true, level: true } },
-      },
-    },
-  },
-});
-
-type StudentWithLectureLog = Prisma.StudentGetPayload<
-  typeof studentWithLectureLog
->;
-
 @Injectable()
 export class StudentLectureService {
   constructor(
@@ -103,6 +86,8 @@ export class StudentLectureService {
           season
         );
 
+      // console.log(JSON.stringify(studentsWithLectureLogs, null, 2));
+
       return studentsWithLectureLogs.map((student) => {
         return {
           id: student.id,
@@ -112,7 +97,11 @@ export class StudentLectureService {
           email: student.email,
           phone: student.phone,
           studentNumber: student.studentNumber,
-          lectureLevels: student.studentLectureLog.map((log) => log.lectureId),
+          lectureLogs: student.studentLectureLog.map((log) => ({
+            refundOption: log.refundOption,
+            refundAccount: log.refundAccount,
+            level: log.lecture.level,
+          })),
         };
       });
     } catch (error) {
@@ -122,6 +111,7 @@ export class StudentLectureService {
     }
   }
 
+  // 현재 미사용
   async getStudentLectureLogByStudentId(
     studentId: number,
     query: LectureIdentifier

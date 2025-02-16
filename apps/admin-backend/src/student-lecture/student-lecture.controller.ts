@@ -5,6 +5,7 @@ import {
   Get,
   Post,
   ParseIntPipe,
+  Query,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -25,7 +26,7 @@ import { StudentEntity } from "@/student/entities/student.entity";
 export class StudentLectureController {
   constructor(private readonly studentLectureService: StudentLectureService) {}
 
-  @Get("semester/:year/:season")
+  @Get()
   @ApiOperation({ summary: "특정 학기의 수강생 목록 조회" })
   @ApiOkResponse({
     type: [StudentEntity],
@@ -35,8 +36,8 @@ export class StudentLectureController {
     description: "학생울 조회하는 데 실패했습니다.",
   })
   getStudentsWithLectureLevelsBySemester(
-    @Param("year", ParseIntPipe) year: number,
-    @Param("season") season: Season
+    @Query("year", ParseIntPipe) year: number,
+    @Query("season") season: Season
   ): Promise<StudentEntity[]> {
     return this.studentLectureService.getStudentsWithLectureLevelsBySemester(
       year,
