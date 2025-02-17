@@ -1,4 +1,4 @@
-import { RefundOption, StudentLectureLog } from "@prisma/client";
+import { Lecture, RefundOption, StudentLectureLog } from "@prisma/client";
 
 export class StudentLectureLogEntity implements StudentLectureLog {
   id: number;
@@ -8,4 +8,5 @@ export class StudentLectureLogEntity implements StudentLectureLog {
   isCancelled: boolean;
   refundAccount: string;
   refundOption: RefundOption;
+  lecture?: Lecture;
 }

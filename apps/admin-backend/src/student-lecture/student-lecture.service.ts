@@ -98,6 +98,7 @@ export class StudentLectureService {
           phone: student.phone,
           studentNumber: student.studentNumber,
           lectureLogs: student.studentLectureLog.map((log) => ({
+            id: log.id,
             refundOption: log.refundOption,
             refundAccount: log.refundAccount,
             level: log.lecture.level,
