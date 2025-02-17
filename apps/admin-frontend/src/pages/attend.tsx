@@ -12,7 +12,7 @@ import type {
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 import AttendTable from "@/ui/Table/AttendTable";
-import { useSemester } from "@/contexts/SemesterContext";
+import { useLectures, useSemester } from "@/contexts/SemesterContext";
 import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";
 import Spinner from "@/components/Spinner";
@@ -25,35 +25,6 @@ type ChangedAttendLog = {
   round: number;
   lectureDone: boolean;
   taskDone: boolean;
-};
-
-const useLectures = (semester: Semester | null) => {
-  const [lectures, setLectures] = useState<Lecture[] | null>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchLectures = useCallback(async () => {
-    if (!semester) return;
-
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await adminAPI.get<Lecture[]>(API_URL.LECTURE.BASE, {
-        params: { year: semester.year, season: semester.season },
-      });
-      setLectures(response.data);
-    } catch (err) {
-      setError(err as Error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [semester]);
-
-  useEffect(() => {
-    fetchLectures();
-  }, [fetchLectures]);
-
-  return { lectures, isLoading, error, refreshLectures: fetchLectures };
 };
 
 function StudentAttendPage() {
