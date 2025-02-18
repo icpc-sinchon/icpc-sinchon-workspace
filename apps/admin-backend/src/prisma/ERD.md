@@ -214,7 +214,7 @@ BOJ 문제 번호와 각 문제의 필수 여부를 가지고 있음
   - `studentId`: 
   - `lectureId`: 
   - `refundOption`: 학생의 환급 옵션 (환급, 비환급 중 하나)
-  - `refundAccount`: 환불 계좌
+  - `refundAccount`: 학생의 환불 계좌
   - `isInvited`
     > 학생이 BOJ 그룹에 초대되었는지 여부. 초대되었을 시 true
     > 

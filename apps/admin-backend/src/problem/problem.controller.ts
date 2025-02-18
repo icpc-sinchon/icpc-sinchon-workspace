@@ -28,6 +28,21 @@ import { ProblemService } from "./problem.service";
 export class ProblemController {
   constructor(private readonly problemService: ProblemService) {}
 
+  @Post()
+  @ApiOperation({ summary: "새로운 문제 생성" })
+  @ApiCreatedResponse({
+    type: ProblemEntity,
+    description: "새로운 문제를 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "문제 생성에 실패했습니다.",
+  })
+  createProblem(
+    @Body() createProblemDto: CreateProblemDto,
+  ): Promise<ProblemEntity> {
+    return this.problemService.createProblem(createProblemDto);
+  }
+
   @Get()
   @ApiOperation({ summary: "특정 과제의 문제 목록 조회" })
   @ApiQuery({
@@ -46,21 +61,6 @@ export class ProblemController {
     @Query("taskId", ParseIntPipe) taskId: number,
   ): Promise<ProblemEntity[]> {
     return this.problemService.getProblemsByTaskId(taskId);
-  }
-
-  @Post()
-  @ApiOperation({ summary: "새로운 문제 생성" })
-  @ApiCreatedResponse({
-    type: ProblemEntity,
-    description: "새로운 문제를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "문제 생성에 실패했습니다.",
-  })
-  createProblem(
-    @Body() createProblemDto: CreateProblemDto,
-  ): Promise<ProblemEntity> {
-    return this.problemService.createProblem(createProblemDto);
   }
 
   @Patch(":id")
@@ -95,6 +95,6 @@ export class ProblemController {
     description: "문제 삭제에 실패했습니다.",
   })
   deleteProblem(@Param("id", ParseIntPipe) id: number): Promise<ProblemEntity> {
-    return this.problemService.removeProblem(id);
+    return this.problemService.deleteProblem(id);
   }
 }

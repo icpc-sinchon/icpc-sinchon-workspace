@@ -90,7 +90,7 @@ describe("TaskService", () => {
       );
     });
 
-    test("lecture id가 BadRequestException을 던져야 합니다", async () => {
+    test("lecture id가 없으면 BadRequestException을 던져야 합니다", async () => {
       const invalidDto: Partial<CreateTaskDto> = {};
 
       mockTaskRepository.createTask.mockRejectedValue(
