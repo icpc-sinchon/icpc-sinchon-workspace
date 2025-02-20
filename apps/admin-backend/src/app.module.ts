@@ -4,6 +4,7 @@ import { LectureModule } from "./lecture/lecture.module";
 import { TaskModule } from "./task/task.module";
 import { ProblemModule } from "./problem/problem.module";
 import { StudentModule } from "./student/student.module";
+import { RefundPolicyModule } from "./refund-policy/refund-policy.module";
 import { AuthModule } from "./auth/auth.module";
 
 @Module({
@@ -13,6 +14,7 @@ import { AuthModule } from "./auth/auth.module";
     TaskModule,
     ProblemModule,
     StudentModule,
+    RefundPolicyModule,
     AuthModule,
   ],
 })

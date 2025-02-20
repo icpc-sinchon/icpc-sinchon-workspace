@@ -54,7 +54,7 @@ export class LectureController {
   @ApiQuery({
     name: "season",
     enum: Season,
-    description: "조회할 강의가 속한 학기의 학기(예: Summer, Winter)입니다.",
+    description: "조회할 강의가 속한 학기의 시즌(예: Summer, Winter)입니다.",
   })
   @ApiOkResponse({
     type: [LectureEntity],

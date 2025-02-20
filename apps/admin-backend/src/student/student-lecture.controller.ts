@@ -19,7 +19,7 @@ import { StudentEntity } from "./entities/student.entity";
 import { StudentLectureLogEntity } from "../student-lecture-log/entities/student-lecture-log.entity";
 import { StudentLectureService } from "./student-lecture.service";
 
-@ApiTags("StudentLecture")
+@ApiTags("Student Lecture")
 @Controller("student-lecture")
 export class StudentLectureController {
   constructor(private readonly studentLectureService: StudentLectureService) {}
