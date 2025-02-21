@@ -4,7 +4,7 @@ import Papa from "papaparse";
 import FormDialog from "../FormDialog";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
-import type { NewStudent } from "@/types/models";
+import type { NewStudent, NewStudentWithLectureLog } from "@/types/models";
 import { useSemester } from "@/contexts/SemesterContext";
 
 const schoolConvert = {
@@ -15,28 +15,25 @@ const schoolConvert = {
   숙명여자대학교: "SOOKMYUNG",
 };
 
-function convertPaymentStatus(payment: string) {
-  const p = payment.split(" ");
-  if (p[0] === "3만원") {
-    return "PAID_30000";
+function convertRefundOption(refund: string) {
+  if (refund.startsWith("환급")) {
+    return "Refund";
   }
-  return "PAID_60000";
+  return "NonRefund";
 }
 
 function convertLectureLevel(level: string) {
-  const l = level.split(" ");
-  if (l[0] === "Novice") {
+  if (level.startsWith("Novice")) {
     return "Novice";
   }
-  // if (l[0] === "Advanced") {
-  //   return "Intermediate";
-  // }
-  return "Advanced";
+  if (level.startsWith("Advanced")) {
+    return "Advanced";
+  }
+  return "Expert";
 }
 
 function AddMultipleStudentDialog() {
   const [csvFile, setCsvFile] = useState<File | null>(null);
-  const { currentSemester } = useSemester();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -44,8 +41,7 @@ function AddMultipleStudentDialog() {
     }
   };
 
-  const parseCsvToStudents = async (file: File) => {
-    const semester = currentSemester;
+  const parseCsvToStudents = async (file: File): Promise<NewStudent[]> => {
     return new Promise((resolve, reject) => {
       Papa.parse(file, {
         complete: (result) => {
@@ -53,21 +49,22 @@ function AddMultipleStudentDialog() {
           const filteredResult = result.data.filter(
             (row: string[]) => !row || row[0] !== "",
           );
+          console.log(filteredResult);
           const students: NewStudent[] = filteredResult.map(
             (row: string[]) => ({
-              name: row[1],
+              name: row[0],
               bojHandle: row[4],
               email: "",
               phone: row[2],
               school: schoolConvert[row[3]],
-              studentNumber: row[8],
-              paymentStatus: convertPaymentStatus(row[6]),
-              refundAccount: row[7],
-              lectureInfo: {
-                year: semester.year,
-                season: semester.season,
-                level: convertLectureLevel(row[5]),
-              },
+              studentNumber: row[1],
+              // lectureInfo: {
+              //   year: semester.year,
+              //   season: semester.season,
+              //   level: convertLectureLevel(row[5]),
+              //   refundOption: convertRefundOption(row[6]),
+              //   refundAccount: row[7],
+              // },
             }),
           );
           resolve(students);
@@ -84,10 +81,8 @@ function AddMultipleStudentDialog() {
       return;
     }
 
-    const parsedStudents = (
-      (await parseCsvToStudents(csvFile)) as any[]
-    ).filter(
-      (student: NewStudent) =>
+    const parsedStudents = (await parseCsvToStudents(csvFile)).filter(
+      (student: NewStudentWithLectureLog) =>
         student.name !== " " &&
         student.bojHandle !== " " &&
         student.phone !== " " &&
@@ -97,7 +92,7 @@ function AddMultipleStudentDialog() {
     console.log(parsedStudents);
 
     await adminAPI.post(API_URL.STUDENT.MULTIPLE, parsedStudents);
-    // setCsvFile(null);
+    setCsvFile(null);
   };
 
   return (
