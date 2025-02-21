@@ -27,7 +27,6 @@ function Table<T extends TableItem>({
                 key={item.id}
                 item={item}
                 columns={columns}
-                highlightColumn={null}
                 rowIndex={rowIndex}
                 rowHeaderType="rowNumber"
                 onEdit={onEditRow}

@@ -32,7 +32,6 @@ export type TableProps<T extends TableItem> = {
 
 export type CheckboxTableProps<T extends TableItem> = TableProps<T> & {
   // 아무 열도 하이라이트하지 않은 상태가 null
-  highlightColumn: keyof T | null;
   selectedRowIds: Set<number>;
   onCheckboxChange: (selectedRowIds: Set<number>) => void;
 };
@@ -41,9 +40,6 @@ export type TableRowCommonProps<T extends TableItem> = {
   // 표에서 렌더링할 객체
   item: T;
   columns: Column<T>[];
-  // 열 하나에 하이라이트를 넣을 수 있다
-  // 아무 열도 하이라이트하지 않은 상태가 null
-  highlightColumn: keyof T | null;
   onEdit: (editedItem: T) => void;
   onDelete: (itemId: number) => void;
 };
