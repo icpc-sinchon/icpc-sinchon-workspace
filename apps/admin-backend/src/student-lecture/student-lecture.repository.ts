@@ -50,7 +50,7 @@ export class StudentLectureRepository {
   async getStudentsWithLectureLogBySemesterAndLectureLevel(
     year: number,
     season: Season,
-    lectureLevel: Level
+    lectureLevel: Level,
   ): Promise<StudentEntity[]> {
     return this.prisma.student.findMany({
       where: {

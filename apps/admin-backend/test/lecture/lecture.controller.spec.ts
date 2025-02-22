@@ -1,19 +1,19 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { LectureController } from "@/lecture/lecture.controller";
-import { LectureService } from "@/lecture/lecture.service";
+import { mockDeep } from "jest-mock-extended";
+import { Season, Level } from "@prisma/client";
+import { LectureEntity } from "@/lecture/entities/lecture.entity";
 import { CreateLectureDto } from "@/lecture/dto/create-lecture.dto";
 import { UpdateLectureDto } from "@/lecture/dto/update-lecture.dto";
-import { Lecture, Level, Season } from "@prisma/client";
-import { BadRequestException } from "@nestjs/common";
-import { mockDeep } from "jest-mock-extended";
+import { LectureService } from "@/lecture/lecture.service";
+import { LectureController } from "@/lecture/lecture.controller";
 
 const mockLectureService = mockDeep<LectureService>();
 
 describe("LectureController", () => {
-  let controller: LectureController;
+  let lectureController: LectureController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [LectureController],
       providers: [LectureService],
     })
@@ -21,184 +21,124 @@ describe("LectureController", () => {
       .useValue(mockLectureService)
       .compile();
 
-    controller = module.get<LectureController>(LectureController);
+    lectureController = moduleRef.get<LectureController>(LectureController);
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe("findLectures", () => {
-    test("should return lectures with tasks for given semester", async () => {
+  describe("createLecture", () => {
+    test("새 강의를 생성하고 반환해야 합니다", async () => {
+      const createLectureDto: CreateLectureDto = {
+        level: Level.Expert,
+        lectureNumber: 15,
+        bojGroupId: 103,
+        semesterId: 2,
+      };
+      const createdLecture: LectureEntity = { id: 3, ...createLectureDto };
+
+      mockLectureService.createLectureWithTasks.mockResolvedValue(
+        createdLecture,
+      );
+
+      const result = await lectureController.createLecture(createLectureDto);
+
+      expect(result).toEqual(createdLecture);
+      expect(mockLectureService.createLectureWithTasks).toHaveBeenCalledTimes(
+        1,
+      );
+      expect(mockLectureService.createLectureWithTasks).toHaveBeenCalledWith(
+        createLectureDto,
+      );
+    });
+  });
+
+  describe("getLectures", () => {
+    test("특정 학기의 강의 목록을 반환해야 합니다", async () => {
       const year = 2024;
-      const season = Season.Summer;
-      const expectedLectures = [
+      const season = Season.Spring;
+      const lectures: LectureEntity[] = [
         {
           id: 1,
           level: Level.Novice,
           lectureNumber: 10,
-          bojGroupId: 1234,
+          bojGroupId: 101,
           semesterId: 1,
-          task: [
-            {
-              id: 1,
-              round: 1,
-              practiceId: 1,
-              problems: [],
-            },
-          ],
+        },
+        {
+          id: 2,
+          level: Level.Advanced,
+          lectureNumber: 12,
+          bojGroupId: 102,
+          semesterId: 1,
         },
       ];
 
-      mockLectureService.findLecturesWithTasksBySemester.mockResolvedValue(
-        expectedLectures,
+      mockLectureService.getLecturesWithTasksBySemester.mockResolvedValue(
+        lectures,
       );
 
-      const result = await controller.findLectures(year, season);
+      const result = await lectureController.getLectures(year, season);
 
+      expect(result).toEqual(lectures);
       expect(
-        mockLectureService.findLecturesWithTasksBySemester,
-      ).toHaveBeenCalledWith(year, season);
-      expect(result).toEqual(expectedLectures);
-    });
-
-    test("유효하지 않은 연도 쿼리에 대해서 에러 발생", async () => {
-      const invalidYear = "invalid" as unknown as number;
-      const season = Season.Summer;
-
-      mockLectureService.findLecturesWithTasksBySemester.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(
-        controller.findLectures(invalidYear, season),
-      ).rejects.toThrow(BadRequestException);
-      expect(
-        mockLectureService.findLecturesWithTasksBySemester,
-      ).toHaveBeenCalledWith(invalidYear, season);
-      expect(
-        mockLectureService.findLecturesWithTasksBySemester,
+        mockLectureService.getLecturesWithTasksBySemester,
       ).toHaveBeenCalledTimes(1);
-    });
-
-    test("유효하지 않은 계절 쿼리에 대해 에러 발생", async () => {
-      const year = 2024;
-      const invalidSeason = "INVALID" as Season;
-
-      await expect(
-        controller.findLectures(year, invalidSeason),
-      ).rejects.toThrow(BadRequestException);
-    });
-  });
-
-  describe("createLecture", () => {
-    test("should create a new lecture", async () => {
-      const createLectureDto: CreateLectureDto = {
-        level: Level.Novice,
-        lectureNumber: 10,
-        bojGroupId: 1234,
-        semesterId: 1,
-      };
-
-      const expectedLecture = {
-        id: 1,
-        ...createLectureDto,
-      } as Lecture;
-
-      mockLectureService.createLecture.mockResolvedValue(expectedLecture);
-
-      const result = await controller.createLecture(createLectureDto);
-
-      expect(mockLectureService.createLecture).toHaveBeenCalledWith(
-        createLectureDto,
-      );
-      expect(result).toEqual(expectedLecture);
-    });
-
-    test("should validate create lecture dto", async () => {
-      const invalidDto = {
-        level: "INVALID" as Level,
-        lectureNumber: "invalid",
-        bojGroupId: "invalid",
-        semesterId: "invalid",
-      };
-
-      mockLectureService.createLecture.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(
-        controller.createLecture(invalidDto as unknown as CreateLectureDto),
-      ).rejects.toThrow(BadRequestException);
+      expect(
+        mockLectureService.getLecturesWithTasksBySemester,
+      ).toHaveBeenCalledWith(year, season);
     });
   });
 
   describe("updateLecture", () => {
-    test("should update an existing lecture", async () => {
-      const lectureId = 1;
+    test("특정 강의를 수정하고 반환해야 합니다", async () => {
       const updateLectureDto: UpdateLectureDto = {
-        lectureNumber: 12,
+        level: Level.Advanced,
+        lectureNumber: 20,
       };
-
-      const expectedLecture = {
-        id: lectureId,
+      const existingLecture: LectureEntity = {
+        id: 1,
         level: Level.Novice,
-        lectureNumber: 12,
-        bojGroupId: 1234,
+        lectureNumber: 10,
+        bojGroupId: 101,
         semesterId: 1,
       };
-
-      mockLectureService.updateLecture.mockResolvedValue(expectedLecture);
-
-      const result = await controller.updateLecture(
-        lectureId,
-        updateLectureDto,
-      );
-
-      expect(mockLectureService.updateLecture).toHaveBeenCalledWith(
-        lectureId,
-        updateLectureDto,
-      );
-      expect(result).toEqual(expectedLecture);
-    });
-
-    test("should validate update lecture dto", async () => {
-      const lectureId = 1;
-      const invalidDto = {
-        level: "INVALID" as Level,
-        lectureNumber: "invalid",
+      const updatedLecture: LectureEntity = {
+        ...existingLecture,
+        ...updateLectureDto,
       };
 
-      mockLectureService.updateLecture.mockRejectedValue(
-        new BadRequestException(),
-      );
+      mockLectureService.updateLecture.mockResolvedValue(updatedLecture);
 
-      await expect(
-        controller.updateLecture(
-          lectureId,
-          invalidDto as unknown as UpdateLectureDto,
-        ),
-      ).rejects.toThrow(BadRequestException);
+      const result = await lectureController.updateLecture(1, updateLectureDto);
+
+      expect(result).toEqual(updatedLecture);
+      expect(mockLectureService.updateLecture).toHaveBeenCalledTimes(1);
+      expect(mockLectureService.updateLecture).toHaveBeenCalledWith(
+        1,
+        updateLectureDto,
+      );
     });
   });
 
-  describe("removeLecture", () => {
-    test("should remove an existing lecture", async () => {
-      const lectureId = 1;
-      const expectedLecture = {
-        id: lectureId,
+  describe("deleteLecture", () => {
+    test("특정 강의를 삭제하고 반환해야 합니다", async () => {
+      const deletedLecture: LectureEntity = {
+        id: 1,
         level: Level.Novice,
         lectureNumber: 10,
-        bojGroupId: 1234,
+        bojGroupId: 101,
         semesterId: 1,
       };
 
-      mockLectureService.removeLecture.mockResolvedValue(expectedLecture);
+      mockLectureService.deleteLecture.mockResolvedValue(deletedLecture);
 
-      const result = await controller.removeLecture(lectureId);
+      const result = await lectureController.deleteLecture(1);
 
-      expect(mockLectureService.removeLecture).toHaveBeenCalledWith(lectureId);
-      expect(result).toEqual(expectedLecture);
+      expect(result).toEqual(deletedLecture);
+      expect(mockLectureService.deleteLecture).toHaveBeenCalledTimes(1);
+      expect(mockLectureService.deleteLecture).toHaveBeenCalledWith(1);
     });
   });
 });

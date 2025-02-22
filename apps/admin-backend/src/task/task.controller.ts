@@ -28,6 +28,19 @@ import { TaskService } from "./task.service";
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
+  @Post()
+  @ApiOperation({ summary: "새로운 과제 생성" })
+  @ApiCreatedResponse({
+    type: TaskEntity,
+    description: "새로운 과제를 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "과제 생성에 실패했습니다.",
+  })
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<TaskEntity> {
+    return this.taskService.createTask(createTaskDto);
+  }
+
   @Get()
   @ApiOperation({ summary: "특정 강의의 과제 목록 조회" })
   @ApiQuery({
@@ -64,19 +77,6 @@ export class TaskController {
     return this.taskService.getTaskById(id);
   }
 
-  @Post()
-  @ApiOperation({ summary: "새로운 과제 생성" })
-  @ApiCreatedResponse({
-    type: TaskEntity,
-    description: "새로운 과제를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "과제 생성에 실패했습니다.",
-  })
-  createTask(@Body() createTaskDto: CreateTaskDto): Promise<TaskEntity> {
-    return this.taskService.createTask(createTaskDto);
-  }
-
   @Patch(":id")
   @ApiOperation({ summary: "특정 과제 수정" })
   @ApiOkResponse({
@@ -109,6 +109,6 @@ export class TaskController {
     description: "과제 삭제에 실패했습니다.",
   })
   deleteTask(@Param("id", ParseIntPipe) id: number): Promise<TaskEntity> {
-    return this.taskService.removeTask(id);
+    return this.taskService.deleteTask(id);
   }
 }

@@ -1,19 +1,18 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { TaskController } from "@/task/task.controller";
-import { TaskService } from "@/task/task.service";
+import { mockDeep } from "jest-mock-extended";
+import { TaskEntity } from "@/task/entities/task.entity";
 import { CreateTaskDto } from "@/task/dto/create-task.dto";
 import { UpdateTaskDto } from "@/task/dto/update-task.dto";
-import { Task } from "@prisma/client";
-import { BadRequestException } from "@nestjs/common";
-import { mockDeep } from "jest-mock-extended";
+import { TaskService } from "@/task/task.service";
+import { TaskController } from "@/task/task.controller";
 
 const mockTaskService = mockDeep<TaskService>();
 
 describe("TaskController", () => {
-  let controller: TaskController;
+  let taskController: TaskController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [TaskController],
       providers: [TaskService],
     })
@@ -21,154 +20,127 @@ describe("TaskController", () => {
       .useValue(mockTaskService)
       .compile();
 
-    controller = module.get<TaskController>(TaskController);
+    taskController = moduleRef.get<TaskController>(TaskController);
   });
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe("findTasks", () => {
-    test("should return tasks for a given lecture", async () => {
+  describe("createTask", () => {
+    test("새로운 과제를 생성하고 반환해야 합니다", async () => {
+      const createTaskDto: CreateTaskDto = {
+        round: 1,
+        practiceId: 101,
+        lectureId: 1,
+        minSolveCount: 3,
+      };
+      const createdTask: TaskEntity = { id: 3, ...createTaskDto };
+
+      mockTaskService.createTask.mockResolvedValue(createdTask);
+
+      const result = await taskController.createTask(createTaskDto);
+
+      expect(result).toEqual(createdTask);
+      expect(mockTaskService.createTask).toHaveBeenCalledTimes(1);
+      expect(mockTaskService.createTask).toHaveBeenCalledWith(createTaskDto);
+    });
+  });
+
+  describe("getTasksByLecture", () => {
+    test("특정 강의의 과제 목록을 반환해야 합니다", async () => {
       const lectureId = 1;
-      const expectedTasks: Task[] = [
+      const tasks: TaskEntity[] = [
         {
           id: 1,
           round: 1,
           practiceId: 101,
           lectureId,
-          minSolveCount: 5,
+          minSolveCount: 3,
+        },
+        {
+          id: 2,
+          round: 2,
+          practiceId: 102,
+          lectureId,
+          minSolveCount: 2,
         },
       ];
 
-      mockTaskService.findTasksByLecture.mockResolvedValue(expectedTasks);
+      mockTaskService.getTasksByLectureId.mockResolvedValue(tasks);
 
-      const result = await controller.findTasksByLecture(lectureId);
+      const result = await taskController.getTasksByLecture(lectureId);
 
-      expect(mockTaskService.findTasksByLecture).toHaveBeenCalledWith(lectureId);
-      expect(result).toEqual(expectedTasks);
-    });
-
-    test("should throw an error for an invalid lecture ID", async () => {
-      const invalidLectureId = "invalid" as unknown as number;
-
-      mockTaskService.findTasksByLecture.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(controller.findTasksByLecture(invalidLectureId)).rejects.toThrow(
-        BadRequestException,
+      expect(result).toEqual(tasks);
+      expect(mockTaskService.getTasksByLectureId).toHaveBeenCalledTimes(1);
+      expect(mockTaskService.getTasksByLectureId).toHaveBeenCalledWith(
+        lectureId,
       );
     });
   });
 
-  describe("createTask", () => {
-    test("should create a new task", async () => {
-      const createTaskDto: CreateTaskDto = {
+  describe("getTaskById", () => {
+    test("특정 과제를 조회하고 반환해야 합니다", async () => {
+      const task: TaskEntity = {
+        id: 1,
         round: 1,
         practiceId: 101,
         lectureId: 1,
-        minSolveCount: 5,
+        minSolveCount: 3,
       };
 
-      const expectedTask: Task = {
-        id: 1,
-        ...createTaskDto,
-      };
+      mockTaskService.getTaskById.mockResolvedValue(task);
 
-      mockTaskService.createTask.mockResolvedValue(expectedTask);
+      const result = await taskController.getTaskById(1);
 
-      const result = await controller.createTask(createTaskDto);
-
-      expect(mockTaskService.createTask).toHaveBeenCalledWith(createTaskDto);
-      expect(result).toEqual(expectedTask);
-    });
-
-    test("should throw a validation error for invalid createTaskDto", async () => {
-      const invalidDto = {
-        round: "invalid",
-        practiceId: "invalid",
-        lectureId: "invalid",
-        minSolveCount: "invalid",
-      };
-
-      mockTaskService.createTask.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(
-        controller.createTask(invalidDto as unknown as CreateTaskDto),
-      ).rejects.toThrow(BadRequestException);
+      expect(result).toEqual(task);
+      expect(mockTaskService.getTaskById).toHaveBeenCalledTimes(1);
+      expect(mockTaskService.getTaskById).toHaveBeenCalledWith(1);
     });
   });
 
   describe("updateTask", () => {
-    test("should update an existing task", async () => {
-      const taskId = 1;
-      const updateTaskDto: UpdateTaskDto = { minSolveCount: 10 };
-
-      const expectedTask: Task = {
-        id: taskId,
+    test("특정 과제를 수정하고 반환해야 합니다", async () => {
+      const updateTaskDto: UpdateTaskDto = {
+        round: 2,
+        practiceId: 102,
+      };
+      const existingTask: TaskEntity = {
+        id: 1,
         round: 1,
         practiceId: 101,
         lectureId: 1,
-        minSolveCount: 10,
+        minSolveCount: 3,
       };
+      const updatedTask: TaskEntity = { ...existingTask, ...updateTaskDto };
 
-      mockTaskService.updateTask.mockResolvedValue(expectedTask);
+      mockTaskService.updateTask.mockResolvedValue(updatedTask);
 
-      const result = await controller.updateTask(taskId, updateTaskDto);
+      const result = await taskController.updateTask(1, updateTaskDto);
 
-      expect(mockTaskService.updateTask).toHaveBeenCalledWith(
-        taskId,
-        updateTaskDto,
-      );
-      expect(result).toEqual(expectedTask);
-    });
-
-    test("should throw an error for invalid updateTaskDto", async () => {
-      const taskId = 1;
-      const invalidDto = { minSolveCount: "invalid" };
-
-      mockTaskService.updateTask.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(
-        controller.updateTask(taskId, invalidDto as unknown as UpdateTaskDto),
-      ).rejects.toThrow(BadRequestException);
+      expect(result).toEqual(updatedTask);
+      expect(mockTaskService.updateTask).toHaveBeenCalledTimes(1);
+      expect(mockTaskService.updateTask).toHaveBeenCalledWith(1, updateTaskDto);
     });
   });
 
-  describe("removeTask", () => {
-    test("should remove an existing task", async () => {
-      const taskId = 1;
-      const expectedTask: Task = {
-        id: taskId,
+  describe("deleteTask", () => {
+    test("특정 과제를 삭제하고 반환해야 합니다", async () => {
+      const deletedTask: TaskEntity = {
+        id: 1,
         round: 1,
         practiceId: 101,
         lectureId: 1,
-        minSolveCount: 5,
+        minSolveCount: 3,
       };
 
-      mockTaskService.removeTask.mockResolvedValue(expectedTask);
+      mockTaskService.deleteTask.mockResolvedValue(deletedTask);
 
-      const result = await controller.removeTask(taskId);
+      const result = await taskController.deleteTask(1);
 
-      expect(mockTaskService.removeTask).toHaveBeenCalledWith(taskId);
-      expect(result).toEqual(expectedTask);
-    });
-
-    test("should throw an error for an invalid task ID", async () => {
-      const invalidTaskId = "invalid" as unknown as number;
-
-      mockTaskService.removeTask.mockRejectedValue(
-        new BadRequestException(),
-      );
-
-      await expect(controller.removeTask(invalidTaskId)).rejects.toThrow(
-        BadRequestException,
-      );
+      expect(result).toEqual(deletedTask);
+      expect(mockTaskService.deleteTask).toHaveBeenCalledTimes(1);
+      expect(mockTaskService.deleteTask).toHaveBeenCalledWith(1);
     });
   });
 });

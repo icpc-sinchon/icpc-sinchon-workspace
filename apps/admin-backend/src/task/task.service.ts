@@ -20,6 +20,11 @@ export class TaskService {
 
   async createTask(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
     const { lectureId, ...taskData } = createTaskDto;
+
+    if (!lectureId) {
+      throw new BadRequestException("Lecture ID is required");
+    }
+
     try {
       const lecture = await this.lectureRepository.getLectureById(lectureId);
       if (!lecture) {
@@ -76,6 +81,9 @@ export class TaskService {
         lectureId,
       );
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve tasks: ${error.message}`,
       );
@@ -86,7 +94,7 @@ export class TaskService {
     id: number,
     updateTaskDto: UpdateTaskDto,
   ): Promise<TaskEntity> {
-    const { minSolveCount, practiceId, problems } = updateTaskDto;
+    const { minSolveCount, practiceId, problems = [] } = updateTaskDto;
 
     try {
       const task = await this.taskRepository.getTaskById(id);
@@ -116,8 +124,11 @@ export class TaskService {
     }
   }
 
-  async removeTask(id: number): Promise<TaskEntity> {
+  async deleteTask(id: number): Promise<TaskEntity> {
     try {
+      if (!id || id <= 0) {
+        throw new BadRequestException(`Invalid task ID: ${id}`);
+      }
       const task = await this.taskRepository.getTaskById(id);
       if (!task) {
         throw new NotFoundException(`Task with ID ${id} not found`);

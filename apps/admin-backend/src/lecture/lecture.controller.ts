@@ -29,6 +29,21 @@ import { LectureService } from "./lecture.service";
 export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
+  @Post()
+  @ApiOperation({ summary: "새로운 강의 생성" })
+  @ApiCreatedResponse({
+    type: LectureEntity,
+    description: "새로운 강의를 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "강의 생성에 실패했습니다.",
+  })
+  createLecture(
+    @Body() createLectureDto: CreateLectureDto,
+  ): Promise<LectureEntity> {
+    return this.lectureService.createLectureWithTasks(createLectureDto);
+  }
+
   @Get()
   @ApiOperation({ summary: "특정 학기의 강의 목록 조회" })
   @ApiQuery({
@@ -53,21 +68,6 @@ export class LectureController {
     @Query("season") season: Season,
   ): Promise<LectureEntity[]> {
     return this.lectureService.getLecturesWithTasksBySemester(year, season);
-  }
-
-  @Post()
-  @ApiOperation({ summary: "새로운 강의 생성" })
-  @ApiCreatedResponse({
-    type: LectureEntity,
-    description: "새로운 강의를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "강의 생성에 실패했습니다.",
-  })
-  createLecture(
-    @Body() createLectureDto: CreateLectureDto,
-  ): Promise<LectureEntity> {
-    return this.lectureService.createLectureWithTasks(createLectureDto);
   }
 
   @Patch(":id")

@@ -203,7 +203,7 @@ model StudentLectureLog {
   lectureId     Int
   /// 학생의 환급 옵션 (환급, 비환급 중 하나)
   refundOption  RefundOption @default(Refund)
-  /// 환불 계좌
+  /// 학생의 환불 계좌
   refundAccount String
   /// 학생이 BOJ 그룹에 초대되었는지 여부. 초대되었을 시 true
   ///

@@ -26,6 +26,21 @@ import { SemesterService } from "./semester.service";
 export class SemesterController {
   constructor(private readonly semesterService: SemesterService) {}
 
+  @Post()
+  @ApiOperation({ summary: "새로운 학기 생성" })
+  @ApiCreatedResponse({
+    type: SemesterEntity,
+    description: "새로운 학기를 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "학기 생성에 실패했습니다.",
+  })
+  createSemester(
+    @Body() createSemesterDto: CreateSemesterDto,
+  ): Promise<SemesterEntity> {
+    return this.semesterService.createSemester(createSemesterDto);
+  }
+
   @Get()
   @ApiOperation({ summary: "모든 학기 목록 조회" })
   @ApiOkResponse({
@@ -55,21 +70,6 @@ export class SemesterController {
     @Param("id", ParseIntPipe) id: number,
   ): Promise<SemesterEntity> {
     return this.semesterService.getSemesterById(id);
-  }
-
-  @Post()
-  @ApiOperation({ summary: "새로운 학기 생성" })
-  @ApiCreatedResponse({
-    type: SemesterEntity,
-    description: "새로운 학기를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "학기 생성에 실패했습니다.",
-  })
-  createSemester(
-    @Body() createSemesterDto: CreateSemesterDto,
-  ): Promise<SemesterEntity> {
-    return this.semesterService.createSemester(createSemesterDto);
   }
 
   @Patch("/:id")

@@ -3,6 +3,7 @@ import {
   Lecture,
   Semester,
   Student,
+  StudentLectureLog,
   Prisma,
 } from "@prisma/client";
 
