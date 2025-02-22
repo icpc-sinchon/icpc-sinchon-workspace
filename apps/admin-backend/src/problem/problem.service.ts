@@ -20,12 +20,25 @@ export class ProblemService {
     createProblemDto: CreateProblemDto,
   ): Promise<ProblemEntity> {
     const { taskId, ...problemData } = createProblemDto;
+
+    if (!taskId) {
+      throw new BadRequestException("Task ID is required");
+    }
+
     try {
+      const task = await this.taskRepository.getTaskById(taskId);
+      if (!task) {
+        throw new NotFoundException(`Task with ID ${taskId} not found`);
+      }
+
       return await this.problemRepository.createProblem({
         ...problemData,
         task: { connect: { id: taskId } },
       });
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to create problem: ${error.message}`,
       );
@@ -68,6 +81,9 @@ export class ProblemService {
 
       return await this.problemRepository.getProblemsByTaskId(taskId);
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve problems for task id ${taskId}: ${error.message}`,
       );
@@ -91,6 +107,9 @@ export class ProblemService {
       }
       return problem;
     } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
       throw new BadRequestException(
         `Failed to retrieve problem for task id ${taskId} and BOJ problem number ${bojProblemNumber}: ${error.message}`,
       );
@@ -117,8 +136,11 @@ export class ProblemService {
     }
   }
 
-  async removeProblem(id: number): Promise<ProblemEntity> {
+  async deleteProblem(id: number): Promise<ProblemEntity> {
     try {
+      if (!id || id <= 0) {
+        throw new BadRequestException(`Invalid problem ID: ${id}`);
+      }
       const problem = await this.problemRepository.getProblemById(id);
       if (!problem) {
         throw new NotFoundException(`Problem with ID ${id} not found`);
