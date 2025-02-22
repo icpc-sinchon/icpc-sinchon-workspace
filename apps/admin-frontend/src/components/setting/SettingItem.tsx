@@ -20,7 +20,7 @@ function SettingWrap({ children }: { children: React.ReactNode }) {
 
 function SettingItemTitle({ children }: { children: React.ReactNode }) {
   return (
-    <Heading as="h2" size="5" weight="bold">
+    <Heading as="h2" size="6" weight="bold" mt="1rem">
       {children}
     </Heading>
   );
