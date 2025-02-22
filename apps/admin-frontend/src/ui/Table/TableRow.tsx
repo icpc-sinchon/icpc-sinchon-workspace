@@ -4,8 +4,7 @@ import { Button, Select, Switch, TextField } from "@radix-ui/themes";
 import { TableRowProps, TableItem, Column } from "./types";
 
 function TableRow<T extends TableItem>(props: TableRowProps<T>) {
-  const { rowHeaderType, item, columns, highlightColumn, onEdit, onDelete } =
-    props;
+  const { rowHeaderType, item, columns, onEdit, onDelete } = props;
   const [isEditing, setIsEditing] = useState(false);
   const [editedItem, setEditedItem] = useState<T>(item);
 
@@ -93,12 +92,7 @@ function TableRow<T extends TableItem>(props: TableRowProps<T>) {
     <tr>
       {renderRowHeader()}
       {columns.map((col) => (
-        <TableCell
-          key={col.accessor.toString()}
-          $highlight={highlightColumn === col.accessor}
-        >
-          {renderCell(col)}
-        </TableCell>
+        <TableCell key={col.accessor.toString()}>{renderCell(col)}</TableCell>
       ))}
       <TableCell>
         <Button size="1" onClick={handleEdit} variant="surface">
@@ -114,11 +108,8 @@ function TableRow<T extends TableItem>(props: TableRowProps<T>) {
 
 export default TableRow;
 
-const TableCell = styled.td<{ $highlight?: boolean }>`
+const TableCell = styled.td`
   padding: 0.3rem 0.4rem;
-
-  background-color: ${(props) =>
-    props.$highlight ? props.theme.colors.secondaryBackground : "transparent"};
 
   max-width: 44rem;
   overflow-x: auto;
@@ -132,7 +123,6 @@ const RowHeaderCell = styled.td`
   overflow-x: auto;
 
   // stickyIndex
-  position: sticky;
   left: 0;
   font-weight: 500;
 `;

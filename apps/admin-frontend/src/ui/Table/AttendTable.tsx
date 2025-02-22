@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Button, Switch } from "@radix-ui/themes";
-import { useState } from "react";
+import React, { useState } from "react";
 import type { StudentAttendance } from "@/types/models";
 import Spinner from "@/components/Spinner";
 
 // TODO: 전체 회차에 따라 Attendance의 배열 길이가 달라지는 걸 타입으로 만들 수 있을지도?
 // 출석은 수정만 가능
-export type Props = {
-  data: StudentAttendance[];
-  onEditRow: (editedItem: StudentAttendance) => void;
+export type AttendanceTableProps = {
+  editingData: StudentAttendance[];
+  onAttendanceChange: React.Dispatch<React.SetStateAction<StudentAttendance[]>>;
 };
 
 // const attendColumns: Column<Attendance>[] = [
@@ -26,126 +26,96 @@ export type Props = {
 //   { header: "환급조건 과제", accessor: "taskRefund", inputType: "none" },
 // ];
 
-function WeekAttendance({
-  lecture,
-  task,
-  isEditing,
-  onAttendanceChange,
-}: {
-  lecture: boolean;
-  task: boolean;
-  isEditing: boolean;
-  onAttendanceChange: (type: "lectureDone" | "taskDone") => void;
-}) {
-  if (isEditing) {
-    return (
-      <>
-        <td>
-          <Switch
-            size="2"
-            checked={lecture}
-            onCheckedChange={() => onAttendanceChange("lectureDone")}
-          />
-        </td>
-        <td>
-          <Switch
-            size="2"
-            checked={task}
-            onCheckedChange={() => onAttendanceChange("taskDone")}
-          />
-        </td>
-      </>
-    );
-  }
-  return (
-    <>
-      <td>{lecture ? "O" : ""}</td>
-      <td>{task ? "O" : ""}</td>
-    </>
-  );
-}
-
 function AttendTableRow({
   rowIndex,
-  item,
-  onEdit,
+  rowAttendance,
+  onRowAttendanceChange,
 }: {
   rowIndex: number;
-  item: StudentAttendance;
-  onEdit: (editedItem: StudentAttendance) => void;
+  rowAttendance: StudentAttendance;
+  onRowAttendanceChange: (newAttendance: StudentAttendance) => void;
 }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedItem, setEditedItem] = useState<StudentAttendance>(item);
+  const totalWeeks = rowAttendance.attendLog.length;
 
-  const handleEdit = () => {
-    if (isEditing) {
-      onEdit(editedItem);
-    }
-    setIsEditing(!isEditing);
-  };
-
-  const handleAttendanceChange = (
+  const handleRowAttendanceChange = (
     round: number,
     type: "lectureDone" | "taskDone",
   ) => {
-    const newAttendance = [...editedItem.attendLog];
-    newAttendance[round - 1] = {
-      ...newAttendance[round - 1],
-      [type]: !newAttendance[round - 1][type],
-    };
-    setEditedItem((prev) => ({
-      ...prev,
-      attendLog: newAttendance,
-    }));
-  };
+    const newAttendLog = [...rowAttendance.attendLog];
 
-  const totalWeeks = item.attendLog.length;
+    newAttendLog[round - 1] = {
+      ...newAttendLog[round - 1],
+      [type]: !newAttendLog[round - 1][type],
+    };
+    onRowAttendanceChange({ ...rowAttendance, attendLog: newAttendLog });
+  };
 
   return (
     <tr>
       <td>{rowIndex + 1}</td>
-      <td>{editedItem.name}</td>
-      <td>{editedItem.bojHandle}</td>
-      {editedItem.attendLog.map((log) => (
-        <WeekAttendance
-          key={log.round}
-          lecture={log.lectureDone}
-          task={log.taskDone}
-          isEditing={isEditing}
-          onAttendanceChange={(type) => handleAttendanceChange(log.round, type)}
-        />
+      <td>{rowAttendance.name}</td>
+      <td>{rowAttendance.bojHandle}</td>
+      {rowAttendance.attendLog.map((log) => (
+        <React.Fragment key={log.round}>
+          <td>
+            <Switch
+              size="2"
+              checked={log.lectureDone}
+              onCheckedChange={() =>
+                handleRowAttendanceChange(log.round, "lectureDone")
+              }
+            />
+          </td>
+          <td>
+            <Switch
+              size="2"
+              checked={log.taskDone}
+              onCheckedChange={() =>
+                handleRowAttendanceChange(log.round, "taskDone")
+              }
+            />
+          </td>
+        </React.Fragment>
       ))}
       <td>
-        {editedItem.attendLog.filter((log) => log.lectureDone).length} /{" "}
+        {rowAttendance.attendLog.filter((log) => log.lectureDone).length} /{" "}
         {totalWeeks}
       </td>
       <td>
-        {editedItem.attendLog.filter((log) => log.taskDone).length} /{" "}
+        {rowAttendance.attendLog.filter((log) => log.taskDone).length} /{" "}
         {totalWeeks}
       </td>
-      <td>{editedItem.refundAmount}</td>
-      <td>{editedItem.refundAccount}</td>
-      <td>
-        <Button size="1" onClick={handleEdit} variant="surface">
-          {isEditing ? "저장" : "수정"}
-        </Button>
-      </td>
+      <td>{rowAttendance.refundAmount}</td>
+      <td>{rowAttendance.refundAccount}</td>
     </tr>
   );
 }
 
-function AttendTable({ data, onEditRow }: Props) {
-  if (data.length === 0) {
+function AttendTable({
+  editingData,
+  onAttendanceChange,
+}: AttendanceTableProps) {
+  if (editingData.length === 0) {
     return <Spinner />;
   }
 
-  const totalWeeks = data[0].attendLog.length;
+  const totalWeeks = editingData[0].attendLog.length;
+
+  const handleRowAttendanceChange = (newAttendance: StudentAttendance) => {
+    const newEditingData = [...editingData];
+    newEditingData[
+      newEditingData.findIndex(
+        (attendance) => attendance.studentId === newAttendance.studentId,
+      )
+    ] = newAttendance;
+    onAttendanceChange(newEditingData);
+  };
 
   return (
     <StyledTable>
       <thead>
         <tr>
-          <StyledTh rowSpan={2}>번호</StyledTh>
+          <StyledTh rowSpan={2}>#</StyledTh>
           <StyledTh rowSpan={2}>이름</StyledTh>
           <StyledTh rowSpan={2}>핸들</StyledTh>
           {Array.from({ length: totalWeeks }, (_, i) => (
@@ -156,7 +126,6 @@ function AttendTable({ data, onEditRow }: Props) {
           <StyledTh colSpan={2}>환급조건</StyledTh>
           <StyledTh rowSpan={2}>환급금액</StyledTh>
           <StyledTh rowSpan={2}>환급계좌</StyledTh>
-          <StyledTh rowSpan={2}>편집</StyledTh>
         </tr>
         <tr>
           {Array.from({ length: totalWeeks * 2 }, (_, i) => (
@@ -167,12 +136,12 @@ function AttendTable({ data, onEditRow }: Props) {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, idx) => (
+        {editingData.map((item, idx) => (
           <AttendTableRow
             key={item.studentId}
             rowIndex={idx}
-            item={item}
-            onEdit={onEditRow}
+            rowAttendance={item}
+            onRowAttendanceChange={handleRowAttendanceChange}
           />
         ))}
       </tbody>

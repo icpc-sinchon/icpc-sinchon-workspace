@@ -11,6 +11,10 @@ export class StudentRepository {
     return this.prisma.student.create({ data });
   }
 
+  async createManyStudents(data: Prisma.StudentCreateManyInput[]) {
+    return this.prisma.student.createMany({ data, skipDuplicates: true });
+  }
+
   async getAllStudents(): Promise<StudentEntity[]> {
     return this.prisma.student.findMany();
   }
@@ -25,7 +29,7 @@ export class StudentRepository {
 
   async updateStudent(
     id: number,
-    data: Prisma.StudentUpdateInput,
+    data: Prisma.StudentUpdateInput
   ): Promise<StudentEntity> {
     return this.prisma.student.update({ where: { id }, data });
   }
