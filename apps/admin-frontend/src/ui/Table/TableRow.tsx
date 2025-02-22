@@ -114,6 +114,13 @@ const TableCell = styled.td`
   max-width: 44rem;
   overflow-x: auto;
   outline: none;
+
+  &:nth-child(even) {
+    background-color: #f1f3f5; /* 회색 */
+  }
+  &:nth-child(odd) {
+    background-color: #ffffff; /* 흰색 */
+  }
 `;
 
 const RowHeaderCell = styled.td`
