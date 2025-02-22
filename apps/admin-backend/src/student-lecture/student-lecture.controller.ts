@@ -1,23 +1,11 @@
-import {
-  Controller,
-  Body,
-  Param,
-  Get,
-  Post,
-  ParseIntPipe,
-  Query,
-} from "@nestjs/common";
+import { Controller, Get, ParseIntPipe, Query } from "@nestjs/common";
 import {
   ApiTags,
   ApiOkResponse,
-  ApiCreatedResponse,
   ApiBadRequestResponse,
   ApiOperation,
 } from "@nestjs/swagger";
 import { Season } from "@prisma/client";
-import { CreateStudentLectureDto } from "./dto/create-student-lecture.dto";
-
-import { StudentLectureLogEntity } from "../student-lecture-log/entities/student-lecture-log.entity";
 import { StudentLectureService } from "./student-lecture.service";
 import { StudentEntity } from "@/student/entities/student.entity";
 
@@ -33,7 +21,7 @@ export class StudentLectureController {
     description: "해당 학기에 수강 중인 학생 목록을 반환합니다.",
   })
   @ApiBadRequestResponse({
-    description: "학생울 조회하는 데 실패했습니다.",
+    description: "학생을 조회하는 데 실패했습니다.",
   })
   getStudentsWithLectureLevelsBySemester(
     @Query("year", ParseIntPipe) year: number,
@@ -42,50 +30,6 @@ export class StudentLectureController {
     return this.studentLectureService.getStudentsWithLectureLevelsBySemester(
       year,
       season
-    );
-  }
-
-  @Post()
-  @ApiOperation({ summary: "새로운 학생과 강의 로그 생성" })
-  @ApiCreatedResponse({
-    description: "새로운 학생과 강의 로그를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "학생 생성에 실패했습니다.",
-  })
-  createStudentWithLectureLog(
-    @Body() createStudentLectureDto: CreateStudentLectureDto
-  ): Promise<StudentEntity | StudentLectureLogEntity> {
-    const { lectureInfo, ...studentData } = createStudentLectureDto;
-    return this.studentLectureService.createStudentWithLectureLog(
-      studentData,
-      lectureInfo
-    );
-  }
-
-  @Post("/multiple")
-  @ApiOperation({ summary: "새로운 여러 학생과 강의 로그 생성" })
-  @ApiCreatedResponse({
-    description: "새로운 여러 학생과 강의 로그를 생성합니다.",
-  })
-  @ApiBadRequestResponse({
-    description: "학생 생성에 실패했습니다.",
-  })
-  async createMultipleStudents(
-    @Body() createStudentLectureDto: CreateStudentLectureDto[]
-  ): Promise<void> {
-    const formattedStudents = createStudentLectureDto.map((student) => {
-      const { lectureInfo, ...rest } = student;
-      return {
-        student: rest,
-        lectureInfo,
-      };
-    });
-    await this.studentLectureService.createStudentsWithLectureLog(
-      formattedStudents.map((student) => ({
-        studentData: student.student,
-        lectureLogData: student.lectureInfo,
-      }))
     );
   }
 }

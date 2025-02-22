@@ -7,7 +7,7 @@ import {
   IsString,
   IsPositive,
 } from "class-validator";
-import { Prisma, School } from "@prisma/client";
+import { Level, Prisma, RefundOption, School, Season } from "@prisma/client";
 
 export class CreateStudentLectureDto {
   @ApiProperty({ description: "학생 이름 (최대 50자)" })
@@ -50,7 +50,15 @@ export class CreateStudentLectureDto {
       year: 2025,
       season: "Winter",
       level: "Novice",
+      refundOption: "Refund",
+      refundAccount: "123-456-7890",
     },
   })
-  lectureInfo: Prisma.StudentLectureLogCreateInput;
+  lectureInfo: {
+    year: number;
+    season: Season;
+    level: Level;
+    refundOption: RefundOption;
+    refundAccount: string;
+  };
 }

@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 import type { Season, Level } from "@prisma/client";
 import { StudentEntity } from "@/student/entities/student.entity";
-import { StudentLectureEntity } from "./entities/student-lecture.entity";
 
 @Injectable()
 export class StudentLectureRepository {
@@ -10,10 +9,7 @@ export class StudentLectureRepository {
 
   // 이번 학기에 강의를 듣는 학생들을 lecture log까지 다 가져온다
   // lecture isCancelled가 false인 것(강의 취소 X)만 가져온다
-  async getStudentsWithLectureLogBySemester(
-    year: number,
-    season: Season
-  ): Promise<StudentLectureEntity[]> {
+  async getStudentsWithLectureLogBySemester(year: number, season: Season) {
     return this.prisma.student.findMany({
       where: {
         studentLectureLog: {
