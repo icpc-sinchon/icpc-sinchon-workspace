@@ -5,7 +5,6 @@ import FormDialog from "../FormDialog";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
 import type { NewStudent, NewStudentWithLectureLog } from "@/types/models";
-import { useSemester } from "@/contexts/SemesterContext";
 
 const schoolConvert = {
   연세대학교: "YONSEI",
@@ -14,23 +13,6 @@ const schoolConvert = {
   홍익대학교: "HONGIK",
   숙명여자대학교: "SOOKMYUNG",
 };
-
-function convertRefundOption(refund: string) {
-  if (refund.startsWith("환급")) {
-    return "Refund";
-  }
-  return "NonRefund";
-}
-
-function convertLectureLevel(level: string) {
-  if (level.startsWith("Novice")) {
-    return "Novice";
-  }
-  if (level.startsWith("Advanced")) {
-    return "Advanced";
-  }
-  return "Expert";
-}
 
 function AddMultipleStudentDialog() {
   const [csvFile, setCsvFile] = useState<File | null>(null);
@@ -49,7 +31,6 @@ function AddMultipleStudentDialog() {
           const filteredResult = result.data.filter(
             (row: string[]) => !row || row[0] !== "",
           );
-          console.log(filteredResult);
           const students: NewStudent[] = filteredResult.map(
             (row: string[]) => ({
               name: row[0],
@@ -89,7 +70,7 @@ function AddMultipleStudentDialog() {
         student.studentNumber !== " ",
     );
 
-    console.log(parsedStudents);
+    // console.log(parsedStudents);
 
     await adminAPI.post(API_URL.STUDENT.MULTIPLE, parsedStudents);
     setCsvFile(null);
