@@ -61,19 +61,14 @@ export class StudentLectureLogService {
     }
   }
 
-  findAll() {
-    return `This action returns all studentLectureLog`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} studentLectureLog`;
-  }
-
   update(id: number, updateStudentLectureLogDto: UpdateStudentLectureLogDto) {
-    return `This action updates a #${id} studentLectureLog`;
+    return this.studentLectureLogRepository.updateStudentLectureLog(
+      id,
+      updateStudentLectureLogDto
+    );
   }
 
   remove(id: number) {
-    return `This action removes a #${id} studentLectureLog`;
+    return this.studentLectureLogRepository.deleteStudentLectureLog(id);
   }
 }
