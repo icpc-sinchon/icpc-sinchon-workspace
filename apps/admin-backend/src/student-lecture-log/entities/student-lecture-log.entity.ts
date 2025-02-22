@@ -4,9 +4,8 @@ export class StudentLectureLogEntity implements StudentLectureLog {
   id: number;
   studentId: number;
   lectureId: number;
+  refundOption: RefundOption;
+  refundAccount: string;
   isInvited: boolean;
   isCancelled: boolean;
-  refundAccount: string;
-  refundOption: RefundOption;
-  lecture?: Lecture;
 }

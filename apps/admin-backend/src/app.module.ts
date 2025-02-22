@@ -5,8 +5,9 @@ import { TaskModule } from "./task/task.module";
 import { ProblemModule } from "./problem/problem.module";
 import { StudentModule } from "./student/student.module";
 import { AuthModule } from "./auth/auth.module";
-import { StudentAttendModule } from './student-attend/student-attend.module';
-import { StudentLectureModule } from './student-lecture/student-lecture.module';
+import { StudentAttendModule } from "./student-attend/student-attend.module";
+import { StudentLectureModule } from "./student-lecture/student-lecture.module";
+import { StudentLectureLogModule } from "./student-lecture-log/student-lecture-log.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { StudentLectureModule } from './student-lecture/student-lecture.module';
     AuthModule,
     StudentAttendModule,
     StudentLectureModule,
+    StudentLectureLogModule,
   ],
 })
 export class AppModule {}
