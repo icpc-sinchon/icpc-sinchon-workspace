@@ -1,66 +1,49 @@
 import Head from "next/head";
-import { useState } from "react";
-import useSWR from "swr";
+import { useEffect, useState } from "react";
 import Layout from "@/ui/Layout";
 import { TableWrap } from "@/ui/Table/TableStyles";
-import searchStringInObject from "@/utils/searchStringInObject";
-import type { Column, TableSortState } from "@/ui/Table/types";
+import type { Column } from "@/ui/Table/types";
 
 import { adminAPI } from "@/utils/api";
-import type { Student } from "@/types/models";
+import type { Student, StudentWithLectureLog } from "@/types/models";
 import StudentTable from "@/ui/Table/StudentTable";
 import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";
 import { COLORS } from "@/styles/colors";
 import Toast from "@/components/Toast";
-import StudentPageControlPanel from "@/ui/StudentPageControl";
 
-export const studentColumns: Column<Student>[] = [
-  { header: "고유번호", accessor: "id", inputType: "none" },
-  { header: "이름", accessor: "name", inputType: "text" },
+import { sortByName } from "@/utils/format";
+import PageControlLayout from "@/ui/PageControlLayout";
+import AddStudentLectureDialog from "@/ui/StudentPageControl/AddStudentLectureDialog";
+
+// 학생 정보를 표시하는 컬럼들
+
+export const studentColumns: Column<
+  ReturnType<typeof formatStudentWithLectureLog>
+>[] = [
+  { header: "고유번호", accessor: "studentId", inputType: "none" },
+  { header: "이름", accessor: "name", inputType: "none" },
   {
     header: "학교",
     accessor: "school",
-    inputType: "select",
-    options: [
-      {
-        value: "YONSEI",
-        label: "YONSEI",
-      },
-      {
-        value: "SOGANG",
-        label: "SOGANG",
-      },
-      {
-        value: "EWHA",
-        label: "EWHA",
-      },
-      {
-        value: "HONGIK",
-        label: "HONGIK",
-      },
-      {
-        value: "SOOKMYUNG",
-        label: "SOOKMYUNG",
-      },
-    ],
+    inputType: "none",
   },
-  { header: "학번", accessor: "studentNumber", inputType: "text" },
-  { header: "BOJ 핸들", accessor: "bojHandle", inputType: "text" },
+  { header: "학번", accessor: "studentNumber", inputType: "none" },
+  { header: "BOJ 핸들", accessor: "bojHandle", inputType: "none" },
   // { header: "이메일", accessor: "email", inputType: "text" },
-  { header: "연락처", accessor: "phone", inputType: "text" },
+  { header: "연락처", accessor: "phone", inputType: "none" },
   {
     header: "환급 유형",
-    accessor: "paymentStatus",
+    accessor: "refundOption",
     inputType: "select",
     options: [
-      { value: "PAID_30000", label: "PAID_30000" },
-      { value: "PAID_60000", label: "PAID_60000" },
+      { value: "Refund", label: "환급" },
+      { value: "NonRefund", label: "비환급" },
     ],
   },
   {
     header: "난이도",
-    accessor: "lectureLevels",
+    accessor: "level",
     inputType: "none",
   },
   {
@@ -69,6 +52,20 @@ export const studentColumns: Column<Student>[] = [
     inputType: "text",
   },
 ];
+
+// 즉 여기의 id는 studentId가 아니라 학생의 강의 수강 log의 id
+const formatStudentWithLectureLog = (student: StudentWithLectureLog) => {
+  const { lectureLogs, ...rest } = student;
+
+  // 초급과 중급이 있을 시 중급을 우선으로 표시
+  const log =
+    lectureLogs.length === 1
+      ? lectureLogs[0]
+      : lectureLogs.find((log) => log.level === "Advanced") ?? lectureLogs[0];
+
+  const result = { ...rest, ...log, studentId: rest.id, id: log.id };
+  return result;
+};
 
 // 수정 가능한 필드의 accessor만 추출
 const editableFields = studentColumns
@@ -83,93 +80,41 @@ function formatEditStudent(student: Student): Partial<Student> {
   }, {});
 }
 
-function sortStudents(
-  students: Student[],
-  sortCriteria: TableSortState<Student>,
-) {
-  return [...students].sort((a, b) => {
-    const criteriaAccessor = sortCriteria.key.accessor;
-    if (sortCriteria.order === "asc") {
-      return a[criteriaAccessor] > b[criteriaAccessor] ? 1 : -1;
-    }
-    return a[criteriaAccessor] < b[criteriaAccessor] ? 1 : -1;
-  });
-}
-
-function processStudents(
-  students: Student[],
-  sortCriteria: TableSortState<Student>,
-  searchString: string,
-) {
-  if (!students) return [];
-  const result = searchString
-    ? students.filter((student) => searchStringInObject(student, searchString))
-    : students;
-  return sortStudents(result, sortCriteria);
-}
-
-const studentFetcher = ([url, year, season]: [string, number, string]) =>
-  adminAPI
-    .get<Student[]>(url, {
-      params: { year, season },
-    })
-    .then((res) => res.data);
-
-// TODO: 학생을 Context로 관리하여 props drilling을 줄이기
-// 학생 추가한 다음 새로고침해야 반영되는 문제 수정해야 함
-// 이후 체크박스를 통해 일괄 편집하는 기능 추가하기
-function StudentPage() {
+function StudentLecturePage() {
   const { currentSemester } = useSemester();
   const [selectedStudentIds, setSelectedStudentIds] = useState<Set<number>>(
     new Set(),
   );
-  const [searchString, setSearchString] = useState("");
-  const [sortCriteria, setSortCriteria] = useState<TableSortState<Student>>({
-    key: studentColumns[0],
-    order: "asc",
-  });
+  const [students, setStudents] = useState<StudentWithLectureLog[]>([]);
   const [toast, setToast] = useState({
     show: false,
     text: "",
     color: COLORS.primarySurface,
   });
 
-  const {
-    data: students,
-    error,
-    isLoading,
-    mutate,
-  } = useSWR<Student[]>(
-    [API_URL.STUDENT.BASE, currentSemester.year, currentSemester.season],
-    studentFetcher,
-  );
+  useEffect(() => {
+    adminAPI
+      .get<StudentWithLectureLog[]>(API_URL.STUDENT_LECTURE.BASE, {
+        params: { year: currentSemester.year, season: currentSemester.season },
+      })
+      .then((res) => {
+        setStudents(sortByName(res.data));
+      });
+  }, [currentSemester]);
 
-  if (isLoading || error) return <div>Loading...</div>;
+  const formattedStudents = students.map(formatStudentWithLectureLog);
+  console.log("formattedStudents", formattedStudents);
 
-  const processedStudents = processStudents(
-    students,
-    sortCriteria,
-    searchString,
-  );
+  // if (isLoading || error) return <div>Loading...</div>;
 
   const handleCheckboxChange = (selectedIds: Set<number>) => {
     setSelectedStudentIds(selectedIds);
   };
 
-  const handleSortCriteriaChange = (
-    newSortCriteria: TableSortState<Student>,
-  ) => {
-    setSortCriteria(newSortCriteria);
-  };
-
-  const handleSearchStringChange = (value: string) => {
-    setSearchString(value);
-  };
-
   const handleDeleteStudent = async (itemId: number) => {
     try {
-      await adminAPI.delete(API_URL.STUDENT.byId(itemId));
-      mutate();
+      await adminAPI.delete(API_URL.STUDENT_LECTURE_LOG.byId(itemId));
+      setStudents((prev) => prev.filter((student) => student.id !== itemId));
       setToast({
         show: true,
         text: "학생 삭제 완료",
@@ -186,16 +131,20 @@ function StudentPage() {
   };
 
   // TODO: 수정하는 형식 맞추기
-  const handleEditStudent = async (editedItem: Student) => {
+  const handleEditStudent = async (
+    editedItem: ReturnType<typeof formatStudentWithLectureLog>,
+  ) => {
     try {
       // TODO: lectureLevels가 있으면 student에서 수정하도록 수정
       // TODO: 강의 레벨은 select로 수정하도록 하자.
       const studentEditData = formatEditStudent(editedItem);
+      console.log("studentEditData", studentEditData);
       await adminAPI.patch(
-        API_URL.STUDENT.byId(editedItem.id),
+        API_URL.STUDENT_LECTURE_LOG.byId(editedItem.id),
         studentEditData,
       );
-      mutate();
+
+      // TODO: 수정된 학생 정보를 state에 반영
       setToast({
         show: true,
         text: "학생 정보 수정 완료",
@@ -214,11 +163,11 @@ function StudentPage() {
   return (
     <>
       <Head>
-        <title>학생 관리 | ICPC Admin</title>
+        <title>강의 수강 관리 | ICPC Admin</title>
       </Head>
       <Layout
-        title="학생 관리"
-        description="학생들의 정보를 관리하고 메시지나 메일을 보낼 수 있습니다."
+        title="수강 관리"
+        description="학생들의 강의 수강 정보를 관리할 수 있습니다."
       >
         <Toast
           text={toast.text}
@@ -226,20 +175,13 @@ function StudentPage() {
           onClose={() => setToast({ ...toast, show: false })}
           color={toast.color}
         />
-        <StudentPageControlPanel
-          searchString={searchString}
-          onSearchStringChange={handleSearchStringChange}
-          sortOptions={studentColumns}
-          sortCriteria={sortCriteria}
-          onSortCriteriaChange={handleSortCriteriaChange}
-          totalStudents={students?.length ?? 0}
-          selectedStudentsCount={selectedStudentIds.size}
-        />
+        <PageControlLayout>
+          <AddStudentLectureDialog />
+        </PageControlLayout>
         <TableWrap>
           <StudentTable
-            data={processedStudents}
+            data={formattedStudents}
             columns={studentColumns}
-            highlightColumn={sortCriteria.key.accessor}
             selectedRowIds={selectedStudentIds}
             onCheckboxChange={handleCheckboxChange}
             onDeleteRow={handleDeleteStudent}
@@ -251,4 +193,4 @@ function StudentPage() {
   );
 }
 
-export default StudentPage;
+export default StudentLecturePage;

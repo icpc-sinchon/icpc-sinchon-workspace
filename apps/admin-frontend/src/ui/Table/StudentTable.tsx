@@ -10,7 +10,6 @@ import TableRow from "./TableRow";
 function StudentTable<T extends TableItem>({
   data,
   columns,
-  highlightColumn,
   selectedRowIds,
   onCheckboxChange,
   onEditRow,
@@ -52,7 +51,6 @@ function StudentTable<T extends TableItem>({
           <TableHead
             rowHeaderType="checkBox"
             columns={columns}
-            highlightColumn={highlightColumn}
             onCheckAll={highlightAllRows}
             isAllChecked={isAllRowChecked}
           />
@@ -65,7 +63,6 @@ function StudentTable<T extends TableItem>({
                 rowHeaderType="checkbox"
                 onCheckboxChange={handleCheckBoxChange}
                 isChecked={selectedRowIds.has(item.id)}
-                highlightColumn={highlightColumn}
                 onEdit={onEditRow}
                 onDelete={onDeleteRow}
               />

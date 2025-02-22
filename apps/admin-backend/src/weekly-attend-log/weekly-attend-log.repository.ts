@@ -40,6 +40,14 @@ export class WeeklyAttendLogRepository {
     return this.prisma.weeklyAttendLog.update({ where, data });
   }
 
+  async upsertWeeklyAttendLog(params: {
+    where: Prisma.WeeklyAttendLogWhereUniqueInput;
+    create: Prisma.WeeklyAttendLogCreateInput;
+    update: Prisma.WeeklyAttendLogUpdateInput;
+  }) {
+    return this.prisma.weeklyAttendLog.upsert(params);
+  }
+
   async deleteWeeklyAttendLog(params: {
     where: Prisma.WeeklyAttendLogWhereUniqueInput;
   }): Promise<WeeklyAttendLogEntity> {

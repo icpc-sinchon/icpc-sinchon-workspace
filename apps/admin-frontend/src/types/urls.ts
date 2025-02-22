@@ -1,6 +1,6 @@
 export const URLS = {
   STUDENT: "/student",
-  ATTEND: "/attend",
+  ATTEND: "/student-attend",
   SHORT_URL: "/shorturl",
   SETTING: {
     BASE: "/setting",

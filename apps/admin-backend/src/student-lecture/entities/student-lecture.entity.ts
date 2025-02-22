@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { School, PaymentStatus } from "@prisma/client";
+import { School } from "@prisma/client";
 import { StudentLectureLogEntity } from "../../student-lecture-log/entities/student-lecture-log.entity";
 
 export class StudentLectureEntity {
@@ -29,15 +29,6 @@ export class StudentLectureEntity {
 
   @ApiProperty({ description: "학생의 학번" })
   studentNumber: string;
-
-  @ApiProperty({
-    enum: PaymentStatus,
-    description: "학생의 납부 상태 (3만원 비환급 / 6만원 환급 옵션)",
-  })
-  paymentStatus: PaymentStatus;
-
-  @ApiProperty({ description: "학생의 환불 계좌" })
-  refundAccount: string;
 
   @ApiProperty({
     description: "학생과 연관된 강의 로그 목록",

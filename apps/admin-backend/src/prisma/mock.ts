@@ -1,11 +1,13 @@
-import type {
-  Admin,
-  Lecture,
-  RefundPolicy,
-  Semester,
-  Student,
-  StudentLectureLog,
-  WeeklyAttendLog,
+import {
+  RefundOption,
+  type Admin,
+  type Lecture,
+  type RefundPolicy,
+  type Semester,
+  type Student,
+  type StudentLectureLog,
+  type Task,
+  type WeeklyAttendLog,
 } from "@prisma/client";
 
 export const ADMIN: Admin[] = [
@@ -30,8 +32,6 @@ export const STUDENT: Student[] = [
     phone: "010-1111-1111",
     school: "EWHA",
     studentNumber: "20240001",
-    paymentStatus: "PAID_60000",
-    refundAccount: "111-222-333444",
   },
   {
     id: 2,
@@ -41,8 +41,6 @@ export const STUDENT: Student[] = [
     phone: "010-2222-2222",
     school: "SOGANG",
     studentNumber: "20240002",
-    paymentStatus: "PAID_30000",
-    refundAccount: "222-333-444555",
   },
   {
     id: 3,
@@ -52,8 +50,6 @@ export const STUDENT: Student[] = [
     phone: "010-3333-3333",
     school: "HONGIK",
     studentNumber: "20240003",
-    paymentStatus: "PAID_60000",
-    refundAccount: "333-444-555666",
   },
   {
     id: 4,
@@ -63,8 +59,6 @@ export const STUDENT: Student[] = [
     phone: "010-4444-4444",
     school: "YONSEI",
     studentNumber: "20240004",
-    paymentStatus: "PAID_30000",
-    refundAccount: "444-555-666777",
   },
   {
     id: 5,
@@ -74,8 +68,6 @@ export const STUDENT: Student[] = [
     phone: "010-5555-5555",
     school: "SOOKMYUNG",
     studentNumber: "20240005",
-    paymentStatus: "PAID_60000",
-    refundAccount: "555-666-777888",
   },
   {
     id: 6,
@@ -85,8 +77,6 @@ export const STUDENT: Student[] = [
     phone: "010-6666-6666",
     school: "YONSEI",
     studentNumber: "20240006",
-    paymentStatus: "PAID_30000",
-    refundAccount: "666-777-888999",
   },
 ];
 
@@ -139,6 +129,79 @@ export const LECTURE: Lecture[] = [
   },
 ];
 
+export const TASK: Task[] = [
+  {
+    id: 1,
+    practiceId: 100,
+    lectureId: 1,
+    round: 1,
+    minSolveCount: 3,
+  },
+  {
+    id: 2,
+    practiceId: 101,
+    lectureId: 1,
+    round: 2,
+    minSolveCount: 3,
+  },
+  {
+    id: 3,
+    practiceId: 102,
+    lectureId: 1,
+    round: 3,
+    minSolveCount: 3,
+  },
+  {
+    id: 4,
+    practiceId: 103,
+    lectureId: 1,
+    round: 4,
+    minSolveCount: 3,
+  },
+  {
+    id: 5,
+    practiceId: 104,
+    lectureId: 1,
+    round: 5,
+    minSolveCount: 3,
+  },
+  {
+    id: 6,
+    practiceId: 105,
+    lectureId: 1,
+    round: 6,
+    minSolveCount: 3,
+  },
+  {
+    id: 7,
+    practiceId: 108,
+    lectureId: 1,
+    round: 7,
+    minSolveCount: 3,
+  },
+  {
+    id: 8,
+    practiceId: 103,
+    lectureId: 1,
+    round: 8,
+    minSolveCount: 3,
+  },
+  {
+    id: 9,
+    practiceId: 103,
+    lectureId: 1,
+    round: 9,
+    minSolveCount: 3,
+  },
+  {
+    id: 10,
+    practiceId: 103,
+    lectureId: 1,
+    round: 10,
+    minSolveCount: 3,
+  },
+];
+
 export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
   {
     id: 1,
@@ -146,6 +209,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 1,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "123-456-789",
+    refundOption: RefundOption.Refund,
   },
   {
     id: 2,
@@ -153,6 +218,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 2,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "349-123-456",
+    refundOption: RefundOption.Refund,
   },
   {
     id: 3,
@@ -160,6 +227,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 3,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "6892-123-456",
+    refundOption: RefundOption.Refund,
   },
   {
     id: 4,
@@ -167,6 +236,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 4,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "123-456-7892342",
+    refundOption: RefundOption.Refund,
   },
   {
     id: 5,
@@ -174,6 +245,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 1,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "123-456-723489",
+    refundOption: RefundOption.NonRefund,
   },
   {
     id: 6,
@@ -181,6 +254,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 1,
     isInvited: true,
     isCancelled: true,
+    refundAccount: "123-456-723489",
+    refundOption: RefundOption.NonRefund,
   },
   {
     id: 7,
@@ -188,6 +263,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 2,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "123-456-789",
+    refundOption: RefundOption.Refund,
   },
   {
     id: 8,
@@ -195,6 +272,8 @@ export const STUDENT_LECTURE_LOG: StudentLectureLog[] = [
     lectureId: 3,
     isInvited: true,
     isCancelled: false,
+    refundAccount: "123-456-789",
+    refundOption: RefundOption.Refund,
   },
 ];
 
