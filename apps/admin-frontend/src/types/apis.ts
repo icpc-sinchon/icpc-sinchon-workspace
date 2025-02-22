@@ -2,6 +2,7 @@ const ROUTE_URLS = {
   AUTH: "/auth",
   STUDENT: "/student",
   STUDENT_LECTURE: "/student-lecture",
+  STUDENT_LECTURE_LOG: "/student-lecture-log",
   STUDENT_ATTENDANCE: "/student-attend",
   SEMESTER: "/semester",
   LECTURE: "/lecture",
@@ -23,6 +24,11 @@ export const API_URL = {
     BASE: ROUTE_URLS.STUDENT,
     MULTIPLE: `${ROUTE_URLS.STUDENT}/multiple`,
     byId: (id: number | string) => `${ROUTE_URLS.STUDENT}/${id}`,
+  },
+  STUDENT_LECTURE_LOG: {
+    BASE: ROUTE_URLS.STUDENT_LECTURE_LOG,
+    MULTIPLE: `${ROUTE_URLS.STUDENT_LECTURE_LOG}/multiple`,
+    byId: (id: number | string) => `${ROUTE_URLS.STUDENT_LECTURE_LOG}/${id}`,
   },
   STUDENT_LECTURE: {
     BASE: ROUTE_URLS.STUDENT_LECTURE,

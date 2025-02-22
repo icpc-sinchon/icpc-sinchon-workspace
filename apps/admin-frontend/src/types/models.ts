@@ -40,12 +40,22 @@ export type StudentWithLectureLog = {
   }[];
 };
 
+export type NewStudentLectureLogDto = {
+  // for student
+  bojHandle: string;
+  // for lecture
+  semesterId: number;
+  level: Level;
+  refundOption: "Refund" | "NonRefund";
+  refundAccount: string;
+};
+
 export type NewStudentWithLectureLog = {
   name: string;
   bojHandle: string;
   email: string;
   phone: string;
-  school: Student["school"];
+  school: School;
   studentNumber: string;
   lectureInfo: {
     year: number;
