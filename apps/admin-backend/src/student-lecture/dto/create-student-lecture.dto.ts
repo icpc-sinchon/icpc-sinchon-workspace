@@ -8,7 +8,6 @@ import {
   IsPositive,
 } from "class-validator";
 import { School, RefundOption, Season, Level } from "@prisma/client";
-import type { LectureIdentifier, StudentLectureLogInfo } from "../../types";
 
 export class CreateStudentLectureDto {
   @ApiProperty({ description: "학생 이름 (최대 50자)" })
