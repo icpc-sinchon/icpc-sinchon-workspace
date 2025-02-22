@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
-import { Heading, Text } from "@radix-ui/themes";
+import { Flex, Heading, Text } from "@radix-ui/themes";
 import Sidebar from "./Sidebar";
 
 function Layout({
@@ -27,12 +27,29 @@ function Layout({
         {children}
       </ContentWrap>
       <Footer>
-        <FlexBox>2022 © dongzoolee</FlexBox>
-        <FlexBox>
-          <a href="https://icpc-sinchon.io" target="_blank" rel="noreferrer">
-            Official Site
+        <Flex>
+          제작자:&nbsp;
+          <a
+            href="https://github.com/dongzoolee"
+            target="_blank"
+            rel="noreferrer"
+          >
+            이동주(GitHub Link)
           </a>
-        </FlexBox>
+          ,&nbsp;
+          <a
+            href="https://github.com/witch-factory"
+            target="_blank"
+            rel="noreferrer"
+          >
+            김성현(GitHub Link)
+          </a>
+        </Flex>
+        <Flex>
+          <a href="https://icpc-sinchon.io" target="_blank" rel="noreferrer">
+            신촌연합 공식 사이트 링크
+          </a>
+        </Flex>
       </Footer>
     </LayoutWrap>
   );
@@ -56,14 +73,10 @@ const Footer = styled.footer`
   flex-wrap: wrap;
   border-top: 1px solid rgba(152, 166, 173, 0.2);
   color: var(--footer-text-color);
-  font-size: 12px;
+  font-size: 1rem;
   height: 57px;
   padding: 1.5rem;
   justify-content: space-between;
-`;
-
-const FlexBox = styled.div`
-  display: flex;
 `;
 
 export default Layout;
