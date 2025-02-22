@@ -8,7 +8,7 @@ export type School = "YONSEI" | "SOGANG" | "HONGIK" | "EWHA" | "SOOKMYUNG";
 
 export type Payment = "PAID_30000" | "PAID_60000";
 
-export type Level = "Novice" | "Intermediate" | "Advanced";
+export type Level = "Novice" | "Advanced" | "Expert";
 
 export type Season = "Summer" | "Winter";
 
@@ -20,24 +20,49 @@ export type Student = {
   phone: string;
   studentNumber: string; // 학번
   school: School;
-  paymentStatus: Payment;
-  refundAccount: string;
-  lectureLevels: Level[];
 };
 
-export type NewStudent = {
+export type NewStudent = Omit<Student, "id">;
+
+export type StudentWithLectureLog = {
+  id: number;
+  name: string;
+  school: School;
+  bojHandle: string;
+  email: string;
+  phone: string;
+  studentNumber: string;
+  lectureLogs: {
+    id: number;
+    refundOption: "Refund" | "NonRefund";
+    refundAccount: string;
+    level: Level;
+  }[];
+};
+
+export type NewStudentLectureLogDto = {
+  // for student
+  bojHandle: string;
+  // for lecture
+  semesterId: number;
+  level: Level;
+  refundOption: "Refund" | "NonRefund";
+  refundAccount: string;
+};
+
+export type NewStudentWithLectureLog = {
   name: string;
   bojHandle: string;
   email: string;
   phone: string;
-  school: Student["school"];
+  school: School;
   studentNumber: string;
-  paymentStatus: Student["paymentStatus"];
-  refundAccount: string;
   lectureInfo: {
     year: number;
     season: Season;
     level: Level;
+    refundOption: "Refund" | "NonRefund";
+    refundAccount: string;
   };
 };
 
@@ -63,4 +88,13 @@ export type FormattedAttendance = {
   attendLog: { round: number; lectureDone: string; taskDone: string }[];
   lectureRefund: boolean;
   taskRefund: boolean;
+};
+
+export type WeeklyAttendLog = {
+  id: number;
+  round: number;
+  lectureDone: boolean;
+  taskDone: boolean;
+  studentId: number;
+  lectureId: number;
 };

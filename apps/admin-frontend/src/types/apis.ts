@@ -1,7 +1,9 @@
 const ROUTE_URLS = {
   AUTH: "/auth",
-  STUDENT: "/students",
-  STUDENT_ATTENDANCE: "/student-attendance",
+  STUDENT: "/student",
+  STUDENT_LECTURE: "/student-lecture",
+  STUDENT_LECTURE_LOG: "/student-lecture-log",
+  STUDENT_ATTENDANCE: "/student-attend",
   SEMESTER: "/semester",
   LECTURE: "/lecture",
   TASK: "/task",
@@ -23,8 +25,18 @@ export const API_URL = {
     MULTIPLE: `${ROUTE_URLS.STUDENT}/multiple`,
     byId: (id: number | string) => `${ROUTE_URLS.STUDENT}/${id}`,
   },
+  STUDENT_LECTURE_LOG: {
+    BASE: ROUTE_URLS.STUDENT_LECTURE_LOG,
+    MULTIPLE: `${ROUTE_URLS.STUDENT_LECTURE_LOG}/multiple`,
+    byId: (id: number | string) => `${ROUTE_URLS.STUDENT_LECTURE_LOG}/${id}`,
+  },
+  STUDENT_LECTURE: {
+    BASE: ROUTE_URLS.STUDENT_LECTURE,
+    MULTIPLE: `${ROUTE_URLS.STUDENT_LECTURE}/multiple`,
+  },
   STUDENT_ATTENDANCE: {
     BASE: ROUTE_URLS.STUDENT_ATTENDANCE,
+    MULTIPLE: `${ROUTE_URLS.STUDENT_ATTENDANCE}/multiple`,
     byStudentId: (studentId: number | string) =>
       `${ROUTE_URLS.STUDENT_ATTENDANCE}/${studentId}`,
   },

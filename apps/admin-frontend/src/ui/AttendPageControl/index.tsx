@@ -8,9 +8,7 @@ import {
   Select,
 } from "@radix-ui/themes";
 import { useRouter } from "next/router";
-import useSWR from "swr";
-import { useCallback, useState } from "react";
-import SearchBox from "../SearchBox";
+import { useCallback, useEffect, useState } from "react";
 import type { Level, Season } from "@/types/models";
 import { useSemester } from "@/contexts/SemesterContext";
 import { adminAPI } from "@/utils/api";
@@ -20,31 +18,19 @@ import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";
 
 type AttendPageControlProps = {
-  searchString: string;
-  onSearchStringChange: (newSearchString: string) => void;
-  level: Level;
-  onLevelChange: (newLevel: Level) => void;
+  lectureLevelOptions: Level[];
+  selectedLectureIndex: number;
+  onLectureChange: (value: string) => void;
+  tasks: Lecture["task"];
+  onSaveChanges: () => void;
 };
 
-const LEVEL_OPTIONS = [
-  { value: "Novice", label: "초급" },
-  { value: "Advanced", label: "중급" },
-] as const;
-
-const useLectures = (semester: Semester | null) =>
-  useSWR<Lecture[]>(
-    semester ? [API_URL.LECTURE.BASE, semester.year, semester.season] : null,
-    ([url, year, season]: [string, number, Season]) =>
-      adminAPI
-        .get<Lecture[]>(url, { params: { year, season } })
-        .then((res) => res.data),
-  );
-
 function AttendPageControlPanel({
-  searchString,
-  onSearchStringChange,
-  level,
-  onLevelChange,
+  lectureLevelOptions,
+  selectedLectureIndex,
+  onLectureChange,
+  tasks,
+  onSaveChanges,
 }: AttendPageControlProps) {
   const router = useRouter();
   const { currentSemester } = useSemester();
@@ -55,9 +41,7 @@ function AttendPageControlPanel({
     color: COLORS.primarySurface,
   });
 
-  const { data: lectures, error } = useLectures(currentSemester);
-
-  const currentLecture = lectures?.find((lecture) => lecture.level === level);
+  const level = lectureLevelOptions[selectedLectureIndex];
 
   const onCrawlAttendance = useCallback(
     async (taskId: number, round: number) => {
@@ -76,7 +60,7 @@ function AttendPageControlPanel({
 
         setToast({
           show: true,
-          text: `${currentLecture.level} 강의의 ${round}회차 과제 출석 데이터를 크롤링했습니다.`,
+          text: `${level} 강의의 ${round}회차 과제 출석 데이터를 크롤링했습니다.`,
           color: COLORS.primarySurface,
         });
       } catch (err) {
@@ -88,16 +72,8 @@ function AttendPageControlPanel({
         });
       }
     },
-    [currentLecture],
+    [level],
   );
-
-  if (error) {
-    return <div>강의 정보를 불러오는데 실패했습니다.</div>;
-  }
-
-  if (!lectures) {
-    return <div>로딩 중...</div>;
-  }
 
   return (
     <>
@@ -118,31 +94,25 @@ function AttendPageControlPanel({
           >
             시즌 변경
           </Button>
+          <Separator size="2" orientation="vertical" />
+          <Flex gap="2" direction="row" align="center">
+            <Heading as="h2" size="4">
+              난이도 변경
+            </Heading>
+            <Select.Root value={level} onValueChange={onLectureChange} size="2">
+              <Select.Trigger />
+              <Select.Content>
+                {lectureLevelOptions.map((option) => (
+                  <Select.Item key={option} value={option}>
+                    {option}
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
+          </Flex>
         </Flex>
         <Separator mb="2" size="4" />
         <Flex gap="2" direction="column" overflowX="auto">
-          <Flex gap="4" direction="row" justify="start">
-            <SearchBox
-              searchString={searchString}
-              onSearchStringChange={onSearchStringChange}
-            />
-            <Flex gap="2" direction="row" align="center">
-              <Text as="p" size="3">
-                난이도 변경
-              </Text>
-              <Select.Root value={level} onValueChange={onLevelChange} size="2">
-                <Select.Trigger />
-                <Select.Content>
-                  {LEVEL_OPTIONS.map((option) => (
-                    <Select.Item key={option.value} value={option.value}>
-                      {option.label}
-                    </Select.Item>
-                  ))}
-                </Select.Content>
-              </Select.Root>
-            </Flex>
-          </Flex>
-          <Separator size="4" />
           <Flex direction="row" justify="start" gap="4">
             <Button
               size="2"
@@ -162,7 +132,7 @@ function AttendPageControlPanel({
             출석 데이터 크롤링
           </Heading>
           <Flex direction="row" gap="2">
-            {currentLecture.task.map((t) => (
+            {tasks.map((t) => (
               <Button
                 size="2"
                 key={t.id}
@@ -173,6 +143,9 @@ function AttendPageControlPanel({
               </Button>
             ))}
           </Flex>
+          <Button size="3" onClick={onSaveChanges} color="violet">
+            변경사항 저장
+          </Button>
         </Flex>
       </Card>
     </>
