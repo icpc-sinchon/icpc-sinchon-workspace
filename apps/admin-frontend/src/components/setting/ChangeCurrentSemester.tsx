@@ -8,24 +8,17 @@ import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";
 
 function ChangeCurrentSemester() {
-  const { currentSemester, mutate } = useSemester();
-  const [newSemester, setNewSemester] = useState<Semester | null>({
-    id: 0,
-    year: 2021,
-    season: "Summer",
-  });
+  const { currentSemester } = useSemester();
+  const [newSemester, setNewSemester] = useState<Semester | null>(
+    currentSemester,
+  );
   const [semesters, setSemesters] = useState<Semester[]>([]);
 
-  const fetchSemesters = async () => {
-    const response = await adminAPI.get(API_URL.SEMESTER.BASE);
-    const { data } = response;
-    setSemesters(data);
-  };
-
   useEffect(() => {
-    setNewSemester(currentSemester);
-    fetchSemesters();
-  }, [currentSemester]);
+    adminAPI.get<Semester[]>(API_URL.SEMESTER.BASE).then((res) => {
+      setSemesters(res.data);
+    });
+  }, []);
 
   const handleSemesterChange = (value: string) => {
     const [year, season] = value.split("-");
@@ -43,7 +36,6 @@ function ChangeCurrentSemester() {
     await adminAPI.post(API_URL.CONFIG, {
       currentSemester: newSemester,
     });
-    await mutate();
   };
 
   const formattedCurrentSemester = `${currentSemester.year}-${currentSemester.season}`;
