@@ -37,7 +37,7 @@ function AddSemester() {
       confirmMessage={`${newSemester.year}-${newSemester.season} 학기를 추가하시겠습니까?`}
     >
       <Heading as="h3" size="5">
-        기존 학기 목록
+        기존 학기 목록(중복 생성 시 오류 발생)
       </Heading>
       {semesters.map((semester) => (
         <Text key={semester.id}>
