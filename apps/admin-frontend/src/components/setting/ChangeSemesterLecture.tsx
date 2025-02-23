@@ -16,41 +16,7 @@ import { adminAPI } from "@/utils/api";
 import EditableInput from "../EditableInput";
 import { API_URL } from "@/types/apis";
 import { useSemester } from "@/contexts/SemesterContext";
-
-function BOJProblemBadge({
-  essential,
-  bojProblemNumber,
-  onDelete,
-  isEditing,
-}: {
-  essential: boolean;
-  bojProblemNumber: number;
-  isEditing?: boolean;
-  onDelete?: () => void;
-}) {
-  // 초록색이면 필수
-  return (
-    <Badge
-      color={essential ? "green" : "cyan"}
-      size="2"
-      variant="surface"
-      radius="full"
-    >
-      {bojProblemNumber}
-      {isEditing && (
-        <Button
-          size="1"
-          onClick={onDelete}
-          radius="medium"
-          color="red"
-          type="button"
-        >
-          X
-        </Button>
-      )}
-    </Badge>
-  );
-}
+import BOJProblemBadge from "../ProblemBadge";
 
 function TaskDisplay({
   task,
