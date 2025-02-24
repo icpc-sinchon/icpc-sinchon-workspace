@@ -7,7 +7,7 @@ const ROUTE_URLS = {
   SEMESTER: "/semester",
   LECTURE: "/lecture",
   TASK: "/task",
-  REFUND: "/refund",
+  REFUND: "/refund-policy",
   BOJ: "/boj-scrap",
 } as const;
 
