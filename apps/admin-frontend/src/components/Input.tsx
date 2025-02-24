@@ -22,7 +22,7 @@ type InputProps = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   [key: string]: any;
-  helperText?: string;
+  helpertext?: string;
 };
 
 function FormInput({
@@ -38,8 +38,8 @@ function FormInput({
     <Flex direction="column" gap="2" width="100%">
       <Text as="label" weight="bold">
         {label}
-        {props.helperText && (
-          <Tooltip content={props.helperText} side="right" align="center">
+        {props.helpertext && (
+          <Tooltip content={props.helpertext} side="right" align="center">
             <Button size="1" type="button" ml="2">
               ?
             </Button>

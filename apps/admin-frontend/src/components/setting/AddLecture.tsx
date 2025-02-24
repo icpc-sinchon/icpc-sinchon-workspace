@@ -113,7 +113,7 @@ function AddLecture() {
           }
           type="number"
           min={0}
-          helperText="그룹 주소의 숫자 부분. 예를 들어 강의에 쓰이는 BOJ 주소가 https://www.acmicpc.net/group/21486 이라면 21486을 입력하세요."
+          helpertext="그룹 주소의 숫자 부분. 예를 들어 강의에 쓰이는 BOJ 주소가 https://www.acmicpc.net/group/21486 이라면 21486을 입력하세요."
         />
       </Flex>
     </SettingTab>
