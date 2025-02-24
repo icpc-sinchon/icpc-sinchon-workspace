@@ -5,9 +5,10 @@ import {
   Flex,
   Heading,
   Text,
-  Badge,
   Button,
   TextField,
+  AlertDialog,
+  Tooltip,
 } from "@radix-ui/themes";
 import { SettingTab } from "@/components/setting/SettingItem";
 import type { BOJProblem, Lecture, Task } from "@/types/setting";
@@ -64,6 +65,15 @@ function TaskDisplay({
     }
   };
 
+  const handleProblemEssentialChange = (problemId: number) => {
+    setEditedTask((prev) => ({
+      ...prev,
+      problems: prev.problems.map((p) =>
+        p.id === problemId ? { ...p, essential: !p.essential } : p,
+      ),
+    }));
+  };
+
   const handleDeleteProblem = (problemId: number) => {
     setEditedTask((prev) => ({
       ...prev,
@@ -109,8 +119,20 @@ function TaskDisplay({
           value={editedTask.practiceId.toString()}
           onChange={handlePracticeIdChange}
           isEditing={isEditing}
+          helpertext="그룹 연습에서 그룹 ID 다음에 오는 번호. 예를 들어 연습 주소가 https://www.acmicpc.net/group/practice/view/21486/1 이면 1을 입력하세요."
         />
-        <Text size="3">BOJ 문제 목록</Text>
+        <Flex direction="row" gap="0.5rem">
+          <Text size="3">연습 문제 목록</Text>
+          <Tooltip
+            content="필수 문제는 초록색으로 표시됩니다. 수정 상태에서 클릭 시 필수 문제 여부를 바꿀 수 있습니다."
+            side="right"
+          >
+            <Button size="1" type="button">
+              ?
+            </Button>
+          </Tooltip>
+        </Flex>
+
         <Flex direction="row" gap="0.5rem">
           {editedTask.problems.map((problem) => (
             <BOJProblemBadge
@@ -119,6 +141,7 @@ function TaskDisplay({
               onDelete={() => handleDeleteProblem(problem.id)}
               isEditing={isEditing}
               essential={problem.essential}
+              onClick={() => handleProblemEssentialChange(problem.id)}
             />
           ))}
           {isEditing && (
@@ -143,9 +166,11 @@ function TaskDisplay({
 function LectureDisplay({
   lecture,
   onLectureChange,
+  onDelete,
 }: {
   lecture: Lecture;
   onLectureChange: (updatedLecture: Lecture) => void;
+  onDelete?: (lectureId: number) => void;
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedLecture, setEditedLecture] = useState(lecture);
@@ -160,6 +185,16 @@ function LectureDisplay({
       console.log(res);
     }
     setIsEditing(!isEditing);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await adminAPI.delete(API_URL.LECTURE.byId(lecture.id));
+      onDelete?.(lecture.id);
+    } catch (error) {
+      console.error("Failed to delete lecture:", error);
+      // 에러 처리를 추가할 수 있습니다
+    }
   };
 
   const handleChange = (field: keyof Lecture, value: string) => {
@@ -185,9 +220,37 @@ function LectureDisplay({
           <Heading as="h3" size="4">
             {lecture.level}
           </Heading>
-          <Button size="1" onClick={handleEdit} type="button">
-            {isEditing ? "저장" : "수정"}
-          </Button>
+          <Flex gap="0.5rem">
+            <Button size="1" onClick={handleEdit} type="button">
+              {isEditing ? "저장" : "수정"}
+            </Button>
+            <AlertDialog.Root>
+              <AlertDialog.Trigger>
+                <Button size="1" color="red">
+                  삭제
+                </Button>
+              </AlertDialog.Trigger>
+              <AlertDialog.Content>
+                <AlertDialog.Title>강의 삭제</AlertDialog.Title>
+                <AlertDialog.Description>
+                  정말로 {lecture.level} 강의를 삭제하시겠습니까? 이 작업은
+                  되돌릴 수 없습니다.
+                </AlertDialog.Description>
+                <Flex gap="3" mt="4" justify="end">
+                  <AlertDialog.Cancel>
+                    <Button variant="soft" color="gray">
+                      취소
+                    </Button>
+                  </AlertDialog.Cancel>
+                  <AlertDialog.Action>
+                    <Button variant="solid" color="red" onClick={handleDelete}>
+                      삭제
+                    </Button>
+                  </AlertDialog.Action>
+                </Flex>
+              </AlertDialog.Content>
+            </AlertDialog.Root>
+          </Flex>
         </Flex>
         <EditableInput
           type="number"
@@ -202,6 +265,7 @@ function LectureDisplay({
           value={editedLecture.bojGroupId.toString()}
           onChange={(value) => handleChange("bojGroupId", value)}
           isEditing={isEditing}
+          helpertext="그룹 주소의 숫자 부분. 예를 들어 강의에 쓰이는 BOJ 주소가 https://www.acmicpc.net/group/21486 이면 21486을 입력하세요."
         />
         <Text size="3">과제 목록</Text>
         {editedLecture.task.map((task) => (
@@ -256,6 +320,12 @@ function ChangeSemesterLecture() {
     );
   };
 
+  const handleLectureDelete = (lectureId: number) => {
+    setLectures((prevLectures) =>
+      prevLectures.filter((lecture) => lecture.id !== lectureId),
+    );
+  };
+
   const formattedCurrentSemester = `${currentSemester.year}-${currentSemester.season}`;
 
   if (isLoading) return <div>Loading...</div>;
@@ -271,6 +341,7 @@ function ChangeSemesterLecture() {
           key={lecture.id}
           lecture={lecture}
           onLectureChange={handleLectureChange}
+          onDelete={handleLectureDelete}
         />
       ))}
     </SettingTab>
