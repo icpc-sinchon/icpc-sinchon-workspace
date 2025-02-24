@@ -5,19 +5,22 @@ function BOJProblemBadge({
   bojProblemNumber,
   onDelete,
   isEditing,
+  onClick,
 }: {
   essential: boolean;
   bojProblemNumber: number;
   isEditing?: boolean;
   onDelete?: () => void;
+  onClick?: () => void;
 }) {
   // 초록색이면 필수
   return (
     <Badge
-      color={essential ? "green" : "cyan"}
+      color={essential ? "green" : "gray"}
       size="2"
       variant="surface"
       radius="full"
+      onClick={isEditing ? onClick : undefined}
     >
       {bojProblemNumber}
       {isEditing && (
