@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   Card,
@@ -9,7 +9,6 @@ import {
   Button,
   TextField,
 } from "@radix-ui/themes";
-import useSWR from "swr";
 import { SettingTab } from "@/components/setting/SettingItem";
 import type { BOJProblem, Lecture, Task } from "@/types/setting";
 import { adminAPI } from "@/utils/api";
@@ -217,32 +216,45 @@ function LectureDisplay({
   );
 }
 
-const semesterFetcher = ([url, year, season]: [string, number, string]) =>
-  adminAPI
-    .get<Lecture[]>(url, {
-      params: { year, season },
-    })
-    .then((res) => res.data);
-
 // 현재 학기의 강의들을 편집
 // TODO: 강의 편집시 데이터가 바뀌는 기능?
 function ChangeSemesterLecture() {
   const { currentSemester } = useSemester();
+  const [lectures, setLectures] = useState<Lecture[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const {
-    data: lectures,
-    error,
-    isLoading,
-  } = useSWR<Lecture[]>(
-    [API_URL.LECTURE.BASE, currentSemester.year, currentSemester.season],
-    semesterFetcher,
-  );
+  const fetchLectures = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await adminAPI.get<Lecture[]>(API_URL.LECTURE.BASE, {
+        params: {
+          year: currentSemester.year,
+          season: currentSemester.season,
+        },
+      });
+      console.log(response.data);
+      setLectures(response.data);
+    } catch (err) {
+      setError("강의 정보를 불러오는데 실패했습니다.");
+      console.error("Error fetching lectures:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [currentSemester]);
 
-  // const handleLectureChange = (updatedLecture: Lecture) => {
-  // setLectures(prevLectures =>
-  //   prevLectures.map(lecture => lecture.id === updatedLecture.id ? updatedLecture : lecture)
-  // );
-  // };
+  useEffect(() => {
+    fetchLectures();
+  }, [fetchLectures]);
+
+  const handleLectureChange = (updatedLecture: Lecture) => {
+    setLectures((prevLectures) =>
+      prevLectures.map((lecture) =>
+        lecture.id === updatedLecture.id ? updatedLecture : lecture,
+      ),
+    );
+  };
 
   const formattedCurrentSemester = `${currentSemester.year}-${currentSemester.season}`;
 
@@ -258,7 +270,7 @@ function ChangeSemesterLecture() {
         <LectureDisplay
           key={lecture.id}
           lecture={lecture}
-          onLectureChange={() => {}}
+          onLectureChange={handleLectureChange}
         />
       ))}
     </SettingTab>
