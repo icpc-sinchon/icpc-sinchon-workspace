@@ -15,8 +15,7 @@
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styled-components": "^6.1.11",
-    "swr": "^2.2.5"
+    "styled-components": "^6.1.11"
   },
   "license": "MIT",
   "devDependencies": {
