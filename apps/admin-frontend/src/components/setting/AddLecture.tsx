@@ -62,11 +62,11 @@ function AddLecture() {
         </Text>
         <Separator orientation="horizontal" size="4" />
         <Heading as="h3" size="5">
-          기존 학기 목록(중복 생성 시 오류 발생)
+          기존 강의 목록(중복 생성 시 오류 발생)
         </Heading>
         {lectures.map((lecture) => (
           <Text key={lecture.id}>
-            {lecture.level} {lecture.lectureNumber}회차
+            {lecture.level} ({lecture.lectureNumber}회차)
           </Text>
         ))}
         <Separator orientation="horizontal" size="4" />
@@ -113,6 +113,7 @@ function AddLecture() {
           }
           type="number"
           min={0}
+          helperText="그룹 주소의 숫자 부분. 예를 들어 강의에 쓰이는 BOJ 주소가 https://www.acmicpc.net/group/21486 이라면 21486을 입력하세요."
         />
       </Flex>
     </SettingTab>
