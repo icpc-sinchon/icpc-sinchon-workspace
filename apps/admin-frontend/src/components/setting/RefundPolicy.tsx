@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Button, Flex, Heading, Table, Text } from "@radix-ui/themes";
 import { SettingTab } from "@/components/setting/SettingItem";
@@ -21,12 +21,11 @@ type RefundPolicy = {
 };
 
 type RefundPolicyCreateInput = {
-  year?: number;
-  season?: "Spring" | "Summer" | "Fall" | "Winter";
   type: RefundPolicyType;
   minAttend: number;
   maxAttend: number;
   refundAmount: number;
+  semesterId: number;
 };
 
 function RefundPolicyTable({
@@ -83,30 +82,33 @@ function RefundPolicySetting() {
       minAttend: 0,
       maxAttend: 0,
       refundAmount: 0,
+      semesterId: currentSemester.id,
     });
   const [refundPolices, setRefundPolices] = useState<RefundPolicy[]>([]);
 
-  useEffect(() => {
-    const fetchRefundPolices = async () => {
-      const { data } = await adminAPI.get(API_URL.REFUND.BASE, {
-        params: {
-          year: currentSemester.year,
-          season: currentSemester.season,
-        },
-      });
-      console.log(data);
-      setRefundPolices(data);
-    };
-    fetchRefundPolices();
+  const fetchRefundPolices = useCallback(async () => {
+    const { data } = await adminAPI.get(API_URL.REFUND.BASE, {
+      params: {
+        year: currentSemester.year,
+        season: currentSemester.season,
+      },
+    });
+    console.log(data);
+    setRefundPolices(data);
   }, [currentSemester]);
+
+  useEffect(() => {
+    fetchRefundPolices();
+  }, [fetchRefundPolices]);
 
   const handleAddRefundPolicy = async () => {
     const newRefundPolicyData: RefundPolicyCreateInput = {
-      year: currentSemester.year,
-      season: currentSemester.season,
+      semesterId: currentSemester.id,
       ...newRefundPolicy,
     };
+    console.log(newRefundPolicyData);
     await adminAPI.post(API_URL.REFUND.BASE, newRefundPolicyData);
+    fetchRefundPolices();
   };
 
   const handleDeleteRefundPolicy = async (id: number) => {
