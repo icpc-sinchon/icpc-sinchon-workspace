@@ -43,6 +43,7 @@ function StudentAttendPage() {
   );
 
   const lectureLevelOptions = lectures.map<Level>((lecture) => lecture.level);
+  const lectureBojGroupId = lectures[selectedLectureIndex]?.bojGroupId;
   const lectureTasks = lectures[selectedLectureIndex]?.task;
 
   useEffect(() => {
@@ -134,6 +135,7 @@ function StudentAttendPage() {
           lectureLevelOptions={lectureLevelOptions}
           selectedLectureIndex={selectedLectureIndex}
           onLectureChange={handleLectureChange}
+          lectureBojGroupId={lectureBojGroupId}
           tasks={lectureTasks}
           onSaveChanges={handleSaveChanges}
         />
