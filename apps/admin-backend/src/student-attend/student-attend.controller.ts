@@ -26,6 +26,8 @@ export class StudentAttendController {
     @Query("semesterId", ParseIntPipe) semesterId: number,
     @Query("lectureLevel") lectureLevel: Lecture["level"]
   ) {
+    console.log("semesterId", semesterId);
+    console.log("lectureLevel", lectureLevel);
     return this.studentAttendService.findAllStudentsAttendLogsInLecture(
       semesterId,
       lectureLevel
@@ -38,21 +40,18 @@ export class StudentAttendController {
     return this.studentAttendService.updateMultipleAttendance(dto);
   }
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.studentAttendService.findOne(+id);
-  }
-
-  @Patch(":id")
-  update(
-    @Param("id") id: string,
-    @Body() updateStudentAttendDto: UpdateStudentAttendDto
+  @Post("boj")
+  async scrapBoj(
+    @Body("taskId", ParseIntPipe) taskId: number,
+    @Body("bojGroupId", ParseIntPipe) bojGroupId: number,
+    @Body("practiceId", ParseIntPipe) practiceId: number
   ) {
-    return this.studentAttendService.update(+id, updateStudentAttendDto);
-  }
-
-  @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.studentAttendService.remove(+id);
+    // const bojUrl = `https://www.acmicpc.net/group/practice/view/${bojGroupId}/${practiceId}`;
+    const result = await this.studentAttendService.getStudentAttendances(
+      taskId,
+      bojGroupId,
+      practiceId
+    );
+    return result;
   }
 }
