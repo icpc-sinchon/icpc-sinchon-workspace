@@ -7,7 +7,7 @@ const ROUTE_URLS = {
   SEMESTER: "/semester",
   LECTURE: "/lecture",
   TASK: "/task",
-  REFUND: "/refund",
+  REFUND: "/refund-policy",
   BOJ: "/boj-scrap",
 } as const;
 
@@ -37,6 +37,7 @@ export const API_URL = {
   STUDENT_ATTENDANCE: {
     BASE: ROUTE_URLS.STUDENT_ATTENDANCE,
     MULTIPLE: `${ROUTE_URLS.STUDENT_ATTENDANCE}/multiple`,
+    BOJ: `${ROUTE_URLS.STUDENT_ATTENDANCE}/boj`,
     byStudentId: (studentId: number | string) =>
       `${ROUTE_URLS.STUDENT_ATTENDANCE}/${studentId}`,
   },

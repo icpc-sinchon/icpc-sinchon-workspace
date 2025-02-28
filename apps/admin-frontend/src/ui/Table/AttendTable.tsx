@@ -57,7 +57,7 @@ function AttendTableRow({
       <td>{rowAttendance.bojHandle}</td>
       {rowAttendance.attendLog.map((log) => (
         <React.Fragment key={log.round}>
-          <td>
+          <TableCell>
             <Switch
               size="2"
               checked={log.lectureDone}
@@ -65,26 +65,27 @@ function AttendTableRow({
                 handleRowAttendanceChange(log.round, "lectureDone")
               }
             />
-          </td>
-          <td>
+          </TableCell>
+          <TableCell>
             <Switch
               size="2"
               checked={log.taskDone}
               onCheckedChange={() =>
                 handleRowAttendanceChange(log.round, "taskDone")
               }
+              color="cyan"
             />
-          </td>
+          </TableCell>
         </React.Fragment>
       ))}
-      <td>
+      <TableCell>
         {rowAttendance.attendLog.filter((log) => log.lectureDone).length} /{" "}
         {totalWeeks}
-      </td>
-      <td>
+      </TableCell>
+      <TableCell>
         {rowAttendance.attendLog.filter((log) => log.taskDone).length} /{" "}
         {totalWeeks}
-      </td>
+      </TableCell>
       <td>{rowAttendance.refundAmount}</td>
       <td>{rowAttendance.refundAccount}</td>
     </tr>
@@ -176,4 +177,13 @@ const StyledTh = styled.th`
 
   background-color: ${({ theme }) => theme.colors.primaryBackground};
   border: 1px solid ${({ theme }) => theme.colors.primaryBorder};
+`;
+
+const TableCell = styled.td`
+  &:nth-child(even) {
+    background-color: #d3f9d8; /* 회색 */
+  }
+  &:nth-child(odd) {
+    background-color: #e3fafc; /* 흰색 */
+  }
 `;

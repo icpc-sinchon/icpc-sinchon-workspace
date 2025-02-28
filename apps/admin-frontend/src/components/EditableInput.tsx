@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Text, TextField } from "@radix-ui/themes";
+import { Button, Flex, Text, TextField, Tooltip } from "@radix-ui/themes";
 
 type InputProps = {
   label: string;
@@ -21,6 +21,7 @@ type InputProps = {
   onChange: (value: string) => void;
   isEditing: boolean;
   [key: string]: any;
+  helpertext?: string;
 };
 
 function EditableInput({
@@ -29,6 +30,7 @@ function EditableInput({
   onChange,
   type = "text",
   isEditing,
+  helpertext,
 }: InputProps) {
   return (
     <Flex align="center" gap="1">
@@ -41,6 +43,13 @@ function EditableInput({
         />
       ) : (
         <Text>{value}</Text>
+      )}
+      {helpertext && (
+        <Tooltip content={helpertext} side="right" align="center">
+          <Button size="1" type="button">
+            ?
+          </Button>
+        </Tooltip>
       )}
     </Flex>
   );

@@ -16,12 +16,18 @@ import { API_URL } from "@/types/apis";
 import type { Lecture, Semester } from "@/types/setting";
 import Toast from "@/components/Toast";
 import { COLORS } from "@/styles/colors";
+import { StudentTaskAttendance } from "@/pages/attend";
 
 type AttendPageControlProps = {
   lectureLevelOptions: Level[];
   selectedLectureIndex: number;
   onLectureChange: (value: string) => void;
+  lectureBojGroupId: number;
   tasks: Lecture["task"];
+  onCrawlAttendance: (
+    round: number,
+    taskAttendances: StudentTaskAttendance[],
+  ) => void;
   onSaveChanges: () => void;
 };
 
@@ -30,6 +36,8 @@ function AttendPageControlPanel({
   selectedLectureIndex,
   onLectureChange,
   tasks,
+  lectureBojGroupId,
+  onCrawlAttendance,
   onSaveChanges,
 }: AttendPageControlProps) {
   const router = useRouter();
@@ -43,12 +51,22 @@ function AttendPageControlPanel({
 
   const level = lectureLevelOptions[selectedLectureIndex];
 
-  const onCrawlAttendance = useCallback(
-    async (taskId: number, round: number) => {
+  const crawlAttendance = useCallback(
+    async (
+      taskId: number,
+      bojGroupId: number,
+      practiceId: number,
+      round: number,
+    ) => {
       try {
-        const res = await adminAPI.post(API_URL.BOJ.ATTENDANCE, {
-          taskId,
-        });
+        const res = await adminAPI.post<StudentTaskAttendance[]>(
+          API_URL.STUDENT_ATTENDANCE.BOJ,
+          {
+            taskId,
+            bojGroupId,
+            practiceId,
+          },
+        );
         if (res.data.length === 0) {
           setToast({
             show: true,
@@ -58,6 +76,7 @@ function AttendPageControlPanel({
           return;
         }
 
+        onCrawlAttendance(round, res.data);
         setToast({
           show: true,
           text: `${level} 강의의 ${round}회차 과제 출석 데이터를 크롤링했습니다.`,
@@ -72,7 +91,7 @@ function AttendPageControlPanel({
         });
       }
     },
-    [level],
+    [level, onCrawlAttendance],
   );
 
   return (
@@ -137,7 +156,14 @@ function AttendPageControlPanel({
                 size="2"
                 key={t.id}
                 color="cyan"
-                onClick={() => onCrawlAttendance(t.id, t.round)}
+                onClick={() =>
+                  crawlAttendance(
+                    t.id,
+                    lectureBojGroupId,
+                    t.practiceId,
+                    t.round,
+                  )
+                }
               >
                 {t.round}회차
               </Button>

@@ -22,8 +22,16 @@ export class TaskRepository {
   async getAllTasks(): Promise<TaskEntity[]> {
     return this.prisma.task.findMany();
   }
+
   async getTaskById(id: number): Promise<TaskEntity> {
     return this.prisma.task.findUnique({ where: { id } });
+  }
+
+  async getTaskWithProblemsById(id: number) {
+    return this.prisma.task.findUnique({
+      where: { id },
+      include: { problems: true },
+    });
   }
 
   async getTasksByLectureId(lectureId: number): Promise<TaskEntity[]> {
@@ -31,7 +39,7 @@ export class TaskRepository {
   }
 
   async getTasksWithProblemsByLectureId(
-    lectureId: number,
+    lectureId: number
   ): Promise<TaskEntity[]> {
     return this.prisma.task.findMany({
       where: { lectureId },
@@ -41,7 +49,7 @@ export class TaskRepository {
 
   async updateTask(
     id: number,
-    data: Prisma.TaskUpdateInput,
+    data: Prisma.TaskUpdateInput
   ): Promise<TaskEntity> {
     return this.prisma.task.update({ where: { id }, data });
   }

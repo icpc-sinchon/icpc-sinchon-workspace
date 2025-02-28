@@ -1,7 +1,6 @@
 import type React from "react";
 import { createContext, useCallback, useContext, useMemo } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
 import { type AuthResponse, loginAPI, logoutAPI } from "@/utils/auth";
 import { adminAPI } from "@/utils/api";
 import { API_URL } from "@/types/apis";
@@ -24,7 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(
     async (username: string, password: string) => {
       const result = await loginAPI(username, password);
-      console.log(result);
+      // console.log(result);
       if (result.success) {
         router.push("/student");
       }

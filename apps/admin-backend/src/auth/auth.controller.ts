@@ -34,7 +34,8 @@ export class AuthController {
     res.cookie("accessToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 1000,
+      // 1일
+      maxAge: 24 * 60 * 60 * 1000,
       sameSite: "strict",
     });
     res.json({ success: true, message: "Login successful", token });

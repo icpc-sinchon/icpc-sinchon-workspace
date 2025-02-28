@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -23,9 +24,11 @@ import { CreateLectureDto } from "./dto/create-lecture.dto";
 import { UpdateLectureDto } from "./dto/update-lecture.dto";
 import { LectureEntity } from "./entities/lecture.entity";
 import { LectureService } from "./lecture.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Lecture")
 @Controller("lecture")
+@UseGuards(AuthGuard)
 export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
@@ -39,7 +42,7 @@ export class LectureController {
     description: "강의 생성에 실패했습니다.",
   })
   createLecture(
-    @Body() createLectureDto: CreateLectureDto,
+    @Body() createLectureDto: CreateLectureDto
   ): Promise<LectureEntity> {
     return this.lectureService.createLectureWithTasks(createLectureDto);
   }
@@ -65,7 +68,7 @@ export class LectureController {
   })
   getLectures(
     @Query("year", ParseIntPipe) year: number,
-    @Query("season") season: Season,
+    @Query("season") season: Season
   ): Promise<LectureEntity[]> {
     return this.lectureService.getLecturesWithTasksBySemester(year, season);
   }
@@ -84,7 +87,7 @@ export class LectureController {
   })
   updateLecture(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateLectureDto: UpdateLectureDto,
+    @Body() updateLectureDto: UpdateLectureDto
   ): Promise<LectureEntity> {
     return this.lectureService.updateLecture(id, updateLectureDto);
   }

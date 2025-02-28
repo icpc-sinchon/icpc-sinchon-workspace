@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { mutate } from "swr";
 import { SettingTab } from "@/components/setting/SettingItem";
 import Input from "@/components/Input";
 import ErrorMessage from "../ErrorMessage";
@@ -29,10 +28,8 @@ function AddNewAdmin() {
       return;
     }
     try {
-      await registerAPI(newAdmin.username, newAdmin.password);
       setNewAdmin({ username: "", password: "", passwordCheck: "" });
       // 인증 상태를 다시 확인하여 UI를 업데이트합니다.
-      await mutate(API_URL.AUTH.CHECK);
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         setError(
@@ -51,6 +48,7 @@ function AddNewAdmin() {
       onSubmit={handleSubmit}
       confirmMessage={`아이디: ${newAdmin.username}\n비밀번호: ${newAdmin.password} 로 관리자 계정을 추가하시겠습니까?`}
     >
+      <h1>작동하지 않음</h1>
       <Input
         label="관리자 아이디"
         name="username"

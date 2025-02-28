@@ -103,7 +103,6 @@ function StudentLecturePage() {
   }, [currentSemester]);
 
   const formattedStudents = students.map(formatStudentWithLectureLog);
-  console.log("formattedStudents", formattedStudents);
 
   // if (isLoading || error) return <div>Loading...</div>;
 

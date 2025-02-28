@@ -7,6 +7,7 @@ import {
   Patch,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -20,9 +21,11 @@ import { CreateSemesterDto } from "./dto/create-semester.dto";
 import { UpdateSemesterDto } from "./dto/update-semester.dto";
 import { SemesterEntity } from "./entities/semester.entity";
 import { SemesterService } from "./semester.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Semester")
 @Controller("semester")
+@UseGuards(AuthGuard)
 export class SemesterController {
   constructor(private readonly semesterService: SemesterService) {}
 
@@ -36,7 +39,7 @@ export class SemesterController {
     description: "학기 생성에 실패했습니다.",
   })
   createSemester(
-    @Body() createSemesterDto: CreateSemesterDto,
+    @Body() createSemesterDto: CreateSemesterDto
   ): Promise<SemesterEntity> {
     return this.semesterService.createSemester(createSemesterDto);
   }
@@ -67,7 +70,7 @@ export class SemesterController {
     description: "학기를 조회하는 데 실패했습니다.",
   })
   getSemesterById(
-    @Param("id", ParseIntPipe) id: number,
+    @Param("id", ParseIntPipe) id: number
   ): Promise<SemesterEntity> {
     return this.semesterService.getSemesterById(id);
   }
@@ -86,7 +89,7 @@ export class SemesterController {
   })
   updateSemester(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateSemesterDto: UpdateSemesterDto,
+    @Body() updateSemesterDto: UpdateSemesterDto
   ): Promise<SemesterEntity> {
     return this.semesterService.updateSemester(id, updateSemesterDto);
   }
@@ -104,7 +107,7 @@ export class SemesterController {
     description: "학기 삭제에 실패했습니다.",
   })
   deleteSemester(
-    @Param("id", ParseIntPipe) id: number,
+    @Param("id", ParseIntPipe) id: number
   ): Promise<SemesterEntity> {
     return this.semesterService.deleteSemester(id);
   }

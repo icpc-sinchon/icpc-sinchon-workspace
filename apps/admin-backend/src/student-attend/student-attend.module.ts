@@ -6,6 +6,7 @@ import { StudentAttendRepository } from "./student-attend.repository";
 import { LectureRepository } from "@/lecture/lecture.repository";
 import { WeeklyAttendLogRepository } from "@/weekly-attend-log/weekly-attend-log.repository";
 import { TaskRepository } from "@/task/task.repository";
+import { RefundPolicyRepository } from "@/refund-policy/refund-policy.repository";
 
 @Module({
   imports: [PrismaModule],
@@ -16,6 +17,7 @@ import { TaskRepository } from "@/task/task.repository";
     TaskRepository,
     WeeklyAttendLogRepository,
     StudentAttendService,
+    RefundPolicyRepository,
   ],
 })
 export class StudentAttendModule {}

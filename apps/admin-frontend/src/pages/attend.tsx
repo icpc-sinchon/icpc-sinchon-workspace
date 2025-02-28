@@ -27,6 +27,11 @@ type ChangedAttendLog = {
   taskDone: boolean;
 };
 
+export type StudentTaskAttendance = {
+  bojHandle: string;
+  taskDone: boolean;
+};
+
 function StudentAttendPage() {
   const { currentSemester } = useSemester();
   const { lectures } = useLectures(currentSemester);
@@ -43,11 +48,11 @@ function StudentAttendPage() {
   );
 
   const lectureLevelOptions = lectures.map<Level>((lecture) => lecture.level);
+  const lectureBojGroupId = lectures[selectedLectureIndex]?.bojGroupId;
   const lectureTasks = lectures[selectedLectureIndex]?.task;
 
   useEffect(() => {
     if (!currentSemester || !lectures || !lectures.length) return;
-    console.log(lectures);
     adminAPI
       .get(API_URL.STUDENT_ATTENDANCE.BASE, {
         params: {
@@ -56,7 +61,7 @@ function StudentAttendPage() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAttendances(res.data);
         setEditedAttendance(res.data);
       });
@@ -69,6 +74,36 @@ function StudentAttendPage() {
   const handleLectureChange = (lectureLevel: Level) => {
     const index = lectureLevelOptions.indexOf(lectureLevel);
     setSelectedLectureIndex(index);
+  };
+
+  // round의 크롤링 결과로 업데이트
+  const handleCrawlResult = (
+    round: number,
+    taskAttendances: StudentTaskAttendance[],
+  ) => {
+    const taskAttendanceMap = new Map<string, boolean>();
+    for (const taskAttendance of taskAttendances) {
+      taskAttendanceMap.set(taskAttendance.bojHandle, taskAttendance.taskDone);
+    }
+    console.log(taskAttendances);
+
+    const newEditedAttendance = editedAttendance.map((studentAttendance) => {
+      const newAttendLog = studentAttendance.attendLog.map((log) => {
+        if (log.round !== round) return log;
+        const taskDone =
+          taskAttendanceMap.get(studentAttendance.bojHandle) || false;
+        return {
+          ...log,
+          taskDone,
+        };
+      });
+      return {
+        ...studentAttendance,
+        attendLog: newAttendLog,
+      };
+    });
+    console.log(newEditedAttendance);
+    setEditedAttendance(newEditedAttendance);
   };
 
   const handleSaveChanges = async () => {
@@ -134,7 +169,9 @@ function StudentAttendPage() {
           lectureLevelOptions={lectureLevelOptions}
           selectedLectureIndex={selectedLectureIndex}
           onLectureChange={handleLectureChange}
+          lectureBojGroupId={lectureBojGroupId}
           tasks={lectureTasks}
+          onCrawlAttendance={handleCrawlResult}
           onSaveChanges={handleSaveChanges}
         />
         <TableWrap>

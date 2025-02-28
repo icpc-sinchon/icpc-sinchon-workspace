@@ -11,8 +11,8 @@ import { jwtConstants } from "./constants";
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      // TODO: 이후에 만료 시간 늘리기
-      signOptions: { expiresIn: "300s" },
+      // 로그인 만료 시간 1일
+      signOptions: { expiresIn: "1d" },
     }),
   ],
   controllers: [AuthController],

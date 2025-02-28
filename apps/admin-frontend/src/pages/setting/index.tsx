@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-// TODO: 학기 편집 페이지로 바꾸고 학기의 crud를 거기서 다루도록 하기
-// 강의 편집 페이지로 바꾸고 거기서 강의의 crud를 다루도록 하기
 export const routers = [
   { name: "학기 추가", link: "/setting/add-semester" },
   { name: "현재 학기 변경", link: "/setting/change-semester" },
@@ -18,7 +16,7 @@ export default function SettingIndex() {
 
   useEffect(() => {
     router.replace("/setting/add-semester");
-  }, []);
+  }, [router]);
 
   return null;
 }

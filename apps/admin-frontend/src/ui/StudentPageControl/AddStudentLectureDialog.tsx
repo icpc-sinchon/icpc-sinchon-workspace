@@ -14,6 +14,7 @@ function convertRefundOption(refund: string) {
   return "NonRefund";
 }
 
+// 고급에 대한 것도 추가하도록 변경
 function convertLectureLevel(level: string) {
   if (level.startsWith("Novice")) {
     return "Novice";

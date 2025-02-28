@@ -77,7 +77,6 @@ export default memo(Sidebar);
 const SidebarItemTitle = styled(Heading).attrs({
   as: "h3",
   size: "3",
-  weight: "regular",
 })`
   display: none;
   transition: opacity 200ms ease-in-out;
