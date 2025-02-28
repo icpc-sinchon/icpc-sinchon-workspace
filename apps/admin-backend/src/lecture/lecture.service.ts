@@ -191,7 +191,7 @@ export class LectureService {
   async deleteLecture(id: number): Promise<LectureEntity> {
     try {
       if (!id || id <= 0) {
-        throw new BadRequestException(`Invalid semester ID: ${id}`);
+        throw new BadRequestException(`Invalid lecture ID: ${id}`);
       }
       const lecture = await this.lectureRepository.getLectureById(id);
       if (!lecture) {
