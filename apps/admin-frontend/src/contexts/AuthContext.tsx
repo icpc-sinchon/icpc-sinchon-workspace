@@ -23,7 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(
     async (username: string, password: string) => {
       const result = await loginAPI(username, password);
-      console.log(result);
+      // console.log(result);
       if (result.success) {
         router.push("/student");
       }
