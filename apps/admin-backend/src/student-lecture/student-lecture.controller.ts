@@ -1,4 +1,10 @@
-import { Controller, Get, ParseIntPipe, Query } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  ParseIntPipe,
+  Query,
+  UseGuards,
+} from "@nestjs/common";
 import {
   ApiTags,
   ApiOkResponse,
@@ -8,9 +14,11 @@ import {
 import { Season } from "@prisma/client";
 import { StudentLectureService } from "./student-lecture.service";
 import { StudentEntity } from "@/student/entities/student.entity";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("StudentLecture")
 @Controller("student-lecture")
+@UseGuards(AuthGuard)
 export class StudentLectureController {
   constructor(private readonly studentLectureService: StudentLectureService) {}
 

@@ -8,6 +8,7 @@ import {
   Param,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -23,9 +24,11 @@ import { CreateRefundPolicyDto } from "./dto/create-refund-policy.dto";
 import { UpdateRefundPolicyDto } from "./dto/update-refund-policy.dto";
 import { RefundPolicyEntity } from "./entities/refund-policy.entity";
 import { RefundPolicyService } from "./refund-policy.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Refund Policy")
 @Controller("refund-policy")
+@UseGuards(AuthGuard)
 export class RefundPolicyController {
   constructor(private readonly refundPolicyService: RefundPolicyService) {}
 

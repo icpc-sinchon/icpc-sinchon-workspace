@@ -8,6 +8,7 @@ import {
   Delete,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -22,9 +23,11 @@ import { CreateTaskDto } from "./dto/create-task.dto";
 import { UpdateTaskDto } from "./dto/update-task.dto";
 import { TaskEntity } from "./entities/task.entity";
 import { TaskService } from "./task.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Task")
 @Controller("task")
+@UseGuards(AuthGuard)
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
@@ -56,7 +59,7 @@ export class TaskController {
     description: "과제를 조회하는 데 실패했습니다.",
   })
   getTasksByLecture(
-    @Query("lectureId", ParseIntPipe) lectureId: number,
+    @Query("lectureId", ParseIntPipe) lectureId: number
   ): Promise<TaskEntity[]> {
     return this.taskService.getTasksByLectureId(lectureId);
   }
@@ -91,7 +94,7 @@ export class TaskController {
   })
   updateTask(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateTaskDto: UpdateTaskDto,
+    @Body() updateTaskDto: UpdateTaskDto
   ): Promise<TaskEntity> {
     return this.taskService.updateTask(id, updateTaskDto);
   }

@@ -8,6 +8,7 @@ import {
   Param,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -22,9 +23,11 @@ import { CreateProblemDto } from "./dto/create-problem.dto";
 import { UpdateProblemDto } from "./dto/update-problem.dto";
 import { ProblemEntity } from "./entities/problem.entity";
 import { ProblemService } from "./problem.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Problem")
 @Controller("problem")
+@UseGuards(AuthGuard)
 export class ProblemController {
   constructor(private readonly problemService: ProblemService) {}
 
@@ -38,7 +41,7 @@ export class ProblemController {
     description: "문제 생성에 실패했습니다.",
   })
   createProblem(
-    @Body() createProblemDto: CreateProblemDto,
+    @Body() createProblemDto: CreateProblemDto
   ): Promise<ProblemEntity> {
     return this.problemService.createProblem(createProblemDto);
   }
@@ -58,7 +61,7 @@ export class ProblemController {
     description: "문제를 조회하는 데 실패했습니다.",
   })
   getProblemsByTask(
-    @Query("taskId", ParseIntPipe) taskId: number,
+    @Query("taskId", ParseIntPipe) taskId: number
   ): Promise<ProblemEntity[]> {
     return this.problemService.getProblemsByTaskId(taskId);
   }
@@ -77,7 +80,7 @@ export class ProblemController {
   })
   updateProblem(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateProblemDto: UpdateProblemDto,
+    @Body() updateProblemDto: UpdateProblemDto
   ): Promise<ProblemEntity> {
     return this.problemService.updateProblem(id, updateProblemDto);
   }

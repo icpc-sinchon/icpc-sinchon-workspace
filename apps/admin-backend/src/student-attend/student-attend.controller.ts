@@ -4,20 +4,17 @@ import {
   Post,
   Body,
   Patch,
-  Param,
-  Delete,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import { StudentAttendService } from "./student-attend.service";
-import { CreateStudentAttendDto } from "./dto/create-student-attend.dto";
-import {
-  UpdateAttendanceDto,
-  UpdateStudentAttendDto,
-} from "./dto/update-student-attend.dto";
+import { UpdateAttendanceDto } from "./dto/update-student-attend.dto";
 import { Lecture } from "@prisma/client";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @Controller("student-attend")
+@UseGuards(AuthGuard)
 export class StudentAttendController {
   constructor(private readonly studentAttendService: StudentAttendService) {}
 

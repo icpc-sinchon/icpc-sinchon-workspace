@@ -7,12 +7,15 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import { StudentLectureLogService } from "./student-lecture-log.service";
 import { CreateStudentLectureLogDto } from "./dto/create-student-lecture-log.dto";
 import { UpdateStudentLectureLogDto } from "./dto/update-student-lecture-log.dto";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @Controller("student-lecture-log")
+@UseGuards(AuthGuard)
 export class StudentLectureLogController {
   constructor(
     private readonly studentLectureLogService: StudentLectureLogService

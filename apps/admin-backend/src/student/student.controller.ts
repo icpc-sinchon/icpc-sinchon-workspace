@@ -7,6 +7,7 @@ import {
   Patch,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -21,9 +22,11 @@ import { CreateStudentDto } from "./dto/create-student.dto";
 import { UpdateStudentDto } from "./dto/update-student.dto";
 import { StudentEntity } from "./entities/student.entity";
 import { StudentService } from "./student.service";
+import { AuthGuard } from "@/auth/auth.guard";
 
 @ApiTags("Student")
 @Controller("student")
+@UseGuards(AuthGuard)
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
