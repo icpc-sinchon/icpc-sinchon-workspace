@@ -12,7 +12,6 @@ type TableHeadProps<T extends TableItem> =
       columns: Column<T>[];
       onCheckAll: () => void;
       isAllChecked: boolean;
-      highlightColumn: keyof T | null;
     };
 
 type TableHeaderProps =
@@ -28,11 +27,11 @@ type TableHeaderProps =
 function TableHeader(props: TableHeaderProps) {
   const { rowHeaderType } = props;
   if (rowHeaderType === "rowNumber") {
-    return <StickyThead $highlight={false} />;
+    return <StickyThead />;
   }
   const { onCheckAll, isAllChecked } = props;
   return (
-    <StickyThead $highlight={false}>
+    <StickyThead>
       <input type="checkbox" onChange={onCheckAll} checked={isAllChecked} />
     </StickyThead>
   );
@@ -51,18 +50,17 @@ function TableHead<T extends TableItem>(props: TableHeadProps<T>) {
               key={String(col.accessor)}
               data-row={`r${idx + 1}`}
               data-col="c0"
-              $highlight={false}
             >
               <h4>{col.header}</h4>
             </StickyThead>
           ))}
-          <StickyThead $highlight={false}>편집</StickyThead>
+          <StickyThead>편집</StickyThead>
         </tr>
       </thead>
     );
   }
 
-  const { onCheckAll, isAllChecked, highlightColumn } = props;
+  const { onCheckAll, isAllChecked } = props;
 
   return (
     <thead>
@@ -77,27 +75,23 @@ function TableHead<T extends TableItem>(props: TableHeadProps<T>) {
             key={String(col.accessor)}
             data-row={`r${idx + 1}`}
             data-col="c0"
-            $highlight={highlightColumn === col.accessor}
           >
             <h4>{col.header}</h4>
           </StickyThead>
         ))}
-        <StickyThead $highlight={false}>편집</StickyThead>
+        <StickyThead>편집</StickyThead>
       </tr>
     </thead>
   );
 }
 
-const StickyThead = styled.th<{ $highlight: boolean }>`
+const StickyThead = styled.th`
   position: sticky;
   top: 0;
   padding: 0.3rem 1rem;
   overflow-x: auto;
 
-  background-color: ${(props) =>
-    props.$highlight
-      ? props.theme.colors.secondarySurface
-      : props.theme.colors.primaryBackground};
+  background-color: ${(props) => props.theme.colors.primaryBackground};
 `;
 
 export default TableHead;

@@ -36,11 +36,6 @@ export interface LectureIdentifier {
   level: Lecture["level"];
 }
 
-export interface StudentLectureLogInfo {
-  refundOption: StudentLectureLog["refundOption"];
-  refundAccount: string;
-}
-
 export interface StudentPatchBody extends LectureQuery {
   attendLog: StudentAttendance["attendLog"];
 }
@@ -61,6 +56,7 @@ export interface StudentAttendance {
   name: string;
   bojHandle?: string;
   refundAccount?: string;
+  refundAmount?: number;
   attendLog: Array<{
     round: number;
     lectureDone: boolean;

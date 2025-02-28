@@ -1,11 +1,12 @@
-import type {
-  Admin,
-  Lecture,
-  RefundPolicy,
-  Semester,
-  Student,
-  StudentLectureLog,
-  WeeklyAttendLog,
+import {
+  type Admin,
+  type Lecture,
+  type RefundPolicy,
+  type Semester,
+  type Student,
+  type StudentLectureLog,
+  type Task,
+  type WeeklyAttendLog,
 } from "@prisma/client";
 import { School, Season, Level, RefundOption } from "@prisma/client";
 
@@ -125,6 +126,79 @@ export const LECTURE: Lecture[] = [
     lectureNumber: 10,
     bojGroupId: 4567,
     semesterId: 2,
+  },
+];
+
+export const TASK: Task[] = [
+  {
+    id: 1,
+    practiceId: 100,
+    lectureId: 1,
+    round: 1,
+    minSolveCount: 3,
+  },
+  {
+    id: 2,
+    practiceId: 101,
+    lectureId: 1,
+    round: 2,
+    minSolveCount: 3,
+  },
+  {
+    id: 3,
+    practiceId: 102,
+    lectureId: 1,
+    round: 3,
+    minSolveCount: 3,
+  },
+  {
+    id: 4,
+    practiceId: 103,
+    lectureId: 1,
+    round: 4,
+    minSolveCount: 3,
+  },
+  {
+    id: 5,
+    practiceId: 104,
+    lectureId: 1,
+    round: 5,
+    minSolveCount: 3,
+  },
+  {
+    id: 6,
+    practiceId: 105,
+    lectureId: 1,
+    round: 6,
+    minSolveCount: 3,
+  },
+  {
+    id: 7,
+    practiceId: 108,
+    lectureId: 1,
+    round: 7,
+    minSolveCount: 3,
+  },
+  {
+    id: 8,
+    practiceId: 103,
+    lectureId: 1,
+    round: 8,
+    minSolveCount: 3,
+  },
+  {
+    id: 9,
+    practiceId: 103,
+    lectureId: 1,
+    round: 9,
+    minSolveCount: 3,
+  },
+  {
+    id: 10,
+    practiceId: 103,
+    lectureId: 1,
+    round: 10,
+    minSolveCount: 3,
   },
 ];
 

@@ -13,9 +13,10 @@ type SidebarItemType = {
   url: string;
 };
 
+// TODO: /student 등 페이지 URL을 적절하게 수정
 const sidebarItems: SidebarItemType[] = [
   {
-    title: "학생 관리",
+    title: "수강 관리",
     icon: "/res/student-management.svg",
     url: "/student",
   },
@@ -25,9 +26,9 @@ const sidebarItems: SidebarItemType[] = [
     url: "/attend",
   },
   {
-    title: "링크 관리",
+    title: "학생 관리",
     icon: "/res/link.svg",
-    url: "/shorturl",
+    url: "/student-list",
   },
   {
     title: "설정 관리",

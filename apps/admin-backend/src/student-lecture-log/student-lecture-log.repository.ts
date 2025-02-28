@@ -8,10 +8,12 @@ export class StudentLectureLogRepository {
   constructor(private prisma: PrismaService) {}
 
   async createStudentLectureLog(
-    data: Prisma.StudentLectureLogCreateInput,
+    data: Prisma.StudentLectureLogCreateInput
   ): Promise<StudentLectureLogEntity> {
     return this.prisma.studentLectureLog.create({ data });
   }
+
+  // createMany를 쓰려면 studentId, lectureId를 따로 넣어 줘야 하기 때문에 사용하지 않음
 
   async getAllStudentLectureLogs(): Promise<StudentLectureLogEntity[]> {
     return this.prisma.studentLectureLog.findMany();
@@ -23,7 +25,7 @@ export class StudentLectureLogRepository {
 
   async getStudentLectureLogByLectureId(
     studentId: number,
-    lectureId: number,
+    lectureId: number
   ): Promise<StudentLectureLogEntity> {
     return this.prisma.studentLectureLog.findUnique({
       where: { studentId_lectureId: { studentId, lectureId } },
@@ -32,7 +34,7 @@ export class StudentLectureLogRepository {
 
   async updateStudentLectureLog(
     id: number,
-    data: Prisma.StudentLectureLogUpdateInput,
+    data: Prisma.StudentLectureLogUpdateInput
   ): Promise<StudentLectureLogEntity> {
     return this.prisma.studentLectureLog.update({ where: { id }, data });
   }

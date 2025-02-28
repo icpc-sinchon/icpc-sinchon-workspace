@@ -15,6 +15,7 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiOperation,
+  ApiBody,
 } from "@nestjs/swagger";
 import { CreateStudentDto } from "./dto/create-student.dto";
 import { UpdateStudentDto } from "./dto/update-student.dto";
@@ -52,7 +53,7 @@ export class StudentController {
     description: "학생을 조회하는 데 실패했습니다.",
   })
   findStudentById(
-    @Param("id", ParseIntPipe) id: number,
+    @Param("id", ParseIntPipe) id: number
   ): Promise<StudentEntity> {
     return this.studentService.getStudentById(id);
   }
@@ -67,9 +68,29 @@ export class StudentController {
     description: "학생 생성에 실패했습니다.",
   })
   createStudent(
-    @Body() createStudentDto: CreateStudentDto,
+    @Body() createStudentDto: CreateStudentDto
   ): Promise<StudentEntity> {
     return this.studentService.createStudent(createStudentDto);
+  }
+
+  @Post("/multiple")
+  @ApiOperation({ summary: "여러 학생 생성" })
+  @ApiBody({ type: [CreateStudentDto] })
+  // createMany는 생성된 레코드의 숫자를 담는 BatchPayload를 반환한다.
+  @ApiCreatedResponse({
+    schema: {
+      type: "object",
+      properties: {
+        count: { type: "number", example: 10 },
+      },
+    },
+    description: "여러 학생을 생성합니다.",
+  })
+  @ApiBadRequestResponse({
+    description: "학생 생성에 실패했습니다.",
+  })
+  createManyStudents(@Body() createStudentDtos: CreateStudentDto[]) {
+    return this.studentService.createManyStudents(createStudentDtos);
   }
 
   @Patch("/:id")
@@ -86,7 +107,7 @@ export class StudentController {
   })
   updateStudent(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateStudentDto: UpdateStudentDto,
+    @Body() updateStudentDto: UpdateStudentDto
   ): Promise<StudentEntity> {
     return this.studentService.updateStudent(id, updateStudentDto);
   }
