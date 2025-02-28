@@ -1,3 +1,5 @@
+import { Level } from "./models";
+
 export type Semester = {
   id: number;
   year: number;
@@ -7,7 +9,7 @@ export type Semester = {
 
 export type Lecture = {
   id: number;
-  level: "Novice" | "Intermediate" | "Advanced";
+  level: Level;
   lectureNumber: number;
   bojGroupId: number;
   task: Task[];
