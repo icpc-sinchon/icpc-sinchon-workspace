@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { CreateStudentLectureLogDto } from "./dto/create-student-lecture-log.dto";
 import { UpdateStudentLectureLogDto } from "./dto/update-student-lecture-log.dto";
 import { StudentRepository } from "@/student/student.repository";
@@ -35,29 +35,36 @@ export class StudentLectureLogService {
     }
   }
 
-  createMultiple(createStudentLectureLogDto: CreateStudentLectureLogDto[]) {
+  async createMultiple(
+    createStudentLectureLogDto: CreateStudentLectureLogDto[]
+  ) {
     try {
-      return createStudentLectureLogDto.map((data) => {
-        return this.studentLectureLogRepository.createStudentLectureLog({
-          student: {
-            connect: {
-              bojHandle: data.bojHandle,
-            },
-          },
-          lecture: {
-            connect: {
-              semesterId_level: {
-                semesterId: data.semesterId,
-                level: data.level,
+      return await Promise.all(
+        createStudentLectureLogDto.map(async (data) => {
+          return this.studentLectureLogRepository.createStudentLectureLog({
+            student: {
+              connect: {
+                bojHandle: data.bojHandle,
               },
             },
-          },
-          refundAccount: data.refundAccount,
-          refundOption: data.refundOption,
-        });
-      });
+            lecture: {
+              connect: {
+                semesterId_level: {
+                  semesterId: data.semesterId,
+                  level: data.level,
+                },
+              },
+            },
+            refundAccount: data.refundAccount,
+            refundOption: data.refundOption,
+          });
+        })
+      );
     } catch (e) {
       console.log(e);
+      throw new InternalServerErrorException(
+        "여러 학생 강의 로그 생성 중 오류 발생"
+      );
     }
   }
 
