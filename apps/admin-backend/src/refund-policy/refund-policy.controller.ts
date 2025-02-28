@@ -39,8 +39,9 @@ export class RefundPolicyController {
     description: "환급 정책 생성에 실패했습니다.",
   })
   async createRefundPolicy(
-    @Body() createRefundPolicyDto: CreateRefundPolicyDto,
+    @Body() createRefundPolicyDto: CreateRefundPolicyDto
   ): Promise<RefundPolicyEntity> {
+    console.log("createRefundPolicyDto", createRefundPolicyDto);
     return this.refundPolicyService.createRefundPolicy(createRefundPolicyDto);
   }
 
@@ -54,9 +55,11 @@ export class RefundPolicyController {
     description: "환급 정책 생성에 실패했습니다.",
   })
   async createMultipleRefundPolicies(
-    @Body() createRefundPolicyDto: CreateRefundPolicyDto[],
+    @Body() createRefundPolicyDto: CreateRefundPolicyDto[]
   ): Promise<number> {
-    return this.refundPolicyService.createMultipleRefundPolicies(createRefundPolicyDto);
+    return this.refundPolicyService.createMultipleRefundPolicies(
+      createRefundPolicyDto
+    );
   }
 
   @Get()
@@ -81,7 +84,7 @@ export class RefundPolicyController {
   })
   async getRefundPoliciesBySemester(
     @Query("year", ParseIntPipe) year: number,
-    @Query("season") season: Season,
+    @Query("season") season: Season
   ): Promise<RefundPolicyEntity[]> {
     return this.refundPolicyService.getRefundPoliciesBySemester(year, season);
   }
@@ -99,7 +102,7 @@ export class RefundPolicyController {
     description: "환급 정책을 조회하는 데 실패했습니다.",
   })
   async getRefundPolicyById(
-    @Param("id", ParseIntPipe) id: number,
+    @Param("id", ParseIntPipe) id: number
   ): Promise<RefundPolicyEntity> {
     return this.refundPolicyService.getRefundPolicyById(id);
   }
@@ -118,11 +121,11 @@ export class RefundPolicyController {
   })
   async updateRefundPolicy(
     @Param("id", ParseIntPipe) id: number,
-    @Body() updateRefundPolicyDto: UpdateRefundPolicyDto,
+    @Body() updateRefundPolicyDto: UpdateRefundPolicyDto
   ): Promise<RefundPolicyEntity> {
     return this.refundPolicyService.updateRefundPolicy(
       id,
-      updateRefundPolicyDto,
+      updateRefundPolicyDto
     );
   }
 
@@ -139,7 +142,7 @@ export class RefundPolicyController {
     description: "환급 정책 삭제에 실패했습니다.",
   })
   async deleteRefundPolicy(
-    @Param("id", ParseIntPipe) id: number,
+    @Param("id", ParseIntPipe) id: number
   ): Promise<RefundPolicyEntity> {
     return this.refundPolicyService.deleteRefundPolicy(id);
   }
