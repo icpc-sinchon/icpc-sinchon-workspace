@@ -103,8 +103,8 @@ function RefundPolicySetting() {
 
   const handleAddRefundPolicy = async () => {
     const newRefundPolicyData: RefundPolicyCreateInput = {
-      semesterId: currentSemester.id,
       ...newRefundPolicy,
+      semesterId: currentSemester.id,
     };
     console.log(newRefundPolicyData);
     await adminAPI.post(API_URL.REFUND.BASE, newRefundPolicyData);
