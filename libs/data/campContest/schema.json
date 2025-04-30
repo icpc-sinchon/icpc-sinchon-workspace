@@ -152,5 +152,6 @@
         }
       }
     }
-  }
+  },
+  "required": ["year", "season", "dateTime"]
 }
