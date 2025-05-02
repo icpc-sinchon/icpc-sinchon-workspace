@@ -52,7 +52,7 @@ tsconfig, biome 등의 공통 설정은 루트 디렉토리에 있습니다.
 
 ### 프로젝트 클론과 실행
 
-다음 명령어를 통해 레포지토리를 클론하고 프로젝트 경로로 이동합니다. git 권한
+다음 명령어를 통해 레포지토리를 클론하고 프로젝트 경로로 이동합니다. 이 과정에서 git 권한 관련 문제 발생 시 위의 이메일로 연락 주세요.
 
 ```shell
 git clone https://github.com/icpc-sinchon/icpc-sinchon-workspace.git
