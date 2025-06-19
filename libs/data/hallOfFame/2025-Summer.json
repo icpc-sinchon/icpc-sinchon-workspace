@@ -1,0 +1,61 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Summer",
+  "duration": "2025년 1학기 ~ 2025년 8월",
+  "president": [
+    {
+      "name": "강호현",
+      "school": "연세대학교",
+      "role": "회장"
+    },
+    {
+      "name": "이채은",
+      "school": "숙명여자대학교",
+      "role": "회장"
+    }
+  ],
+  "manager": [
+    {
+      "name": "박지은",
+      "school": "이화여자대학교",
+      "role": "총무"
+    },
+    {
+      "name": "허예진",
+      "school": "홍익대학교",
+      "role": "학생관리팀장"
+    },
+    {
+      "name": "엄수현",
+      "school": "이화여자대학교",
+      "role": "학생관리팀"
+    },
+    {
+      "name": "이하람",
+      "school": "연세대학교",
+      "role": "학생관리팀"
+    },
+    {
+      "name": "오유림",
+      "school": "연세대학교",
+      "role": "학생관리팀"
+    },
+    {
+      "name": "김태윤",
+      "school": "서강대학교",
+      "role": "홍보팀장"
+    },
+    {
+      "name": "문채일",
+      "school": "숙명여자대학교",
+      "role": "홍보팀"
+    },
+    {
+      "name": "안지선",
+      "school": "홍익대학교",
+      "role": "홍보팀"
+    }
+  ],
+  "campContributor": []
+}

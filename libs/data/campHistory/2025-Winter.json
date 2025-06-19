@@ -1,0 +1,85 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Winter",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "김도현",
+          "school": "홍익대학교",
+          "bojHandle": "swoon"
+        },
+        {
+          "name": "김해울",
+          "school": "한양대학교",
+          "bojHandle": "seonah"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "신정화",
+          "school": "이화여자대학교",
+          "bojHandle": "jungh150"
+        },
+        {
+          "name": "천민재",
+          "school": "홍익대학교",
+          "bojHandle": "open_mind"
+        }
+      ],
+      "curriculum": [
+        "Introduction, Time complexity",
+        "Linear data structure, N^2 Sorting",
+        "NlogN Sorting, Basic Math",
+        "Prefix Sum, Two Pointer",
+        "BruteForcing, Binary Search",
+        "Recursion, Divide and Conquer",
+        "Graph, Tree, Map, Set",
+        "DFS, BFS",
+        "Dynamic Programming",
+        "PS Session"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "김태윤",
+          "school": "연세대학교",
+          "bojHandle": "ystaeyoon113"
+        },
+        {
+          "name": "박진한",
+          "school": "고려대학교",
+          "bojHandle": "jinhan814"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "김지호",
+          "school": "연세대학교",
+          "bojHandle": "wlgh7407"
+        },
+        {
+          "name": "이지언",
+          "school": "연세대학교",
+          "bojHandle": "ez_code"
+        }
+      ],
+      "curriculum": [
+        "Shortest Path",
+        "Dynamic Programming (1)",
+        "Dynamic Programming (2)",
+        "Segment Tree",
+        "Problem Solving Session (1)",
+        "Greedy Algorithm",
+        "Union-Find",
+        "Tree Algorithm",
+        "Number Theory",
+        "Problem Solving Session (2)"
+      ]
+    }
+  ]
+}
