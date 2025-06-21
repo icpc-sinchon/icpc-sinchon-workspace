@@ -1,0 +1,344 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Winter",
+  "dateTime": "2025년 2월 22일(토) 오후 12:05 ~ 오후 17:05",
+  "note": "",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/4440",
+    "problemPdf": "https://drive.google.com/file/d/1qD7tQ7a7fBrocIZg4QF4vgGlO0vxtYAI/view",
+    "solutionPdf": "https://upload.acmicpc.net/65dbe77c-88d9-4e81-986d-fb5d36d06a9d/",
+    "scoreboard": ["https://www.acmicpc.net/contest/spotboard/1449"],
+    "posterImage": "https://drive.google.com/file/d/12XT8tsDv3A5ajGhRPJfzUU1aCTp5ytqu/view"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 12,
+          "teamName": "대충 26년 전역 어쩌고",
+          "school": "연세대학교",
+          "member": ["이도훈", "이협", "최우현"]
+        },
+        {
+          "rank": 2,
+          "solved": 12,
+          "teamName": "배신저스",
+          "school": "서강대학교",
+          "member": ["송근수", "강효규", "채성우"]
+        },
+        {
+          "rank": 3,
+          "solved": 11,
+          "teamName": "나근육또녹을지도",
+          "school": "서강대학교",
+          "member": ["김동건", "이승형", "조원빈"]
+        },
+        {
+          "rank": 4,
+          "solved": 11,
+          "teamName": "black box",
+          "school": "연세대학교",
+          "member": ["이재열", "윤지호", "김건우"]
+        },
+        {
+          "rank": 5,
+          "solved": 11,
+          "teamName": "calientacabezas",
+          "school": "서강대학교, 연세대학교",
+          "member": ["최환", "정재헌", "박동언"]
+        },
+        {
+          "rank": 6,
+          "solved": 11,
+          "teamName": "공면공",
+          "school": "연세대학교, 숙명여자대학교, 서강대학교",
+          "member": ["박경욱", "길수민", "박준영"]
+        },
+        {
+          "rank": 7,
+          "solved": 9,
+          "teamName": "wowSpirit",
+          "school": "홍익대학교",
+          "member": ["송한서", "이가은", "한승준"]
+        },
+        {
+          "rank": 8,
+          "solved": 9,
+          "teamName": "chill솔 못 했지만 chill하게 한 잔 하는 chill guy들",
+          "school": "서강대학교",
+          "member": ["김진수", "조성훈", "하건영"]
+        },
+        {
+          "rank": 9,
+          "solved": 8,
+          "teamName": "우리팀명 뭐로할래",
+          "school": "서강대학교",
+          "member": ["김규민", "양제웅", "이승찬"]
+        },
+        {
+          "rank": 10,
+          "solved": 8,
+          "teamName": "김재현",
+          "school": "홍익대학교",
+          "member": ["정재현", "김도현", "김재헌"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "노트북 세 대를 가지고 왔다",
+          "link": "https://www.acmicpc.net/problem/33515",
+          "setter": {
+            "name": "김형진",
+            "school": "연세대학교",
+            "bojHandle": "plast"
+          }
+        },
+        {
+          "problemTitle": "skeep 문자열",
+          "link": "https://www.acmicpc.net/problem/33516",
+          "setter": {
+            "name": "박주형",
+            "school": "경북대학교",
+            "bojHandle": "we12223"
+          }
+        },
+        {
+          "problemTitle": "징검다리 게임",
+          "link": "https://www.acmicpc.net/problem/33517",
+          "setter": {
+            "name": "유상혁",
+            "school": "비공개",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "도로 공사",
+          "link": "https://www.acmicpc.net/problem/33518",
+          "setter": {
+            "name": "허준영",
+            "school": "비공개",
+            "bojHandle": "jyheo98"
+          }
+        },
+        {
+          "problemTitle": "Andrew the Diver",
+          "link": "https://www.acmicpc.net/problem/33519",
+          "setter": {
+            "name": "이현빈",
+            "school": "한양대학교",
+            "bojHandle": "my3"
+          }
+        },
+        {
+          "problemTitle": "초코바 만들기",
+          "link": "https://www.acmicpc.net/problem/33520",
+          "setter": {
+            "name": "김형진",
+            "school": "연세대학교",
+            "bojHandle": "plast"
+          }
+        },
+        {
+          "problemTitle": "장비 강화하기",
+          "link": "https://www.acmicpc.net/problem/33521",
+          "setter": {
+            "name": "유상혁",
+            "school": "비공개",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "완전 그래프와 쿼리",
+          "link": "https://www.acmicpc.net/problem/33522",
+          "setter": {
+            "name": "박**",
+            "school": "비공개",
+            "bojHandle": "isekaijoucho"
+          }
+        },
+        {
+          "problemTitle": "체리 컴퍼니",
+          "link": "https://www.acmicpc.net/problem/33523",
+          "setter": {
+            "name": "박진한",
+            "school": "고려대학교",
+            "bojHandle": "jinhan814"
+          }
+        },
+        {
+          "problemTitle": "blobnom.xyz",
+          "link": "https://www.acmicpc.net/problem/33524",
+          "setter": {
+            "name": "장래오",
+            "school": "포항공과대학교",
+            "bojHandle": "leo020630"
+          }
+        },
+        {
+          "problemTitle": "학식 뭐 먹지",
+          "link": "https://www.acmicpc.net/problem/33525",
+          "setter": {
+            "name": "김영인",
+            "school": "국민대학교",
+            "bojHandle": "young_out"
+          }
+        },
+        {
+          "problemTitle": "Anti-Fan Death",
+          "link": "https://www.acmicpc.net/problem/33526",
+          "setter": {
+            "name": "정치훈",
+            "school": "비공개",
+            "bojHandle": "wjdclgns12"
+          }
+        },
+        {
+          "problemTitle": "신촌 길찾기 서비스",
+          "link": "https://www.acmicpc.net/problem/33527",
+          "setter": {
+            "name": "유상혁",
+            "school": "비공개",
+            "bojHandle": "golazcc83"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "김형진",
+      "school": "연세대학교",
+      "bojHandle": "plast"
+    },
+    {
+      "name": "박주형",
+      "school": "경북대학교",
+      "bojHandle": "we12223"
+    },
+    {
+      "name": "유상혁",
+      "school": "비공개",
+      "bojHandle": "golazcc83"
+    },
+    {
+      "name": "허준영",
+      "school": "비공개",
+      "bojHandle": "jyheo98"
+    },
+    {
+      "name": "박**",
+      "school": "비공개",
+      "bojHandle": "isekaijoucho"
+    },
+    {
+      "name": "박진한",
+      "school": "고려대학교",
+      "bojHandle": "jinhan814"
+    },
+    {
+      "name": "장래오",
+      "school": "포항공과대학교",
+      "bojHandle": "leo020630"
+    },
+    {
+      "name": "김영인",
+      "school": "국민대학교",
+      "bojHandle": "young_out"
+    },
+    {
+      "name": "정치훈",
+      "school": "비공개",
+      "bojHandle": "wjdclgns12"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "김민상",
+      "school": "숭실대학교",
+      "bojHandle": "tony9402"
+    },
+    {
+      "name": "주감동",
+      "school": "국민대학교",
+      "bojHandle": "jthis"
+    },
+    {
+      "name": "김재우",
+      "school": "고려대학교",
+      "bojHandle": "eoaud0108"
+    },
+    {
+      "name": "김동우",
+      "school": "고려대학교",
+      "bojHandle": "kidw0124"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교, Samsung Research",
+      "bojHandle": "lky7674"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "autoever",
+      "name": "현대오토에버"
+    },
+    {
+      "id": "startlink",
+      "name": "스타트링크"
+    },
+    {
+      "id": "cubrid",
+      "name": "큐브리드"
+    },
+    {
+      "id": "inflearn",
+      "name": "인프런"
+    },
+    {
+      "id": "recommend",
+      "name": "리코멘드"
+    },
+    {
+      "id": "jpub",
+      "name": "제이펍"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "insight",
+      "name": "인사이트"
+    }
+  ],
+  "personalSponsor": [
+    {
+      "id": "서희",
+      "name": "서희"
+    },
+    {
+      "id": "pjshwa",
+      "name": "pjshwa"
+    },
+    {
+      "id": "김규진",
+      "name": "김규진"
+    },
+    {
+      "id": "utilForever",
+      "name": "utilForever"
+    },
+    {
+      "id": "lky7674(이국렬)",
+      "name": "lky7674(이국렬)"
+    },
+    {
+      "id": "이재열",
+      "name": "이재열"
+    }
+  ]
+}
