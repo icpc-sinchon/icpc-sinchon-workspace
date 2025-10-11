@@ -30,6 +30,7 @@ export const schoolContainer = style({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  gap: "0.25rem",
 });
 
 export const logoContainer = style({
@@ -46,6 +47,10 @@ export const logo = style({
 export const clubName = style({
   textAlign: "center",
   width: "5rem",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 });
 
 export const stationContainer = style({
