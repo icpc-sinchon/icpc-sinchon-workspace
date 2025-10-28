@@ -1,0 +1,85 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Summer",
+  "study": [
+    {
+      "level": "초급",
+      "lecturer": [
+        {
+          "name": "박진한",
+          "school": "고려대학교",
+          "bojHandle": "jinhan814"
+        },
+        {
+          "name": "김해울",
+          "school": "한양대학교",
+          "bojHandle": "seonah"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "최연재",
+          "school": "숙명여자대학교",
+          "bojHandle": "0yeonjae2"
+        },
+        {
+          "name": "홍서희",
+          "school": "숙명여자대학교",
+          "bojHandle": "seohee0320"
+        }
+      ],
+      "curriculum": [
+        "기본 소개, 시간복잡도",
+        "선형 자료구조",
+        "브루트포스 (+ 기초 수학)",
+        "재귀, 분할정복",
+        "이분탐색",
+        "제곱 정렬, nlogn 정렬 (+ priority_queue)",
+        "Dynamic Programming",
+        "누적합, 투포인터",
+        "graph, tree(bfs, dfs)",
+        "PS Session"
+      ]
+    },
+    {
+      "level": "중급",
+      "lecturer": [
+        {
+          "name": "김영현",
+          "school": "서울대학교",
+          "bojHandle": "kipa00"
+        },
+        {
+          "name": "김도현",
+          "school": "홍익대학교",
+          "bojHandle": "swoon"
+        }
+      ],
+      "mentor": [
+        {
+          "name": "길수민",
+          "school": "숙명여자대학교",
+          "bojHandle": "2093ab"
+        },
+        {
+          "name": "이재열",
+          "school": "연세대학교",
+          "bojHandle": "Conu"
+        }
+      ],
+      "curriculum": [
+        "Graphs - Shortest Path",
+        "Dynamic Programming (1)",
+        "Dynamic Programming (2)",
+        "Segment Tree",
+        "Number Theory",
+        "Problem Solving Session (1)",
+        "Tree Algorithms",
+        "Graph Algorithms",
+        "String Algorithms",
+        "Problem Solving Session (2)"
+      ]
+    }
+  ]
+}

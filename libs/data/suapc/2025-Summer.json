@@ -1,0 +1,376 @@
+{
+  "$schema": "./schema.json",
+  "year": 2025,
+  "season": "Summer",
+  "dateTime": "2025년 8월 23일(토) 오후 12:00 ~ 오후 17:00",
+  "note": "",
+  "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/4537",
+    "problemPdf": "",
+    "solutionPdf": "",
+    "scoreboard": ["https://www.acmicpc.net/contest/spotboard/1538"],
+    "posterImage": "https://drive.google.com/file/d/1pmRKX7gyJ1z1yMSYVBpzj66tuistk7Gn/view"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 10,
+          "teamName": "저녁 뭐 먹지",
+          "school": "연세대학교",
+          "member": ["윤지호", "장주원", "김형진"]
+        },
+        {
+          "rank": 2,
+          "solved": 10,
+          "teamName": "오락실거주중인고양이들",
+          "school": "서강대학교",
+          "member": ["채성우", "박성준", "노주환"]
+        },
+        {
+          "rank": 3,
+          "solved": 8,
+          "teamName": "공공면면공공",
+          "school": "연세대학교, 숙명여자대학교, 서강대학교",
+          "member": ["박준영", "길수민", "박경욱"]
+        },
+        {
+          "rank": 4,
+          "solved": 8,
+          "teamName": "goraani never dies",
+          "school": "서강대학교",
+          "member": ["김동건", "강효규", "조원빈"]
+        },
+        {
+          "rank": 6,
+          "solved": 7,
+          "teamName": "LLM",
+          "school": "서강대학교",
+          "member": ["김진수", "이재혁", "하건영"]
+        },
+        {
+          "rank": 7,
+          "solved": 7,
+          "teamName": "GPT-5 코딩 잘하던데",
+          "school": "연세대학교",
+          "member": ["이도훈", "이협", "최우현"]
+        },
+        {
+          "rank": 8,
+          "solved": 6,
+          "teamName": "Retros",
+          "school": "서강대학교",
+          "member": ["김태윤", "이재찬", "박준우"]
+        },
+        {
+          "rank": 9,
+          "solved": 6,
+          "teamName": "하하하하하하하하하하하하하하하하하이아크",
+          "school": "홍익대학교",
+          "member": ["이호재", "이재국", "양주환"]
+        },
+        {
+          "rank": 10,
+          "solved": 6,
+          "teamName": "치군공",
+          "school": "서강대학교, 연세대학교",
+          "member": ["정재헌", "박동언", "이지훈"]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "SUAPC 의자 준비하기",
+          "link": "https://www.acmicpc.net/problem/34183",
+          "setter": {
+            "name": "강호현",
+            "school": "연세대학교",
+            "bojHandle": "annieho"
+          }
+        },
+        {
+          "problemTitle": "Opening Time",
+          "link": "https://www.acmicpc.net/problem/34184",
+          "setter": {
+            "name": "양승민",
+            "school": "비공개",
+            "bojHandle": "dadas08"
+          }
+        },
+        {
+          "problemTitle": "SWAP-C Sort",
+          "link": "https://www.acmicpc.net/problem/34185",
+          "setter": {
+            "name": "곽우석",
+            "school": "SK하이닉스",
+            "bojHandle": "bubbler"
+          }
+        },
+        {
+          "problemTitle": "17마리 낙타",
+          "link": "https://www.acmicpc.net/problem/34186",
+          "setter": {
+            "name": "김도윤",
+            "school": "비공개",
+            "bojHandle": "kdy40929"
+          }
+        },
+        {
+          "problemTitle": "솹씨 몇 도예요?",
+          "link": "https://www.acmicpc.net/problem/34187",
+          "setter": {
+            "name": "서종환",
+            "school": "서울대학교",
+            "bojHandle": "mujigae"
+          }
+        },
+        {
+          "problemTitle": "Tri-Tree XOR",
+          "link": "https://www.acmicpc.net/problem/34188",
+          "setter": {
+            "name": "김도윤",
+            "school": "비공개",
+            "bojHandle": "kdy40929"
+          }
+        },
+        {
+          "problemTitle": "두 수열 만들기",
+          "link": "https://www.acmicpc.net/problem/34189",
+          "setter": {
+            "name": "장우성",
+            "school": "국민대학교",
+            "bojHandle": "saywoo"
+          }
+        },
+        {
+          "problemTitle": "위치 복원하기",
+          "link": "https://www.acmicpc.net/problem/34190",
+          "setter": {
+            "name": "박진한",
+            "school": "고려대학교",
+            "bojHandle": "jinhan814"
+          }
+        },
+        {
+          "problemTitle": "돌 뒤집기 게임",
+          "link": "https://www.acmicpc.net/problem/34191",
+          "setter": {
+            "name": "유상혁",
+            "school": "LG CNS",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "최단 경로 쌍",
+          "link": "https://www.acmicpc.net/problem/34192",
+          "setter": {
+            "name": "이승재",
+            "school": "비공개",
+            "bojHandle": "coxie"
+          }
+        },
+        {
+          "problemTitle": "숫자 놀이",
+          "link": "https://www.acmicpc.net/problem/34193",
+          "setter": {
+            "name": "곽우석",
+            "school": "SK하이닉스",
+            "bojHandle": "bubbler"
+          }
+        },
+        {
+          "problemTitle": "Permutation Swap",
+          "link": "https://www.acmicpc.net/problem/34194",
+          "setter": {
+            "name": "박진한",
+            "school": "고려대학교",
+            "bojHandle": "jinhan814"
+          }
+        },
+        {
+          "problemTitle": "물고기와 쿼리",
+          "link": "https://www.acmicpc.net/problem/34195",
+          "setter": {
+            "name": "송주헌",
+            "school": "비공개",
+            "bojHandle": "lunarlity"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "강호현",
+      "school": "연세대학교",
+      "bojHandle": "annieho"
+    },
+    {
+      "name": "양승민",
+      "school": "비공개",
+      "bojHandle": "dadas08"
+    },
+    {
+      "name": "곽우석",
+      "school": "SK하이닉스",
+      "bojHandle": "bubbler"
+    },
+    {
+      "name": "김도윤",
+      "school": "비공개",
+      "bojHandle": "kdy40929"
+    },
+    {
+      "name": "서종환",
+      "school": "서울대학교",
+      "bojHandle": "mujigae"
+    },
+    {
+      "name": "장우성",
+      "school": "국민대학교",
+      "bojHandle": "saywoo"
+    },
+    {
+      "name": "박진한",
+      "school": "고려대학교",
+      "bojHandle": "jinhan814"
+    },
+    {
+      "name": "유상혁",
+      "school": "LG CNS",
+      "bojHandle": "golazcc83"
+    },
+    {
+      "name": "이승재",
+      "school": "비공개",
+      "bojHandle": "coxie"
+    },
+    {
+      "name": "송주헌",
+      "school": "비공개",
+      "bojHandle": "lunarlity"
+    },
+    {
+      "name": "이국렬",
+      "school": "삼성리서치",
+      "bojHandle": "lky7674"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "김도윤",
+      "school": "비공개",
+      "bojHandle": "kdy40929"
+    },
+    {
+      "name": "서종환",
+      "school": "서울대학교",
+      "bojHandle": "mujigae"
+    },
+    {
+      "name": "유상혁",
+      "school": "LG CNS",
+      "bojHandle": "golazcc83"
+    },
+    {
+      "name": "이승재",
+      "school": "비공개",
+      "bojHandle": "coxie"
+    },
+    {
+      "name": "이국렬",
+      "school": "삼성리서치",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "이지언",
+      "school": "연세대학교",
+      "bojHandle": "ez_code"
+    },
+    {
+      "name": "김건우",
+      "school": "연세대학교(졸)",
+      "bojHandle": "coconut99"
+    },
+    {
+      "name": "김태윤",
+      "school": "연세대학교",
+      "bojHandle": "ystaeyoon113"
+    },
+    {
+      "name": "허성범",
+      "school": "전북대학교",
+      "bojHandle": "iluem100"
+    },
+    {
+      "name": "정용진",
+      "school": "연세대학교",
+      "bojHandle": "playsworld16"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "autoever",
+      "name": "현대오토에버"
+    },
+    {
+      "id": "soslab",
+      "name": "SOS랩"
+    },
+    {
+      "id": "programmers",
+      "name": "프로그래머스"
+    },
+    {
+      "id": "cubrid",
+      "name": "큐브리드"
+    },
+    {
+      "id": "recommend",
+      "name": "리코멘드"
+    },
+    {
+      "id": "jpub",
+      "name": "제이펍"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "bjpublic",
+      "name": "비제이퍼블릭"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "hanbit",
+      "name": "한빛미디어"
+    },
+    {
+      "id": "goldenrabbit",
+      "name": "골든래빗"
+    },
+    {
+      "id": "samsung_sw",
+      "name": "삼성소프트웨어 멤버십"
+    }
+  ],
+  "personalSponsor": [
+    {
+      "id": "personal_1",
+      "name": "pjshwa"
+    },
+    {
+      "id": "personal_2",
+      "name": "최연재"
+    },
+    {
+      "id": "personal_3",
+      "name": "강호현"
+    }
+  ]
+}
