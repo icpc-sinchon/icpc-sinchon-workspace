@@ -1,9 +1,13 @@
 {
   "currentSemester": {
-    "year": 2025,
-    "season": "Summer"
+    "year": 2026,
+    "season": "Winter"
   },
   "semesters": [
+    {
+      "year": 2026,
+      "season": "Winter"
+    },
     {
       "year": 2025,
       "season": "Summer"

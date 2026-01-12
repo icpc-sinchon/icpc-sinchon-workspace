@@ -62,7 +62,7 @@ function PersonalSponsorPage() {
       />
       <ListSection
         title="다음의 계좌로 후원금을 받고 있습니다."
-        items={["1001-9184-1889 토스뱅크 (예금주: 박지은)"]}
+        items={["3333-35-9092321 카카오뱅크 (예금주: 박시영)"]}
       />
       <section className={styles.container}>
         <Title>후원 후 다음의 폼을 작성해 주세요.</Title>
@@ -70,8 +70,8 @@ function PersonalSponsorPage() {
           원활한 특전 제공을 위해 아래의 폼을 작성하여 제출해주시길 바랍니다.
           <br />
           {renderLink({
-            title: "https://forms.gle/VtWwUMY463mx29i28",
-            url: "https://forms.gle/VtWwUMY463mx29i28",
+            title: "https://forms.gle/JV6gjUXRZuiPCUmo6",
+            url: "https://forms.gle/JV6gjUXRZuiPCUmo6",
           })}
         </Text>
       </section>
