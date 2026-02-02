@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "year": 2025,
   "season": "Winter",
-  "dateTime": "2025년 2월 22일(토) 오후 12:05 ~ 오후 17:05",
+  "dateTime": "2025년 2월 22일(토) 오후 12시 ~ 오후 5시",
   "note": "",
   "links": {
     "problemBojLink": "https://www.acmicpc.net/category/detail/4440",

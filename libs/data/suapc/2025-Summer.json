@@ -2,12 +2,12 @@
   "$schema": "./schema.json",
   "year": 2025,
   "season": "Summer",
-  "dateTime": "2025년 8월 23일(토) 오후 12:00 ~ 오후 17:00",
+  "dateTime": "2025년 8월 23일(토) 오후 12시 ~ 오후 5시",
   "note": "",
   "links": {
     "problemBojLink": "https://www.acmicpc.net/category/detail/4537",
-    "problemPdf": "",
-    "solutionPdf": "",
+    "problemPdf": "https://drive.google.com/file/d/1WAqry1oK1TrTMTv4dEwx4lwHUK-EystY/view?usp=sharing",
+    "solutionPdf": "https://upload.acmicpc.net/671223a0-561f-4f32-b8d8-c16590843306/",
     "scoreboard": ["https://www.acmicpc.net/contest/spotboard/1538"],
     "posterImage": "https://drive.google.com/file/d/1pmRKX7gyJ1z1yMSYVBpzj66tuistk7Gn/view"
   },
