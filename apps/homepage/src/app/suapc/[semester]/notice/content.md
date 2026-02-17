@@ -62,7 +62,7 @@
 ## 언어 및 채점
 
 - **사용 가능한 언어는 다음과 같습니다:**
-  - C11, C++11, C++17, C++17 (Clang)
+  - C11, C++11, C++17
   - Java 8, Java 8 (OpenJDK), Java 15
   - Python 3, PyPy3
   - Ruby, Kotlin (JVM), Text, C#, node.js, Go, D, Rust 2024, 아희
