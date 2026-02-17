@@ -55,7 +55,7 @@
   - 사전 작성된 템플릿 코드나 외부 라이브러리(예: Atcoder Library)는 사용할 수 없습니다. 이는 제출 코드뿐만 아니라 테스트용 코드에도 동일하게 적용됩니다.
 - **Github Copilot, lex, yacc 등 코드 생성 플러그인 및 ChatGPT 등 생성형 AI 사용은 엄격히 금지됩니다.**
   - LSP-Clangd, IntelliSense 등 기본 자동완성 기능은 사용 가능합니다.
-  - Code Runner, Competitive Programming Helper 등 코드 작성을 보조하는 도구는 사용 가능합니다.
+  - Code Runner, Competitive Programming Helper 등 코드 작성을 보조하지 않는 도구는 사용 가능합니다.
   - 코드 작성과 관련되지 않은 기타 도구(단축키를 사용하여 컴파일, 입력의 파이프라인, Unix의 `diff` 등 코드의 단순 비교 등)는 사용 가능합니다.
 - 관련 기타 문의 사항이 있는 경우 아래의 카카오톡 채널을 통해 문의해 주세요.
 
