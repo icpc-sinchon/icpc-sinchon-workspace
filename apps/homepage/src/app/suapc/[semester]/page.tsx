@@ -17,7 +17,7 @@ const suapcDescription = `SUAPC는 신촌지역 5개 대학(서강, 숙명, 연�
  얼마나 많은 문제를 정확하게 풀 수 있는지를 평가하여 순위를 결정합니다.`;
 
 const participantDescription = `서강대학교, 숙명여자대학교, 연세대학교, 이화여자대학교, 홍익대학교의 재학/휴학생인 경우
-누구나 참여가능합니다. (단, 졸업 1년 차와 대학원생은 참여 가능하되, 대회 중 스코어보드에는 보여지지 않습니다.)
+누구나 참여 가능합니다. (단, 졸업 1년 차와 대학원생은 참여 가능하되, 대회 중 스코어보드에는 보여지지 않습니다.)
 `;
 
 function SUAPCPage({
@@ -37,37 +37,39 @@ function SUAPCPage({
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
   const pageTitle = `SUAPC ${currentPageSemester.year} ${currentPageSemester.season}`;
   const pageSubTitle = `${currentPageSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 대회`;
-
-  const contestLinks = suapcData.links
-    ? [
-        {
-          title: "문제(BOJ 링크)",
-          href: formatLinkURL(
-            suapcData.links.problemBojLink,
-            currentPageSemester,
-          ),
-        },
-        {
-          title: "문제 PDF",
-          href: formatLinkURL(suapcData.links.problemPdf, currentPageSemester),
-        },
-        {
-          title: "해설 PDF",
-          href: formatLinkURL(suapcData.links.solutionPdf, currentPageSemester),
-        },
-        {
-          title: "스코어보드",
-          href: formatLinkURL(
-            suapcData.links.scoreboard?.[0],
-            currentPageSemester,
-          ),
-        },
-        {
-          title: "공식 포스터",
-          href: formatLinkURL(suapcData.links.posterImage, currentPageSemester),
-        },
-      ]
-    : [];
+  const showNoticePageLink = currentPageSemester.year >= 2026;
+  const links = suapcData.links ?? {};
+  const contestLinks = [
+    {
+      title: "문제(BOJ 링크)",
+      href: formatLinkURL(links.problemBojLink, currentPageSemester),
+    },
+    {
+      title: "문제 PDF",
+      href: formatLinkURL(links.problemPdf, currentPageSemester),
+    },
+    {
+      title: "해설 PDF",
+      href: formatLinkURL(links.solutionPdf, currentPageSemester),
+    },
+    {
+      title: "스코어보드",
+      href: formatLinkURL(links.scoreboard?.[0], currentPageSemester),
+    },
+    {
+      title: "공식 포스터",
+      href: formatLinkURL(links.posterImage, currentPageSemester),
+    },
+    ...(showNoticePageLink
+      ? [
+          {
+            title: "대회 유의사항",
+            href: `/suapc/${currentPageSemester.year}-${currentPageSemester.season}/notice`,
+          },
+        ]
+      : []),
+  ];
+  const hasAnyLinkButton = contestLinks.some((link) => Boolean(link.href));
 
   return (
     <>
@@ -82,7 +84,7 @@ function SUAPCPage({
         }
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
-        {suapcData.links && Object.keys(suapcData.links).length > 0 && (
+        {hasAnyLinkButton && (
           <ContestLinks links={contestLinks} />
         )}
         <TextSection title="대회 일자" text={suapcData.dateTime} />
