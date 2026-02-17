@@ -1,15 +1,161 @@
 import HistoryLayout from "@components/HistoryLayout";
+import Title from "@components/Title";
 import ContestLinks from "@ui/ContestLinks";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
+import fs from "node:fs";
+import path from "node:path";
 import { notFound } from "next/navigation";
+import type React from "react";
+import * as styles from "./styles.css";
 import type { Semester } from "src/types";
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 import { formatLinkURL } from "src/utils/formatLinkURL";
+import { renderLink } from "src/utils/renderHelpers";
 
 const NOTICE_START_YEAR = 2026;
+const NOTICE_CONTENT_PATH = path.join(
+  process.cwd(),
+  "src",
+  "app",
+  "suapc",
+  "[semester]",
+  "notice",
+  "content.md",
+);
+
+type NoticeSection = {
+  title: string;
+  items: NoticeItem[];
+};
+
+type NoticeItem = {
+  content: React.ReactNode;
+  depth: 0 | 1;
+  isBullet: boolean;
+};
+
+function normalizeMarkdownText(text: string) {
+  let normalized = text.replace(/\\~/g, "~").replace(/\u00A0/g, " ");
+
+  // [label](url "title") -> label (url)
+  normalized = normalized.replace(
+    /\[([^\]]+)\]\((\S+)(?:\s+"[^"]*")?\)/g,
+    (_match, label: string, url: string) => {
+      const cleanLabel = label.trim();
+      const cleanUrl = url.trim();
+      return cleanLabel === cleanUrl ? cleanUrl : `${cleanLabel} (${cleanUrl})`;
+    },
+  );
+
+  // markdown emphasis/code markers
+  normalized = normalized.replace(/\*\*(.*?)\*\*/g, "$1");
+  normalized = normalized.replace(/`([^`]+)`/g, "$1");
+
+  return normalized.trim();
+}
+
+function renderNoticeLine(text: string) {
+  const urlRegex = /https?:\/\/[^\s)]+/g;
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while (true) {
+    match = urlRegex.exec(text);
+    if (!match) {
+      break;
+    }
+
+    const url = match[0];
+    const start = match.index;
+    const end = start + url.length;
+
+    if (start > lastIndex) {
+      nodes.push(text.slice(lastIndex, start));
+    }
+
+    nodes.push(
+      renderLink({
+        title: url,
+        url,
+      }),
+    );
+
+    lastIndex = end;
+  }
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+
+  if (nodes.length === 0) {
+    return text;
+  }
+
+  return nodes.map((node, index) => (
+    // biome-ignore lint/suspicious/noArrayIndexKey: static parsed content
+    <span key={index}>{node}</span>
+  ));
+}
+
+function parseNoticeSections(markdown: string) {
+  const sections: NoticeSection[] = [];
+  let currentSection: NoticeSection | null = null;
+
+  for (const rawLine of markdown.split(/\r?\n/)) {
+    const trimmed = rawLine.trim();
+
+    if (!trimmed) {
+      continue;
+    }
+
+    const headingMatch = trimmed.match(/^#{1,6}\s+(.+)$/);
+    if (headingMatch) {
+      currentSection = {
+        title: normalizeMarkdownText(headingMatch[1]),
+        items: [],
+      };
+      sections.push(currentSection);
+      continue;
+    }
+
+    if (!currentSection) {
+      continue;
+    }
+
+    const bulletMatch = rawLine.match(/^(\s*)[-*]\s+(.+)$/);
+    if (bulletMatch) {
+      const leadingWhitespace = bulletMatch[1].replace(/\t/g, "  ");
+      const depth =
+        Math.floor(leadingWhitespace.length / 2) > 0 ? 1 : 0;
+      currentSection.items.push({
+        content: renderNoticeLine(normalizeMarkdownText(bulletMatch[2])),
+        depth,
+        isBullet: true,
+      });
+      continue;
+    }
+
+    currentSection.items.push({
+      content: renderNoticeLine(normalizeMarkdownText(trimmed)),
+      depth: 0,
+      isBullet: false,
+    });
+  }
+
+  return sections.filter((section) => section.items.length > 0);
+}
+
+function getNoticeItemClassName(item: NoticeItem) {
+  if (!item.isBullet) {
+    return styles.plainItem;
+  }
+
+  return item.depth > 0 ? styles.subBulletItem : styles.bulletItem;
+}
 
 function SUAPCNoticePage({
   params,
@@ -22,6 +168,8 @@ function SUAPCNoticePage({
     selectedTabIndex,
     renderedPageData: suapcData,
   } = makePageData(currentPageSemester, "suapc");
+  const noticeMarkdown = fs.readFileSync(NOTICE_CONTENT_PATH, "utf-8");
+  const noticeSections = parseNoticeSections(noticeMarkdown);
 
   const isTargetSemester = currentPageSemester.year >= NOTICE_START_YEAR;
   const currentSeason =
@@ -77,6 +225,21 @@ function SUAPCNoticePage({
       >
         <ContestLinks links={contestLinks} />
         <TextSection title="안내" text="대회 참가 전 반드시 확인해주세요." />
+        {noticeSections.map((section) => (
+          <section key={section.title} className={styles.section}>
+            <Title>{section.title}</Title>
+            <ul className={styles.list}>
+              {section.items.map((item, index) => (
+                <li
+                  key={`${section.title}-${index}`}
+                  className={getNoticeItemClassName(item)}
+                >
+                  {item.content}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </HistoryLayout>
     </>
   );
