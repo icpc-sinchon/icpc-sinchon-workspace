@@ -32,7 +32,7 @@ const makeHallOfFameData = (semester: Semester): HallOfFame => {
 const makeSUAPCData = (semester: Semester): SUAPCData => {
   return {
     ...semester,
-    dateTime: `아직 ${semester.year} ${semester.season} 시즌이 진행되지 않았습니다. 역대 캠프 정보는 상단의 탭을 참고해주세요.`,
+    dateTime: `아직 ${semester.year} ${semester.season} 시즌이 진행되지 않았습니다. 역대 대회 정보는 상단의 탭을 참고해주세요.`,
     links: {},
     contest: [],
     setter: [],
