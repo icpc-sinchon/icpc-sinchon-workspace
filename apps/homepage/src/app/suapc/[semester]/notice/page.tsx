@@ -40,8 +40,7 @@ type NoticeItem = {
 function normalizeMarkdownText(text: string) {
   let normalized = text.replace(/\\~/g, "~").replace(/\u00A0/g, " ");
 
-  // markdown emphasis/code markers
-  normalized = normalized.replace(/\*\*(.*?)\*\*/g, "$1");
+  // markdown code markers
   normalized = normalized.replace(/`([^`]+)`/g, "$1");
 
   return normalized.trim();
@@ -49,7 +48,7 @@ function normalizeMarkdownText(text: string) {
 
 function renderNoticeLine(text: string) {
   const tokenRegex =
-    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)(?:\s+"[^"]*")?\)|<(https?:\/\/[^>\s]+)>|(https?:\/\/[^\s<]+)/g;
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)(?:\s+"[^"]*")?\)|<(https?:\/\/[^>\s]+)>|(https?:\/\/[^\s<]+)|\*\*(.+?)\*\*/g;
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -97,6 +96,7 @@ function renderNoticeLine(text: string) {
     const markdownUrl = match[2];
     const bracketedPlainUrl = match[3];
     const plainUrl = match[4];
+    const boldText = match[5];
 
     if (markdownLabel && markdownUrl) {
       nodes.push(
@@ -121,6 +121,8 @@ function renderNoticeLine(text: string) {
           url: cleanUrl,
         }),
       );
+    } else if (boldText) {
+      nodes.push(<strong>{boldText}</strong>);
     }
 
     lastIndex = end;
