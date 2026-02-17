@@ -122,7 +122,9 @@ function renderNoticeLine(text: string) {
         }),
       );
     } else if (boldText) {
-      nodes.push(<strong>{boldText}</strong>);
+      nodes.push(
+        <span className={styles.emphasisText}>{boldText}</span>,
+      );
     }
 
     lastIndex = end;

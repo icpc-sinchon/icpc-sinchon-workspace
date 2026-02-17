@@ -36,3 +36,7 @@ export const plainItem = style({
   ...itemBase,
   listStyleType: "none",
 });
+
+export const emphasisText = style({
+  fontWeight: 500,
+});
