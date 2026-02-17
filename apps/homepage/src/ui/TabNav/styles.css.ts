@@ -3,11 +3,17 @@ import { vars } from "@styles/theme.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const tabNavWrap = style({
-  padding: "2rem",
+  width: "92%",
+  maxWidth: "1024px",
+  margin: "0 auto",
+  padding: "2rem 0",
+  boxSizing: "border-box",
   display: "flex",
-  msOverflowStyle: "none",
+  overflow: "hidden",
   "@media": {
-    "(max-width: 500px)": {
+    "(max-width: 768px)": {
+      width: "100%",
+      maxWidth: "none",
       padding: "1rem",
     },
   },
@@ -15,17 +21,21 @@ export const tabNavWrap = style({
 
 export const tabNav = style({
   display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  rowGap: "1rem",
-  columnGap: "2rem",
-  margin: "0 auto",
+  flexWrap: "nowrap",
+  justifyContent: "flex-start",
+  gap: "1rem",
+  width: "100%",
+  overflowX: "auto",
+  overflowY: "hidden",
+  scrollBehavior: "smooth",
+  scrollSnapType: "x proximity",
+  paddingBottom: "0.2rem",
+  msOverflowStyle: "none",
+  scrollbarWidth: "none",
 
-  "@media": {
-    "(max-width: 640px)": {
-      justifyContent: "flex-start",
-      flexWrap: "nowrap",
-      overflowX: "auto",
+  selectors: {
+    "&::-webkit-scrollbar": {
+      display: "none",
     },
   },
 });
@@ -39,6 +49,8 @@ const tabNavItemBase = style({
   fontWeight: 400,
   fontSize: "0.85rem",
   whiteSpace: "nowrap",
+  flexShrink: 0,
+  scrollSnapAlign: "start",
 });
 
 export const tabNavItem = styleVariants({
