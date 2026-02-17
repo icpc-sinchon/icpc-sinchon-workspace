@@ -40,16 +40,6 @@ type NoticeItem = {
 function normalizeMarkdownText(text: string) {
   let normalized = text.replace(/\\~/g, "~").replace(/\u00A0/g, " ");
 
-  // [label](url "title") -> label (url)
-  normalized = normalized.replace(
-    /\[([^\]]+)\]\((\S+)(?:\s+"[^"]*")?\)/g,
-    (_match, label: string, url: string) => {
-      const cleanLabel = label.trim();
-      const cleanUrl = url.trim();
-      return cleanLabel === cleanUrl ? cleanUrl : `${cleanLabel} (${cleanUrl})`;
-    },
-  );
-
   // markdown emphasis/code markers
   normalized = normalized.replace(/\*\*(.*?)\*\*/g, "$1");
   normalized = normalized.replace(/`([^`]+)`/g, "$1");
@@ -58,31 +48,80 @@ function normalizeMarkdownText(text: string) {
 }
 
 function renderNoticeLine(text: string) {
-  const urlRegex = /https?:\/\/[^\s)]+/g;
+  const tokenRegex =
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)(?:\s+"[^"]*")?\)|<(https?:\/\/[^>\s]+)>|(https?:\/\/[^\s<]+)/g;
   const nodes: React.ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
+  const trimTrailingPunctuation = (url: string) => {
+    let trimmed = url;
+
+    while (true) {
+      if (trimmed.length === 0) {
+        return trimmed;
+      }
+
+      const lastChar = trimmed[trimmed.length - 1];
+      if (!".,;:!?)]".includes(lastChar)) {
+        return trimmed;
+      }
+
+      // Keep balanced parenthesis in URL path/query.
+      if (lastChar === ")") {
+        const openingCount = (trimmed.match(/\(/g) ?? []).length;
+        const closingCount = (trimmed.match(/\)/g) ?? []).length;
+        if (closingCount <= openingCount) {
+          return trimmed;
+        }
+      }
+
+      trimmed = trimmed.slice(0, -1);
+    }
+  };
+
   while (true) {
-    match = urlRegex.exec(text);
+    match = tokenRegex.exec(text);
     if (!match) {
       break;
     }
 
-    const url = match[0];
     const start = match.index;
-    const end = start + url.length;
+    const end = start + match[0].length;
 
     if (start > lastIndex) {
       nodes.push(text.slice(lastIndex, start));
     }
 
-    nodes.push(
-      renderLink({
-        title: url,
-        url,
-      }),
-    );
+    const markdownLabel = match[1];
+    const markdownUrl = match[2];
+    const bracketedPlainUrl = match[3];
+    const plainUrl = match[4];
+
+    if (markdownLabel && markdownUrl) {
+      nodes.push(
+        renderLink({
+          title: markdownLabel.trim(),
+          url: markdownUrl.trim(),
+        }),
+      );
+    } else if (bracketedPlainUrl) {
+      const cleanUrl = trimTrailingPunctuation(bracketedPlainUrl);
+      nodes.push(
+        renderLink({
+          title: cleanUrl,
+          url: cleanUrl,
+        }),
+      );
+    } else if (plainUrl) {
+      const cleanUrl = trimTrailingPunctuation(plainUrl);
+      nodes.push(
+        renderLink({
+          title: cleanUrl,
+          url: cleanUrl,
+        }),
+      );
+    }
 
     lastIndex = end;
   }
