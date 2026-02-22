@@ -1,0 +1,469 @@
+{
+  "$schema": "./schema.json",
+  "year": 2026,
+  "season": "Winter",
+  "dateTime": "2026년 2월 20일(금) 오후 1시 ~ 오후 6시",
+  "note": "수상자 명단, 문제 목록, solved 수, 출제진/검수진과 주요 링크를 반영했습니다.",
+  "links": {
+    "problemPdf": "https://drive.google.com/file/d/1QoJUiu5ArbjzVlAgbnEV0S2P10Gek5oo/view?usp=drive_link",
+    "solutionPdf": "https://upload.acmicpc.net/048d8f44-4571-4209-b06b-1ce5479742ad/",
+    "scoreboard": [
+      "https://www.acmicpc.net/contest/spotboard/1648"
+    ],
+    "posterImage": "https://drive.google.com/file/d/1MIKrfTFqplCEbN1OVc-V5gV7tmLfZ2_v/view?usp=drive_link"
+  },
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 11,
+          "teamName": "Ice Cream Pizza Crust",
+          "school": "연세대학교",
+          "member": [
+            "정용진",
+            "아세안",
+            "김태윤"
+          ]
+        },
+        {
+          "rank": 2,
+          "solved": 9,
+          "teamName": "placeholder",
+          "school": "숙명여자대학교, 연세대학교",
+          "member": [
+            "길수민",
+            "민상원",
+            "박경욱"
+          ]
+        },
+        {
+          "rank": 3,
+          "solved": 9,
+          "teamName": "원내생진료실",
+          "school": "연세대학교",
+          "member": [
+            "박동언",
+            "민지홍",
+            "한재윤"
+          ]
+        },
+        {
+          "rank": 4,
+          "solved": 8,
+          "teamName": "도리도리도리",
+          "school": "이화여자대학교, 홍익대학교",
+          "member": [
+            "박지은",
+            "신정화",
+            "김도현"
+          ]
+        },
+        {
+          "rank": 5,
+          "solved": 8,
+          "teamName": "물로켓세개를모으면하늘을날수있을까",
+          "school": "서강대학교",
+          "member": [
+            "박준우",
+            "김태윤",
+            "이재찬"
+          ]
+        },
+        {
+          "rank": 6,
+          "solved": 8,
+          "teamName": "성북구 카르텔",
+          "school": "연세대학교, 홍익대학교",
+          "member": [
+            "류상겸",
+            "전승민",
+            "권현우"
+          ]
+        },
+        {
+          "rank": 7,
+          "solved": 8,
+          "teamName": "니 코드 쩔더라",
+          "school": "연세대학교",
+          "member": [
+            "최우현",
+            "이협",
+            "이도훈"
+          ]
+        },
+        {
+          "rank": 8,
+          "solved": 7,
+          "teamName": "Emdgane",
+          "school": "연세대학교",
+          "member": [
+            "장주원",
+            "권상우",
+            "임예찬"
+          ]
+        },
+        {
+          "rank": 9,
+          "solved": 7,
+          "teamName": "규웅혁",
+          "school": "서강대학교",
+          "member": [
+            "강효규",
+            "양제웅",
+            "이재혁"
+          ]
+        },
+        {
+          "rank": 10,
+          "solved": 6,
+          "teamName": "424",
+          "school": "서강대학교",
+          "member": [
+            "천우영",
+            "김다은",
+            "손기령"
+          ]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "유림이와 하람이의 두쫀쿠 대작전",
+          "link": "https://www.acmicpc.net/problem/35277",
+          "setter": {
+            "name": "강호현",
+            "school": "연세대학교",
+            "bojHandle": "annieho"
+          }
+        },
+        {
+          "problemTitle": "수열 정렬 수수께끼",
+          "link": "https://www.acmicpc.net/problem/35278",
+          "setter": {
+            "name": "유상혁",
+            "school": "LG CNS",
+            "bojHandle": "golazcc83"
+          }
+        },
+        {
+          "problemTitle": "숫자 놀이 3",
+          "link": "https://www.acmicpc.net/problem/35279",
+          "setter": {
+            "name": "곽우석",
+            "school": "SK하이닉스",
+            "bojHandle": "bubbler"
+          }
+        },
+        {
+          "problemTitle": "Yet Another Binary Problem",
+          "link": "https://www.acmicpc.net/problem/35280",
+          "setter": {
+            "name": "-",
+            "school": "-",
+            "bojHandle": "pyb1031"
+          }
+        },
+        {
+          "problemTitle": "가지가지",
+          "link": "https://www.acmicpc.net/problem/35281",
+          "setter": {
+            "name": "이창민",
+            "school": "강원과학고등학교",
+            "bojHandle": "js7777"
+          }
+        },
+        {
+          "problemTitle": "트리와 쿼리 24",
+          "link": "https://www.acmicpc.net/problem/35282",
+          "setter": {
+            "name": "김유담",
+            "school": "경기과학고등학교",
+            "bojHandle": "realpsdoingdamyoo"
+          }
+        },
+        {
+          "problemTitle": "히스토그램에서의 거리와 가장 가까운 점",
+          "link": "https://www.acmicpc.net/problem/35283",
+          "setter": {
+            "name": "박예성",
+            "school": "한양대학교",
+            "bojHandle": "mythofys"
+          }
+        },
+        {
+          "problemTitle": "신촌 방수 계획",
+          "link": "https://www.acmicpc.net/problem/35284",
+          "setter": {
+            "name": "김도윤",
+            "school": "서울과학고등학교",
+            "bojHandle": "kdy40929"
+          }
+        },
+        {
+          "problemTitle": "별동대",
+          "link": "https://www.acmicpc.net/problem/35285",
+          "setter": {
+            "name": "이현서",
+            "school": "한국디지털미디어고등학교",
+            "bojHandle": "ibasic"
+          }
+        },
+        {
+          "problemTitle": "별동대 (Hard)",
+          "link": "https://www.acmicpc.net/problem/35294",
+          "setter": {
+            "name": "이현서",
+            "school": "한국디지털미디어고등학교",
+            "bojHandle": "ibasic"
+          }
+        },
+        {
+          "problemTitle": "지하철! 지하철! 몇호선? 몇호선?",
+          "link": "https://www.acmicpc.net/problem/35286",
+          "setter": {
+            "name": "강호현",
+            "school": "연세대학교",
+            "bojHandle": "annieho"
+          }
+        },
+        {
+          "problemTitle": "MC 히페리온",
+          "link": "https://www.acmicpc.net/problem/35287",
+          "setter": {
+            "name": "김지호",
+            "school": "연세대학교",
+            "bojHandle": "wlgh7407"
+          }
+        },
+        {
+          "problemTitle": "Designant.",
+          "link": "https://www.acmicpc.net/problem/35288",
+          "setter": {
+            "name": "정시우",
+            "school": "서울대학교",
+            "bojHandle": "sorohue"
+          }
+        },
+        {
+          "problemTitle": "괄호 문자열 카드",
+          "link": "https://www.acmicpc.net/problem/35289",
+          "setter": {
+            "name": "유상혁",
+            "school": "LG CNS",
+            "bojHandle": "golazcc83"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "강호현",
+      "school": "연세대학교",
+      "bojHandle": "annieho"
+    },
+    {
+      "name": "유상혁",
+      "school": "LG CNS",
+      "bojHandle": "golazcc83"
+    },
+    {
+      "name": "곽우석",
+      "school": "SK하이닉스",
+      "bojHandle": "bubbler"
+    },
+    {
+      "name": "-",
+      "school": "-",
+      "bojHandle": "pyb1031"
+    },
+    {
+      "name": "이창민",
+      "school": "강원과학고등학교",
+      "bojHandle": "js7777"
+    },
+    {
+      "name": "김유담",
+      "school": "경기과학고등학교",
+      "bojHandle": "realpsdoingdamyoo"
+    },
+    {
+      "name": "박예성",
+      "school": "한양대학교",
+      "bojHandle": "mythofys"
+    },
+    {
+      "name": "김도윤",
+      "school": "서울과학고등학교",
+      "bojHandle": "kdy40929"
+    },
+    {
+      "name": "이현서",
+      "school": "한국디지털미디어고등학교",
+      "bojHandle": "ibasic"
+    },
+    {
+      "name": "김지호",
+      "school": "연세대학교",
+      "bojHandle": "wlgh7407"
+    },
+    {
+      "name": "정시우",
+      "school": "서울대학교",
+      "bojHandle": "sorohue"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "이지언",
+      "school": "연세대학교",
+      "bojHandle": "ez_code"
+    },
+    {
+      "name": "윤지호",
+      "school": "연세대학교",
+      "bojHandle": "gs22059"
+    },
+    {
+      "name": "이현서",
+      "school": "한국디지털미디어고등학교",
+      "bojHandle": "ibasic"
+    },
+    {
+      "name": "박진한",
+      "school": "고려대학교",
+      "bojHandle": "jinhan814"
+    },
+    {
+      "name": "이창민",
+      "school": "강원과학고등학교",
+      "bojHandle": "js7777"
+    },
+    {
+      "name": "전준우",
+      "school": "포항공과대학교",
+      "bojHandle": "junwoojune"
+    },
+    {
+      "name": "김도윤",
+      "school": "서울과학고등학교",
+      "bojHandle": "kdy40929"
+    },
+    {
+      "name": "박예성",
+      "school": "한양대학교",
+      "bojHandle": "mythofys"
+    },
+    {
+      "name": "김유담",
+      "school": "경기과학고등학교",
+      "bojHandle": "realpsdoingdamyoo"
+    },
+    {
+      "name": "정시우",
+      "school": "서울대학교",
+      "bojHandle": "sorohue"
+    },
+    {
+      "name": "장현우",
+      "school": "KT",
+      "bojHandle": "changhw"
+    },
+    {
+      "name": "이국렬",
+      "school": "연세대학교, Samsung Research",
+      "bojHandle": "lky7674"
+    },
+    {
+      "name": "김건표",
+      "school": "서울대학교",
+      "bojHandle": "denniskim"
+    },
+    {
+      "name": "-",
+      "school": "-",
+      "bojHandle": "pyb1031"
+    }
+  ],
+  "sponsor": [
+    {
+      "id": "goldenrabbit",
+      "name": "골든래빗"
+    },
+    {
+      "id": "youngjin",
+      "name": "영진닷컴"
+    },
+    {
+      "id": "easyspub",
+      "name": "이지스퍼블리싱"
+    },
+    {
+      "id": "insight",
+      "name": "인사이트"
+    },
+    {
+      "id": "ineasy",
+      "name": "인이지"
+    },
+    {
+      "id": "jpub",
+      "name": "제이펍"
+    },
+    {
+      "id": "chaekman",
+      "name": "책만"
+    },
+    {
+      "id": "hanbit",
+      "name": "한빛미디어"
+    },
+    {
+      "id": "aiderx",
+      "name": "AiderX"
+    },
+    {
+      "id": "jetbrains",
+      "name": "JetBrains"
+    },
+    {
+      "id": "samsung_sw",
+      "name": "S/W멤버십"
+    },
+    {
+      "id": "vessel-ai",
+      "name": "Vessel AI"
+    }
+  ],
+  "personalSponsor": [
+    {
+      "id": "cubic",
+      "name": "cubic"
+    },
+    {
+      "id": "nflight11",
+      "name": "nflight11"
+    },
+    {
+      "id": "김건표",
+      "name": "김건표"
+    },
+    {
+      "id": "pjshwa",
+      "name": "pjshwa"
+    },
+    {
+      "id": "woojin042",
+      "name": "woojin042"
+    },
+    {
+      "id": "오유림",
+      "name": "오유림"
+    },
+    {
+      "id": "oh040411",
+      "name": "oh040411"
+    }
+  ]
+}
