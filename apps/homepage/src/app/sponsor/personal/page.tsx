@@ -1,7 +1,7 @@
 import Text from "@components/Text";
 import * as styles from "../styles.css";
 
-import TabNav from "@ui/TabNav";
+import SponsorTabNav from "../SponsorTabNav";
 import Image from "next/image";
 import ListSection from "@ui/ListSection";
 import Title from "@components/Title";
@@ -24,12 +24,7 @@ const sponsorRouters = [
 function PersonalSponsorPage() {
   return (
     <>
-      <TabNav
-        tabList={sponsorRouters}
-        currentTabIndex={1}
-        makeTabURL={(sponsor) => sponsor.url}
-        makeTabTitle={(sponsor) => sponsor.title}
-      />
+      <SponsorTabNav tabs={sponsorRouters} currentTabIndex={1} />
       <h2 className={styles.pageTitle}>
         <span className={styles.sinchon}>ICPC Sinchon</span>을 도와주실 개인
         후원자님을 환영합니다.
