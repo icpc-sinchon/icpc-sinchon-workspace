@@ -5,6 +5,7 @@
   "dateTime": "2026년 2월 20일(금) 오후 1시 ~ 오후 6시",
   "note": "수상자 명단, 문제 목록, solved 수, 출제진/검수진과 주요 링크를 반영했습니다.",
   "links": {
+    "problemBojLink": "https://www.acmicpc.net/category/detail/4665",
     "problemPdf": "https://drive.google.com/file/d/1QoJUiu5ArbjzVlAgbnEV0S2P10Gek5oo/view?usp=drive_link",
     "solutionPdf": "https://upload.acmicpc.net/048d8f44-4571-4209-b06b-1ce5479742ad/",
     "scoreboard": [
