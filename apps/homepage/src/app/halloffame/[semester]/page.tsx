@@ -124,6 +124,6 @@ export default HallOfFamePage;
 export async function generateStaticParams() {
   const allSemesters = getAllSemesterRouters();
   return allSemesters.map((semester) => ({
-    params: { semester: `${semester.year}-${semester.season}` },
+    semester: `${semester.year}-${semester.season}`,
   }));
 }
