@@ -10,6 +10,7 @@ import * as styles from "../styles.css";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 import { formatLinkURL } from "src/utils/formatLinkURL";
+import { hasNoticePage } from "src/utils/hasNoticePage";
 
 const suapcDescription = `SUAPC는 신촌지역 5개 대학(서강, 숙명, 연세, 이화, 홍익)의
  학부생 및 대학원 1년차를 대상으로 하는 프로그래밍 대회입니다. 
@@ -64,7 +65,7 @@ function SUAPCPage({
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
   const pageTitle = `SUAPC ${currentPageSemester.year} ${currentPageSemester.season}`;
   const pageSubTitle = `${currentPageSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 대회`;
-  const showNoticePageLink = currentPageSemester.year >= 2026;
+  const showNoticePageLink = hasNoticePage(currentPageSemester);
   const links = suapcData.links ?? {};
   const contestLinks = [
     {
