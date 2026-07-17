@@ -9,6 +9,7 @@ import type { Semester } from "src/types";
 import { formatLinkURL } from "src/utils/formatLinkURL";
 
 import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
+import { hasCampContest } from "src/utils/hasCampContest";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 
@@ -40,7 +41,7 @@ function CampContestPage({
     allDataRouters,
     selectedTabIndex,
     renderedPageData: campContestData,
-  } = makePageData(currentPageSemester, "campContest");
+  } = makePageData(currentPageSemester, "campContest", hasCampContest);
 
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
@@ -126,7 +127,10 @@ function CampContestPage({
               columns={[
                 { key: "rank", header: "순위" },
                 { key: "name", header: "이름" },
-                { key: "bojHandle", header: "BOJ 핸들" },
+                {
+                  key: "bojHandle",
+                  header: "solved.ac 핸들",
+                },
                 { key: "school", header: "소속" },
               ]}
               fixedLayout
@@ -138,7 +142,10 @@ function CampContestPage({
                 data={contest.problemPicker}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ 핸들" },
+                  {
+                    key: "bojHandle",
+                    header: "solved.ac 핸들",
+                  },
                   { key: "school", header: "소속" },
                 ]}
                 fixedLayout
@@ -170,7 +177,7 @@ function CampContestPage({
 export default CampContestPage;
 
 export async function generateStaticParams() {
-  const allSemesters = getAllSemesterRouters();
+  const allSemesters = getAllSemesterRouters().filter(hasCampContest);
   return allSemesters.map((semester) => ({
     params: { semester: `${semester.year}-${semester.season}` },
   }));

@@ -17,12 +17,17 @@ export function renderLink({
   );
 }
 
+// solved.ac는 BOJ 핸들을 그대로 쓰므로 모든 시즌에 동일하게 적용된다
+function makeHandleURL(handle: string) {
+  return `https://solved.ac/profile/${handle}`;
+}
+
 export function renderPerson<T extends { bojHandle: string }>(person: T) {
   return {
     ...person,
     bojHandle: renderLink({
       title: person.bojHandle,
-      url: `https://www.acmicpc.net/user/${person.bojHandle}`,
+      url: makeHandleURL(person.bojHandle),
     }),
   };
 }
@@ -49,7 +54,7 @@ export const renderProblem = (problem: Problem) => {
     }),
     setter: renderLink({
       title: problem.setter.name,
-      url: `https://www.acmicpc.net/user/${problem.setter.bojHandle}`,
+      url: makeHandleURL(problem.setter.bojHandle),
     }),
     setterSchool: problem.setter.school,
   };

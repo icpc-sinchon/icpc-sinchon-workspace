@@ -29,8 +29,13 @@ function checkDataFileExistence(
 export function makePageData<T extends DataType>(
   semester: Semester,
   dataType: T,
+  // 탭에 노출할 학기를 제한하고 싶을 때 넘긴다(예: Camp Contest는 열린 시즌까지만)
+  semesterFilter?: (semester: Semester) => boolean,
 ) {
-  const allDataRouters = getAllSemesterRouters();
+  const allSemesters = getAllSemesterRouters();
+  const allDataRouters = semesterFilter
+    ? allSemesters.filter(semesterFilter)
+    : allSemesters;
 
   // tab Nav에서 선택되어 있을 탭의 인덱스를 찾는다
   const selectedTabIndex = allDataRouters.findIndex(
