@@ -8,7 +8,8 @@ import React from "react";
 import type { Semester } from "src/types";
 import { formatLinkURL } from "src/utils/formatLinkURL";
 
-import { getCurrentSemester } from "src/utils/getCurrentSemester";
+import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
+import { hasCampContest } from "src/utils/hasCampContest";
 import { makePageData } from "src/utils/makePageData";
 
 function CampContestIntro({ contestDateTime }: { contestDateTime: string }) {
@@ -29,20 +30,22 @@ function CampContestIntro({ contestDateTime }: { contestDateTime: string }) {
 
 // TODO: 2024 Summer 캠프 데이터 추가
 function CampContestPage() {
-  const currentSemester = getCurrentSemester();
+  // Camp Contest는 더 이상 열리지 않으므로, 현재 시즌 대신 마지막으로 열린 시즌을 보여준다.
+  // 학기 목록은 최신순이라 첫 번째 원소가 가장 최근에 열린 시즌이다.
+  const [latestSemester] = getAllSemesterRouters().filter(hasCampContest);
   const {
     allDataRouters,
     selectedTabIndex,
     renderedPageData: campContestData,
-  } = makePageData(currentSemester, "campContest");
+  } = makePageData(latestSemester, "campContest", hasCampContest);
 
   if (selectedTabIndex === -1) {
     notFound();
   }
 
-  const currentSeason = currentSemester.season === "Winter" ? "겨울" : "여름";
-  const pageTitle = `${currentSemester.year} ${currentSemester.season} Camp Contest`;
-  const pageSubTitle = `${currentSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 알고리즘 캠프 콘테스트`;
+  const currentSeason = latestSemester.season === "Winter" ? "겨울" : "여름";
+  const pageTitle = `${latestSemester.year} ${latestSemester.season} Camp Contest`;
+  const pageSubTitle = `${latestSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 알고리즘 캠프 콘테스트`;
 
   // TODO: note를 적당히 렌더링하기
   if (campContestData.contest.length === 0) {
@@ -71,28 +74,28 @@ function CampContestPage() {
           title: "문제(BOJ 링크)",
           href: formatLinkURL(
             campContestData.links.problemBojLink,
-            currentSemester,
+            latestSemester,
           ),
         },
         {
           title: "해설 PDF",
           href: formatLinkURL(
             campContestData.links.solutionPdf,
-            currentSemester,
+            latestSemester,
           ),
         },
         {
           title: "초급 스코어보드",
           href: formatLinkURL(
             campContestData.links.scoreboard?.[0],
-            currentSemester,
+            latestSemester,
           ),
         },
         {
           title: "중급 스코어보드",
           href: formatLinkURL(
             campContestData.links.scoreboard?.[1],
-            currentSemester,
+            latestSemester,
           ),
         },
       ].filter((link) => link.href) // 유효한 링크만 포함
@@ -123,7 +126,10 @@ function CampContestPage() {
               columns={[
                 { key: "rank", header: "순위" },
                 { key: "name", header: "이름" },
-                { key: "bojHandle", header: "BOJ 핸들" },
+                {
+                  key: "bojHandle",
+                  header: "solved.ac 핸들",
+                },
                 { key: "school", header: "소속" },
               ]}
               fixedLayout
@@ -135,7 +141,10 @@ function CampContestPage() {
                 data={contest.problemPicker}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ 핸들" },
+                  {
+                    key: "bojHandle",
+                    header: "solved.ac 핸들",
+                  },
                   { key: "school", header: "소속" },
                 ]}
                 fixedLayout
