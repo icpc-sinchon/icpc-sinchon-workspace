@@ -13,9 +13,9 @@ import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 import { formatLinkURL } from "src/utils/formatLinkURL";
+import { hasNoticePage } from "src/utils/hasNoticePage";
 import { renderLink } from "src/utils/renderHelpers";
 
-const NOTICE_START_YEAR = 2026;
 const NOTICE_CONTENT_PATH = path.join(
   process.cwd(),
   "src",
@@ -214,7 +214,7 @@ function SUAPCNoticePage({
   const noticeMarkdown = fs.readFileSync(NOTICE_CONTENT_PATH, "utf-8");
   const noticeSections = parseNoticeSections(noticeMarkdown);
 
-  const isTargetSemester = currentPageSemester.year >= NOTICE_START_YEAR;
+  const isTargetSemester = hasNoticePage(currentPageSemester);
   const currentSeason =
     currentPageSemester.season === "Winter" ? "겨울" : "여름";
 
@@ -292,9 +292,7 @@ export default SUAPCNoticePage;
 
 export async function generateStaticParams() {
   const allSemesters = getAllSemesterRouters();
-  return allSemesters
-    .filter((semester) => semester.year >= NOTICE_START_YEAR)
-    .map((semester) => ({
-      semester: `${semester.year}-${semester.season}`,
-    }));
+  return allSemesters.filter(hasNoticePage).map((semester) => ({
+    semester: `${semester.year}-${semester.season}`,
+  }));
 }

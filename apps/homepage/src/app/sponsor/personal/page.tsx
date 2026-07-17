@@ -50,14 +50,14 @@ function PersonalSponsorPage() {
         title="다음과 같은 혜택을 제공합니다."
         items={[
           "신촌 연합 공식 홈페이지 SUAPC 섹션 개인 후원 명단에 기록",
-          "10만원 이상 후원 시: SUAPC 2024 Winter 대회 스트리밍 세션에서 후원자 명단에 언급",
+          "10만원 이상 후원 시: SUAPC 대회 스트리밍 세션에서 후원자 명단에 언급",
           "20만원 이상 후원 시: 문제에 백준 핸들 또는 이름 언급",
           "30만원 이상 후원 시: 대회 특별상에 언급",
         ]}
       />
       <ListSection
         title="다음의 계좌로 후원금을 받고 있습니다."
-        items={["3333-35-9092321 카카오뱅크 (예금주: 박시영)"]}
+        items={["3333-32-3199554 카카오뱅크 (예금주: 류상겸)"]}
       />
       <section className={styles.container}>
         <Title>후원 후 다음의 폼을 작성해 주세요.</Title>
@@ -65,8 +65,8 @@ function PersonalSponsorPage() {
           원활한 특전 제공을 위해 아래의 폼을 작성하여 제출해주시길 바랍니다.
           <br />
           {renderLink({
-            title: "https://forms.gle/JV6gjUXRZuiPCUmo6",
-            url: "https://forms.gle/JV6gjUXRZuiPCUmo6",
+            title: "https://forms.gle/YGXzJEpd62KRHoXF6",
+            url: "https://forms.gle/YGXzJEpd62KRHoXF6",
           })}
         </Text>
       </section>
