@@ -93,7 +93,7 @@ function HallOfFamePage({
                 data={camp.lecturer}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ" },
+                  { key: "bojHandle", header: "solved.ac" },
                   { key: "school", header: "학교" },
                 ]}
                 fixedLayout
@@ -106,7 +106,7 @@ function HallOfFamePage({
                 data={camp.mentor}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ" },
+                  { key: "bojHandle", header: "solved.ac" },
                   { key: "school", header: "학교" },
                 ]}
                 fixedLayout

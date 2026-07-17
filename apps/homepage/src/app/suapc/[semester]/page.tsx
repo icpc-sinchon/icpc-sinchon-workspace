@@ -180,7 +180,7 @@ function SUAPCPage({
               data={suapcData.setter}
               columns={[
                 { key: "name", header: "이름" },
-                { key: "bojHandle", header: "BOJ 핸들" },
+                { key: "bojHandle", header: "solved.ac 핸들" },
                 { key: "school", header: "소속" },
               ]}
             />
@@ -189,7 +189,7 @@ function SUAPCPage({
               data={suapcData.reviewer}
               columns={[
                 { key: "name", header: "이름" },
-                { key: "bojHandle", header: "BOJ 핸들" },
+                { key: "bojHandle", header: "solved.ac 핸들" },
                 { key: "school", header: "소속" },
               ]}
             />

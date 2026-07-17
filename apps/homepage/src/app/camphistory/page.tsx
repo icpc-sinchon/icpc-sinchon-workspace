@@ -56,7 +56,7 @@ function CampHistoryPage() {
                 data={campStudy.lecturer}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ" },
+                  { key: "bojHandle", header: "solved.ac" },
                   { key: "school", header: "학교" },
                 ]}
                 fixedLayout
@@ -70,7 +70,7 @@ function CampHistoryPage() {
                 data={campStudy.mentor}
                 columns={[
                   { key: "name", header: "이름" },
-                  { key: "bojHandle", header: "BOJ" },
+                  { key: "bojHandle", header: "solved.ac" },
                   { key: "school", header: "학교" },
                 ]}
                 fixedLayout
