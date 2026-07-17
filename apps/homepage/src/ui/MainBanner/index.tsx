@@ -52,6 +52,15 @@ const schools: School[] = [
     clubName: "EDOC",
   },
   {
+    logoImage: "/school-logo/hanyang.svg",
+    station: {
+      id: "209",
+      name: "한양대",
+      color: "#00A84D",
+    },
+    clubName: "ALOHA",
+  },
+  {
     logoImage: "/school-logo/hongik.png",
     station: {
       id: "239",
@@ -64,13 +73,20 @@ const schools: School[] = [
 
 const subwayStationPoints = [
   { x: "2%", y: "10" },
-  { x: "25%", y: "10" },
-  { x: "50%", y: "10" },
-  { x: "75%", y: "10" },
+  { x: "21.2%", y: "10" },
+  { x: "40.4%", y: "10" },
+  { x: "59.6%", y: "10" },
+  { x: "78.8%", y: "10" },
   { x: "98%", y: "10" },
 ];
 
-const subwayLineColors = ["#77C4A3", "#00A4E3", "#00A84D", "#00A84D"];
+const subwayLineColors = [
+  "#77C4A3",
+  "#00A4E3",
+  "#00A84D",
+  "#00A84D",
+  "#00A84D",
+];
 
 function SchoolNode({ logoImage, clubName }: School) {
   return (
@@ -138,7 +154,7 @@ function MainBanner() {
     <section className={styles.container}>
       <HeroTitle>ICPC Sinchon</HeroTitle>
       <div className={styles.textContainer}>
-        <Text>신촌지역 5개 대학의 알고리즘 동아리들의 연합입니다.</Text>
+        <Text>신촌지역 6개 대학의 알고리즘 동아리들의 연합입니다.</Text>
         <Text>알고리즘 캠프, 대회 등 다양한 활동을 진행하고 있습니다.</Text>
       </div>
       <div className={styles.subwayContainer}>
