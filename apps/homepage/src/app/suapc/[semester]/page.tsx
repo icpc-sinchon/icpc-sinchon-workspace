@@ -7,6 +7,7 @@ import TextSection from "@ui/TextSection";
 import React from "react";
 import type { Semester } from "src/types";
 import * as styles from "../styles.css";
+import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 import { formatLinkURL } from "src/utils/formatLinkURL";
@@ -201,3 +202,10 @@ function SUAPCPage({
 }
 
 export default SUAPCPage;
+
+export async function generateStaticParams() {
+  const allSemesters = getAllSemesterRouters();
+  return allSemesters.map((semester) => ({
+    semester: `${semester.year}-${semester.season}`,
+  }));
+}

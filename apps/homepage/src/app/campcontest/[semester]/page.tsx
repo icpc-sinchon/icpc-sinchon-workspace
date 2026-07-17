@@ -179,6 +179,6 @@ export default CampContestPage;
 export async function generateStaticParams() {
   const allSemesters = getAllSemesterRouters().filter(hasCampContest);
   return allSemesters.map((semester) => ({
-    params: { semester: `${semester.year}-${semester.season}` },
+    semester: `${semester.year}-${semester.season}`,
   }));
 }
