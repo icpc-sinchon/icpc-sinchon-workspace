@@ -11,6 +11,18 @@
           "school": "한양대학교",
           "bojHandle": "gubshig"
         }
+      ],
+      "curriculum": [
+        "PS란 무엇인가, 시간 복잡도, PS를 위한 C++",
+        "기초 정수론",
+        "수학적 귀납법, 재귀",
+        "브루트포스, 백트래킹",
+        "다양한 정렬 알고리즘, 우선순위 큐, STL 사용법",
+        "이분 탐색, 매개변수 탐색",
+        "다이나믹 프로그래밍",
+        "그리디 알고리즘",
+        "누적합, 투 포인터",
+        "문제 풀이 세션"
       ]
     },
     {
@@ -21,6 +33,18 @@
           "school": "부산대학교",
           "bojHandle": "qvixnh22"
         }
+      ],
+      "curriculum": [
+        "DP : Recursive formula / General DAG DP (implicit graph)",
+        "Queue / Stack / Heap / Deque / Tree set / Hash set",
+        "Graphs 1 : DFS / BFS / 0-1 BFS / Shortest path (Bellman-Ford, Floyd)",
+        "Graphs 2 : Digraph / Topological sort / Bipartite graph / Permutation cycle",
+        "Tree : DFS / BFS / Diameter / Euler tour",
+        "Binary search",
+        "Disjoint Union : Tree embedding / Path comprehension / Kruskal",
+        "Segment Tree : Recursive & Non-recursive / Segtree walk",
+        "Linear Algebra and Geometry : Vector expression / Graph expression (Path counting)",
+        "문제 풀이 세션"
       ]
     }
   ]
