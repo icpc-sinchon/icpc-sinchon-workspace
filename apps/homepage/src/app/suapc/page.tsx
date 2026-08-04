@@ -57,7 +57,7 @@ function SUAPCPage() {
   } = makePageData(currentSemester, "suapc");
 
   const currentSeason = currentSemester.season === "Winter" ? "겨울" : "여름";
-  const pageTitle = `SUAPC ${currentSemester.year} ${currentSemester.season}`;
+  const pageTitle = `SUAPC ${currentSemester.year} ${currentSemester.season}${suapcData.titleSuffix ? ` ${suapcData.titleSuffix}` : ""}`;
   const pageSubTitle = `${currentSemester.year} ${currentSeason} 신촌지역 대학교 프로그래밍 동아리 연합 대회`;
   const showNoticePageLink = hasNoticePage(currentSemester);
   const links = suapcData.links ?? {};
@@ -92,6 +92,11 @@ function SUAPCPage() {
       : []),
   ];
   const hasAnyLinkButton = contestLinks.some((link) => Boolean(link.href));
+  const hasSponsor = (suapcData.sponsor?.length ?? 0) > 0;
+  const hasPersonalSponsor = (suapcData.personalSponsor?.length ?? 0) > 0;
+  const hasStaffTable =
+    (suapcData.setter?.length ?? 0) > 0 &&
+    (suapcData.reviewer?.length ?? 0) > 0;
 
   return (
     <>
@@ -112,7 +117,7 @@ function SUAPCPage() {
         <TextSection title="대회 일자" text={suapcData.dateTime} />
         <TextSection title="대회 소개" text={suapcDescription} />
         <TextSection title="참가 대상" text={participantDescription} />
-        {suapcData.sponsor && (
+        {hasSponsor && (
           <LogoSection
             title="후원사"
             logoSources={suapcData.sponsor.map(
@@ -120,7 +125,7 @@ function SUAPCPage() {
             )}
           />
         )}
-        {suapcData.personalSponsor && (
+        {hasPersonalSponsor && (
           <TextSection
             title="개인 후원"
             text={suapcData.personalSponsor
@@ -166,7 +171,7 @@ function SUAPCPage() {
             />
           </React.Fragment>
         ))}
-        {suapcData.setter && suapcData.reviewer && (
+        {hasStaffTable && (
           <section className={styles.tableContainer}>
             <TableSection
               title="출제진"

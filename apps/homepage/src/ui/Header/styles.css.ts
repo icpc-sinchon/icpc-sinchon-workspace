@@ -17,6 +17,7 @@ export const headerStyle = style({
   display: "flex",
   position: "sticky",
   top: 0,
+  zIndex: 1000,
   alignItems: "center",
   justifyContent: "space-between",
   borderBottom: "1px solid #eaeaea",

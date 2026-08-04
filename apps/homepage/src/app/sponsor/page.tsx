@@ -175,6 +175,13 @@ function CorporateSponsorPage() {
             }}
             items={["뷰노 기업 홍보 세션 제공"]}
           />
+          <ListSection
+            logoSource={{
+              name: "미소정보기술 로고",
+              src: "/res/sponsor-ci/miso.png",
+            }}
+            items={["Dify 해커톤 진행"]}
+          />
         </div>
         <section className={styles.container}>
           <Title>

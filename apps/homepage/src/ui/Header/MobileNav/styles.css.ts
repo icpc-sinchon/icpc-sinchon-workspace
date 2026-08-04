@@ -5,6 +5,7 @@ export const nav = style({
   position: "fixed",
   top: "4rem",
   left: 0,
+  zIndex: 1000,
   width: "100%",
   display: "flex",
   flexDirection: "column",
