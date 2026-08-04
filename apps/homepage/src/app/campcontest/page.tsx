@@ -118,7 +118,7 @@ function CampContestPage() {
         {campContestData.links && <ContestLinks links={contestLinks} />}
         <CampContestIntro contestDateTime={campContestData.dateTime} />
         {campContestData.contest.map((contest) => (
-          <React.Fragment key={contest.level}>
+          <React.Fragment key={`${contest.level}-${contest.contestName}`}>
             <TableSection
               title={`${contest.contestName} 수상자`}
               titleBadge={contest.level}

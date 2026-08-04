@@ -124,7 +124,7 @@
           "bojHandle": "surface_03"
         }
       ],
-      "problem_list": [
+      "problemList": [
         {
           "problemTitle": "permutation making",
           "link": "https://www.acmicpc.net/problem/22952",
