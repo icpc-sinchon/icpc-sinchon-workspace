@@ -137,7 +137,7 @@ function CorporateSponsorPage() {
                 <br />
                 {renderLink({
                   title: "20948번 Go와 함께하는 전화망 서비스",
-                  url: "https://www.acmicpc.net/problem/20943",
+                  url: "https://www.acmicpc.net/problem/20948",
                 })}
               </React.Fragment>,
             ]}
