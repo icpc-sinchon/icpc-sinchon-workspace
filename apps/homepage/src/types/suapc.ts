@@ -21,6 +21,10 @@ export interface SUAPCData {
    */
   note?: string;
   /**
+   * 대회 타이틀 뒤에 덧붙일 문구(예: "× Dify Hackathon")
+   */
+  titleSuffix?: string;
+  /**
    * 연합 대회 관련 링크
    */
   links: {

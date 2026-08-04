@@ -63,6 +63,10 @@
       "type": "string",
       "description": "대회에 관련된 사항. 이때 특별했던 시기적 이슈 등을 기록"
     },
+    "titleSuffix": {
+      "type": "string",
+      "description": "대회 타이틀 뒤에 덧붙일 문구(예: \"× Dify Hackathon\")"
+    },
     "links": {
       "type": "object",
       "description": "연합 대회 관련 링크",
