@@ -182,6 +182,13 @@ function CorporateSponsorPage() {
             }}
             items={["Dify 해커톤 진행"]}
           />
+          <ListSection
+            logoSource={{
+              name: "Dify 로고",
+              src: "/res/sponsor-ci/dify.png",
+            }}
+            items={["Dify 해커톤 진행"]}
+          />
         </div>
         <section className={styles.container}>
           <Title>
