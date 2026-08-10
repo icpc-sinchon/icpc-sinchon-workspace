@@ -5,6 +5,9 @@
   "dateTime": "2026년 8월 25일(화) 오전 11시 ~ 오후 4시",
   "note": "대회 기본 정보만 반영했습니다. Dify 해커톤 세션을 포함하여 진행됩니다. 후원사, 개인 후원자, 링크, 대회 결과는 추후 추가 예정입니다.",
   "titleSuffix": "× Dify Hackathon",
+  "promotion": {
+    "showPopup": true
+  },
   "links": {},
   "contest": [],
   "setter": [],

@@ -1,6 +1,7 @@
 import Header from "@ui/Header";
 import Footer from "@ui/Footer";
 import PageLayout from "@ui/PageLayout";
+import PromotionPopup from "@ui/PromotionPopup";
 
 import "@styles/reset.css";
 import "@styles/theme.css";
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Header />
         <PageLayout>{children}</PageLayout>
         <Footer />
+        <PromotionPopup />
       </body>
     </html>
   );
