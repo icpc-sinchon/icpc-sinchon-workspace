@@ -1,12 +1,17 @@
 import MainContainer from "@components/MainContainer";
 import IntroCard from "@ui/IntroCard";
 import MainBanner from "@ui/MainBanner";
+import PromotionSection from "@ui/PromotionSection";
+import { getPromotionData } from "src/utils/getPromotionData";
 
 // TODO: 메타데이터 추가
 function HomePage() {
+  const promotionData = getPromotionData();
+
   return (
     <>
       <MainBanner />
+      {promotionData && <PromotionSection {...promotionData} />}
       <MainContainer title="캠프 소개">
         <IntroCard
           imageSrc="/res/ferris-wheel.gif"

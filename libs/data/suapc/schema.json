@@ -67,6 +67,28 @@
       "type": "string",
       "description": "대회 타이틀 뒤에 덧붙일 문구(예: \"× Dify Hackathon\")"
     },
+    "promotion": {
+      "type": "object",
+      "description": "대회 홍보 정보. 홍보 기간에만 사용하고, 대회가 끝나면 지운다",
+      "properties": {
+        "posterImage": {
+          "type": "string",
+          "description": "4:5 비율의 홍보 포스터 이미지. http로 시작하지 않으면 시즌별 폴더(/res/2026s 등)에서 찾는다"
+        },
+        "applyLink": {
+          "type": "string",
+          "description": "참가 신청 폼(구글 폼) 링크"
+        },
+        "applyPeriod": {
+          "type": "string",
+          "description": "참가 신청 기간 안내 문구"
+        },
+        "showPopup": {
+          "type": "boolean",
+          "description": "홈페이지 접속 시 홍보 팝업을 띄울지 여부"
+        }
+      }
+    },
     "links": {
       "type": "object",
       "description": "연합 대회 관련 링크",

@@ -25,6 +25,10 @@ export interface SUAPCData {
    */
   titleSuffix?: string;
   /**
+   * 대회 홍보 정보. 홍보 기간에만 사용하고, 대회가 끝나면 지운다
+   */
+  promotion?: Promotion;
+  /**
    * 연합 대회 관련 링크
    */
   links: {
@@ -69,6 +73,24 @@ export interface SUAPCData {
    * SUAPC의 개인 후원자
    */
   personalSponsor?: Sponsor[];
+}
+export interface Promotion {
+  /**
+   * 4:5 비율의 홍보 포스터 이미지. http로 시작하지 않으면 시즌별 폴더(/res/2026s 등)에서 찾는다
+   */
+  posterImage?: string;
+  /**
+   * 참가 신청 폼(구글 폼) 링크
+   */
+  applyLink?: string;
+  /**
+   * 참가 신청 기간 안내 문구
+   */
+  applyPeriod?: string;
+  /**
+   * 홈페이지 접속 시 홍보 팝업을 띄울지 여부
+   */
+  showPopup?: boolean;
 }
 export interface Contest {
   /**
