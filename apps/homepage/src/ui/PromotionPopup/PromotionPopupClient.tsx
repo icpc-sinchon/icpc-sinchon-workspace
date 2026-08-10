@@ -105,9 +105,7 @@ function PromotionPopupClient({
         <h2 id="promotion-popup-title" className={styles.title}>
           {contestTitle}
         </h2>
-        {posterURL && (
-          <PosterFrame imageURL={posterURL} alt={`${contestTitle} 포스터`} />
-        )}
+        <PosterFrame imageURL={posterURL} alt={`${contestTitle} 포스터`} />
         <p className={styles.description}>{dateTime}</p>
         {applyPeriodText && (
           <p className={styles.description}>{applyPeriodText}</p>
