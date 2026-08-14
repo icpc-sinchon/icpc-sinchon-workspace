@@ -6,6 +6,7 @@
   "note": "대회 기본 정보만 반영했습니다. Dify 해커톤 세션을 포함하여 진행됩니다. 후원사, 개인 후원자, 링크, 대회 결과는 추후 추가 예정입니다.",
   "titleSuffix": "× Dify Hackathon",
   "promotion": {
+    "posterImage": "SUAPC_2026s_Poster.png",
     "applyLink": "https://forms.gle/jNPguE13zVRdejSa7",
     "showPopup": true
   },
