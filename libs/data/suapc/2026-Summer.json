@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "year": 2026,
   "season": "Summer",
-  "dateTime": "2026년 8월 25일(화) 오전 11시 ~ 오후 4시",
+  "dateTime": "2026년 8월 25일(화) 오전 11시 30분 ~ 오후 7시 (본 대회 오전 11시 30분 ~ 오후 4시 30분, Dify 해커톤 오후 4시 50분 ~ 오후 5시 40분)",
   "note": "대회 기본 정보만 반영했습니다. Dify 해커톤 세션을 포함하여 진행됩니다. 후원사, 개인 후원자, 링크, 대회 결과는 추후 추가 예정입니다.",
   "titleSuffix": "× Dify Hackathon",
   "promotion": {
