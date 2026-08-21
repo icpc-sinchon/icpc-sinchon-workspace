@@ -4,7 +4,6 @@ import ContestLinks from "@ui/ContestLinks";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
 import fs from "node:fs";
-import path from "node:path";
 import { notFound } from "next/navigation";
 import type React from "react";
 import * as styles from "./styles.css";
@@ -13,18 +12,8 @@ import { getAllSemesterRouters } from "src/utils/getAllSemesterRouters";
 import { getSemesterFromString } from "src/utils/getSemesterFromString";
 import { makePageData } from "src/utils/makePageData";
 import { formatLinkURL } from "src/utils/formatLinkURL";
-import { hasNoticePage } from "src/utils/hasNoticePage";
+import { getNoticeContentPath, hasNoticePage } from "src/utils/hasNoticePage";
 import { renderLink } from "src/utils/renderHelpers";
-
-const NOTICE_CONTENT_PATH = path.join(
-  process.cwd(),
-  "src",
-  "app",
-  "suapc",
-  "[semester]",
-  "notice",
-  "content.md",
-);
 
 type NoticeSection = {
   title: string;
@@ -211,16 +200,18 @@ function SUAPCNoticePage({
     selectedTabIndex,
     renderedPageData: suapcData,
   } = makePageData(currentPageSemester, "suapc");
-  const noticeMarkdown = fs.readFileSync(NOTICE_CONTENT_PATH, "utf-8");
-  const noticeSections = parseNoticeSections(noticeMarkdown);
-
-  const isTargetSemester = hasNoticePage(currentPageSemester);
-  const currentSeason =
-    currentPageSemester.season === "Winter" ? "겨울" : "여름";
-
-  if (!isTargetSemester) {
+  // 유의사항 본문이 없는 시즌은 페이지 자체가 없다
+  if (!hasNoticePage(currentPageSemester)) {
     notFound();
   }
+
+  const noticeMarkdown = fs.readFileSync(
+    getNoticeContentPath(currentPageSemester),
+    "utf-8",
+  );
+  const noticeSections = parseNoticeSections(noticeMarkdown);
+  const currentSeason =
+    currentPageSemester.season === "Winter" ? "겨울" : "여름";
 
   const links = suapcData.links ?? {};
   const contestLinks = [
