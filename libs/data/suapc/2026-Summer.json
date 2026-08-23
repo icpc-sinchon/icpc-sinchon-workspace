@@ -8,9 +8,11 @@
   "promotion": {
     "posterImage": "SUAPC_2026s_Poster.png",
     "applyLink": "https://forms.gle/jNPguE13zVRdejSa7",
-    "showPopup": true
+    "showPopup": false
   },
-  "links": {},
+  "links": {
+    "posterImage": "https://drive.google.com/file/d/17yExzOOqt9YiRDO37jT_HFihbZM0jM1g/view?usp=sharing"
+  },
   "contest": [],
   "setter": [],
   "reviewer": [],

@@ -70,7 +70,7 @@ function SUAPCPage({
   const links = suapcData.links ?? {};
   const contestLinks = [
     {
-      title: "문제(BOJ 링크)",
+      title: "문제",
       href: formatLinkURL(links.problemBojLink, currentPageSemester),
     },
     {
@@ -118,9 +118,7 @@ function SUAPCPage({
         }
       />
       <HistoryLayout title={pageTitle} subTitle={pageSubTitle}>
-        {hasAnyLinkButton && (
-          <ContestLinks links={contestLinks} />
-        )}
+        {hasAnyLinkButton && <ContestLinks links={contestLinks} />}
         <TextSection title="대회 일자" text={suapcData.dateTime} />
         <TextSection title="대회 소개" text={suapcDescription} />
         <TextSection title="참가 대상" text={participantDescription} />
