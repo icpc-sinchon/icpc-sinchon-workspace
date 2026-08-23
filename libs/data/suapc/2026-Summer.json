@@ -38,5 +38,50 @@
       "name": "디캠프"
     }
   ],
-  "personalSponsor": []
+  "personalSponsor": [
+    {
+      "id": "cenix820",
+      "name": "cenix820"
+    },
+    {
+      "id": "cubic",
+      "name": "cubic"
+    },
+    {
+      "id": "jtw7913",
+      "name": "jtw7913"
+    },
+    {
+      "id": "nanoka",
+      "name": "nanoka"
+    },
+    {
+      "id": "rammma",
+      "name": "rammma"
+    },
+    {
+      "id": "solved.ac",
+      "name": "solved.ac"
+    },
+    {
+      "id": "김태우",
+      "name": "김태우"
+    },
+    {
+      "id": "김태윤(ystaeyoon113)",
+      "name": "김태윤(ystaeyoon113)"
+    },
+    {
+      "id": "안녕원팬",
+      "name": "안녕원팬"
+    },
+    {
+      "id": "이재열",
+      "name": "이재열"
+    },
+    {
+      "id": "임예찬",
+      "name": "임예찬"
+    }
+  ]
 }
