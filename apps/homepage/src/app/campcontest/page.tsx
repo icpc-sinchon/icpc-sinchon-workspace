@@ -71,7 +71,7 @@ function CampContestPage() {
   const contestLinks = campContestData.links
     ? [
         {
-          title: "문제(BOJ 링크)",
+          title: "문제",
           href: formatLinkURL(
             campContestData.links.problemBojLink,
             latestSemester,

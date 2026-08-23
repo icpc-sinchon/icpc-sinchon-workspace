@@ -216,7 +216,7 @@ function SUAPCNoticePage({
   const links = suapcData.links ?? {};
   const contestLinks = [
     {
-      title: "문제(BOJ 링크)",
+      title: "문제",
       href: formatLinkURL(links.problemBojLink, currentPageSemester),
     },
     {
