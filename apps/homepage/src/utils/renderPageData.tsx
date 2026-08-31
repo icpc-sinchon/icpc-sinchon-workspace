@@ -99,5 +99,12 @@ function renderSUAPCData(data: SUAPCData) {
     })),
     setter: data.setter?.map(renderPerson),
     reviewer: data.reviewer?.map(renderPerson),
+    hackathon: data.hackathon && {
+      ...data.hackathon,
+      scoreboard: data.hackathon.scoreboard.map((score) => ({
+        ...score,
+        rank: renderRank(score.rank),
+      })),
+    },
   };
 }

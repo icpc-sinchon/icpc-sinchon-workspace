@@ -73,6 +73,46 @@ export interface SUAPCData {
    * SUAPC의 개인 후원자
    */
   personalSponsor?: Sponsor[];
+  /**
+   * 본대회와 별도로 진행한 해커톤 기록
+   */
+  hackathon?: Hackathon;
+}
+export interface Hackathon {
+  /**
+   * 해커톤 이름
+   */
+  name: string;
+  /**
+   * 해커톤 문제 PDF 링크
+   */
+  problemPdf?: string;
+  /**
+   * 해커톤 스코어보드
+   */
+  scoreboard: HackathonScore[];
+}
+export interface HackathonScore {
+  /**
+   * 해커톤 등수
+   */
+  rank: number;
+  /**
+   * 참가자 닉네임
+   */
+  nickname: string;
+  /**
+   * 총점. 소수점 표기를 유지하기 위해 문자열로 둔다
+   */
+  score: string;
+  /**
+   * 문제별 점수. A번부터 순서대로 담는다
+   */
+  problemScores: number[];
+  /**
+   * 제출까지 걸린 시간(초)
+   */
+  time: number;
 }
 export interface Promotion {
   /**

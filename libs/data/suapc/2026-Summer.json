@@ -3,19 +3,406 @@
   "year": 2026,
   "season": "Summer",
   "dateTime": "2026년 8월 25일(화) 오전 11시 30분 ~ 오후 7시 (본 대회 오전 11시 30분 ~ 오후 4시 30분, Dify 해커톤 오후 4시 50분 ~ 오후 5시 40분)",
-  "note": "대회 기본 정보만 반영했습니다. Dify 해커톤 세션을 포함하여 진행됩니다. 후원사, 개인 후원자, 링크, 대회 결과는 추후 추가 예정입니다.",
+  "note": "수상자 명단, 문제 목록, 스코어보드, 출제진/검수진과 주요 링크를 반영했습니다.",
   "titleSuffix": "× Dify Hackathon",
-  "promotion": {
-    "posterImage": "SUAPC_2026s_Poster.png",
-    "applyLink": "https://forms.gle/jNPguE13zVRdejSa7",
-    "showPopup": false
-  },
   "links": {
+    "problemBojLink": "https://doj.kr/ko/categories/school/suapc/suapc2026s",
+    "problemPdf": "https://raw.githubusercontent.com/icpc-sinchon/SUAPC-Archive/f86fc89e2b9f7185e8566a2df2933614e14774ca/2026S/SUAPC%202026%20Summer%20Problemset.pdf",
+    "solutionPdf": "https://raw.githubusercontent.com/icpc-sinchon/SUAPC-Archive/f86fc89e2b9f7185e8566a2df2933614e14774ca/2026S/SUAPC%202026%20Summer%20Solution%20Writeup.pdf",
+    "scoreboard": [
+      "https://archive.icpc-sinchon.io/2026S/Spotboard/"
+    ],
     "posterImage": "https://drive.google.com/file/d/17yExzOOqt9YiRDO37jT_HFihbZM0jM1g/view?usp=sharing"
   },
-  "contest": [],
-  "setter": [],
-  "reviewer": [],
+  "contest": [
+    {
+      "contestName": null,
+      "awards": [
+        {
+          "rank": 1,
+          "solved": 11,
+          "teamName": "中國人",
+          "school": "연세대학교",
+          "member": [
+            "아세안",
+            "민상원",
+            "한재윤"
+          ]
+        },
+        {
+          "rank": 2,
+          "solved": 9,
+          "teamName": "temporary_teamname",
+          "school": "연세대학교",
+          "member": [
+            "박경욱",
+            "이협",
+            "최우현"
+          ]
+        },
+        {
+          "rank": 3,
+          "solved": 8,
+          "teamName": "NJG",
+          "school": "한양대학교",
+          "member": [
+            "노경민",
+            "김준호",
+            "정성준"
+          ]
+        },
+        {
+          "rank": 4,
+          "solved": 8,
+          "teamName": "찬우없는방",
+          "school": "한양대학교",
+          "member": [
+            "김도현",
+            "구재원",
+            "이석진"
+          ]
+        },
+        {
+          "rank": 5,
+          "solved": 8,
+          "teamName": "Don't Die Yet",
+          "school": "서강대학교",
+          "member": [
+            "이재혁",
+            "강효규",
+            "정회윤"
+          ]
+        },
+        {
+          "rank": 6,
+          "solved": 7,
+          "teamName": "홍대멘헤라공원",
+          "school": "연세대학교, 이화여자대학교",
+          "member": [
+            "김지호",
+            "박지은",
+            "유승환"
+          ]
+        },
+        {
+          "rank": 7,
+          "solved": 6,
+          "teamName": "수아가 만든 컴퓨터는 수아피씨",
+          "school": "서강대학교, 연세대학교",
+          "member": [
+            "김용선",
+            "김제이크",
+            "강재희"
+          ]
+        },
+        {
+          "rank": 8,
+          "solved": 6,
+          "teamName": "Nadori Fan Club",
+          "school": "홍익대학교",
+          "member": [
+            "이재국",
+            "김도현",
+            "양주환"
+          ]
+        },
+        {
+          "rank": 9,
+          "solved": 6,
+          "teamName": "코드앤캔버스",
+          "school": "연세대학교",
+          "member": [
+            "임예찬",
+            "권상우",
+            "이호찬"
+          ]
+        },
+        {
+          "rank": 10,
+          "solved": 6,
+          "teamName": "쉔디의 마지막 불꽃",
+          "school": "서강대학교",
+          "member": [
+            "양제웅",
+            "김규민",
+            "조성훈"
+          ]
+        }
+      ],
+      "problemList": [
+        {
+          "problemTitle": "수앞C",
+          "link": "https://doj.kr/ko/problems/266",
+          "setter": {
+            "name": "정시우",
+            "school": "서울대학교",
+            "bojHandle": "sorohue"
+          }
+        },
+        {
+          "problemTitle": "분탕의 신 안녕원",
+          "link": "https://doj.kr/ko/problems/267",
+          "setter": {
+            "name": "송주헌",
+            "school": "한가람고등학교",
+            "bojHandle": "lunarlity"
+          }
+        },
+        {
+          "problemTitle": "공 넣기",
+          "link": "https://doj.kr/ko/problems/268",
+          "setter": {
+            "name": "손재원",
+            "school": "서울과학고등학교",
+            "bojHandle": "pk661"
+          }
+        },
+        {
+          "problemTitle": "Regulating Bracket Sequence",
+          "link": "https://doj.kr/ko/problems/269",
+          "setter": {
+            "name": "이성현",
+            "school": "한양대학교",
+            "bojHandle": "hibye1217"
+          }
+        },
+        {
+          "problemTitle": "K분 그래프 3",
+          "link": "https://doj.kr/ko/problems/270",
+          "setter": {
+            "name": "조문성",
+            "school": "숭실대학교",
+            "bojHandle": "jms020820"
+          }
+        },
+        {
+          "problemTitle": "122333",
+          "link": "https://doj.kr/ko/problems/271",
+          "setter": {
+            "name": "신희찬",
+            "school": "한국디지털미디어고등학교",
+            "bojHandle": "shinhuichan"
+          }
+        },
+        {
+          "problemTitle": "쌀 가져가기와 쿼리",
+          "link": "https://doj.kr/ko/problems/272",
+          "setter": {
+            "name": "임병찬",
+            "school": "포항공과대학교",
+            "bojHandle": "hyperbolic"
+          }
+        },
+        {
+          "problemTitle": "README",
+          "link": "https://doj.kr/ko/problems/273",
+          "setter": {
+            "name": "정우현",
+            "school": "경기과학고등학교",
+            "bojHandle": "woohyun_jng"
+          }
+        },
+        {
+          "problemTitle": "책 정렬",
+          "link": "https://doj.kr/ko/problems/274",
+          "setter": {
+            "name": "비공개",
+            "school": "-",
+            "bojHandle": "pyb1031"
+          }
+        },
+        {
+          "problemTitle": "트리 뽑아내기",
+          "link": "https://doj.kr/ko/problems/275",
+          "setter": {
+            "name": "김유담",
+            "school": "경기과학고등학교",
+            "bojHandle": "realpsdoingdamyoo"
+          }
+        },
+        {
+          "problemTitle": "술 푸는 사람",
+          "link": "https://doj.kr/ko/problems/276",
+          "setter": {
+            "name": "조완진",
+            "school": "-",
+            "bojHandle": "cohenpf"
+          }
+        },
+        {
+          "problemTitle": "정투상도",
+          "link": "https://doj.kr/ko/problems/277",
+          "setter": {
+            "name": "조완진",
+            "school": "-",
+            "bojHandle": "cohenpf"
+          }
+        },
+        {
+          "problemTitle": "쌀 재배하기와 쿼리",
+          "link": "https://doj.kr/ko/problems/278",
+          "setter": {
+            "name": "임병찬",
+            "school": "포항공과대학교",
+            "bojHandle": "hyperbolic"
+          }
+        },
+        {
+          "problemTitle": "매직 쌀 2",
+          "link": "https://doj.kr/ko/problems/279",
+          "setter": {
+            "name": "윤지호",
+            "school": "연세대학교",
+            "bojHandle": "gs22059"
+          }
+        }
+      ]
+    }
+  ],
+  "setter": [
+    {
+      "name": "정시우",
+      "school": "서울대학교",
+      "bojHandle": "sorohue"
+    },
+    {
+      "name": "송주헌",
+      "school": "한가람고등학교",
+      "bojHandle": "lunarlity"
+    },
+    {
+      "name": "손재원",
+      "school": "서울과학고등학교",
+      "bojHandle": "pk661"
+    },
+    {
+      "name": "이성현",
+      "school": "한양대학교",
+      "bojHandle": "hibye1217"
+    },
+    {
+      "name": "조문성",
+      "school": "숭실대학교",
+      "bojHandle": "jms020820"
+    },
+    {
+      "name": "신희찬",
+      "school": "한국디지털미디어고등학교",
+      "bojHandle": "shinhuichan"
+    },
+    {
+      "name": "임병찬",
+      "school": "포항공과대학교",
+      "bojHandle": "hyperbolic"
+    },
+    {
+      "name": "정우현",
+      "school": "경기과학고등학교",
+      "bojHandle": "woohyun_jng"
+    },
+    {
+      "name": "비공개",
+      "school": "-",
+      "bojHandle": "pyb1031"
+    },
+    {
+      "name": "김유담",
+      "school": "경기과학고등학교",
+      "bojHandle": "realpsdoingdamyoo"
+    },
+    {
+      "name": "조완진",
+      "school": "-",
+      "bojHandle": "cohenpf"
+    },
+    {
+      "name": "윤지호",
+      "school": "연세대학교",
+      "bojHandle": "gs22059"
+    }
+  ],
+  "reviewer": [
+    {
+      "name": "김건표",
+      "school": "서울대학교",
+      "bojHandle": "denniskim"
+    },
+    {
+      "name": "김도윤",
+      "school": "서울과학고등학교",
+      "bojHandle": "kdy40929"
+    },
+    {
+      "name": "김유담",
+      "school": "경기과학고등학교",
+      "bojHandle": "realpsdoingdamyoo"
+    },
+    {
+      "name": "비공개",
+      "school": "-",
+      "bojHandle": "pyb1031"
+    },
+    {
+      "name": "손재원",
+      "school": "서울과학고등학교",
+      "bojHandle": "pk661"
+    },
+    {
+      "name": "송주헌",
+      "school": "한가람고등학교",
+      "bojHandle": "lunarlity"
+    },
+    {
+      "name": "신희찬",
+      "school": "한국디지털미디어고등학교",
+      "bojHandle": "shinhuichan"
+    },
+    {
+      "name": "윤지호",
+      "school": "연세대학교",
+      "bojHandle": "gs22059"
+    },
+    {
+      "name": "이성현",
+      "school": "한양대학교",
+      "bojHandle": "hibye1217"
+    },
+    {
+      "name": "이주형",
+      "school": "서울대학교",
+      "bojHandle": "iccodly"
+    },
+    {
+      "name": "임병찬",
+      "school": "포항공과대학교",
+      "bojHandle": "hyperbolic"
+    },
+    {
+      "name": "전준우",
+      "school": "포항공과대학교",
+      "bojHandle": "junwoojune"
+    },
+    {
+      "name": "정시우",
+      "school": "서울대학교",
+      "bojHandle": "sorohue"
+    },
+    {
+      "name": "정우현",
+      "school": "경기과학고등학교",
+      "bojHandle": "woohyun_jng"
+    },
+    {
+      "name": "조문성",
+      "school": "숭실대학교",
+      "bojHandle": "jms020820"
+    },
+    {
+      "name": "조완진",
+      "school": "-",
+      "bojHandle": "cohenpf"
+    }
+  ],
   "sponsor": [
     {
       "id": "miso",
@@ -83,5 +470,299 @@
       "id": "임예찬",
       "name": "임예찬"
     }
-  ]
+  ],
+  "hackathon": {
+    "name": "Dify Hackathon",
+    "problemPdf": "https://raw.githubusercontent.com/icpc-sinchon/SUAPC-Archive/f86fc89e2b9f7185e8566a2df2933614e14774ca/2026S/SUAPC%202026S%20Dify%20Hackathon%20Problemset.pdf",
+    "scoreboard": [
+      {
+        "rank": 1,
+        "nickname": "NGM",
+        "score": "17.0",
+        "problemScores": [
+          5,
+          4,
+          3,
+          5
+        ],
+        "time": 367
+      },
+      {
+        "rank": 2,
+        "nickname": "yuju4229",
+        "score": "17.0",
+        "problemScores": [
+          5,
+          4,
+          3,
+          5
+        ],
+        "time": 1540
+      },
+      {
+        "rank": 3,
+        "nickname": "대인지뢰",
+        "score": "15.0",
+        "problemScores": [
+          5,
+          4,
+          3,
+          3
+        ],
+        "time": 430
+      },
+      {
+        "rank": 4,
+        "nickname": "들러리1",
+        "score": "13.0",
+        "problemScores": [
+          5,
+          0,
+          4,
+          4
+        ],
+        "time": 1529
+      },
+      {
+        "rank": 5,
+        "nickname": "ThatOnePythonUser",
+        "score": "11.0",
+        "problemScores": [
+          5,
+          3,
+          1,
+          2
+        ],
+        "time": 494
+      },
+      {
+        "rank": 6,
+        "nickname": "PSW",
+        "score": "11.0",
+        "problemScores": [
+          4,
+          0,
+          2,
+          5
+        ],
+        "time": 1701
+      },
+      {
+        "rank": 7,
+        "nickname": "阿世侒",
+        "score": "10.0",
+        "problemScores": [
+          4,
+          2,
+          4,
+          0
+        ],
+        "time": 1675
+      },
+      {
+        "rank": 8,
+        "nickname": "틀딱지뢰",
+        "score": "9.0",
+        "problemScores": [
+          5,
+          4,
+          0,
+          0
+        ],
+        "time": 2744
+      },
+      {
+        "rank": 9,
+        "nickname": "잼민지뢰",
+        "score": "6.0",
+        "problemScores": [
+          0,
+          0,
+          2,
+          4
+        ],
+        "time": 2530
+      },
+      {
+        "rank": 10,
+        "nickname": "조찬우",
+        "score": "5.0",
+        "problemScores": [
+          5,
+          0,
+          0,
+          0
+        ],
+        "time": 3790
+      },
+      {
+        "rank": 11,
+        "nickname": "狂鼠",
+        "score": "5.0",
+        "problemScores": [
+          5,
+          0,
+          0,
+          0
+        ],
+        "time": 3844
+      },
+      {
+        "rank": 12,
+        "nickname": "축하합니다",
+        "score": "5.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          5
+        ],
+        "time": 4878
+      },
+      {
+        "rank": 13,
+        "nickname": "bumjin2398",
+        "score": "5.0",
+        "problemScores": [
+          5,
+          0,
+          0,
+          0
+        ],
+        "time": 5375
+      },
+      {
+        "rank": 14,
+        "nickname": "부산대화석",
+        "score": "3.0",
+        "problemScores": [
+          0,
+          0,
+          2,
+          1
+        ],
+        "time": 2456
+      },
+      {
+        "rank": 15,
+        "nickname": "as_dfsdf",
+        "score": "3.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          3
+        ],
+        "time": 3663
+      },
+      {
+        "rank": 16,
+        "nickname": "opus67",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "맥스",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "JSJ",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "클로드",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "octane",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "에디",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "들러리2",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "David",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      },
+      {
+        "rank": 16,
+        "nickname": "mo_onrabbit2",
+        "score": "0.0",
+        "problemScores": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "time": 8400
+      }
+    ]
+  }
 }

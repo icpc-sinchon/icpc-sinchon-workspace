@@ -155,6 +155,54 @@
       "items": {
         "$ref": "#/definitions/sponsor"
       }
+    },
+    "hackathon": {
+      "type": "object",
+      "description": "본대회와 별도로 진행한 해커톤 기록",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "해커톤 이름"
+        },
+        "problemPdf": {
+          "type": "string",
+          "description": "해커톤 문제 PDF 링크"
+        },
+        "scoreboard": {
+          "type": "array",
+          "description": "해커톤 스코어보드",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rank": {
+                "type": "integer",
+                "description": "해커톤 등수"
+              },
+              "nickname": {
+                "type": "string",
+                "description": "참가자 닉네임"
+              },
+              "score": {
+                "type": "string",
+                "description": "총점. 소수점 표기를 유지하기 위해 문자열로 둔다"
+              },
+              "problemScores": {
+                "type": "array",
+                "description": "문제별 점수. A번부터 순서대로 담는다",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "time": {
+                "type": "integer",
+                "description": "제출까지 걸린 시간(초)"
+              }
+            },
+            "required": ["rank", "nickname", "score", "problemScores", "time"]
+          }
+        }
+      },
+      "required": ["name", "scoreboard"]
     }
   },
   "required": [

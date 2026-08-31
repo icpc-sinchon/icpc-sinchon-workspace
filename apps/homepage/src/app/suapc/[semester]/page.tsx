@@ -1,6 +1,7 @@
 import HistoryLayout from "@components/HistoryLayout";
 import ContestLinks from "@ui/ContestLinks";
 import LogoSection from "@ui/LogoSection";
+import type { TableItem } from "@components/Table";
 import TableSection from "@ui/TableSection";
 import TabNav from "@ui/TabNav";
 import TextSection from "@ui/TextSection";
@@ -81,6 +82,17 @@ function SUAPCPage({
       title: "해설 PDF",
       href: formatLinkURL(links.solutionPdf, currentPageSemester),
     },
+    ...(suapcData.hackathon?.problemPdf
+      ? [
+          {
+            title: "해커톤 문제 PDF",
+            href: formatLinkURL(
+              suapcData.hackathon.problemPdf,
+              currentPageSemester,
+            ),
+          },
+        ]
+      : []),
     {
       title: "스코어보드",
       href: formatLinkURL(links.scoreboard?.[0], currentPageSemester),
@@ -101,6 +113,10 @@ function SUAPCPage({
   const hasAnyLinkButton = contestLinks.some((link) => Boolean(link.href));
   const hasSponsor = (suapcData.sponsor?.length ?? 0) > 0;
   const hasPersonalSponsor = (suapcData.personalSponsor?.length ?? 0) > 0;
+  // 해커톤 문제 수는 시즌마다 다를 수 있어 스코어보드에서 열 이름을 만든다
+  const hackathonProblemLabels = (
+    suapcData.hackathon?.scoreboard[0]?.problemScores ?? []
+  ).map((_, index) => String.fromCharCode(65 + index));
   const hasStaffTable =
     (suapcData.setter?.length ?? 0) > 0 &&
     (suapcData.reviewer?.length ?? 0) > 0;
@@ -140,22 +156,24 @@ function SUAPCPage({
         )}
         {suapcData.contest?.map((contest) => (
           <React.Fragment key={contest.contestName}>
-            <TableSection
-              key={contest.contestName}
-              title="수상 내역"
-              titleBadge={contest.contestName}
-              data={contest.awards.map((award) => ({
-                ...award,
-                member: award.member.join(", "),
-              }))}
-              columns={[
-                { key: "rank", header: "순위" },
-                { key: "solved", header: "솔브 수" },
-                { key: "teamName", header: "팀명" },
-                { key: "member", header: "팀원" },
-                { key: "school", header: "소속" },
-              ]}
-            />
+            {contest.awards.length > 0 && (
+              <TableSection
+                key={contest.contestName}
+                title="수상 내역"
+                titleBadge={contest.contestName}
+                data={contest.awards.map((award) => ({
+                  ...award,
+                  member: award.member.join(", "),
+                }))}
+                columns={[
+                  { key: "rank", header: "순위" },
+                  { key: "solved", header: "솔브 수" },
+                  { key: "teamName", header: "팀명" },
+                  { key: "member", header: "팀원" },
+                  { key: "school", header: "소속" },
+                ]}
+              />
+            )}
             <TableSection
               title="문제 목록"
               titleBadge={contest.contestName}
@@ -177,6 +195,32 @@ function SUAPCPage({
           </React.Fragment>
         ))}
         {/* 출제진, 검수진 테이블 */}
+        {suapcData.hackathon && (
+          <TableSection
+            title={`${suapcData.hackathon.name} 스코어보드`}
+            data={suapcData.hackathon.scoreboard.map(
+              ({ problemScores, ...score }): TableItem => ({
+                ...score,
+                ...Object.fromEntries(
+                  problemScores.map((problemScore, index) => [
+                    hackathonProblemLabels[index],
+                    problemScore,
+                  ]),
+                ),
+              }),
+            )}
+            columns={[
+              { key: "rank", header: "등수" },
+              { key: "nickname", header: "닉네임" },
+              { key: "score", header: "점수" },
+              ...hackathonProblemLabels.map((label) => ({
+                key: label,
+                header: label,
+              })),
+              { key: "time", header: "시간(초)" },
+            ]}
+          />
+        )}
         {hasStaffTable && (
           <section className={styles.tableContainer}>
             <TableSection
